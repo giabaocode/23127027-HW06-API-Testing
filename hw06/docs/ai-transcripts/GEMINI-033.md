@@ -274,4 +274,96 @@ Do NOT generate testcases in this interaction.
 
 ## 2. Verbatim Conversational AI Response
 
-[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]
+=== ADMIN SUCCESS STATUS ORACLES ===
+
+The 14 target operations were analyzed against `api_specification.md` and `README.md`. Because the official specification contract does **not** explicitly state numerical HTTP success status codes for these operations, the access-control outcome has been decoupled from downstream functional codes. All 200 responses are derived from Express SUT default implementation behavior (`res.json(...)`) and classified accordingly:
+
+| # | Method | Endpoint URI | Authorized Admin Semantic Outcome | Documented Success Status | Classification | Grounded Contract / Implementation Source |
+| :-: | :---: | :--- | :--- | :---: | :---: | :--- |
+| 1 | `GET` | `/api/admin/users` | Permitted to view system users | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not numbered in `api_spec` L176 text; SUT executes `res.json(rows)` (`server.js` L498). |
+| 2 | `DELETE` | `/api/admin/users/:id` | Permitted to delete target user | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not numbered in `api_spec` L177 text; SUT executes `res.json(...)` (`server.js` L506). |
+| 3 | `GET` | `/api/admin/orders` | Permitted to view all orders | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not numbered in `api_spec` L180 text; SUT executes `res.json(orders)` (`server.js` L521). |
+| 4 | `PUT` | `/api/admin/orders/:id/status` | Permitted to update order status | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not numbered in `api_spec` L181 text; SUT executes `res.json(...)` (`server.js` L540). |
+| 5 | `POST` | `/api/admin/import-products` | Permitted to import catalog | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L185 text; SUT executes `res.json(...)` (`server.js` L239). |
+| 6 | `POST` | `/api/admin/coupons` | Permitted to create coupon | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L202 text; SUT executes `res.json(...)` (`server.js` L473). |
+| 7 | `DELETE` | `/api/admin/coupons/:id` | Permitted to delete coupon | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L214 text; SUT executes `res.json(...)` (`server.js` L487). |
+| 8 | `POST` | `/api/products` | Permitted to create product | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L88 text; SUT executes `res.json(...)` (`server.js` L174). |
+| 9 | `PUT` | `/api/products/:id` | Permitted to update product | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L89 text; SUT executes `res.json(...)` (`server.js` L186). |
+| 10 | `DELETE` | `/api/products/:id` | Permitted to delete product | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L90 text; SUT executes `res.json(...)` (`server.js` L194). |
+| 11 | `POST` | `/api/categories` | Permitted to create category | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L104 text; SUT executes `res.json(...)` (`server.js` L253). |
+| 12 | `PUT` | `/api/categories/:id` | Permitted to update category | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L105 text; SUT executes `res.json(...)` (`server.js` L264). |
+| 13 | `DELETE` | `/api/categories/:id` | Permitted to delete category | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L106 text; SUT executes `res.json(...)` (`server.js` L275). |
+| 14 | `GET` | `/api/coupons` | Permitted to view all coupons | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | `api_spec` L165–168 labels endpoint *"Dành cho Admin"*; SUT executes `res.json(rows)` (`server.js` L358). |
+
+---
+
+=== GET /api/coupons AUTHORIZATION VERIFIED ===
+
+Direct inspection of `backend/server.js` Lines 355–360:
+```javascript
+// GET all coupons (public - for admin display)
+app.get("/api/coupons", authenticateToken, (req, res) => {
+  db.all("SELECT * FROM coupons", [], (err, rows) => {
+    res.json(rows);
+  });
+});
+```
+- **Authentication Check:** `authenticateToken` middleware is attached at **Line 356** (rejects missing/invalid tokens via `SEC-02`).
+- **Authorization Check:** In Lines 356–360, there is **zero check** on `req.user.role === 'admin'`.
+- **Conclusion:** Standard users (`role: 'user'`) can invoke `GET /api/coupons` and read all system coupon records.
+- **Candidate Scope Confirmation:** Confirmed in **`CAND-FR12-01`** alongside `/api/admin/*` endpoints with explicit citation of `backend/server.js` Lines 356–360.
+
+---
+
+=== HTTP STATUS MODEL FINAL ===
+
+| Caller Identity State | Required Semantic Outcome | HTTP Status Code | Status Classification | Grounded Contract / Implementation Authority |
+| :--- | :--- | :---: | :---: | :--- |
+| **Anonymous (Missing Token)** | Request rejected; zero data exposed; zero state mutation | `401 Unauthorized` | **IMPLEMENTATION-OBSERVED / INFERRED** | Semantic denial mandated by `SEC-02` (`README.md` L279); exact 401 code defined in SUT middleware (`server.js` L103). |
+| **Malformed / Forged / Expired Token** | Request rejected; cryptographic verification failed | `403 Forbidden` | **IMPLEMENTATION-OBSERVED / INFERRED** | Semantic denial mandated by `SEC-02`; exact 403 code defined in SUT middleware (`server.js` L106). |
+| **Authenticated Standard User (`role: 'user'`)** | Access denied; non-admin prohibited from admin operations | `403 Forbidden` (Convention) / `UNKNOWN` by spec | **UNSPECIFIED BY CONTRACT / CONVENTIONAL INFERENCE** | Semantic denial explicitly mandated by `SEC-03` (`README.md` L280) and `FR-12` (L176–180); exact HTTP status code is unspecified in contract. |
+| **Authenticated Administrator (`role: 'admin'`)** | Access granted; request passes `SEC-02` & `SEC-03` and is NOT blocked by authorization layer | `200 OK` (Endpoint dependent) | **INFERRED / IMPLEMENTATION-OBSERVED** | Primary oracle is authorization clearance; 200 code is implementation-observed across all 14 endpoints via Express `res.json`. |
+
+---
+
+=== COVERAGE MATRIX FINAL ===
+
+- **Total Planned AI Test Cases:** Exactly **38 high-value tests**
+- **Total Coverage IDs:** Exactly **38 Coverage IDs (`COV-FR12-01` to `COV-FR12-38`)**
+- **Admin Positive Rows Calibrated:** All 11 positive admin test cases now assert `AUTHORIZED (Not Blocked by SEC-02/03)` with HTTP status classified as `200 OK (Inferred from SUT)`, removing invalid assumptions of REST convention contract mandates.
+- **Side-Effect Verification Retained:** All 17 data-mutating negative test cases enforce dual-assertion (response rejection + follow-up `GET` proving data was not inserted, altered, or deleted).
+- **Disposable Data Policy Enforced:** Zero lecturer baseline data will be touched; all admin mutation tests create disposable entities.
+
+---
+
+=== AI ERROR RECORDED ===
+
+- **Factual AI Error Identified:** The initial FR-12 analysis incorrectly classified generic `200 OK / 201 Created` REST conventions as `SPECIFIED / STANDARD SUCCESS` behavior for authorized administrators.
+- **Engineering Lesson:** Authorization success means the request may proceed through the access-control layer (it is not rejected by `SEC-02` or `SEC-03`); it does not imply one universal functional HTTP success status across heterogeneous endpoints. Exact HTTP success codes must be classified as `INFERRED / IMPLEMENTATION-OBSERVED` when derived from implementation defaults rather than explicit contract text.
+
+---
+
+=== CORRECTION COMMIT ===
+
+- **Historical Commits Preserved:**
+  - `fdb9e6d` (Initial specification analysis and matrix)
+  - `3ae86e3` (Role model and coupon route scope correction)
+- **New Local Correction Commit:** `7716eea` (`7716eea33b37ea303a276b1f2bc8baab91a84f37`)
+- **Commit Message:** `test(fr12): calibrate authorized admin status oracles`
+- **Files Modified & Committed:**
+  - [`hw06/testcases/fr12/spec-analysis.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/spec-analysis.md)
+  - [`hw06/testcases/fr12/coverage-matrix.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/coverage-matrix.md)
+  - [`hw06/docs/ai-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-audit.md)
+  - [`hw06/docs/ai-transcripts/GEMINI-032.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-032.md)
+  - [`hw06/docs/ai-transcripts/GEMINI-033.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-033.md)
+- **Git Status:** Clean working tree. Branch `main` is ahead of `origin/main` by 3 local commits. **Zero pushes executed to remote.**
+
+---
+
+=== FR-12 PHASE 1 COMPLETE — READY FOR AI TEST GENERATION ===
+
+Per your strict directive:
+- **No FR-12 test cases have been generated yet.**
+- **No Postman or Newman executions have been launched.**
+
+The specification analysis and coverage matrix are fully grounded, reconciled, and ready for your approval to proceed to Phase 2 (AI Test Case Generation for FR-12)!
