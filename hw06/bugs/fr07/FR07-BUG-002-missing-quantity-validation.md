@@ -65,9 +65,11 @@
 ## 5. Expected vs. Actual Result
 
 - **Expected Result:**
-  - HTTP Status: `400 Bad Request` or `422 Unprocessable Entity` (Controlled semantic rejection).
-  - Response Body: JSON error payload explaining that quantity must be a positive integer $\ge 1$.
-  - State Invariant: Cart remains empty (`[]`); zero mutation occurs.
+  - **Expected Semantic Behavior:**
+    - `quantity` must satisfy positive integer $\ge 1$ (`README.md` Line 86).
+    - Invalid quantity values must NOT be accepted as valid cart mutations.
+    - Cart state must remain completely unmodified by the invalid item (cart remains empty `[]`).
+  - **Expected HTTP Status:** `UNKNOWN by official specification` (Controlled semantic rejection expected; exact HTTP status code such as 400 or 422 is unspecified and not required as formal contract oracle).
 - **Actual Result (Runtime Observed):**
   - HTTP Status: `200 OK`.
   - Response Body: `{"message":"Added to cart"}`.

@@ -64,11 +64,14 @@ Any arbitrary payload sent by a client is accepted and pushed directly into `use
 ## 4. Expected vs. Actual Behavior
 
 - **Expected Behavior:**
-  - HTTP `400 Bad Request` or `422 Unprocessable Entity` with an appropriate error message (e.g. `{"error": "Quantity must be a positive integer >= 1"}`).
-  - Zero cart mutation (cart remains empty).
+  - **Expected Semantic Behavior:**
+    - `quantity` must satisfy positive integer $\ge 1$ (`README.md` Line 86).
+    - Invalid quantity values must NOT be accepted as valid cart mutations.
+    - Cart state must remain completely unmodified by the invalid item (cart remains empty `[]`).
+  - **Expected HTTP Status:** `UNKNOWN by official specification` (Controlled semantic rejection expected; exact HTTP status code such as 400 or 422 is unspecified and not required as formal contract oracle).
 - **Actual Behavior (Runtime Observed):**
   - HTTP `200 OK` returned.
-  - Invalid item with negative, zero, or corrupted quantity is saved into the shopping cart.
+  - Invalid item with negative, zero, or corrupted quantity is saved into the shopping cart array.
 
 ---
 

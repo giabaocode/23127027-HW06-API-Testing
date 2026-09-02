@@ -75,15 +75,19 @@
 
 ## 5. Bug Reporting & GitHub Issues
 
-- [ ] **5.1 File Genuine Bugs on GitHub Issues:**
+- [x] **5.1 File Genuine Bugs on GitHub Issues:**
   - Created genuine issues on `https://github.com/giabaocode/23127027-HW06-API-Testing/issues`:
     - Issue #1: [`[DEF-FR01-01] Critical: Plaintext Passwords`](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/1)
     - Issue #2: [`[DEF-FR01-02] High: Duplicate Email Registration`](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/2)
     - Issue #3: [`[DEF-FR01-03] High: Missing Password Policy`](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/3)
     - Issue #4: [`[DEF-FR01-04] High: Missing Mandatory Fields`](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/4)
     - Issue #5: [`[DEF-FR01-05] Medium: Missing Email Syntax Validation`](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/5)
-  - *Human Action Remaining:* Capture real screenshot of each GitHub Issue page and save into `hw06/bugs/evidence/`.
-- [ ] **5.2 Link Issues in Main Report:**
+    - Issue #6: [`[FR-07] High: Adding Duplicate Product to Cart Appends New Row`](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/6)
+    - Issue #7: [`[FR-07] High: Missing Quantity Domain Validation on POST /api/cart`](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/7)
+- [x] **5.2 FR-07 GitHub Issue Browser Screenshot:**
+  - Student captured authentic browser screenshot of live GitHub Issue #6.
+  - Verified and committed at `hw06/screenshots/fr07-bug-issue-001.png` (and `fr07-bug-issue-001.jpg`).
+- [ ] **5.3 Link Issues in Main Report:**
   - Update `hw06/docs/main-report.md` bug register with Issue #, Title, Severity, and screenshot links.
 
 ---

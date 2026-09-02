@@ -57,6 +57,7 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-028** | 2026-09-02T21:09:49+07:00 | Phase 3 & 4 (FR-07) | Student Extensions Formalization, Postman Automation & Newman Execution | [`hw06/docs/ai-transcripts/GEMINI-028.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-028.md) |
 | **GEMINI-029** | 2026-09-02T21:45:06+07:00 | Phase 4 (FR-07) | Human Evidence Verification & FR-07 Evidence Closure | [`hw06/docs/ai-transcripts/GEMINI-029.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-029.md) |
 | **GEMINI-030** | 2026-09-02T21:51:52+07:00 | Phase 6 (FR-07) | Defect Closure, Push Readiness, GitHub Issues & Final FR-07 Sign-off | [`hw06/docs/ai-transcripts/GEMINI-030.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-030.md) |
+| **GEMINI-031** | 2026-09-02T22:01:02+07:00 | Phase 6 (FR-07) / Phase 1 (FR-12) | FR-07 Evidence Complete & FR-12 Access Control Specification Analysis | [`hw06/docs/ai-transcripts/GEMINI-031.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-031.md) |
 
 ---
 
@@ -874,7 +875,36 @@ To ensure total transparency without truncating large conversational turns, full
 *See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-030.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-030.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-030.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-030.md) via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-030.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-030.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-031
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T22:01:02+07:00
+- **Phase:** Phase 6 (FR-07) Closure & Phase 1 (FR-12) Access Control Specification Analysis
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-030.md` (finalized)
+  - `hw06/docs/ai-transcripts/GEMINI-031.md` (created with retrospective placeholder)
+  - `hw06/screenshots/fr07-bug-issue-001.png` (verified real browser screenshot)
+  - `hw06/bugs/fr07/FR07-BUG-002-missing-quantity-validation.md` (calibrated expected oracle)
+  - `hw06/bugs/DEF-FR07-02.md` (calibrated expected oracle)
+  - GitHub Issue #7 (body calibrated on remote)
+  - `hw06/MANUAL_TODO.md` (updated)
+  - `hw06/submission-checklist.md` (updated)
+  - `hw06/testcases/fr12/spec-analysis.md` (Phase 1 specification analysis)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Truthful Audit Provenance:**
+  - The student personally captured and placed the real GitHub browser screenshot for Issue #6.
+  - Gemini verified the file, updated GitHub Issue #7 contract oracle, synchronized documentation, and conducted Phase 1 specification analysis for Pool C Feature FR-12.
+- **Human Checkpoint:** Checkpoint 1 (FR-12) — Specification Analysis Review.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-031.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-031.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-031.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-031.md) via retrospective logging).
 
 ---
 
