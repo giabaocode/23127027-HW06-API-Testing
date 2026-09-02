@@ -1,6 +1,7 @@
 # [DEF-FR07-02] High: POST /api/cart Accepts Invalid, Negative, Zero, and Fractional Quantities Without Validation
 
 - **Defect ID:** `DEF-FR07-02`
+- **GitHub Issue:** [#7](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/7)
 - **Feature Area:** FR-07 (Shopping Cart Management)
 - **Endpoint:** `POST /api/cart`
 - **Severity:** **High** (Input Validation Defect / Business Rule Violation)

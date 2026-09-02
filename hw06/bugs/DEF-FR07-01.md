@@ -1,6 +1,7 @@
 # [DEF-FR07-01] High: Adding Duplicate Product to Cart Appends New Row Instead of Accumulating Quantity
 
 - **Defect ID:** `DEF-FR07-01`
+- **GitHub Issue:** [#6](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/6)
 - **Feature Area:** FR-07 (Shopping Cart Management)
 - **Endpoint:** `POST /api/cart`
 - **Severity:** **High** (Business Logic Defect / Cart Integrity Failure)
