@@ -41,8 +41,9 @@ The continuous integration pipeline is hosted on **GitHub Actions** (`ubuntu-lat
 - **Target Suite:** [`hw06/postman/collections/ci-smoke.postman_collection.json`](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/collections/ci-smoke.postman_collection.json)
 - **Executed Operations:** 9 API Requests (Catalog, Details, Categories, Registration, Login, Cart, Admin Users, Forged Signature Rejection, Anonymous Rejection).
 - **Total Assertions:** 34 / 34 Passed (100% Pass Rate).
-- **Run ID:** `[RUN_A_ID_PLACEHOLDER]`
-- **Live GitHub Actions Run URL:** `[RUN_A_URL_PLACEHOLDER]`
+- **Run ID:** `33665114685`
+- **Live GitHub Actions Run URL:** [`https://github.com/giabaocode/23127027-HW06-API-Testing/actions/runs/33665114685`](https://github.com/giabaocode/23127027-HW06-API-Testing/actions/runs/33665114685)
+- **Commit SHA:** `229cbe1`
 - **Execution Verdict:** **SUCCESS (Green Checkmark)**.
 
 ---
@@ -62,8 +63,9 @@ The continuous integration pipeline is hosted on **GitHub Actions** (`ubuntu-lat
   });
   ```
 - **Proof of Failure Isolation:** The failure is strictly confined to the demonstration suite. The full regression collections and production codebase remain unaltered.
-- **Run ID:** `[RUN_B_ID_PLACEHOLDER]`
-- **Live GitHub Actions Run URL:** `[RUN_B_URL_PLACEHOLDER]`
+- **Run ID:** `33665296154`
+- **Live GitHub Actions Run URL:** [`https://github.com/giabaocode/23127027-HW06-API-Testing/actions/runs/33665296154`](https://github.com/giabaocode/23127027-HW06-API-Testing/actions/runs/33665296154)
+- **Commit SHA:** `229cbe1`
 - **Execution Verdict:** **FAILED AS INTENDED (Exit Code 1 / Red Cross)**.
 
 ---

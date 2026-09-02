@@ -1,3 +1,5 @@
+229cbe1 - Phạm Ngọc Gia Bảo, 2026-09-03 01:05:44 +0700 : fix(ci): enable pipefail to preserve Newman non-zero exit codes
+7eec29e - Phạm Ngọc Gia Bảo, 2026-09-03 01:02:29 +0700 : feat(hw06): implement master test deliverables, CI/CD pipeline, agent skill, and reports
 16d5ed6 - Phạm Ngọc Gia Bảo, 2026-09-03 00:37:32 +0700 : docs(fr12): verify GitHub issue screenshot and reconcile role terminology
 d440f4a - Phạm Ngọc Gia Bảo, 2026-09-03 00:17:53 +0700 : docs(fr12): verify real Postman Console evidence and report runtime defects
 77b09bd - Phạm Ngọc Gia Bảo, 2026-09-02 23:47:11 +0700 : test(fr12): automate access control suite and execute Newman run

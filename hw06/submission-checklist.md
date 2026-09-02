@@ -21,22 +21,22 @@
 
 | # | Item Required by PDF | Target File Path | Current Status | Notes / Evidence |
 | :-: | :--- | :--- | :--- | :--- |
-| 1 | **Main Report (Markdown + PDF)** | `hw06/docs/main-report.md`<br>`hw06/docs/main-report.pdf` | Pending Phase 10 | Covers full pipeline for FR-01, FR-07, FR-12 |
-| 2 | **Public GitHub Repository Link** | `https://github.com/giabaocode/23127027-HW06-API-Testing` | Configured | Verified in Git remotes |
-| 3 | **Postman Collection (`.json`)** | `hw06/postman/eshop-hw06-collection.json` | Pending Phase 4 | Includes all test scripts and assertions |
-| 4 | **Newman HTML Report** | `hw06/newman/newman-report.html` | Pending Phase 5 | Real execution against `localhost:3000` |
-| 5 | **List of Postman Features Used** | `hw06/docs/postman-features.md` | Pending Phase 4 | Document variables, pre-request scripts, tests, etc. |
-| 6 | **CI/CD Report (MD + PDF)** | `hw06/docs/cicd-report.md` | Pending Phase 7 | Pipeline setup, 2 runs, real URLs |
-| 7 | **CI/CD Run 1: All-Passing Evidence** | Screenshots & Links in report | Pending Phase 7 | Real GitHub Actions URL & commit hash |
-| 8 | **CI/CD Run 2: Failing Test Demo** | Screenshots & Links in report | Pending Phase 7 | Isolated demonstration commit with 1 failing test |
-| 9 | **Excel Test Cases & Summary** | `hw06/testcases/testcases-master.xlsx` (or CSVs) | Pending Phase 3 | Formatted with human audit verdicts & traceability |
-| 10 | **AI Test-Generator Diagram** | `hw06/agent-skill/student-diagram.png` | Pending Phase 8 | **Must be self-drawn by student** (NO AI generation) |
-| 11 | **Agent Skill Pseudocode / Code** | `hw06/agent-skill/pseudocode.md`<br>`hw06/agent-skill/test_generator.py` | Pending Phase 8 | Code/pseudocode following student design decisions |
+| 1 | **Main Report (Markdown + PDF)** | `hw06/docs/main-report.md`<br>`hw06/docs/main-report.pdf` | **COMPLETED (Markdown)** | Comprehensive report covering FR-01, FR-07, FR-12 |
+| 2 | **Public GitHub Repository Link** | `https://github.com/giabaocode/23127027-HW06-API-Testing` | **COMPLETED** | Verified public repository |
+| 3 | **Postman Collection (`.json`)** | `hw06/postman/eshop-hw06-collection.json` | **COMPLETED** | Unified master collection with central `X-Student-Id` injection |
+| 4 | **Newman HTML Report** | `hw06/newman/*/fr*-report.html` | **COMPLETED** | Authentic Newman execution reports for FR-01, FR-07, FR-12 |
+| 5 | **List of Postman Features Used** | `hw06/docs/postman-features.md` | **COMPLETED** | Comprehensive engineering documentation of Postman features |
+| 6 | **CI/CD Report (MD + PDF)** | `hw06/docs/cicd-report.md` | **COMPLETED (Markdown)** | Pipeline setup, real run IDs 33665114685 & 33665296154 |
+| 7 | **CI/CD Run 1: All-Passing Evidence** | Screenshots & Links in report | **Run Executed (Screenshot Gate)** | Real run 33665114685 passed; screenshot pending student capture |
+| 8 | **CI/CD Run 2: Failing Test Demo** | Screenshots & Links in report | **Run Executed (Screenshot Gate)** | Real run 33665296154 failed as intended; screenshot pending student capture |
+| 9 | **Excel Test Cases & Summary** | `hw06/testcases/testcases-master.xlsx` | **COMPLETED** | Exactly 129 logical testcase rows across 7 styled sheets |
+| 10 | **AI Test-Generator Diagram** | `hw06/agent-skill/student-diagram.png` | **Pending Human Drawing** | Checklist prepared; **Must be self-drawn by student** |
+| 11 | **Agent Skill Pseudocode / Code** | `hw06/agent-skill/pseudocode.md`<br>`hw06/agent-skill/test_generator.py` | **COMPLETED** | Working Python generator CLI tested with sample inputs |
 | 12 | **Bug Report with GitHub Issues** | `hw06/bugs/README.md`<br>`hw06/screenshots/fr07-bug-issue-001.png`<br>`hw06/screenshots/fr12-bug-issue-001.png` | **COMPLETED (FR-01, FR-07, FR-12)** | Real issues #1–#11 created on GitHub; FR-07 & FR-12 browser screenshots verified and committed |
-| 13 | **AI Critique (200–300 words)** | `hw06/docs/ai-critique.md` | Pending Phase 9 | Student reviewed and personalized |
-| 14 | **AI Audit Report (Markdown + PDF)** | `hw06/docs/ai-audit.md`<br>`hw06/docs/ai-audit.pdf` | In Progress | Continuous maintenance with verbatim prompts |
-| 15 | **Git Commit Log (Text file)** | `hw06/docs/git-commit-log.txt` | Pending Phase 10 | Generated from real `git log` |
-| 16 | **README.md (Self-Assessment Table)** | `hw06/README.md` | Pending Phase 10 | Contains test summary and score breakdown (/100) |
+| 13 | **AI Critique (200–300 words)** | `hw06/docs/ai-critique.md` | **COMPLETED (Draft for Review)** | Grounded in actual AI audit errors (252 words) |
+| 14 | **AI Audit Report (Markdown + PDF)** | `hw06/docs/ai-audit.md`<br>`hw06/docs/ai-audit.pdf` | In Progress | Maintained through Turn 40 with verbatim transcripts |
+| 15 | **Git Commit Log (Text file)** | `hw06/docs/git-commit-log.txt` | **COMPLETED** | Exported from authentic git history |
+| 16 | **README.md (Self-Assessment Table)** | `hw06/README.md` | **COMPLETED** | Complete architecture, navigation, and self-assessment rubric |
 | 17 | **Console Screenshot: `X-Student-Id`** | `hw06/screenshots/fr01-x-student-id.png`<br>`hw06/screenshots/fr07-x-student-id.png`<br>`hw06/screenshots/fr12-x-student-id.png` | **COMPLETED (FR-01, FR-07 & FR-12)** | Real Postman Console captures with student ID `23127027` verified and committed |
 | 18 | *(Optional)* **OpenAPI Specification** | `hw06/api-spec/openapi.yaml` | Optional | Audited if generated |
 

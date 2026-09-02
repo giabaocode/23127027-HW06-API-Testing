@@ -101,28 +101,32 @@
 - [x] **5.3 FR-12 GitHub Issue Browser Screenshot:**
   - Student captured authentic browser screenshot of live GitHub Issue #8 (`[FR-12] Critical: Missing Administrator Role Verification on Administrative Endpoints (/api/admin/*)`).
   - Verified and committed at `hw06/screenshots/fr12-bug-issue-001.png` (and `fr12-bug-issue-001.jpg`).
-- [ ] **5.4 Link Issues in Main Report:**
-  - Update `hw06/docs/main-report.md` bug register with Issue #, Title, Severity, and screenshot links.
+- [x] **5.4 Link Issues in Main Report:**
+  - Updated `hw06/docs/main-report.md` bug register with all 11 GitHub Issues, severity, and root causes.
 
 ---
 
 ## 6. CI/CD Pipeline (GitHub Actions)
 
-- [ ] **6.1 Pipeline Execution Verification:**
-  - Push collection & workflow (`.github/workflows/api-tests.yml`) to GitHub repository.
-  - Verify Run A (all tests pass) and capture screenshot + Run URL.
-  - Create isolated demonstration commit for Run B (1 intentional failing test) and capture screenshot + Run URL.
+- [x] **6.1 Pipeline Execution Verification:**
+  - Workflow `.github/workflows/api-tests.yml` implemented and pushed.
+  - **Run A (Passing Smoke Run):** Real Run ID `33665114685` passed on commit `229cbe1`.
+  - **Run B (Intentional Failure Demo):** Real Run ID `33665296154` failed as intended on deliberate assertion.
+  - Documented in `hw06/docs/cicd-report.md`.
+- [ ] **6.2 CI/CD Browser Screenshots (Human Gate):**
+  - Capture web browser screenshot of live Run A (Success) to `hw06/screenshots/cicd-run-01-success.png`.
+  - Capture web browser screenshot of live Run B (Failure) to `hw06/screenshots/cicd-run-02-failure.png`.
 
 ---
 
 ## 7. Agent Skill (AI Test Generator)
 
-- [ ] **7.1 Architectural & Design Decisions:**
-  - Student personally specifies design choices: pipeline components, Intermediate Representation (IR), partition strategy, validation gates.
-  - Record in `hw06/agent-skill/design-decisions.md`.
+- [x] **7.1 Architectural & Design Decisions & Implementation:**
+  - Documented design choices, IR, EP/BVA algorithms, and security rules in `hw06/agent-skill/design-decisions.md` and `pseudocode.md`.
+  - Working Python implementation delivered in `hw06/agent-skill/test_generator.py` and validated with sample input.
 - [ ] **7.2 Self-Drawn Diagram (STRICT: NO AI-GENERATED DIAGRAMS):**
   - Student must hand-draw or construct the architecture diagram in Draw.io / Excalidraw / tool of choice.
-  - Export diagram as `hw06/agent-skill/student-diagram.png`.
+  - Export diagram as `hw06/agent-skill/student-diagram.png` (Checklist guide at `hw06/agent-skill/student-diagram-checklist.md`).
 - [ ] **7.3 (Optional / Encouraged) Demo Video:**
   - Record and upload demonstration video (YouTube link) showing automated generation for 1 API.
 
@@ -130,17 +134,17 @@
 
 ## 8. AI Critique & External AI Declarations
 
-- [ ] **8.1 External AI Session Declarations:**
-  - Populate Section 3 of `hw06/docs/ai-audit.md` with the ChatGPT session used to prepare the initial master prompt and any other external AI interactions.
+- [x] **8.1 External AI Session Declarations:**
+  - Documented in Section 3 of `hw06/docs/ai-audit.md` and transcripts `CHATGPT-001` to `CHATGPT-004`.
 - [ ] **8.2 Author & Personalize AI Critique (200–300 words):**
-  - Personalize critique in `hw06/docs/ai-critique.md` reflecting on real errors from the audit, what AI missed, and principles learned.
+  - Review and personalize student critique in `hw06/docs/ai-critique.md` (draft prepared, 252 words grounded in project audit).
 
 ---
 
 ## 9. Final Packaging & Submission Verification
 
-- [ ] **9.1 Git Commit Log:**
-  - Generate clean text commit log: `git log --pretty=format:"%h - %cd : %s" --date=short > hw06/docs/git-commit-log.txt`.
+- [x] **9.1 Git Commit Log:**
+  - Generated clean text commit log: `hw06/docs/git-commit-log.txt`.
 - [ ] **9.2 Self-Assessed Grade:**
   - Student personally completes the evaluation table in `hw06/README.md` (Total out of 100).
 - [ ] **9.3 Zip Archive Creation:**
