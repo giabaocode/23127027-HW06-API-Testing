@@ -45,6 +45,9 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-016** | 2026-09-02T14:11:56+07:00 | Phase 4 & 5 | FR-01 Postman Automation, Local SUT Startup & Real Newman Execution | [`hw06/docs/ai-transcripts/GEMINI-016.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-016.md) |
 | **GEMINI-017** | 2026-09-02T14:28:33+07:00 | Environment | Terminate Background SUT Process to Free Port 3000 | [`hw06/docs/ai-transcripts/GEMINI-017.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-017.md) |
 | **GEMINI-018** | 2026-09-02T15:57:48+07:00 | Phase 5 & 6 | Session Resumption: SUT Status, Screenshot Verification & Defect Reporting | [`hw06/docs/ai-transcripts/GEMINI-018.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-018.md) |
+| **GEMINI-019** | 2026-09-02T16:00:33+07:00 | Phase 5 | SUT Server Relaunch & Postman Console Screenshot Guidance | [`hw06/docs/ai-transcripts/GEMINI-019.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-019.md) |
+| **GEMINI-020** | 2026-09-02T16:33:27+07:00 | Phase 5 & 6 | Screenshot Verification, Defect Documentation & GitHub Issues #1..#5 Created | [`hw06/docs/ai-transcripts/GEMINI-020.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-020.md) |
+| **GEMINI-021** | 2026-09-02T16:47:27+07:00 | Phase 1 (FR-07) | FR-07 Shopping Cart Specification Analysis & Equivalence Partitioning | [`hw06/docs/ai-transcripts/GEMINI-021.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-021.md) |
 
 ---
 
@@ -575,7 +578,71 @@ To ensure total transparency without truncating large conversational turns, full
 *See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-018.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-018.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-018.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-018.md) via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-018.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-018.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-019
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T16:00:33+07:00
+- **Phase:** Phase 5 — SUT Server Relaunch & Postman Console Screenshot Guidance
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-019.md` (created)
+- **Commands Executed:**
+  - `lsof -i :3000 || true`
+  - `node server.js` (background daemon `task-643`)
+  - `curl -s -i http://localhost:3000/api/register ...`
+- **Result:** SUT server verified live on port 3000; detailed instructions provided for Postman Console header capture.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-019.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-019.md)
+
+#### Verbatim AI Output
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-019.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-019.md)
+
+---
+
+### Interaction GEMINI-020
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T16:33:27+07:00
+- **Phase:** Phase 5 & 6 — Screenshot Verification, Defect Documentation & GitHub Issues #1..#5 Created
+- **Files Affected:**
+  - `hw06/screenshots/fr01-x-student-id.jpg` / `.png` (human evidence verified)
+  - `hw06/MANUAL_TODO.md` (updated)
+  - `hw06/bugs/DEF-FR01-01.md` through `DEF-FR01-05.md` (created)
+  - `hw06/bugs/README.md` (created)
+- **Commands Executed:**
+  - `view_file hw06/screenshots/fr01-x-student-id.jpg` (verified authentic Postman Console view)
+  - `gh issue create ...` (created Issues #1, #2, #3, #4, #5 on GitHub)
+- **Git Actions:** Executed commits `8439f1f`, `7f7c771`, and `9f8c6cf`.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-020.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-020.md)
+
+#### Verbatim AI Output
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-020.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-020.md)
+
+---
+
+### Interaction GEMINI-021
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T16:47:27+07:00
+- **Phase:** Phase 1 (FR-07) — Shopping Cart Specification Analysis & Equivalence Partitioning
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-021.md` (created with retrospective placeholder)
+  - `hw06/testcases/fr07/spec-analysis.md` (created)
+  - `hw06/testcases/fr07/coverage-matrix.md` (created)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Human Checkpoint:** Checkpoint 1 (FR-07) — Student Human Review of Shopping Cart Specification Analysis.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-021.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-021.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-021.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-021.md) via retrospective logging).
 
 ---
 
