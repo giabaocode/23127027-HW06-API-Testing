@@ -31,6 +31,10 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-002** | 2026-09-02T10:57:18+07:00 | Phase 0 | Feature Selection Lock-in (FR-01, FR-07, FR-12) & Scope Setup | [`hw06/docs/ai-transcripts/GEMINI-002.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-002.md) |
 | **GEMINI-003** | 2026-09-02T11:06:25+07:00 | Phase 0 | Compliance Corrections, Security Matrix & Classification Cleanup | [`hw06/docs/ai-transcripts/GEMINI-003.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-003.md) |
 | **GEMINI-004** | 2026-09-02T11:35:35+07:00 | Phase 0 | Final Phase 0 Hardening, Defect Candidates & Commit Execution | [`hw06/docs/ai-transcripts/GEMINI-004.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-004.md) |
+| **GEMINI-005** | 2026-09-02T11:40:33+07:00 | Phase 1 | FR-01 Specification Analysis & Planned Coverage Matrix | [`hw06/docs/ai-transcripts/GEMINI-005.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-005.md) |
+| **GEMINI-006** | 2026-09-02T11:47:13+07:00 | Phase 1 | Human Review Corrections for FR-01 Spec Analysis | [`hw06/docs/ai-transcripts/GEMINI-006.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-006.md) |
+| **GEMINI-007** | 2026-09-02T11:51:45+07:00 | Phase 1 | Human Review Checkpoint 1B Finalization & Coverage Count Calibration | [`hw06/docs/ai-transcripts/GEMINI-007.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-007.md) |
+| **GEMINI-008** | 2026-09-02T11:56:35+07:00 | Phase 1 | Consistency Calibration & Local Commit of FR-01 Specification Analysis | [`hw06/docs/ai-transcripts/GEMINI-008.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-008.md) |
 
 ---
 
@@ -158,6 +162,123 @@ To ensure total transparency without truncating large conversational turns, full
 
 ---
 
+### Interaction GEMINI-005
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T11:40:33+07:00
+- **Phase:** Phase 1 — Specification Analysis for FR-01 (Account Registration)
+- **Files Affected:**
+  - `hw06/testcases/fr01/spec-analysis.md` (created)
+  - `hw06/testcases/fr01/coverage-matrix.md` (created)
+  - `hw06/docs/ai-transcripts/GEMINI-005.md` (created)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Commands Executed:**
+  - `view_file backend/database.js:1-45`
+  - `view_file backend/database.js:46-90`
+  - `view_file backend/database.js:90-120`
+  - `write_to_file hw06/testcases/fr01/spec-analysis.md`
+  - `write_to_file hw06/testcases/fr01/coverage-matrix.md`
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-005.md`
+  - `git status`
+- **Git Actions:** None (Commit withheld; stopping at Checkpoint 1 for student review).
+- **Human Checkpoint:** Checkpoint 1 — Student Review of FR-01 Specification Analysis & Planned Coverage Matrix.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-005.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-005.md)
+
+#### Verbatim AI Output
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-005.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-005.md)
+
+---
+
+### Interaction GEMINI-006
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T11:47:13+07:00
+- **Phase:** Phase 1 — Human Review Corrections for FR-01 Specification Analysis
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-005.md` (updated with complete verbatim response)
+  - `hw06/docs/ai-transcripts/GEMINI-006.md` (created)
+  - `hw06/testcases/fr01/spec-analysis.md` (updated with human review corrections)
+  - `hw06/testcases/fr01/coverage-matrix.md` (updated with recalculated 48 planned tests)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Commands Executed:**
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-005.md`
+  - `write_to_file hw06/testcases/fr01/spec-analysis.md`
+  - `write_to_file hw06/testcases/fr01/coverage-matrix.md`
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-006.md`
+  - `git status`
+- **Git Actions:** None (Commit withheld; stopping at Checkpoint 1B for student second review).
+- **Human Checkpoint:** Checkpoint 1B — Student Second Review of FR-01 Specification Analysis.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-006.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-006.md)
+
+#### Verbatim AI Output
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-006.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-006.md)
+
+---
+
+### Interaction GEMINI-007
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T11:51:45+07:00
+- **Phase:** Phase 1 — Human Review Checkpoint 1B Finalization & Coverage Count Calibration
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-006.md` (repaired with complete verbatim response)
+  - `hw06/docs/ai-transcripts/GEMINI-007.md` (created with retrospective placeholder)
+  - `hw06/testcases/fr01/spec-analysis.md` (calibrated response contract & one-condition rule)
+  - `hw06/testcases/fr01/coverage-matrix.md` (calibrated to exactly 38 tests verified via python script)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Commands Executed:**
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-006.md`
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-007.md`
+  - `python3 -c "..."` (summed and verified planned test counts)
+  - `write_to_file hw06/testcases/fr01/coverage-matrix.md`
+  - `write_to_file hw06/testcases/fr01/spec-analysis.md`
+  - `git status`
+- **Git Actions:** None (Commit withheld; stopping at Checkpoint 1C for final student review).
+- **Human Checkpoint:** Checkpoint 1C — Final Student Review of FR-01 Specification Analysis.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-007.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-007.md)
+
+#### Verbatim AI Output
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-007.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-007.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-008
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T11:56:35+07:00
+- **Phase:** Phase 1 — Consistency Calibration & Local Commit of FR-01 Specification Analysis
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-007.md` (finalized with complete verbatim response)
+  - `hw06/docs/ai-transcripts/GEMINI-008.md` (created with retrospective placeholder)
+  - `hw06/testcases/fr01/spec-analysis.md` (calibrated field types and conditional status)
+  - `hw06/testcases/fr01/coverage-matrix.md` (calibrated field types and conditional status; verified 38 tests)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Commands Executed:**
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-007.md`
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-008.md`
+  - `write_to_file hw06/testcases/fr01/spec-analysis.md`
+  - `write_to_file hw06/testcases/fr01/coverage-matrix.md`
+  - `python3 -c "..."` (re-verified planned test count = 38)
+  - `git status`
+  - `git add hw06/`
+  - `git commit -m "test(fr01): complete reviewed specification analysis and coverage plan"`
+- **Git Actions:** Executed local commit on branch `main` (PDF excluded, zero remote push).
+- **Human Checkpoint:** Checkpoint 1C approved; Phase 1 FR-01 Specification Analysis committed locally. Stopping before Phase 2 test generation.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-008.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-008.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-008.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-008.md) via retrospective logging).
+
+---
+
 ## 3. Previous / External AI Interactions — Student Must Add
 
 > [!IMPORTANT]
@@ -182,3 +303,17 @@ To ensure total transparency without truncating large conversational turns, full
 | **CI/CD Integration** | Write GitHub Actions workflow YAML (`.github/workflows/api-tests.yml`), set up sample demonstration runs. | Trigger real pipeline runs, capture screenshots and record real GitHub run URLs. |
 | **Agent Skill / Architecture** | Provide architectural options, pseudocode, and implementation scaffolding. | Make architectural design decisions; self-draw test generator diagram (no AI-generated images/Mermaid diagrams). |
 | **AI Critique** | Collate factual observations on AI errors and limitations during the assignment. | Author personalized 200–300 word critique and reflect on human-AI pairing principles. |
+
+---
+
+## 5. Factual AI Mistakes & Critique Candidates (Recorded for Phase 9)
+
+As required by the assignment guidelines, all observable AI reasoning errors, hallucinated assumptions, and calculation discrepancies are documented truthfully here rather than silently erased. These provide authentic evidence for the student's **AI Critique (Phase 9)**:
+
+| Candidate ID | Phase / Interaction | Category | Description of AI Error | Root Cause & Correction |
+| :---: | :---: | :---: | :--- | :--- |
+| **AI-ERR-01** | Phase 0 (Turn 1 & 2) | Hallucinated Schema Constraint | AI asserted that duplicate email registration would trigger a SQLite `UNIQUE` constraint error and return `500 Internal Server Error`. | **Fact:** Re-inspection of `backend/database.js` Line 53 confirmed the column is defined as `email TEXT` without a `UNIQUE` constraint. `server.js` performs no existence lookup; duplicate accounts are silently inserted into SQLite as duplicate records with status 200. |
+| **AI-ERR-02** | Phase 1 (Turn 6) | Mathematical Calculation Discrepancy | AI stated `~38` in the header and `48` in the summary text of `coverage-matrix.md`, while the actual programmatic sum of the row counts was `55`. | **Fact:** AI estimated row totals mentally instead of executing programmatic summation. The matrix was recalibrated and verified via a Python script to sum to exactly **38 tests**. |
+| **AI-ERR-03** | Phase 1 (Turn 6) | Premature Verbatim Claim | AI Audit logged that Turn 6 transcript contained full verbatim AI response before the turn was delivered, leaving a placeholder inside `GEMINI-006.md`. | **Fact:** A response cannot be logged before it is generated. Corrected by establishing a strict retrospective logging protocol (finalizing previous turn response at the start of next turn). |
+| **AI-ERR-04** | Phase 1 (Turn 5) | Over-Constraint Inference | AI converted a single example response in `api_specification.md` into a rigid JSON Schema asserting `additionalProperties: false` and `id >= 1` as `SPECIFIED` contract rules. | **Fact:** The specification provided only an example JSON object. Corrected by classifying example attributes as `EXAMPLE-DERIVED` and `INFERRED FROM EXAMPLE`, keeping schema constraints as `UNKNOWN / NOT SPECIFIED`. |
+
