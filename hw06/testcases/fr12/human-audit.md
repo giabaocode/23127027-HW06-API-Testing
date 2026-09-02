@@ -4,51 +4,51 @@
 > - **Auditor:** Phạm Ngọc Gia Bảo (Student ID: `23127027`)
 > - **Feature:** Pool C — FR-12: Access Control (Kiểm soát truy cập)
 > - **Source Test Suite:** `hw06/testcases/fr12/generated-ai-original.md` (38 AI-generated cases)
-> - **Evaluation Rule:** Every AI-generated testcase must be independently evaluated by the student into one of three distinct verdicts:
+> - **Audit Adoption Provenance:** The student reviewed the 38 original AI-generated test cases together with external secondary reference review material from ChatGPT (`CHATGPT-004.md` / `ai-reference-audit.md`). The student formally adopts the final distribution: **28 VALID**, **10 INCOMPLETE**, **0 INVALID** (Total: 38). For incomplete cases, the student adopts calibrated state verification, defect-path cleanup, and oracle precision.
+> - **Evaluation Criteria:**
 >   - **VALID:** The testcase is logically sound, correctly mapped to FR-12/SEC-02/SEC-03, has realistic oracles, and is ready for execution.
 >   - **INCOMPLETE:** The testcase has technical merit but requires calibrated headers, side-effect checks, or oracle corrections.
 >   - **INVALID:** The testcase violates specification boundaries, tests out-of-scope functional logic, or targets nonexistent routes.
-> - **Student Ownership Policy:** All student verdict, reasoning, and correction columns are initially completely **BLANK** to ensure honest human review without AI bias.
 
 ---
 
 | Test ID | Coverage ID | Short Objective | Student Verdict | Student Reasoning | Student Correction | Student Reviewed At |
 | :---: | :---: | :--- | :---: | :--- | :--- | :---: |
-| `FR12-AI-001` | `COV-FR12-02` | Standard user denied access to GET /api/admin/users | | | | |
-| `FR12-AI-002` | `COV-FR12-04` | Standard user denied DELETE /api/admin/users/:id + user not deleted | | | | |
-| `FR12-AI-003` | `COV-FR12-07` | Standard user denied access to GET /api/admin/orders | | | | |
-| `FR12-AI-004` | `COV-FR12-09` | Standard user denied PUT /api/admin/orders/:id/status + status unchanged | | | | |
-| `FR12-AI-005` | `COV-FR12-12` | Standard user denied POST /api/admin/import-products + catalog unmutated | | | | |
-| `FR12-AI-006` | `COV-FR12-18` | Standard user denied POST /api/admin/coupons + coupon not created | | | | |
-| `FR12-AI-007` | `COV-FR12-20` | Standard user denied DELETE /api/admin/coupons/:id + coupon not deleted | | | | |
-| `FR12-AI-008` | `COV-FR12-22` | Standard user denied POST /api/products + product not created | | | | |
-| `FR12-AI-009` | `COV-FR12-25` | Standard user denied PUT /api/products/:id + product unchanged | | | | |
-| `FR12-AI-010` | `COV-FR12-28` | Standard user denied DELETE /api/products/:id + product not deleted | | | | |
-| `FR12-AI-011` | `COV-FR12-30` | Standard user denied POST /api/categories + category not created | | | | |
-| `FR12-AI-012` | `COV-FR12-32` | Standard user denied PUT /api/categories/:id + category unchanged | | | | |
-| `FR12-AI-013` | `COV-FR12-33` | Standard user denied DELETE /api/categories/:id + category not deleted | | | | |
-| `FR12-AI-014` | `COV-FR12-15` | Standard user denied access to GET /api/coupons | | | | |
-| `FR12-AI-015` | `COV-FR12-03` | Admin authorized for GET /api/admin/users | | | | |
-| `FR12-AI-016` | `COV-FR12-05` | Admin authorized for DELETE /api/admin/users/:id on disposable user | | | | |
-| `FR12-AI-017` | `COV-FR12-08` | Admin authorized for GET /api/admin/orders | | | | |
-| `FR12-AI-018` | `COV-FR12-10` | Admin authorized for PUT /api/admin/orders/:id/status | | | | |
-| `FR12-AI-019` | `COV-FR12-13` | Admin authorized for POST /api/admin/import-products | | | | |
-| `FR12-AI-020` | `COV-FR12-19` | Admin authorized for POST /api/admin/coupons | | | | |
-| `FR12-AI-021` | `COV-FR12-21` | Admin authorized for DELETE /api/admin/coupons/:id on disposable coupon | | | | |
-| `FR12-AI-022` | `COV-FR12-23` | Admin authorized for POST /api/products | | | | |
-| `FR12-AI-023` | `COV-FR12-26` | Admin authorized for PUT /api/products/:id on disposable product | | | | |
-| `FR12-AI-024` | `COV-FR12-27` | Admin authorized for DELETE /api/products/:id on disposable product | | | | |
-| `FR12-AI-025` | `COV-FR12-31` | Admin authorized for POST /api/categories | | | | |
-| `FR12-AI-026` | `COV-FR12-32` | Admin authorized for PUT /api/categories/:id on disposable category | | | | |
-| `FR12-AI-027` | `COV-FR12-34` | Admin authorized for DELETE /api/categories/:id on disposable category | | | | |
-| `FR12-AI-028` | `COV-FR12-16` | Admin authorized for GET /api/coupons | | | | |
-| `FR12-AI-029` | `COV-FR12-21` | Anonymous denied POST /api/products + product not created | | | | |
-| `FR12-AI-030` | `COV-FR12-24` | Anonymous denied PUT /api/products/:id + product unchanged | | | | |
-| `FR12-AI-031` | `COV-FR12-27` | Anonymous denied DELETE /api/products/:id + product not deleted | | | | |
-| `FR12-AI-032` | `COV-FR12-01` | Anonymous denied access to GET /api/admin/users | | | | |
-| `FR12-AI-033` | `COV-FR12-29` | Anonymous denied POST /api/categories + category not created | | | | |
-| `FR12-AI-034` | `COV-FR12-14` | Anonymous denied access to GET /api/coupons | | | | |
-| `FR12-AI-035` | `COV-FR12-35` | Expired admin token denied GET /api/admin/users | | | | |
-| `FR12-AI-036` | `COV-FR12-36` | Forged signature token denied GET /api/admin/orders | | | | |
-| `FR12-AI-037` | `COV-FR12-37` | Missing role claim token denied POST /api/admin/coupons | | | | |
-| `FR12-AI-038` | `COV-FR12-38` | Uppercase role 'ADMIN' denied DELETE /api/admin/users/:id | | | | |
+| `FR12-AI-001` | `COV-FR12-02` | Standard user denied access to GET /api/admin/users | **VALID** | Standard-user denial for GET /api/admin/users correctly maps to SEC-03. Semantic outcome is specified denial; exact 403 remains inferred. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-002` | `COV-FR12-04` | Standard user denied DELETE /api/admin/users/:id + user not deleted | **VALID** | Dual-assertion on user deletion verifies both semantic denial and persistence of target user account via login probe without touching baseline users. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-003` | `COV-FR12-07` | Standard user denied access to GET /api/admin/orders | **VALID** | Standard-user denial for system-wide order history correctly enforces SEC-03 data privacy. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-004` | `COV-FR12-09` | Standard user denied PUT /api/admin/orders/:id/status + status unchanged | **INCOMPLETE** | Access-control objective is valid, but attempting transition pending -> delivered risks rejection by downstream order state machine rules even if authorization is broken, masking the SEC-03 defect. | Use valid single-step transition pending -> confirmed on disposable order to isolate access-control layer from business validation. | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-005` | `COV-FR12-12` | Standard user denied POST /api/admin/import-products + catalog unmutated | **INCOMPLETE** | Side-effect non-insertion assertion relies on GET /api/products?search=... returning empty, but search query string semantics are not established in official specification. | Fetch product list directly and explicitly assert that unique marker ImportProbe_23127027 is absent. | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-006` | `COV-FR12-18` | Standard user denied POST /api/admin/coupons + coupon not created | **INCOMPLETE** | Using coupon checkout application as persistence verifier couples test to unrelated checkout/order business rules. | Verify absence directly through authenticated admin GET /api/coupons and assert HACK23127027 does not exist. | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-007` | `COV-FR12-20` | Standard user denied DELETE /api/admin/coupons/:id + coupon not deleted | **INCOMPLETE** | Side-effect verification phrasing 'query or application succeeds' is ambiguous and checkout application can fail for unrelated reasons. | Verify disposable coupon directly through admin GET /api/coupons and assert its ID/code remains present in database. | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-008` | `COV-FR12-22` | Standard user denied POST /api/products + product not created | **INCOMPLETE** | Product non-creation verification relies on ungrounded server-side ?search= query semantics. | Fetch product catalog data directly and assert that unique UnauthorizedProduct_23127027 marker is absent. | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-009` | `COV-FR12-25` | Standard user denied PUT /api/products/:id + product unchanged | **VALID** | Side-effect check verifies original price remains unchanged after unauthorized standard-user PUT probe on disposable product. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-010` | `COV-FR12-28` | Standard user denied DELETE /api/products/:id + product not deleted | **VALID** | Side-effect check verifies product still exists via GET probe after unauthorized standard-user DELETE probe. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-011` | `COV-FR12-30` | Standard user denied POST /api/categories + category not created | **VALID** | Category non-creation is verified by absence in category list after standard-user POST probe. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-012` | `COV-FR12-32` | Standard user denied PUT /api/categories/:id + category unchanged | **VALID** | Category modification denial is verified by category name remaining unchanged in database. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-013` | `COV-FR12-33` | Standard user denied DELETE /api/categories/:id + category not deleted | **VALID** | Category deletion denial is verified by category continuing to exist in database. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-014` | `COV-FR12-15` | Standard user denied access to GET /api/coupons | **VALID** | Standard user denied access to administrative coupon master list via SEC-03. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-015` | `COV-FR12-03` | Admin authorized for GET /api/admin/users | **VALID** | Admin access to GET /api/admin/users correctly defines authorization clearance as primary oracle with 200 as inferred SUT behavior. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-016` | `COV-FR12-05` | Admin authorized for DELETE /api/admin/users/:id on disposable user | **INCOMPLETE** | Main authorization test is sound, but requiring exact downstream login probe status 401 elevates an uncontracted endpoint response into an FR-12 oracle. | Assert that deleted disposable user can no longer authenticate / no longer exists; treat exact login rejection status code as endpoint-specific INFERRED/UNKNOWN. | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-017` | `COV-FR12-08` | Admin authorized for GET /api/admin/orders | **VALID** | Admin access to GET /api/admin/orders verifies administrative clearance unhindered. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-018` | `COV-FR12-10` | Admin authorized for PUT /api/admin/orders/:id/status | **VALID** | Admin order status update correctly verifies administrative capability on disposable order. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-019` | `COV-FR12-13` | Admin authorized for POST /api/admin/import-products | **VALID** | Admin product import verifies administrative capability with valid disposable payload. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-020` | `COV-FR12-19` | Admin authorized for POST /api/admin/coupons | **VALID** | Admin coupon creation verifies administrative capability with valid disposable coupon code. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-021` | `COV-FR12-21` | Admin authorized for DELETE /api/admin/coupons/:id on disposable coupon | **VALID** | Admin coupon deletion operates on disposable coupon and verifies deletion. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-022` | `COV-FR12-23` | Admin authorized for POST /api/products | **VALID** | Admin product creation verifies administrative capability with valid disposable product body. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-023` | `COV-FR12-26` | Admin authorized for PUT /api/products/:id on disposable product | **VALID** | Admin product update operates on disposable product and updates price/description. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-024` | `COV-FR12-27` | Admin authorized for DELETE /api/products/:id on disposable product | **VALID** | Admin product deletion operates on disposable product and removes it from catalog. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-025` | `COV-FR12-31` | Admin authorized for POST /api/categories | **VALID** | Admin category creation verifies administrative capability with valid category body. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-026` | `COV-FR12-32` | Admin authorized for PUT /api/categories/:id on disposable category | **VALID** | Admin category update operates on disposable category and updates name. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-027` | `COV-FR12-34` | Admin authorized for DELETE /api/categories/:id on disposable category | **VALID** | Admin category deletion operates on disposable category and removes it from database. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-028` | `COV-FR12-16` | Admin authorized for GET /api/coupons | **VALID** | Admin coupon listing verifies administrative capability on GET /api/coupons. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-029` | `COV-FR12-21` | Anonymous denied POST /api/products + product not created | **INCOMPLETE** | Anonymous product creation denial is valid, but absence verification must not rely on unestablished ?search= query behavior. | Fetch product list directly and explicitly assert that AnonProduct_23127027 is absent. | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-030` | `COV-FR12-24` | Anonymous denied PUT /api/products/:id + product unchanged | **VALID** | Anonymous product update denial correctly asserts SEC-02 and verifies product unchanged. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-031` | `COV-FR12-27` | Anonymous denied DELETE /api/products/:id + product not deleted | **VALID** | Anonymous product deletion denial correctly asserts SEC-02 and verifies product still exists. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-032` | `COV-FR12-01` | Anonymous denied access to GET /api/admin/users | **VALID** | Anonymous user list denial correctly asserts SEC-02 and prevents user data exposure. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-033` | `COV-FR12-29` | Anonymous denied POST /api/categories + category not created | **INCOMPLETE** | If expected access-control defect occurs on anonymous category creation, category will persist in database because cleanup is currently None. | Add defect-path cleanup: if AnonCategory_23127027 exists after execution, delete it using legitimate admin credentials. | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-034` | `COV-FR12-14` | Anonymous denied access to GET /api/coupons | **VALID** | Anonymous coupon overview denial correctly asserts SEC-02 and prevents coupon data exposure. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-035` | `COV-FR12-35` | Expired admin token denied GET /api/admin/users | **INCOMPLETE** | Semantic expired-JWT test is valid, but wording incorrectly describes token expiration as cryptographic signature verification failure. | State that cryptographic signature may remain valid while JWT validity fails because exp claim is in the past. Preserve SEC-02 semantic denial. | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-036` | `COV-FR12-36` | Forged signature token denied GET /api/admin/orders | **VALID** | Forged cryptographic signature rejection correctly asserts SEC-02 integrity failure. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-037` | `COV-FR12-37` | Missing role claim token denied POST /api/admin/coupons | **INCOMPLETE** | Missing-role authorization probe is valid, but if SEC-03 is broken the coupon can actually be created and cleanup is currently None. | Verify absence via admin GET /api/coupons. If NOROLE_CPN_23127027 was created due to defect, delete it using legitimate admin credentials. | 2026-09-02T23:26:42+07:00 |
+| `FR12-AI-038` | `COV-FR12-38` | Uppercase role 'ADMIN' denied DELETE /api/admin/users/:id | **VALID** | Uppercase role 'ADMIN' probe correctly asserts SEC-03 exact-match case sensitivity. | None required (Design is sound). | 2026-09-02T23:26:42+07:00 |

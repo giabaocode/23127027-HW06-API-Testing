@@ -311,4 +311,104 @@ Then STOP at:
 
 ## 2. Verbatim Conversational AI Response
 
-[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]
+=== FR-12 EXTERNAL AI REVIEW RECORDED ===
+
+- **Review Source:** ChatGPT (OpenAI) — External Second-AI Critique
+- **External Transcript:** [`hw06/docs/external-ai-transcripts/CHATGPT-004.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/external-ai-transcripts/CHATGPT-004.md)
+- **Reference Audit Artifact:** [`hw06/testcases/fr12/ai-reference-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/ai-reference-audit.md)
+- **Status Notice:** This document represents external secondary reference material. It does **not** constitute the student's human audit. Student verdicts and reasoning remain independently maintained in [`hw06/testcases/fr12/human-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/human-audit.md).
+
+---
+
+=== REFERENCE DISTRIBUTION ===
+
+| Reference Verdict Category | Count | Percentage | Description |
+| :--- | :---: | :---: | :--- |
+| **VALID** | **28** | 73.68% | Test case is logically coherent, correctly mapped to FR-12/SEC-02/SEC-03, has realistic oracles, and preserves test isolation. |
+| **INCOMPLETE** | **10** | 26.32% | Test case has technical merit but requires calibrated headers, direct state verification, cleanup safety on defect paths, or oracle clarification. |
+| **INVALID** | **0** | 0.00% | Zero cases target nonexistent endpoints or violate specification boundaries. |
+| **TOTAL** | **38** | **100.0%** | Programmatically verified: $28 + 10 + 0 = 38$. |
+
+---
+
+=== INCOMPLETE CASES ===
+
+The 10 cases identified by ChatGPT as `INCOMPLETE` with their recommended corrections:
+
+1. **`FR12-AI-004` (PUT /api/admin/orders/:id/status — Standard User):**
+   - *Reason:* Transitioning from `pending -> delivered` may be rejected by downstream order status transition rules even if access control is broken, potentially masking the SEC-03 authorization defect.
+   - *Correction:* Use a valid single-step transition such as `pending -> confirmed` to isolate access control from business validation.
+2. **`FR12-AI-005` (POST /api/admin/import-products — Standard User):**
+   - *Reason:* The side-effect verification depends on `GET /api/products?search=...` returning empty, but server-side search semantics are unestablished in the specification.
+   - *Correction:* Fetch the product list directly and assert that the unique marker `ImportProbe_23127027` is absent.
+3. **`FR12-AI-006` (POST /api/admin/coupons — Standard User):**
+   - *Reason:* Verifying coupon non-creation via customer checkout application is coupled to unrelated business rules.
+   - *Correction:* Verify absence directly through an authenticated admin `GET /api/coupons` inspection asserting `HACK23127027` does not exist.
+4. **`FR12-AI-007` (DELETE /api/admin/coupons/:id — Standard User):**
+   - *Reason:* The oracle phrasing *"query or application succeeds"* is ambiguous.
+   - *Correction:* Verify the disposable coupon directly through admin coupon listing asserting its ID/code remains present in database.
+5. **`FR12-AI-008` (POST /api/products — Standard User):**
+   - *Reason:* Non-creation verification relies on ungrounded `?search=` query semantics.
+   - *Correction:* Fetch product data directly and assert that `UnauthorizedProduct_23127027` is absent.
+6. **`FR12-AI-016` (DELETE /api/admin/users/:id — Admin User):**
+   - *Reason:* Requiring an exact downstream login probe status of `401` elevates an uncontracted endpoint response into an FR-12 oracle.
+   - *Correction:* Require that the deleted disposable user can no longer authenticate / no longer exists; treat exact login rejection status code as endpoint-specific `INFERRED / UNKNOWN`.
+7. **`FR12-AI-029` (POST /api/products — Anonymous Caller):**
+   - *Reason:* Product absence verification relies on unestablished search-query behavior.
+   - *Correction:* Fetch product list and explicitly check that `AnonProduct_23127027` is absent.
+8. **`FR12-AI-033` (POST /api/categories — Anonymous Caller):**
+   - *Reason:* If the access-control defect occurs and the category is created, cleanup is currently `None`, potentially polluting the test database.
+   - *Correction:* If `AnonCategory_23127027` exists after execution, delete it using legitimate admin credentials.
+9. **`FR12-AI-035` (GET /api/admin/users — Expired Token):**
+   - *Reason:* Wording incorrectly equates token expiration with cryptographic signature failure.
+   - *Correction:* State that the signature may remain cryptographically valid while token validity fails because the `exp` claim is in the past. Preserve SEC-02 semantic denial.
+10. **`FR12-AI-037` (POST /api/admin/coupons — Missing Role Claim):**
+    - *Reason:* If the SEC-03 defect allows coupon creation, cleanup is currently `None`.
+    - *Correction:* Verify absence via admin `GET /api/coupons`. If `NOROLE_CPN_23127027` was created, delete it using admin credentials.
+
+---
+
+=== SYSTEMATIC REVIEW FINDINGS ===
+
+The external AI review surfaced five systematic engineering themes:
+1. **Access-Control Isolation:** Use valid downstream business inputs so business validation (e.g., order state machine transitions) cannot mask a missing authorization check.
+2. **State Verification Directness:** Prefer direct, source-grounded resource verification (such as admin listing endpoints) over unrelated downstream business flows (such as checkout promotion calculations).
+3. **Cleanup on Expected Defect Paths:** Negative security tests probing static defect candidates must include fallback cleanup steps for the scenario where the SUT is actually vulnerable and performs the unauthorized mutation.
+4. **JWT Terminology Precision:** Maintain strict separation between temporal claim invalidation (expired tokens) and cryptographic integrity failures (forged signatures).
+5. **HTTP Oracle Calibration:** Never promote downstream endpoint-specific verifier response codes (such as login failure status) into formal FR-12 specification requirements.
+
+---
+
+=== ORIGINAL AI SET INTEGRITY ===
+
+- **File Verified:** [`hw06/testcases/fr12/generated-ai-original.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/generated-ai-original.md)
+- **Integrity Check:** `git diff 6b50faa -- hw06/testcases/fr12/generated-ai-original.md` $\implies$ **Zero diff**.
+- **Status:** **100% immutable and byte-for-byte identical** to commit `6b50faa`.
+
+---
+
+=== HUMAN AUDIT STATUS ===
+
+- **File Path:** [`hw06/testcases/fr12/human-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/human-audit.md)
+- **Status:** All 38 rows remain **100% BLANK** in student columns (`Student Verdict`, `Student Reasoning`, `Student Correction`, `Student Reviewed At`).
+- The external AI verdicts have **not** been pre-copied into the student audit worksheet, preserving independent student authorship.
+
+---
+
+=== LOCAL COMMIT ===
+
+- **Commit Hash:** `bd7b475` (`bd7b475357b98d1a1154746ecf02f6920f04c653`)
+- **Commit Message:** `docs(fr12): record external AI reference review`
+- **Files Committed:**
+  - `hw06/testcases/fr12/ai-reference-audit.md`
+  - `hw06/docs/external-ai-transcripts/CHATGPT-004.md`
+  - `hw06/docs/ai-audit.md`
+  - `hw06/docs/ai-transcripts/GEMINI-035.md`
+  - `hw06/docs/ai-transcripts/GEMINI-036.md`
+- **Git Status:** Working tree clean. Branch `main` is ahead of `origin/main` by 6 local commits. **Zero pushes executed to remote.**
+
+---
+
+=== CHECKPOINT 2B — FR-12 FINAL HUMAN AUDIT DECISION ===
+
+The external reference critique is documented and sealed. Please indicate your reviewed verdicts, reasonings, and corrections so we can formalize the student human audit!
