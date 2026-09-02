@@ -70,12 +70,41 @@ Across the entire system, exactly **14 exposed operations** are subject to FR-12
 
 ## 4. Semantic Contract vs. HTTP Status Oracle Policy
 
+### 4.1 Global Caller State Matrix
+
 | Caller State | Required Semantic Outcome | HTTP Status Code | Status Classification | Grounded Contract Source |
 | :--- | :--- | :---: | :---: | :--- |
 | **Anonymous (Missing Header)** | Access rejected; zero data exposed; zero state mutation | `401 Unauthorized` | **IMPLEMENTATION-OBSERVED / INFERRED** | Semantic denial required by `SEC-02` (`README.md` L279); exact 401 code defined in SUT middleware (`server.js` L103). |
 | **Malformed / Forged / Expired Token** | Access rejected; cryptographic verification failed | `403 Forbidden` | **IMPLEMENTATION-OBSERVED / INFERRED** | Semantic denial required by `SEC-02`; exact 403 code defined in SUT middleware (`server.js` L106). |
 | **Authenticated Standard User (`role: 'user'`)** | Access denied; non-admin prohibited from admin operations | `403 Forbidden` (Convention) / `UNKNOWN` by spec | **UNSPECIFIED BY SPECIFICATION / CONVENTIONAL INFERENCE** | Semantic denial explicitly mandated by `SEC-03` (`README.md` L280) and `FR-12` (L176–180); exact HTTP status code is unspecified in contract. |
-| **Authenticated Administrator (`role: 'admin'`)** | Access granted; administrative operation permitted to execute | `200 OK` / `201 Created` | **SPECIFIED / STANDARD SUCCESS** | Standard REST success response for authorized operations. |
+| **Authenticated Administrator (`role: 'admin'`)** | Authorization layer permits request to reach functional handler | Endpoint-specific | **DECOUPLED (SEE TABLE 4.2)** | Access-control success means clearance through `SEC-02`/`SEC-03`; downstream HTTP code depends strictly on individual endpoint contract. |
+
+---
+
+### 4.2 Authorized Admin Success Status Oracles (Across All 14 FR-12 Target Operations)
+
+> [!IMPORTANT]
+> **Decoupling Access Control from REST Conventions:**
+> Generic "200 OK / 201 Created" REST convention is **NOT** official contract evidence. The primary FR-12 positive admin oracle is:
+> - **Primary Admin Access Assertion:** Request passes `SEC-02` (valid JWT) and `SEC-03` (role `admin`) and is **NOT rejected** by the authentication/authorization layer (i.e. does not return 401 or 403).
+> - **Functional Status Assertion:** Evaluated strictly against what `api_specification.md` explicitly documents. Where no exact HTTP code is defined in official text, the status is classified as `INFERRED / IMPLEMENTATION-OBSERVED` (from Express `res.json` default 200) rather than a formal contract mandate.
+
+| # | HTTP Method | Target Endpoint URI | Authorized Admin Semantic Outcome | Documented Success Status | Classification | Grounded Contract / Implementation Source |
+| :-: | :---: | :--- | :--- | :---: | :---: | :--- |
+| 1 | `GET` | `/api/admin/users` | Permitted to view system users | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L176 text; SUT executes `res.json(rows)` (`server.js` L498). |
+| 2 | `DELETE` | `/api/admin/users/:id` | Permitted to delete target user | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L177 text; SUT executes `res.json(...)` (`server.js` L506). |
+| 3 | `GET` | `/api/admin/orders` | Permitted to view all orders | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L180 text; SUT executes `res.json(orders)` (`server.js` L521). |
+| 4 | `PUT` | `/api/admin/orders/:id/status` | Permitted to update order status | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L181 text; SUT executes `res.json(...)` (`server.js` L540). |
+| 5 | `POST` | `/api/admin/import-products` | Permitted to import catalog | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L185 text; SUT executes `res.json(...)` (`server.js` L239). |
+| 6 | `POST` | `/api/admin/coupons` | Permitted to create coupon | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L202 text; SUT executes `res.json(...)` (`server.js` L473). |
+| 7 | `DELETE` | `/api/admin/coupons/:id` | Permitted to delete coupon | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L214 text; SUT executes `res.json(...)` (`server.js` L487). |
+| 8 | `POST` | `/api/products` | Permitted to create product | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L88 text; SUT executes `res.json(...)` (`server.js` L174). |
+| 9 | `PUT` | `/api/products/:id` | Permitted to update product | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L89 text; SUT executes `res.json(...)` (`server.js` L186). |
+| 10 | `DELETE` | `/api/products/:id` | Permitted to delete product | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L90 text; SUT executes `res.json(...)` (`server.js` L194). |
+| 11 | `POST` | `/api/categories` | Permitted to create category | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L104 text; SUT executes `res.json(...)` (`server.js` L253). |
+| 12 | `PUT` | `/api/categories/:id` | Permitted to update category | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L105 text; SUT executes `res.json(...)` (`server.js` L264). |
+| 13 | `DELETE` | `/api/categories/:id` | Permitted to delete category | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | Not explicitly numbered in `api_spec` L106 text; SUT executes `res.json(...)` (`server.js` L275). |
+| 14 | `GET` | `/api/coupons` | Permitted to view all coupons | `200 OK` | **INFERRED / IMPLEMENTATION-OBSERVED** | `api_spec` L165–168 labels endpoint *"Dành cho Admin"*; SUT executes `res.json(rows)` (`server.js` L358). |
 
 ---
 
@@ -126,7 +155,7 @@ To avoid corrupting baseline assessment data:
 
 | Candidate ID | Target Operation(s) | Description | Governing Requirement | Static Observation in `backend/server.js` |
 | :---: | :--- | :--- | :--- | :--- |
-| **`CAND-FR12-01`** | `GET/DELETE /api/admin/users`<br>`GET/PUT /api/admin/orders`<br>`POST /api/admin/import-products`<br>`POST/DELETE /api/admin/coupons`<br>`GET /api/coupons` | Missing Admin Role Authorization Check | `SEC-03` (`README.md` L280)<br>`FR-12` (`README.md` L179) | Routes utilize `authenticateToken` but perform zero inspection of `req.user.role === 'admin'`, potentially allowing standard users (`role: 'user'`) to perform admin actions. |
+| **`CAND-FR12-01`** | `GET/DELETE /api/admin/users`<br>`GET/PUT /api/admin/orders`<br>`POST /api/admin/import-products`<br>`POST/DELETE /api/admin/coupons`<br>`GET /api/coupons` | Missing Admin Role Authorization Check | `SEC-03` (`README.md` L280)<br>`FR-12` (`README.md` L179) | Routes utilize `authenticateToken` but perform zero inspection of `req.user.role === 'admin'`: lines 199 (import), 457 (coupon POST), 483 (coupon DELETE), 494 (users GET), 504 (users DELETE), 510 (orders GET), 525 (order status PUT), and line 356 (`app.get("/api/coupons", authenticateToken, (req, res) => { ... })` Lines 356–360). Standard users (`role: 'user'`) can invoke all 8 admin endpoints. |
 | **`CAND-FR12-02`** | `POST /api/products`<br>`PUT /api/products/:id`<br>`DELETE /api/products/:id` | Product Catalog Mutation Missing Authentication & Authorization | `SEC-02` (`README.md` L279)<br>`SEC-03` (`README.md` L280)<br>`FR-12` (`README.md` L177) | Endpoints have zero middleware attached (`server.js` Lines 167–195), allowing anonymous users to create, update, and delete catalog products. |
 | **`CAND-FR12-03`** | `POST /api/categories`<br>`PUT /api/categories/:id`<br>`DELETE /api/categories/:id` | Category Mutation Missing Admin Role Authorization Check | `SEC-03` (`README.md` L280)<br>`FR-12` (`README.md` L177) | Endpoints attach `authenticateToken` but do NOT check `req.user.role === 'admin'` (`server.js` Lines 249–275), allowing standard users to modify product categories. |
 
@@ -143,3 +172,13 @@ To avoid corrupting baseline assessment data:
 | **`SEC-05`** | Truy vấn CSDL phải dùng Parameterized Query. | **NOT APPLICABLE** | Database data-access layer security; out of scope for access control testing. |
 | **`SEC-06`** | API cập nhật hồ sơ không được cho phép thay đổi trường `role` từ client. | **EXCLUDED FROM FR-12** | Belongs specifically to user profile update (`PUT /api/users/me`). Excluded from FR-12 test count. |
 | **`SEC-07`** | OTP đặt lại mật khẩu phải đủ entropy, có thời hạn và vô hiệu hóa sau khi dùng. | **NOT APPLICABLE** | Password recovery subsystem; out of scope. |
+
+---
+
+## 10. AI Error Register & Engineering Lessons
+
+1. **Role Model Naming Discrepancy:** The initial draft used `role = "customer"` by habit. Source verification confirmed `backend/database.js` defines `role TEXT DEFAULT 'user'`. Corrected to `role = "user"` across all artifacts.
+2. **Coupon Route Scope Inconsistency:** Initial matrix counted 13 operations and omitted `GET /api/coupons`. Reconciliation against `api_specification.md` Section 5.2 revealed `GET /api/coupons` is explicitly an admin overview endpoint, bringing the true operation count to exactly 14. Non-exposed shorthand routes (`POST/PUT/DELETE /api/coupons`) were correctly classified as non-exposed rather than generating synthetic tests.
+3. **Category Mutation Defect Grouping:** Initial draft merged category mutation under generic admin candidates. Re-inspection confirmed `POST/PUT/DELETE /api/categories` requires its own isolated candidate (`CAND-FR12-03`).
+4. **Decoupling Admin Access Clearance from REST Success Conventions:** Initial draft incorrectly labeled standard generic `200 OK / 201 Created` REST conventions as `SPECIFIED / STANDARD SUCCESS` across all operations. Corrected to decouple the access-control oracle (*"Request passes SEC-02/SEC-03 and is NOT blocked by authorization layer"*) from downstream functional status codes, which are classified as `INFERRED / IMPLEMENTATION-OBSERVED` based on SUT implementation evidence.
+

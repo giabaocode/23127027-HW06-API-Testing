@@ -552,4 +552,139 @@ Do NOT run Postman/Newman.
 
 ## 2. Verbatim Conversational AI Response
 
-[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]
+=== FR-12 ROLE MODEL VERIFIED ===
+
+- **NORMAL USER ROLE:** **`"user"`**
+- **ADMIN ROLE:** **`"admin"`**
+- **SOURCE:**
+  - `backend/database.js` Line 55: `role TEXT DEFAULT 'user'`
+  - `backend/database.js` Lines 92–93:
+    ```javascript
+    insertUser.run('Admin User', 'admin@eshop.com', 'Admin123!', 'admin');
+    insertUser.run('Test User', 'test@eshop.com', 'Test1234!', 'user');
+    ```
+  - `backend/server.js` Line 51: `jwt.sign({ id: user.id, role: user.role }, SECRET_KEY)`
+  - `README.md` Line 176: `role = 'admin'`
+- **Correction Applied:** All references to `customer`, `role='customer'`, and `customer token` have been replaced with **`user`**, **`role='user'`**, and **`standard-user token`** across all FR-12 documentation and coverage tables.
+
+---
+
+=== COUPON ROUTE SCOPE RESOLVED ===
+
+| Route URI | HTTP Method | Exists in API Spec? | Exists in SUT? | FR-12 Admin Requirement? | Include in FR-12? | Reason / Resolution |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| `/api/coupons` | `GET` | **Yes** (`api_spec` L166) | **Yes** (`server.js` L356) | **Yes** (`api_spec` L165) | **YES** | `api_specification.md` Section 5.2 explicitly labels this *"Lấy danh sách mã giảm giá (Dành cho Admin)"* with `Authorization: Bearer <token>`. Target Operation #14. |
+| `/api/admin/coupons` | `POST` | **Yes** (`api_spec` L202) | **Yes** (`server.js` L457) | **Yes** (`README` L177) | **YES** | Official admin coupon creation endpoint. Target Operation #6. |
+| `/api/admin/coupons/:id` | `DELETE` | **Yes** (`api_spec` L214) | **Yes** (`server.js` L483) | **Yes** (`README` L177) | **YES** | Official admin coupon deletion endpoint. Target Operation #7. |
+| `/api/coupons` | `POST` | No | No | Mentioned | **NO** | `README.md` Line 177 shorthand reference. Non-exposed route; classified as `SPECIFIED ACCESS-CONTROL RULE FOR A NON-EXPOSED ROUTE FAMILY`. |
+| `/api/coupons/:id` | `PUT` | No | No | Mentioned | **NO** | Non-exposed route. Classified as `SPECIFIED ACCESS-CONTROL RULE FOR A NON-EXPOSED ROUTE FAMILY`. |
+| `/api/coupons/:id` | `DELETE` | No | No | Mentioned | **NO** | Non-exposed route. Official deletion route exists at `/api/admin/coupons/:id`. |
+| `/api/apply-coupon` | `POST` | **Yes** (`api_spec` L154) | **Yes** (`server.js` L363) | No | **NO** | Customer checkout coupon application endpoint. Belongs to FR-08, not FR-12. |
+| `/api/coupon-usage` | `POST` | No | **Yes** (`server.js` L444) | No | **NO** | Internal user-level coupon usage tracking. Not an administrative endpoint. |
+
+---
+
+=== FINAL FR-12 TARGET ENDPOINTS ===
+
+**TOTAL REAL FR-12 TARGET OPERATIONS: EXACTLY 14 OPERATIONS**
+
+#### Group A: Dedicated Administrative Endpoints (`/api/admin/*`) — 7 Operations
+1. `GET /api/admin/users` — View all system user accounts (`api_spec` L176)
+2. `DELETE /api/admin/users/:id` — Delete a specific user account (`api_spec` L177)
+3. `GET /api/admin/orders` — View system-wide order history (`api_spec` L180)
+4. `PUT /api/admin/orders/:id/status` — Update order fulfillment status (`api_spec` L181)
+5. `POST /api/admin/import-products` — Bulk import product catalog (`api_spec` L185)
+6. `POST /api/admin/coupons` — Create promotional coupon (`api_spec` L202)
+7. `DELETE /api/admin/coupons/:id` — Delete promotional coupon (`api_spec` L214)
+
+#### Group B: Data-Mutating Catalog Endpoints — 6 Operations
+8. `POST /api/products` — Create new catalog product (`README` L177, `api_spec` L88)
+9. `PUT /api/products/:id` — Modify existing catalog product (`README` L177, `api_spec` L89)
+10. `DELETE /api/products/:id` — Delete catalog product (`README` L177, `api_spec` L90)
+11. `POST /api/categories` — Create category (`README` L177, `api_spec` L104)
+12. `PUT /api/categories/:id` — Modify category (`README` L177, `api_spec` L105)
+13. `DELETE /api/categories/:id` — Delete category (`README` L177, `api_spec` L106)
+
+#### Group C: Dedicated Admin Coupon Listing Endpoint — 1 Operation
+14. `GET /api/coupons` — Admin coupon overview (`api_spec` Section 5.2 L165–168)
+
+---
+
+=== HTTP STATUS CONTRACT ===
+
+| Caller State | Required Semantic Outcome | HTTP Status Code | Classification | Contract / Source Authority |
+| :--- | :--- | :---: | :---: | :--- |
+| **Anonymous (Missing Token)** | Access denied; zero data exposed; zero state mutation | `401 Unauthorized` | **IMPLEMENTATION-OBSERVED / INFERRED** | Semantic denial mandated by `SEC-02` (`README.md` L279); exact code `401` from SUT middleware (`server.js` L103). |
+| **Malformed / Forged / Expired Token** | Access denied; cryptographic failure | `403 Forbidden` | **IMPLEMENTATION-OBSERVED / INFERRED** | Semantic denial mandated by `SEC-02`; exact code `403` from SUT middleware (`server.js` L106). |
+| **Authenticated Standard User (`role: 'user'`)** | Access denied; non-admin prohibited from admin operations | `403 Forbidden` (Convention) / `UNKNOWN` by spec | **UNSPECIFIED BY SPECIFICATION / CONVENTIONAL INFERENCE** | Semantic denial mandated by `SEC-03` (`README.md` L280) and `FR-12` (L176–180); exact HTTP status code is unspecified in contract. |
+| **Authenticated Administrator (`role: 'admin'`)** | Access granted; operation permitted to execute | `200 OK` / `201 Created` | **SPECIFIED / STANDARD SUCCESS** | Standard REST success response for authorized operations. |
+
+---
+
+=== CORRECTED STATIC DEFECT CANDIDATES ===
+
+All findings remain classified as **`STATIC-ANALYSIS DEFECT CANDIDATE PENDING RUNTIME CONFIRMATION`**:
+
+1. **`CAND-FR12-01` — Admin Endpoints Missing Role Authorization Check (`SEC-03`)**
+   - **Target Endpoints:** `/api/admin/*` (7 routes) + `GET /api/coupons`
+   - **Static Observation:** Routes attach `authenticateToken` but perform zero inspection of `req.user.role === 'admin'` (`server.js` Lines 199, 457, 483, 494, 504, 510, 525). Standard users (`role: 'user'`) can invoke admin APIs.
+2. **`CAND-FR12-02` — Product Mutation Missing Authentication & Authorization (`SEC-02` & `SEC-03`)**
+   - **Target Endpoints:** `POST /api/products`, `PUT /api/products/:id`, `DELETE /api/products/:id`
+   - **Static Observation:** Routes have **zero middleware attached** (`server.js` Lines 167–195), allowing unauthenticated anonymous requests to alter the product catalog.
+3. **`CAND-FR12-03` — Category Mutation Missing Admin Role Authorization Check (`SEC-03`)**
+   - **Target Endpoints:** `POST /api/categories`, `PUT /api/categories/:id`, `DELETE /api/categories/:id`
+   - **Static Observation:** Routes attach `authenticateToken` but do NOT check `req.user.role === 'admin'` (`server.js` Lines 249–275), allowing standard users (`role: 'user'`) to alter product categories. Kept separate from `CAND-FR12-01` as `/api/categories` is not under `/api/admin/*`.
+
+---
+
+=== SEC APPLICABILITY ===
+
+- **`SEC-01` (Plaintext Password):** **NOT APPLICABLE** (Belongs to FR-01 / Database storage).
+- **`SEC-02` (Valid JWT Token Required):** **DIRECTLY APPLICABLE** (Core requirement across all 14 endpoints).
+- **`SEC-03` (Admin Role `'admin'` Enforced):** **DIRECTLY APPLICABLE** (Core requirement across all 14 endpoints).
+- **`SEC-04` (UI XSS Escaping):** **NOT APPLICABLE** (Client UI rendering requirement).
+- **`SEC-05` (Parameterized Queries):** **NOT APPLICABLE** (Database query layer security; out of scope for access control).
+- **`SEC-06` (Profile Role Immutability):** **EXCLUDED FROM FR-12 TEST COUNT** (Belongs strictly to `PUT /api/users/me` profile update; excluded to prevent false coverage inflation).
+- **`SEC-07` (Password Reset OTP Entropy):** **NOT APPLICABLE** (Password recovery subsystem).
+
+---
+
+=== COVERAGE MATRIX SUMMARY ===
+
+- **Planned AI Tests:** **Exactly 38 high-value test cases**
+- **Coverage IDs:** **Exactly 38 Coverage IDs (`COV-FR12-01` to `COV-FR12-38`)**
+- **Dual-Assertion Policy Enforced:** All 17 data-mutating negative test cases verify both **HTTP response denial** AND an independent **read assertion (`GET`)** confirming that unauthorized side-effects did NOT occur.
+- **Disposable Data Policy Enforced:** All admin mutation test cases operate exclusively on disposable test data; **zero baseline seeded data** (lecturer products 1–5, seeded users, coupons) will be modified or deleted.
+
+---
+
+=== AI ERRORS RECORDED ===
+
+1. **Role Model Naming Discrepancy:** The initial draft used `role = "customer"` by habit. Source verification confirmed `backend/database.js` defines `role TEXT DEFAULT 'user'`. Corrected to `role = "user"` across all artifacts.
+2. **Coupon Route Scope Inconsistency:** Initial matrix counted 13 operations and omitted `GET /api/coupons`. Reconciliation against `api_specification.md` Section 5.2 revealed `GET /api/coupons` is explicitly an admin overview endpoint, bringing the true operation count to exactly 14. Non-exposed shorthand routes (`POST/PUT/DELETE /api/coupons`) were correctly classified as non-exposed rather than generating synthetic tests.
+3. **Category Mutation Defect Grouping:** Initial draft merged category mutation under generic admin candidates. Re-inspection confirmed `POST/PUT/DELETE /api/categories` requires its own isolated candidate (`CAND-FR12-03`).
+
+---
+
+=== CORRECTION COMMIT ===
+
+- **Historical Commit Preserved:** `fdb9e6d` (Retained unchanged as historical evidence).
+- **New Local Correction Commit:** `3ae86e3` (`3ae86e3fbc10d29d8a3be095d6652c79f4ea54da`)
+- **Commit Message:** `test(fr12): correct access control specification analysis`
+- **Files Modified & Committed:**
+  - [`hw06/testcases/fr12/spec-analysis.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/spec-analysis.md)
+  - [`hw06/testcases/fr12/coverage-matrix.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/coverage-matrix.md)
+  - [`hw06/docs/ai-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-audit.md)
+  - [`hw06/docs/ai-transcripts/GEMINI-031.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-031.md)
+  - [`hw06/docs/ai-transcripts/GEMINI-032.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-032.md)
+- **Git Remote Status:** Ahead of `origin/main` by 2 local commits. **Zero pushes executed to remote.**
+
+---
+
+=== FR-12 PHASE 1 COMPLETE — READY FOR AI TEST GENERATION ===
+
+Per your strict directive:
+- **No FR-12 test cases have been generated yet.**
+- **No Postman or Newman runs have been executed.**
+
+The specification analysis and coverage matrix are fully grounded, reconciled, and ready for your approval to proceed to Phase 2 (AI Test Case Generation for FR-12)!
