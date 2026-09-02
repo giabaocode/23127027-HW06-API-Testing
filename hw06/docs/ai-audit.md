@@ -48,6 +48,9 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-019** | 2026-09-02T16:00:33+07:00 | Phase 5 | SUT Server Relaunch & Postman Console Screenshot Guidance | [`hw06/docs/ai-transcripts/GEMINI-019.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-019.md) |
 | **GEMINI-020** | 2026-09-02T16:33:27+07:00 | Phase 5 & 6 | Screenshot Verification, Defect Documentation & GitHub Issues #1..#5 Created | [`hw06/docs/ai-transcripts/GEMINI-020.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-020.md) |
 | **GEMINI-021** | 2026-09-02T16:47:27+07:00 | Phase 1 (FR-07) | FR-07 Shopping Cart Specification Analysis & Equivalence Partitioning | [`hw06/docs/ai-transcripts/GEMINI-021.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-021.md) |
+| **GEMINI-022** | 2026-09-02T16:54:22+07:00 | Phase 6 | GitHub Issues Clarification & Student Workflow Verification | [`hw06/docs/ai-transcripts/GEMINI-022.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-022.md) |
+| **GEMINI-023** | 2026-09-02T16:55:50+07:00 | Phase 1 (FR-07) | Human-Review Correction Pass of Shopping Cart Specification Analysis | [`hw06/docs/ai-transcripts/GEMINI-023.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-023.md) |
+| **GEMINI-024** | 2026-09-02T17:01:20+07:00 | Phase 1 (FR-07) | SEC Definitions Alignment, Contradiction Resolution & Grounded Calibration | [`hw06/docs/ai-transcripts/GEMINI-024.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-024.md) |
 
 ---
 
@@ -642,7 +645,77 @@ To ensure total transparency without truncating large conversational turns, full
 *See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-021.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-021.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-021.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-021.md) via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-021.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-021.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-022
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T16:54:22+07:00
+- **Phase:** Phase 6 — GitHub Issues Clarification & Student Workflow Verification
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-022.md` (created)
+- **Result:** Clarified that Issues #1 through #5 were automatically filed on `giabaocode/23127027-HW06-API-Testing` via GitHub CLI; student only needs to capture optional browser screenshots for `hw06/bugs/evidence/`.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-022.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-022.md)
+
+#### Verbatim AI Output
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-022.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-022.md)
+
+---
+
+### Interaction GEMINI-023
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T16:55:50+07:00
+- **Phase:** Phase 1 (FR-07) — Human-Review Corrections & Specification Analysis Calibration
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-022.md` (finalized)
+  - `hw06/docs/ai-transcripts/GEMINI-023.md` (created with retrospective placeholder)
+  - `hw06/testcases/fr07/spec-analysis.md` (corrected and updated)
+  - `hw06/testcases/fr07/coverage-matrix.md` (corrected and updated)
+  - `hw06/submission-checklist.md` (updated with verified X-Student-Id evidence)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Factually Recorded AI Mistakes Corrected by Human Review:**
+  1. *Invented Overflow Boundary:* AI initially labeled $q = 10^9$ as an "overflow boundary"; corrected to `ROBUSTNESS / UNKNOWN UPPER BOUND` because no maximum numeric bound is specified.
+  2. *Misclassifying In-Memory Storage as Defect:* AI initially suggested in-memory storage was a potential bug; corrected to `IMPLEMENTATION DETAIL — NOT A REQUIREMENT` because specification contains no persistence requirement.
+  3. *Overstating Exact Status Codes:* AI initially labeled 401/403 as specified; corrected to `INFERRED FROM MIDDLEWARE` because exact status codes are omitted from specification text.
+  4. *Overstating Inferred Field Rules:* AI initially treated catalog price/ID lookup as specified contract rules; corrected to `ROBUSTNESS / INTEGRITY PROBES` because product fields are derived solely from JSON examples.
+- **Human Checkpoint:** Checkpoint 1B (FR-07) — Student Human Review of Corrected Shopping Cart Specification Analysis.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-023.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-023.md)
+
+#### Verbatim AI Output
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-023.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-023.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-024
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T17:01:20+07:00
+- **Phase:** Phase 1 (FR-07) — SEC Definitions Alignment, Contradiction Resolution & Grounded Calibration
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-023.md` (finalized)
+  - `hw06/docs/ai-transcripts/GEMINI-024.md` (created with retrospective placeholder)
+  - `hw06/testcases/fr07/spec-analysis.md` (fully updated & grounded)
+  - `hw06/testcases/fr07/coverage-matrix.md` (fully updated & grounded)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Factually Recorded AI Errors & Contradictions Corrected:**
+  1. *Critical SEC Numbering Error:* AI previously erroneously mapped `Authorization: Bearer <token>` to `SEC-07` (which is actually password reset OTP) instead of `SEC-02` (`Các API có tính bảo mật phải yêu cầu JWT Token hợp lệ`). Rebuilt the security matrix strictly against official `SEC-01` through `SEC-07` definitions (`README.md` Lines 276–285).
+  2. *Misattributed User Cart Isolation:* AI previously labeled user isolation as "INFERRED FROM SEC-07". Corrected to **`INFERRED FROM AUTHENTICATED-USER CART SEMANTICS & SEC-02`** because `README.md` does not contain explicit isolation text and SEC-07 is unrelated.
+  3. *Cross-Feature Price Rule Contradiction:* AI previously claimed `price > 0` was `SPECIFIED` for FR-07 by conflating it with `FR-15` (Product CRUD Line 196: *"Giá: bắt buộc, phải là số dương (> 0)"*). Official repository inspection confirms FR-07 contains no textual price rule; `price` appears solely in the JSON example, making negative price testing a **`ROBUSTNESS / SECURITY PROBE`** rather than a contract violation.
+  4. *Quantity String Typing Clarification:* Clarified that while the semantic domain is strictly positive integer $\ge 1$ (`SPECIFIED`), string representations like `$q="2"` are non-integer types whose coercion vs rejection behavior is classified as `TYPE ROBUSTNESS / CHARACTERIZATION`.
+- **Human Checkpoint:** Checkpoint 1B (FR-07) — Final Grounded Verification & Execution of Local Correction Commit.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-024.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-024.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-024.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-024.md) via retrospective logging).
 
 ---
 

@@ -1,4 +1,4 @@
-# FR-07: Shopping Cart — Test Coverage Matrix
+# FR-07: Shopping Cart — Test Coverage Matrix (Audited & Grounded Version)
 
 > **Document Information:**
 > - **Feature ID:** Pool B — `FR-07` (Shopping Cart)
@@ -10,29 +10,29 @@
 
 ## Traceability & Coverage Matrix
 
-| Req ID | Requirement Description | Equivalence Partition(s) | Test Objective | Target Test Category | Status / Oracle Classification |
-| :--- | :--- | :--- | :--- | :--- | :---: |
-| **FR-07.1** | View empty shopping cart | $P_{E1}$ | Verify `GET /api/cart` returns empty array `[]` for newly created user | Positive Functional | **`INFERRED`** (200 OK, empty array) |
-| **FR-07.2** | View populated shopping cart | $P_{E2}, P_{E4}$ | Verify `GET /api/cart` reflects added items with full fields (`id`, `name`, `price`, `quantity`) | Positive Functional | **`INFERRED`** (200 OK, array of objects) |
-| **FR-07.3** | Add valid item to cart | $P_{B1}, P_{C1}, P_{D1}$ | Verify `POST /api/cart` successfully adds item with valid fields | Positive Functional | **`INFERRED`** (200 OK, success message) |
-| **FR-07.4** | Accumulate quantity on duplicate add | $P_{E3}$ | Verify adding same product ID increments `quantity` rather than creating duplicate row (`README.md` L96) | Business Rule / Lifecycle | **`SPECIFIED BUSINESS RULE`** (Length = 1, sum quantity) |
-| **FR-07.5** | Minimum valid quantity boundary ($q=1$) | $P_{B1}$ (min) | Verify adding item with exact minimum quantity $q=1$ succeeds | Boundary Analysis | **`SPECIFIED`** (200 OK, $q=1$) |
-| **FR-07.6** | Small positive quantity ($q=2$) | $P_{B1}$ (std) | Verify adding item with standard quantity $q=2$ succeeds | Boundary Analysis | **`SPECIFIED`** (200 OK, $q=2$) |
-| **FR-07.7** | Zero quantity rejection ($q=0$) | $P_{B2}$ | Verify zero quantity is rejected per `README.md` L86 rule (minimum is 1) | Boundary / Input Validation | **`SPECIFIED REJECTION`** (Status $\ne 200$, 400 observed) |
-| **FR-07.8** | Negative quantity rejection ($q=-1$) | $P_{B3}$ | Verify negative quantity is rejected per `README.md` L86 rule | Boundary / Input Validation | **`SPECIFIED REJECTION`** (Status $\ne 200$, 400 observed) |
-| **FR-07.9** | Decimal/Fractional quantity ($q=1.5$) | $P_{B4}$ | Verify non-integer decimal quantity is rejected per integer constraint | Type Validation | **`SPECIFIED REJECTION`** (Status $\ne 200$) |
-| **FR-07.10** | String numeric quantity ($q="2"$) | $P_{B5}$ | Characterize whether server parses string integer or rejects cleanly | Type Robustness | **`UNKNOWN / CHARACTERIZATION`** (No crash) |
-| **FR-07.11** | Non-numeric string quantity ($q="abc"$) | $P_{B6}$ | Verify arbitrary string is rejected | Type Validation | **`INFERRED REJECTION`** (Status $\ne 200$) |
-| **FR-07.12** | Extreme large quantity ($q=10^9$) | $P_{B7}$ | Test upper boundary / integer overflow handling | Robustness | **`ROBUSTNESS`** (No server crash) |
-| **FR-07.13** | Omitted quantity property | $P_{B8}$ | Verify request omitting `quantity` is rejected | Required Field | **`INFERRED REJECTION`** (Status $\ne 200$) |
-| **FR-07.14** | Non-existent product ID ($id=999999$) | $P_{C2}$ | Verify behavior when adding product not present in database | Business Rule / Catalog | **`UNKNOWN / ROBUSTNESS`** (No crash) |
-| **FR-07.15** | Negative product ID ($id=-1$) | $P_{C3}$ | Verify negative product ID is rejected | Input Validation | **`INFERRED REJECTION`** (Status $\ne 200$) |
-| **FR-07.16** | Omitted product ID | $P_{C5}$ | Verify request omitting `id` is rejected | Required Field | **`INFERRED REJECTION`** (Status $\ne 200$) |
-| **FR-07.17** | Client price tampering probe | $P_{D2}$ | Test if client can inject unauthorized low price (`price: 1`) | Security / Integrity | **`SECURITY PROBE`** (Integrity check) |
-| **FR-07.18** | Negative price rejection ($price=-50000$) | $P_{D3}$ | Verify negative price is rejected | Security / Validation | **`INFERRED REJECTION`** (Status $\ne 200$) |
-| **FR-07.19** | Missing `Authorization` header | $P_{A2}$ | Verify unauthenticated call is rejected with HTTP 401 | Security / Authentication | **`INFERRED FROM MIDDLEWARE`** (401 Unauthorized) |
-| **FR-07.20** | Invalid / forged JWT signature | $P_{A3}$ | Verify forged token signature is rejected with HTTP 403 | Security / Authentication | **`INFERRED FROM MIDDLEWARE`** (403 Forbidden) |
-| **FR-07.21** | Malformed Authorization format | $P_{A5}$ | Verify header without `Bearer ` prefix is rejected | Protocol Robustness | **`INFERRED FROM MIDDLEWARE`** (401/403) |
-| **FR-07.22** | Cross-user cart isolation | $P_{E5}$ | Verify User A's cart contents are completely invisible to User B | Security / Authorization | **`SECURITY ISOLATION`** (Carts strictly segregated) |
-| **FR-07.23** | Empty JSON body `{}` to POST /api/cart | — | Verify empty payload is rejected | Payload Robustness | **`INFERRED REJECTION`** (Status $\ne 200$) |
-| **FR-07.24** | Unexpected extra fields in payload | — | Verify extra properties are handled safely without crash | Schema Robustness | **`ROBUSTNESS`** (No server crash) |
+| Coverage ID | Endpoint | Requirement | Source | Classification | Partition / State | Expected Semantic Oracle | HTTP Status Classification | Security Dimension | Schema Dimension | Notes |
+| :--- | :--- | :--- | :--- | :---: | :--- | :--- | :---: | :---: | :---: | :--- |
+| **COV-FR07-01** | `GET /api/cart` | Retrieve empty cart | `README.md` L100 | **`INFERRED`** | $P_{E1}$ (Empty cart) | Returns empty JSON array `[]` | **`INFERRED`** (200 OK) | `SEC-02` | Array | Baseline state for newly created user |
+| **COV-FR07-02** | `GET /api/cart` | Retrieve populated cart | `api_specification.md` L115 | **`INFERRED`** | $P_{E2}$ (1 item) | Returns array of cart item objects | **`INFERRED`** (200 OK) | `SEC-02` | Array of Objects | Verifies cart retains added item |
+| **COV-FR07-03** | `GET /api/cart` | Unauthenticated retrieval | `api_specification.md` L112 | **`SPECIFIED REJECTION`** | $P_{A2}$ (Missing token) | Access blocked; cart not exposed | **`INFERRED FROM MIDDLEWARE`** (401) | `SEC-02` | Error Object | Enforces authentication barrier per SEC-02 |
+| **COV-FR07-04** | `GET /api/cart` | Invalid JWT token | `api_specification.md` L112 | **`SPECIFIED REJECTION`** | $P_{A3}$ (Invalid token) | Access blocked; token rejected | **`INFERRED FROM MIDDLEWARE`** (403) | `SEC-02` | Error Object | Forged or corrupted token per SEC-02 |
+| **COV-FR07-05** | `POST /api/cart` | Standard valid item addition | `api_specification.md` L120 | **`INFERRED`** | $P_{B1}, P_{C1}, P_{D1}$ | Item accepted into user cart | **`INFERRED`** (200 OK) | `SEC-02` | Object (`message`) | Happy-path addition |
+| **COV-FR07-06** | `POST /api/cart` | Duplicate product accumulation | `README.md` L96 | **`SPECIFIED BUSINESS RULE`** | $P_{E3}$ (Duplicate item) | Quantity increments ($q_1+q_2$), no duplicate row created | **`INFERRED`** (200 OK) | None | Single object in array | Core FR-07 deduplication rule |
+| **COV-FR07-07** | `POST /api/cart` | Quantity exact minimum ($q=1$) | `README.md` L86 | **`SPECIFIED`** | $P_{B1}$ (min) | Item accepted with quantity = 1 | **`SPECIFIED`** (200 OK) | None | Object | Lower boundary of quantity |
+| **COV-FR07-08** | `POST /api/cart` | Quantity min + 1 ($q=2$) | `README.md` L86 | **`SPECIFIED`** | $P_{B1}$ (min+1) | Item accepted with quantity = 2 | **`SPECIFIED`** (200 OK) | None | Object | Standard small positive integer |
+| **COV-FR07-09** | `POST /api/cart` | Zero quantity rejection ($q=0$) | `README.md` L86 | **`SPECIFIED REJECTION`** | $P_{B2}$ (min - 1) | Rejection required per positive integer rule | **`UNKNOWN / INFERRED REJECTION`** (Status $\ne 200$) | None | Error Object | Boundary violation |
+| **COV-FR07-10** | `POST /api/cart` | Negative quantity ($q=-1$) | `README.md` L86 | **`SPECIFIED REJECTION`** | $P_{B3}$ (negative) | Rejection required per positive integer rule | **`UNKNOWN / INFERRED REJECTION`** (Status $\ne 200$) | None | Error Object | Negative value violation |
+| **COV-FR07-11** | `POST /api/cart` | Fractional quantity ($q=1.5$) | `README.md` L86 | **`SPECIFIED REJECTION`** | $P_{B4}$ (float) | Rejection required per integer constraint | **`UNKNOWN / INFERRED REJECTION`** (Status $\ne 200$) | None | Error Object | Decimal value violation |
+| **COV-FR07-12** | `POST /api/cart` | String numeric quantity ($q="2"$) | `README.md` L86 | **`TYPE ROBUSTNESS / CHARACTERIZATION`** | $P_{B5}$ (string int) | Non-integer type; probe coercion vs strict rejection | **`UNKNOWN`** (Controlled response) | None | Object / Error | JSON type coercion probe |
+| **COV-FR07-13** | `POST /api/cart` | Non-numeric string ($q="abc"$) | `README.md` L86 | **`INFERRED REJECTION`** | $P_{B6}$ (string) | Rejection required per integer constraint | **`UNKNOWN / INFERRED REJECTION`** (Status $\ne 200$) | None | Error Object | Non-numeric type violation |
+| **COV-FR07-14** | `POST /api/cart` | Large quantity ($q=10^9$) | Undocumented | **`ROBUSTNESS / UNKNOWN UPPER BOUND`** | $P_{B7}$ (large int) | Server handles large integer without crash | **`UNKNOWN`** (Controlled response) | None | Object / Error | Unknown upper bound probe |
+| **COV-FR07-15** | `POST /api/cart` | Omitted quantity field | `README.md` L86 | **`INFERRED REJECTION`** | $P_{B8}$ (missing) | Rejection required per mandatory quantity rule | **`UNKNOWN / INFERRED REJECTION`** (Status $\ne 200$) | None | Error Object | Missing mandatory field |
+| **COV-FR07-16** | `POST /api/cart` | Non-existent product ID ($id=999999$) | Undocumented | **`ROBUSTNESS / BUSINESS PROBE`** | $P_{C2}$ (missing id) | Characterize whether catalog check exists | **`UNKNOWN`** (Controlled response) | None | Object / Error | Catalog existence probe |
+| **COV-FR07-17** | `POST /api/cart` | Negative product ID ($id=-1$) | Undocumented | **`ROBUSTNESS PROBE`** | $P_{C3}$ (negative id) | Characterize handling of negative ID | **`UNKNOWN`** (Controlled response) | None | Object / Error | Negative ID probe |
+| **COV-FR07-18** | `POST /api/cart` | Omitted product ID field | Undocumented | **`ROBUSTNESS PROBE`** | $P_{C5}$ (missing id) | Characterize handling of omitted ID | **`UNKNOWN`** (Controlled response) | None | Error Object | Inferred field omission |
+| **COV-FR07-19** | `POST /api/cart` | Client price tampering ($price=1$) | Undocumented for Cart | **`SECURITY / INTEGRITY PROBE`** | $P_{D2}$ (tampered price) | Probe whether cart stores submitted price or catalog price | **`UNKNOWN`** (Controlled response) | None | Object | Price integrity probe |
+| **COV-FR07-20** | `POST /api/cart` | Negative price ($price=-50000$) | Undocumented for Cart | **`ROBUSTNESS PROBE`** | $P_{D3}$ (negative price) | Characterize negative price handling | **`UNKNOWN`** (Controlled response) | None | Error Object | Negative price probe |
+| **COV-FR07-21** | `POST /api/cart` | Unauthenticated addition | `api_specification.md` L112 | **`SPECIFIED REJECTION`** | $P_{A2}$ (Missing token) | Access blocked; item not added | **`INFERRED FROM MIDDLEWARE`** (401) | `SEC-02` | Error Object | Enforces SEC-02 |
+| **COV-FR07-22** | `POST /api/cart` | Invalid / forged JWT token | `api_specification.md` L112 | **`SPECIFIED REJECTION`** | $P_{A3}$ (Invalid token) | Access blocked; item not added | **`INFERRED FROM MIDDLEWARE`** (403) | `SEC-02` | Error Object | Enforces SEC-02 |
+| **COV-FR07-23** | Both | User cart isolation | `SEC-02` / Cart Semantics | **`INFERRED FROM AUTHENTICATED CART SEMANTICS & SEC-02`** | $P_{E5}$ (Cross-user) | User 1 additions completely segregated from User 2 cart | **`INFERRED`** (200 OK, segregated) | `SEC-02` | Array | Multi-tenant user isolation |
+| **COV-FR07-24** | `POST /api/cart` | Empty JSON body `{}` | Undocumented | **`ROBUSTNESS PROBE`** | — | Safe handling without server crash | **`UNKNOWN`** (Status $\ne 200$) | None | Error Object | Empty payload robustness |
