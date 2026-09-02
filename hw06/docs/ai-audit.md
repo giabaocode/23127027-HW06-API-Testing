@@ -62,6 +62,7 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-033** | 2026-09-02T22:22:27+07:00 | Phase 1 (FR-12) | Admin Success Status Calibration & Spec-Analysis Finalization | [`hw06/docs/ai-transcripts/GEMINI-033.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-033.md) |
 | **GEMINI-034** | 2026-09-02T22:38:41+07:00 | Phase 2 (FR-12) | AI Test Case Generation (38 Tests) & Worksheet Preparation | [`hw06/docs/ai-transcripts/GEMINI-034.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-034.md) |
 | **GEMINI-035** | 2026-09-02T22:56:23+07:00 | Phase 2 (FR-12) | Mechanical Consistency Correction & ChatGPT Review Packet Preparation | [`hw06/docs/ai-transcripts/GEMINI-035.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-035.md) |
+| **GEMINI-036** | 2026-09-02T23:10:44+07:00 | Phase 2 (FR-12) | External AI Reference Review (ChatGPT) & Reference Audit Documentation | [`hw06/docs/ai-transcripts/GEMINI-036.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-036.md) |
 
 ---
 
@@ -1005,7 +1006,34 @@ To ensure total transparency without truncating large conversational turns, full
 *See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-035.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-035.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-035.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-035.md) via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-035.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-035.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-036
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T23:10:44+07:00
+- **Phase:** Phase 2 (FR-12) — External AI Reference Review (ChatGPT) & Reference Audit Documentation
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-035.md` (finalized)
+  - `hw06/docs/ai-transcripts/GEMINI-036.md` (created with retrospective placeholder)
+  - `hw06/docs/external-ai-transcripts/CHATGPT-004.md` (created verbatim ChatGPT review transcript)
+  - `hw06/testcases/fr12/ai-reference-audit.md` (created external AI reference audit)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Truthful Audit Provenance:**
+  - Student supplied an independent external second-AI review from ChatGPT across all 38 original FR-12 AI test cases.
+  - Distribution recorded: 28 VALID, 10 INCOMPLETE, 0 INVALID (Total: 38).
+  - Prominent warning attached clarifying that this document represents external AI reference material and does NOT constitute the student's human audit.
+  - Original AI test set `hw06/testcases/fr12/generated-ai-original.md` remained strictly immutable and byte-for-byte unchanged.
+  - Student audit worksheet `hw06/testcases/fr12/human-audit.md` student fields remained 100% blank.
+- **Human Checkpoint:** Checkpoint 2B (FR-12) — Final Human Audit Decision Pending.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-036.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-036.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-036.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-036.md) via retrospective logging).
 
 ---
 
@@ -1019,6 +1047,7 @@ To ensure total transparency without truncating large conversational turns, full
 | 1 | **CHATGPT-001** | 2026-09-02 | ChatGPT (OpenAI) | Master Prompt Engineering & HW06 Setup | Formulated comprehensive instructions and constraints for Antigravity AI pair programming. | [`CHATGPT-001.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/external-ai-transcripts/CHATGPT-001.md)<br>*(Placeholder for exact historical text)* | Used to guide Phase 0 session initialization and policy compliance. |
 | 2 | **CHATGPT-002** | 2026-09-02 | ChatGPT (OpenAI) | External Reference Review of FR-01 AI Test Cases | Student provided 38 AI-generated FR-01 test cases for independent second-AI critique. | [`CHATGPT-002.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/external-ai-transcripts/CHATGPT-002.md)<br>*(Verbatim transcript preserved)* | Preserved as reference material in `ai-reference-audit.md` for student cross-reference; student audit fields remain independent. |
 | 3 | **CHATGPT-003** | 2026-09-02 | ChatGPT (OpenAI) | External Reference Review of FR-07 AI Test Cases | Student provided 38 AI-generated FR-07 test cases for independent second-AI critique. | [`CHATGPT-003.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/external-ai-transcripts/CHATGPT-003.md)<br>*(Verbatim transcript preserved)* | Preserved as reference material in `hw06/testcases/fr07/ai-reference-audit.md` for student cross-reference; student audit fields remain independent. |
+| 4 | **CHATGPT-004** | 2026-09-02 | ChatGPT (OpenAI) | External Reference Review of FR-12 AI Test Cases | Student provided 38 AI-generated FR-12 test cases for independent second-AI critique. | [`CHATGPT-004.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/external-ai-transcripts/CHATGPT-004.md)<br>*(Verbatim transcript preserved)* | Preserved as reference material in `hw06/testcases/fr12/ai-reference-audit.md` for student cross-reference; student audit fields remain independent. |
 
 ---
 

@@ -285,4 +285,69 @@ Then STOP at:
 
 ## 2. Verbatim Conversational AI Response
 
-[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]
+=== FR-12 GENERATION CONSISTENCY CHECK ===
+
+- **SEC-02 Direct Negative Tests:** **8 Test Cases** (`FR12-AI-029` through `FR12-AI-036`)
+  - *Calculation Breakdown:*
+    - `FR12-AI-029` .. `FR12-AI-034`: 6 Anonymous / Missing JWT tests (catalog mutations, admin user listing, category creation, coupon listing).
+    - `FR12-AI-035`: 1 Expired JWT test (cryptographic signature valid, but expired `exp` claim).
+    - `FR12-AI-036`: 1 Forged signature test (cryptographic HMAC verification failure).
+    - **Total SEC-02 Negative Tests:** $6 + 1 + 1 =$ **8 test cases** (The previous turn summary stated "10 test cases", which was a mathematical counting error; now formally corrected in the AI audit log).
+- **SEC-03 Role Authorization Tests:** **16 Test Cases**
+  - *Calculation Breakdown:*
+    - `FR12-AI-001` .. `FR12-AI-014`: 14 Standard User tests (`role = 'user'`) spanning all 14 real target operations.
+    - `FR12-AI-037`: 1 Missing Role Claim test (`{ id: 10 }` without `role` property; token signature is valid, testing whether authorization verifies `role === 'admin'`).
+    - `FR12-AI-038`: 1 Uppercase Role Claim test (`role: 'ADMIN'`; token signature is valid, testing exact-match case sensitivity for `role === 'admin'`).
+    - **Total SEC-03 Tests:** $14 + 2 =$ **16 test cases**.
+- **FR-12 Admin Subsystem Authorization:** **14 Test Cases** (`FR12-AI-015` .. `FR12-AI-028`)
+- **Total Suite Count:** $8 (\text{SEC-02}) + 16 (\text{SEC-03}) + 14 (\text{FR-12}) =$ **38 Test Cases**.
+
+---
+
+=== TOKEN COVERAGE OBSERVATION ===
+
+- **Factual Observation:** In [`hw06/testcases/fr12/generated-ai-original.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/generated-ai-original.md), Section D was labeled *"Token Cryptographic & Boundary Robustness = 4 tests"*.
+- **Technical Reality:**
+  - `FR12-AI-035` (expired token) and `FR12-AI-036` (forged HMAC signature) test cryptographic token verification (`SEC-02`).
+  - `FR12-AI-037` (omitted `role` claim) and `FR12-AI-038` (uppercase `role: 'ADMIN'`) both feature cryptographically valid signatures from the server's secret key, and thus pass the `jwt.verify` token validation layer. They specifically probe the access-control authorization inspection of the `role` claim (`SEC-03`).
+- **Audit Decision:** The immutable original AI artifact is **strictly preserved without alteration**. This categorization observation has been truthfully logged in [`hw06/docs/ai-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-audit.md) as part of the student's audit preparation.
+
+---
+
+=== ORIGINAL AI SET INTEGRITY ===
+
+- **File Verified:** [`hw06/testcases/fr12/generated-ai-original.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/generated-ai-original.md)
+- **Integrity Check:** `git diff 6b50faa -- hw06/testcases/fr12/generated-ai-original.md` $\implies$ **Zero diff**.
+- **Status:** The original AI test generation remains **100% byte-for-byte identical** to commit `6b50faa`. No edits or silent modifications were made.
+
+---
+
+=== CHATGPT REVIEW PACKET ===
+
+- **File Path:** [`hw06/testcases/fr12/chatgpt-review-packet.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/chatgpt-review-packet.md)
+- **Sections:** Exactly **38 testcase sections** (`FR12-AI-001` .. `FR12-AI-038` continuous).
+- **Format Integrity:**
+  - Every section contains complete metadata (Coverage ID, Method, Endpoint, Caller Type, JWT State, Role, Condition Summary, SEC Mapping, Oracle Classification, Semantic Outcome, HTTP Status + Classification, Response Exposure, Side-Effect Invariance, Setup/Disposable Resource, Cleanup, Body Assertion, Automation Status).
+  - High-risk cases (mutations `FR12-AI-002` .. `013`, admin positive `FR12-AI-015` .. `028`, boundaries `FR12-AI-035` .. `038`) include detailed 5-step breakdown.
+  - **Zero Pre-baked Verdicts:** Contains no AI verdicts (`VALID`/`INCOMPLETE`/`INVALID`) and no student verdicts.
+
+---
+
+=== LOCAL COMMIT ===
+
+- **Commit Hash:** `963a3e3` (`963a3e3518335be2923984dd5fbceebae7aa9be8`)
+- **Commit Message:** `docs(fr12): prepare external AI audit review packet`
+- **Files Committed:**
+  - `hw06/testcases/fr12/chatgpt-review-packet.md`
+  - `hw06/testcases/fr12/generate_chatgpt_packet.py`
+  - `hw06/testcases/fr12/validate_chatgpt_packet.py`
+  - `hw06/docs/ai-audit.md`
+  - `hw06/docs/ai-transcripts/GEMINI-034.md`
+  - `hw06/docs/ai-transcripts/GEMINI-035.md`
+- **Git Status:** Working tree clean. Branch `main` is ahead of `origin/main` by 5 local commits. **Zero pushes executed to remote.**
+
+---
+
+=== CHECKPOINT 2A — EXTERNAL AI REVIEW PACKET READY ===
+
+You can now provide [`hw06/testcases/fr12/chatgpt-review-packet.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/chatgpt-review-packet.md) to ChatGPT for independent external second-AI review. Whenever you have the external review feedback ready, provide it and we will proceed to the student-reviewed audit pass!
