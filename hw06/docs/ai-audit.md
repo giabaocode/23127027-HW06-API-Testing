@@ -51,6 +51,7 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-022** | 2026-09-02T16:54:22+07:00 | Phase 6 | GitHub Issues Clarification & Student Workflow Verification | [`hw06/docs/ai-transcripts/GEMINI-022.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-022.md) |
 | **GEMINI-023** | 2026-09-02T16:55:50+07:00 | Phase 1 (FR-07) | Human-Review Correction Pass of Shopping Cart Specification Analysis | [`hw06/docs/ai-transcripts/GEMINI-023.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-023.md) |
 | **GEMINI-024** | 2026-09-02T17:01:20+07:00 | Phase 1 (FR-07) | SEC Definitions Alignment, Contradiction Resolution & Grounded Calibration | [`hw06/docs/ai-transcripts/GEMINI-024.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-024.md) |
+| **GEMINI-025** | 2026-09-02T20:11:40+07:00 | Phase 2 (FR-07) | AI Test Case Generation (38 Tests) & Worksheet Preparation | [`hw06/docs/ai-transcripts/GEMINI-025.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-025.md) |
 
 ---
 
@@ -715,7 +716,30 @@ To ensure total transparency without truncating large conversational turns, full
 *See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-024.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-024.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-024.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-024.md) via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-024.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-024.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-025
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T20:11:40+07:00
+- **Phase:** Phase 2 (FR-07) — AI Test Case Generation (38 Tests) & Worksheet Preparation
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-024.md` (finalized)
+  - `hw06/docs/ai-transcripts/GEMINI-025.md` (created with retrospective placeholder)
+  - `hw06/testcases/fr07/generated-ai-original.md` (created: exactly 38 test cases)
+  - `hw06/testcases/fr07/human-audit.md` (created: 38 rows with student fields blank)
+  - `hw06/testcases/fr07/human-review-compact.md` (created: 38 rows with student fields blank)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Result:** Successfully allocated 38 test cases across the 24 reviewed Coverage IDs, generated `generated-ai-original.md`, prepared blank human audit worksheets, programmatically validated all 13 quality rules, and committed locally in `test(fr07): generate 38 AI cart test cases`.
+- **Human Checkpoint:** Checkpoint 2 (FR-07) — Student Human Audit Required.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-025.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-025.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-025.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-025.md) via retrospective logging).
 
 ---
 
