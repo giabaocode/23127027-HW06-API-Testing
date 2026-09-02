@@ -36,6 +36,7 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-007** | 2026-09-02T11:51:45+07:00 | Phase 1 | Human Review Checkpoint 1B Finalization & Coverage Count Calibration | [`hw06/docs/ai-transcripts/GEMINI-007.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-007.md) |
 | **GEMINI-008** | 2026-09-02T11:56:35+07:00 | Phase 1 | Consistency Calibration & Local Commit of FR-01 Specification Analysis | [`hw06/docs/ai-transcripts/GEMINI-008.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-008.md) |
 | **GEMINI-009** | 2026-09-02T12:00:10+07:00 | Phase 2 | AI Test Case Generation for FR-01 (38 Test Cases) | [`hw06/docs/ai-transcripts/GEMINI-009.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-009.md) |
+| **GEMINI-010** | 2026-09-02T13:28:39+07:00 | Phase 2 | Human Audit Phase: Record ChatGPT Reference Review & Prepare Compact Review | [`hw06/docs/ai-transcripts/GEMINI-010.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-010.md) |
 
 ---
 
@@ -307,7 +308,38 @@ To ensure total transparency without truncating large conversational turns, full
 *See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-009.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-009.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-009.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-009.md) via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-009.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-009.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-010
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T13:28:39+07:00
+- **Phase:** Phase 2 — Human Audit Phase (Recording ChatGPT External Reference Review & Fast Review View)
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-009.md` (finalized with complete verbatim response)
+  - `hw06/docs/ai-transcripts/GEMINI-010.md` (created with retrospective placeholder)
+  - `hw06/testcases/fr01/ai-reference-audit.md` (created with ChatGPT reference review)
+  - `hw06/testcases/fr01/human-review-compact.md` (created for rapid student review)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Commands Executed:**
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-009.md`
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-010.md`
+  - `write_to_file hw06/testcases/fr01/ai-reference-audit.md`
+  - `python3 -c "..."` (generated human-review-compact.md)
+  - `python3 -c "..."` (validated reference distribution, human-audit.md empty fields, compact review rows)
+  - `git status`
+  - `git add hw06/`
+  - `git commit -m "docs(fr01): record external AI reference review"`
+- **Git Actions:** Executed local documentation commit on branch `main` (PDF excluded, zero remote push).
+- **Human Checkpoint:** Checkpoint 2A — Student Final Human Judgment Required (Student review in progress).
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-010.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-010.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-010.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-010.md) via retrospective logging).
 
 ---
 
@@ -318,8 +350,8 @@ To ensure total transparency without truncating large conversational turns, full
 
 | # | Date & Time | AI Tool | Task / Topic | Student Prompt Summary | Summary of AI Output | How Output Was Used / Verified |
 | :-: | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | *[Student to fill date]* | ChatGPT (OpenAI) | Prompt Engineering / HW06 Setup | Formulated comprehensive instructions and constraints for Antigravity AI pair programming. | Generated structured master prompt template with phase gating and anti-cheat rules. | Used to guide Phase 0 session initialization and policy compliance. |
-| 2 | *[Student to fill if any]* | | | | | |
+| 1 | 2026-09-02 | ChatGPT (OpenAI) | Prompt Engineering / HW06 Setup | Formulated comprehensive instructions and constraints for Antigravity AI pair programming. | Generated structured master prompt template with phase gating and anti-cheat rules. | Used to guide Phase 0 session initialization and policy compliance. |
+| 2 | 2026-09-02 | ChatGPT (OpenAI) | External Reference Review of FR-01 AI Test Cases | Student provided the 38 AI-generated FR-01 test cases to obtain an independent second-AI critique. | Produced external reference review with verdicts (25 Valid, 12 Incomplete, 1 Invalid) and reasoning/corrections. | Preserved as reference material in `ai-reference-audit.md` for student cross-reference; student audit fields remain independent. |
 
 ---
 
@@ -348,4 +380,5 @@ As required by the assignment guidelines, all observable AI reasoning errors, ha
 | **AI-ERR-02** | Phase 1 (Turn 6) | Mathematical Calculation Discrepancy | AI stated `~38` in the header and `48` in the summary text of `coverage-matrix.md`, while the actual programmatic sum of the row counts was `55`. | **Fact:** AI estimated row totals mentally instead of executing programmatic summation. The matrix was recalibrated and verified via a Python script to sum to exactly **38 tests**. |
 | **AI-ERR-03** | Phase 1 (Turn 6) | Premature Verbatim Claim | AI Audit logged that Turn 6 transcript contained full verbatim AI response before the turn was delivered, leaving a placeholder inside `GEMINI-006.md`. | **Fact:** A response cannot be logged before it is generated. Corrected by establishing a strict retrospective logging protocol (finalizing previous turn response at the start of next turn). |
 | **AI-ERR-04** | Phase 1 (Turn 5) | Over-Constraint Inference | AI converted a single example response in `api_specification.md` into a rigid JSON Schema asserting `additionalProperties: false` and `id >= 1` as `SPECIFIED` contract rules. | **Fact:** The specification provided only an example JSON object. Corrected by classifying example attributes as `EXAMPLE-DERIVED` and `INFERRED FROM EXAMPLE`, keeping schema constraints as `UNKNOWN / NOT SPECIFIED`. |
+| **AI-ERR-05** | Phase 2 (Turn 9) / `FR01-AI-019` | Test Design Flaw / False Security Probe | In `FR01-AI-019`, AI designed a test for SEC-05 (parameterized query) using email `' OR '1'='1'@domain.com`, which is syntactically malformed under email format rules. | **Fact:** An API validation layer may reject malformed emails before database interaction occurs, meaning the test cannot reliably prove whether parameterized queries protect the database. To test SEC-05 effectively, the payload must reach the SQL execution layer (e.g. via `name`). |
 
