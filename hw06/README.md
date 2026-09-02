@@ -58,7 +58,7 @@ hw06/
 │   ├── fr12-execution-report.md       # FR-12 Newman execution results & triage
 │   ├── git-commit-log.txt             # Text export of authentic git commit history
 │   ├── main-report.md                 # Master comprehensive testing report
-│   ├── oral-defense-notes.md          # 11 concise Q&A notes for oral examination
+│   ├── oral-defense-notes.md          # [OPTIONAL] Study aid reference notes for student preparation
 │   └── postman-features.md            # Technical documentation of Postman features
 ├── newman/                            # CLI output & HTML interactive test reports
 │   ├── fr01/                          # FR-01 Newman CLI output & HTML report

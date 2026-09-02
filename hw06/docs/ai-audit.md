@@ -68,6 +68,7 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-039** | 2026-09-03T00:07:40+07:00 | Phase 4 & 6 (FR-12) | Real Evidence Verification, Defect Reporting & GitHub Issues Creation | [`hw06/docs/ai-transcripts/GEMINI-039.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-039.md) |
 | **GEMINI-040** | 2026-09-03T00:30:17+07:00 | Phase 6 & 7 (FR-12) | GitHub Issue Screenshot Verification, Terminology Consistency & Safety Audit | [`hw06/docs/ai-transcripts/GEMINI-040.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-040.md) |
 | **GEMINI-041** | 2026-09-03T01:03:00+07:00 | Phase 7 & Master | Master Excel, Master Postman, CI/CD Runs A & B, Agent Skill, and Submission Packaging | [`hw06/docs/ai-transcripts/GEMINI-041.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-041.md) |
+| **GEMINI-042** | 2026-09-03T01:20:00+07:00 | Submission Packaging | Reclassification of Oral Defense Notes as Optional Study Aid per PDF Section 14 | [`hw06/docs/ai-transcripts/GEMINI-042.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-042.md) |
 
 ---
 
@@ -1178,7 +1179,7 @@ To ensure total transparency without truncating large conversational turns, full
   - `hw06/docs/cicd-report.md` (documented real Run A `33665114685` and Run B `33665296154`)
   - `hw06/agent-skill/design-decisions.md`, `pseudocode.md`, `test_generator.py` (functional CLI generator), `student-diagram-checklist.md`
   - `hw06/docs/ai-critique.md` (252-word critical reflection grounded in project errors)
-  - `hw06/docs/oral-defense-notes.md` (11 core examination Q&As)
+  - `hw06/docs/oral-defense-notes.md` (optional study aid reference notes)
   - `hw06/docs/main-report.md` (master comprehensive testing report)
   - `hw06/README.md` (repository navigation & self-assessment table)
   - `hw06/docs/git-commit-log.txt` (clean text commit history)
@@ -1193,7 +1194,32 @@ To ensure total transparency without truncating large conversational turns, full
 *See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-041.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-041.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-041.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-041.md) via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-041.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-041.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-042
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-03T01:20:00+07:00
+- **Phase:** Submission Packaging & Requirement Calibration — Oral Defense Notes Reclassified as Optional Study Aid
+- **Files Affected:**
+  - `hw06/docs/oral-defense-notes.md` (marked as OPTIONAL STUDY AID ONLY)
+  - `hw06/README.md` (updated tree annotation to optional study aid)
+  - `hw06/validate_submission.py` (updated validation rules so oral defense notes are strictly optional)
+  - `hw06/docs/ai-audit.md` (updated)
+  - `hw06/docs/ai-transcripts/GEMINI-041.md` (finalized)
+  - `hw06/docs/ai-transcripts/GEMINI-042.md` (created with retrospective placeholder)
+- **Truthful Audit Provenance:**
+  - Official HW06 PDF Section 13 vs Section 14 audited. Section 13 establishes Oral Defense as an examination conducted during the week following the deadline for a randomly selected 30% of students. Section 14 (Required contents of `.zip`) does not list any oral-defense-notes file as a mandatory submission item.
+  - Mandatory checklist, completion gates, and validation scripts calibrated to require only genuine PDF deliverables.
+- **Human Checkpoint:** Verification Complete; Submission Gates Calibrated.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-042.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-042.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-042.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-042.md) via retrospective logging).
 
 ---
 

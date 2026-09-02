@@ -104,22 +104,25 @@ def run_checks():
         else:
             errors.append(f"Missing Agent Skill file: {asf}")
 
-    # 8. Verify Documentation Deliverables
-    docs_files = [
+    # 8. Verify Mandatory Documentation Deliverables (PDF Section 14)
+    mandatory_docs_files = [
         "hw06/docs/ai-audit.md",
         "hw06/docs/ai-critique.md",
         "hw06/docs/cicd-report.md",
         "hw06/docs/main-report.md",
-        "hw06/docs/oral-defense-notes.md",
         "hw06/docs/git-commit-log.txt",
         "hw06/docs/postman-features.md",
         "hw06/README.md"
     ]
-    for df in docs_files:
+    for df in mandatory_docs_files:
         if os.path.exists(df):
-            print(f"✓ Documentation file present: {df}")
+            print(f"✓ Mandatory documentation file present: {df}")
         else:
-            errors.append(f"Missing documentation file: {df}")
+            errors.append(f"Missing mandatory documentation file: {df}")
+
+    # Optional study aid files (not required by PDF Section 14)
+    if os.path.exists("hw06/docs/oral-defense-notes.md"):
+        print("ℹ Optional study aid present: hw06/docs/oral-defense-notes.md (Optional / Study Aid Only)")
 
     # 9. Verify Safety: No assignment PDF, no node_modules, no .env tracked in git
     tracked_files = subprocess.check_output(["git", "ls-files"]).decode("utf-8").splitlines()

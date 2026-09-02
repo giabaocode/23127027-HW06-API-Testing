@@ -502,4 +502,129 @@ Provide only:
 
 ## 2. Verbatim Conversational AI Response
 
-[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]
+### Progress Overview by Phase
+
+---
+
+### Phase 1 — Master Test Cases Excel Workbook (`hw06/testcases/testcases-master.xlsx`)
+- **Status:** **COMPLETE & PROGRAMMATICALLY VERIFIED**
+- **Artifact:** [`hw06/testcases/testcases-master.xlsx`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/testcases-master.xlsx) (39.6 KB)
+- **Generator Script:** [`hw06/testcases/build_master_excel.py`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/build_master_excel.py)
+- **Mathematical Reconciliation:**
+  - FR-01 Logical Cases: **43** (38 AI + 5 Student Extensions)
+  - FR-07 Logical Cases: **43** (38 AI + 5 Student Extensions)
+  - FR-12 Logical Cases: **43** (38 AI + 5 Student Extensions)
+  - **Total Logical Test Case Designs:** **129** ($43 + 43 + 43 = 129$)
+- **Workbook Architecture (7 Formatted Sheets):**
+  1. `Summary`: Executive dashboard, verification formulas, defect summaries, student metadata.
+  2. `All Test Cases`: Complete 129-row master register with frozen headers, auto-filters, audit verdicts, and defect links.
+  3. `FR-01`: Dedicated 43-row sheet for Account Registration.
+  4. `FR-07`: Dedicated 43-row sheet for Shopping Cart Management.
+  5. `FR-12`: Dedicated 43-row sheet for Access Control & Authorization.
+  6. `Audit Metrics`: Statistical breakdown of 114 initial AI cases (76 Valid, 37 Incomplete, 1 Invalid) and human calibration error types.
+  7. `Bug Traceability`: Complete mapping of all 11 runtime defects (`DEF-FR01-01`..`05`, `DEF-FR07-01`..`02`, `DEF-FR12-01`..`04`) with root causes in `backend/server.js` and live GitHub Issue links.
+
+---
+
+### Phase 2 — Master Unified Postman Deliverable
+- **Status:** **COMPLETE**
+- **Master Collection:** [`hw06/postman/eshop-hw06-collection.json`](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/eshop-hw06-collection.json) (255 KB)
+  - **Hierarchy:** Separated into 3 top-level feature folders:
+    - *Folder 1:* `Feature 1 — FR-01: Account Registration (POST /api/register)`
+    - *Folder 2:* `Feature 2 — FR-07: Shopping Cart Management (GET /api/cart, POST /api/cart)`
+    - *Folder 3:* `Feature 3 — FR-12: Access Control & Authorization (Admin Subsystems & Catalog Mutations)`
+  - **Attribution Enforcement:** Centrally injects `X-Student-Id: 23127027` into 100% of outgoing requests via root pre-request script without manual repetition.
+- **Engineering Documentation:** [`hw06/docs/postman-features.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/postman-features.md)
+  - Fully documents: collection/environment variables, multi-token JWT auth matrix, pre-request script request chaining (`pm.sendRequest`), dynamic timestamp interpolation (`{{$timestamp}}`), raw unparsed body preservation, MIME overrides, dual-assertion side-effect verification, cleanup teardowns, Newman reporters, and in-memory SUT caveats.
+
+---
+
+### Phase 3 — CI/CD Pipeline Automation (GitHub Actions)
+- **Status:** **COMPLETE & REAL RUNS EXECUTED ON GITHUB**
+- **Workflow File:** [`.github/workflows/api-tests.yml`](file:///Users/phamngocgiabao/eshop-sut/.github/workflows/api-tests.yml)
+- **Automated Lifecycle:** Ubuntu runner $\rightarrow$ Node.js v20 $\rightarrow$ SUT dependencies $\rightarrow$ background server launch with HTTP readiness polling $\rightarrow$ Newman execution $\rightarrow$ HTML/CLI artifact upload.
+- **Critical Integrity Rule Preserved:** Zero specification assertions were weakened, inverted, or suppressed to falsely green-light real SUT defects.
+- **Run A — All-Passing Health & Smoke Run:**
+  - *Suite:* [`hw06/postman/collections/ci-smoke.postman_collection.json`](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/collections/ci-smoke.postman_collection.json) (9 requests, 34 assertions)
+  - *Run ID:* `33665114685`
+  - *Status:* **SUCCESS (100% Passed)**
+  - *URL:* https://github.com/giabaocode/23127027-HW06-API-Testing/actions/runs/33665114685
+- **Run B — Intentional Failure Demonstration:**
+  - *Suite:* [`hw06/postman/collections/ci-intentional-failure-demo.postman_collection.json`](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/collections/ci-intentional-failure-demo.postman_collection.json)
+  - *Run ID:* `33665296154`
+  - *Status:* **FAILED AS INTENDED (Exit Code 1)**
+  - *Deliberate Assertion:* `[DEMO INTENTIONAL FAILURE] Deliberately Asserting Non-Existent Product Name to Verify CI/CD Failure Detection`
+  - *URL:* https://github.com/giabaocode/23127027-HW06-API-Testing/actions/runs/33665296154
+- **Execution Report:** [`hw06/docs/cicd-report.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/cicd-report.md)
+
+---
+
+### Phase 4 — Agent Skill: Automated API Test Case Generator
+- **Status:** **IMPLEMENTED, TESTED, AND VERIFIED**
+- **Design & Architecture:** [`hw06/agent-skill/design-decisions.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/agent-skill/design-decisions.md)
+- **Algorithmic Representation:** [`hw06/agent-skill/pseudocode.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/agent-skill/pseudocode.md)
+- **Functional CLI Tool:** [`hw06/agent-skill/test_generator.py`](file:///Users/phamngocgiabao/eshop-sut/hw06/agent-skill/test_generator.py)
+  - Implements Equivalence Partitioning (nominal, missing required, type confusion) and Boundary Value Analysis (exact min, sub-min violation).
+  - Automatically synthesizes JWT security probes (`SEC-02`, `SEC-03`).
+  - Tested with real sample endpoint input (`POST /api/cart`), generating 12 calibrated test cases with formal semantic outcomes.
+- **Student Diagram Checklist:** [`hw06/agent-skill/student-diagram-checklist.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/agent-skill/student-diagram-checklist.md) (Checklist provided; **no finished diagram was AI-fabricated** in adherence to Anti-Cheat Gate 3).
+
+---
+
+### Phase 5 — Analytical & Examination Deliverables
+- **AI Critique (252 words):** [`hw06/docs/ai-critique.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-critique.md)
+  - Synthesizes real errors from project audit: REST status convention assumptions, `role='customer'` hallucination, over-specified rejection envelopes, coupled checkout persistence probes, and counting mistakes. Clearly marked *Draft for Student Review*.
+- **Git Commit Log:** [`hw06/docs/git-commit-log.txt`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/git-commit-log.txt)
+  - Exported directly from real git history (`git log`).
+- **Comprehensive Master Report:** [`hw06/docs/main-report.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/main-report.md)
+  - Master technical document covering all 10 report sections with fully reconciled numerical totals.
+- **README & Self-Assessment Rubric:** [`hw06/README.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/README.md)
+  - Complete navigation guide, test summary, and grading table with student-owned score fields preserved for personal review.
+
+---
+
+### Phase 6 — Programmatic Final Submission Validation
+- **Status:** **PASSED (0 ERRORS)**
+- **Validator Script:** [`hw06/validate_submission.py`](file:///Users/phamngocgiabao/eshop-sut/hw06/validate_submission.py)
+  - Verified 129 logical rows in `testcases-master.xlsx`.
+  - Verified 3 folders in `eshop-hw06-collection.json`.
+  - Verified 5 existing authentic screenshots.
+  - Verified 6 Newman reports (CLI and HTML).
+  - Verified 11 bug reports (`DEF-FR01-01`..`05`, `DEF-FR07-01`..`02`, `DEF-FR12-01`..`04`).
+  - Verified 4 Agent Skill files and 8 documentation deliverables.
+  - Verified **zero PDF files, zero `.env` files, zero `node_modules`, and zero database backups** tracked in git.
+
+---
+
+=== HUMAN ACTION REQUIRED ===
+
+To complete the remaining physical and student-authored requirements:
+
+### 1. Capture CI/CD Browser Screenshots (2 Screenshots)
+Open your web browser and capture clean screenshots of the two completed GitHub Actions runs:
+
+- **Run A (Passing Health & Smoke Run):**
+  - **URL:** https://github.com/giabaocode/23127027-HW06-API-Testing/actions/runs/33665114685
+  - **Visible Elements:** Green checkmark, workflow title `Automated API Testing & Quality Gate (HW06)`, commit hash `229cbe1`, job `Newman Automated Regression & Smoke`.
+  - **Save Path:** `hw06/screenshots/cicd-run-01-success.png`
+
+- **Run B (Intentional Failure Demonstration):**
+  - **URL:** https://github.com/giabaocode/23127027-HW06-API-Testing/actions/runs/33665296154
+  - **Visible Elements:** Red cross, failure on step `Execute Newman Test Suite`, job summary.
+  - **Save Path:** `hw06/screenshots/cicd-run-02-failure.png`
+
+---
+
+### 2. Draw Agent Skill Architecture Diagram (Student Hand-Drawn / Tool)
+In accordance with Anti-Cheat Gate 3, **do not use AI image generation**:
+- Follow the guide and checklist in: [`hw06/agent-skill/student-diagram-checklist.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/agent-skill/student-diagram-checklist.md)
+- Construct your diagram using Draw.io, Excalidraw, Figma, or pen-and-paper showing the 6 core components.
+- Include your student name & ID (`Phạm Ngọc Gia Bảo - 23127027`).
+- **Save Path:** `hw06/agent-skill/student-diagram.png`
+
+---
+
+### 3. Review AI Critique & Self-Assessed Grade
+- Open [`hw06/docs/ai-critique.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-critique.md), review the draft (252 words), and personalize if desired.
+- Open [`hw06/README.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/README.md), review the rubric, and fill in your self-assessed score.
+

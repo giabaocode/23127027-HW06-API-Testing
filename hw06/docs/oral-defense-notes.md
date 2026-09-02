@@ -1,4 +1,9 @@
-# HW06 — Oral Defense Reference Notes
+# HW06 — Oral Defense Reference Notes (Optional Study Aid)
+
+> [!NOTE]
+> **OPTIONAL STUDY AID ONLY — NOT A MANDATORY SUBMISSION DELIVERABLE:**
+> In accordance with official HW06 PDF Section 13, the Oral Defense is an oral examination conducted for a randomly selected 30% of students during the week following the deadline. 
+> This document is strictly an optional personal study aid for student preparation and is **NOT** a required deliverable for the homework submission package under Section 14.
 
 > **Student Information:**
 > - **Student Name:** Phạm Ngọc Gia Bảo
