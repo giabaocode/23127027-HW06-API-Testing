@@ -1,0 +1,67 @@
+{
+  "id": "fr12-env-23127027",
+  "name": "FR-12 Access Control Environment",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "enabled": true
+    },
+    {
+      "key": "studentId",
+      "value": "23127027",
+      "enabled": true
+    },
+    {
+      "key": "adminToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkFkbWluIFVzZXIiLCJlbWFpbCI6ImFkbWluQGVzaG9wLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc4ODM2NzA1M30.SgUC4iDwhf4uUzFFqnS5lZ0V5Z986WBG0HO2-wyafLQ",
+      "enabled": true
+    },
+    {
+      "key": "userToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IlRlc3QgVXNlciIsImVtYWlsIjoidGVzdEBlc2hvcC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTc4ODM2NzA1M30.da_Wwft9Jho0HY-4UhIuDfAXgQOiijynHXvBrZ_fbaY",
+      "enabled": true
+    },
+    {
+      "key": "expiredAdminToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiZXhwIjoxNzg4MzYzNDUzLCJpYXQiOjE3ODgzNjcwNTN9.yGpqJN9BFsrrYFFKNNGAAOtFgkCQS9TKxA5VpXOUnVU",
+      "enabled": true
+    },
+    {
+      "key": "forgedToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzg4MzY3MDUzfQ.EZQT9lCkOOMeYSsVqYOxVpeLbrqO1fchllNNswuOESQ",
+      "enabled": true
+    },
+    {
+      "key": "missingRoleToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsIm5hbWUiOiJObyBSb2xlIFVzZXIiLCJpYXQiOjE3ODgzNjcwNTN9.bTqNLqnOBVwGx7MYKifWu0_j9lU5jl0s4TFqSbKUZ9A",
+      "enabled": true
+    },
+    {
+      "key": "uppercaseRoleToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg4MzY3MDUzfQ.pi1Bf_190wZ99C7e7fz_dESzJtNElxAV6UprSCsGdIE",
+      "enabled": true
+    },
+    {
+      "key": "unsignedAlgNoneToken",
+      "value": "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiJ9.",
+      "enabled": true
+    },
+    {
+      "key": "futureNbfToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwibmJmIjoxNzg4MzcwNjUzLCJleHAiOjE3ODgzNzQyNTMsImlhdCI6MTc4ODM2NzA1M30.FKg51ON60P_BSmdXzzNDiVIYUW3YjWKMw65sKC5UEeI",
+      "enabled": true
+    },
+    {
+      "key": "whitespaceRoleToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IiBhZG1pbiAiLCJpYXQiOjE3ODgzNjcwNTN9.SoSwGEk0C6uNe76G59whDH86wcEamkdQxXveLdVbWqY",
+      "enabled": true
+    },
+    {
+      "key": "arrayRoleToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6WyJhZG1pbiJdLCJpYXQiOjE3ODgzNjcwNTN9.16YSGMWPQyFk3VD24sYE6mLtfw1sUNpL_BTLbAGfbDg",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}

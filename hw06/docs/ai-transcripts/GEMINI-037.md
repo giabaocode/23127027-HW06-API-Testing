@@ -438,4 +438,99 @@ Do NOT:
 
 ## 2. Verbatim Conversational AI Response
 
-[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]
+=== FR-12 HUMAN AUDIT COMPLETE ===
+
+- **Auditor:** Phạm Ngọc Gia Bảo (Student ID: `23127027`)
+- **Audit Adoption Provenance:** The student reviewed all 38 original AI-generated test cases alongside the independent external critique from ChatGPT (`CHATGPT-004.md` / `ai-reference-audit.md`) and formally adopted the final verdicts, reasonings, and calibrated corrections.
+- **Audit Worksheet:** [`hw06/testcases/fr12/human-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/human-audit.md) (All 38 rows populated with Student Verdict, Student Reasoning, Student Correction, and Timestamp `2026-09-02T23:26:42+07:00`).
+- **Compact Sheet:** [`hw06/testcases/fr12/human-review-compact.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/human-review-compact.md) (All 38 rows populated).
+
+---
+
+=== FINAL HUMAN DISTRIBUTION ===
+
+| Verdict Category | Count | Percentage | Description |
+| :--- | :---: | :---: | :--- |
+| **VALID** | **28** | 73.68% | Test case design is sound, correctly mapped to FR-12/SEC-02/SEC-03, has realistic oracles, and preserves test isolation. |
+| **INCOMPLETE** | **10** | 26.32% | Test case has technical merit but required state-verification calibration, defect-path cleanup, or oracle precision. |
+| **INVALID** | **0** | 0.00% | Zero test cases rejected as invalid. |
+| **TOTAL** | **38** | **100.0%** | Programmatically verified: $28 + 10 + 0 = 38$. |
+
+---
+
+=== ORIGINAL AI SET INTEGRITY ===
+
+- **File Verified:** [`hw06/testcases/fr12/generated-ai-original.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/generated-ai-original.md)
+- **Integrity Assertion:** `git diff 6b50faa -- hw06/testcases/fr12/generated-ai-original.md` $\implies$ **Zero diff**.
+- **Status:** **IMMUTABLE ORIGINAL AI SET IS 100% PRESERVED** without any modifications, preserving full academic auditability.
+
+---
+
+=== REVIEWED FINAL SET ===
+
+- **File Path:** [`hw06/testcases/fr12/reviewed-ai-final.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/reviewed-ai-final.md)
+- **Total Test Cases:** Exactly **38 Test Cases** (`FR12-AI-001` through `FR12-AI-038` continuous).
+- **Automation Status:** All test cases are flagged as `READY FOR AUTOMATION (Phase 4)`.
+
+---
+
+=== 10 CORRECTIONS APPLIED ===
+
+The 10 adopted corrections have been incorporated into [`hw06/testcases/fr12/reviewed-ai-final.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/reviewed-ai-final.md):
+
+1. **`FR12-AI-004` (PUT /api/admin/orders/:id/status — Standard User):**
+   - Calibrated target state transition to valid single-step `pending -> confirmed` (replacing `pending -> delivered`) to prevent order state machine validation from masking the SEC-03 authorization defect.
+2. **`FR12-AI-005` (POST /api/admin/import-products — Standard User):**
+   - Replaced reliance on undocumented `GET /api/products?search=...` with a direct full-catalog inspection confirming that unique marker `ImportProbe_23127027` is absent.
+3. **`FR12-AI-006` (POST /api/admin/coupons — Standard User):**
+   - Decoupled coupon verification from customer checkout application; coupon non-creation is verified directly via authenticated admin `GET /api/coupons` asserting `HACK23127027` does not exist.
+4. **`FR12-AI-007` (DELETE /api/admin/coupons/:id — Standard User):**
+   - Removed ambiguous phrasing *"query or application succeeds"*; coupon persistence is verified directly via admin `GET /api/coupons` asserting the disposable coupon ID/code remains present.
+5. **`FR12-AI-008` (POST /api/products — Standard User):**
+   - Replaced uncontracted `?search=` query check with a direct catalog listing inspection asserting `UnauthorizedProduct_23127027` does not exist.
+6. **`FR12-AI-016` (DELETE /api/admin/users/:id — Admin User):**
+   - Removed the requirement for an exact `401` status code on downstream login probe; the side-effect verifier asserts the deleted disposable user can no longer authenticate / no longer exists, with exact login rejection code classified as `INFERRED / UNKNOWN`.
+7. **`FR12-AI-029` (POST /api/products — Anonymous Caller):**
+   - Replaced reliance on `?search=` with a direct catalog listing inspection asserting `AnonProduct_23127027` is absent.
+8. **`FR12-AI-033` (POST /api/categories — Anonymous Caller):**
+   - Added defect-path cleanup: if the access-control defect occurs and `AnonCategory_23127027` is created, it is deleted using legitimate admin credentials.
+9. **`FR12-AI-035` (GET /api/admin/users — Expired Token):**
+   - Corrected terminology: clarified that the token's cryptographic signature may remain mathematically valid, but token validity fails because the `exp` claim is in the past. Semantic denial remains `SPECIFIED`; exact 403 remains `INFERRED`.
+10. **`FR12-AI-037` (POST /api/admin/coupons — Missing Role Claim):**
+    - Added defect-path cleanup: verifies coupon absence via admin `GET /api/coupons`; if created due to authorization flaw, deletes `NOROLE_CPN_23127027` using admin credentials.
+
+---
+
+=== LOCAL COMMITS ===
+
+Two separate, clean local commits have been executed:
+
+1. **Human Audit Formalization Commit:**
+   - **Hash:** `dea0e48` (`dea0e48ad413bb475f3a0937a435fa108cb67cba`)
+   - **Message:** `test(fr12): complete reviewed audit of AI access control tests`
+   - **Files:** `human-audit.md`, `human-review-compact.md`, `populate_human_audit.py`, `ai-audit.md`, `GEMINI-036.md`, `GEMINI-037.md`.
+2. **Reviewed Final Test Suite & Extension Template Commit:**
+   - **Hash:** `22f273a` (`22f273a1cfa28e8334863bc97a9bfa9cba85a1ef`)
+   - **Message:** `test(fr12): apply audit corrections to access control tests`
+   - **Files:** `reviewed-ai-final.md`, `student-extensions.md`, `generate_reviewed_final.py`.
+- **Git Status:** Working tree clean. Branch `main` is ahead of `origin/main` by 8 local commits. **Zero pushes executed to remote.**
+
+---
+
+=== STUDENT EXTENSION TEMPLATE ===
+
+- **File Path:** [`hw06/testcases/fr12/student-extensions.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/student-extensions.md)
+- **Slots Created:** Exactly 5 blank slots (`FR12-STU-001` through `FR12-STU-005`).
+- **Status:** Blank template awaiting your student selection of extension test ideas.
+
+---
+
+=== HUMAN GATE — FR-12 EXTENSION IDEAS ===
+
+Per your strict directive:
+- **No Postman collections or environments have been built.**
+- **No Newman runs have been executed.**
+- **No GitHub issues have been created.**
+- **Zero commits have been pushed to GitHub.**
+
+Whenever you are ready, please provide the **5 FR-12 student extension ideas** you would like to formalize into `FR12-STU-001` through `FR12-STU-005`!

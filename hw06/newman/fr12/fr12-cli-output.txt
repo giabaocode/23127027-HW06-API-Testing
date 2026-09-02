@@ -1,0 +1,589 @@
+newman
+
+FR-12 — Access Control Test Suite
+
+❏ Folder 1 — Standard-User Role Denial (SEC-03)
+↳ FR12-AI-001 — Standard User GET /api/admin/users
+  GET http://localhost:3000/api/admin/users [200 OK, 971B, 8ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  1. FR12-AI-001 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+  2. FR12-AI-001 - User management records not exposed
+
+↳ FR12-AI-002 — Standard User DELETE /api/admin/users/:id
+  DELETE http://localhost:3000/api/admin/users/50 [200 OK, 293B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  3. FR12-AI-002 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+↳ FR12-AI-002 (Verify) — Verify Target User Persists & Can Login
+  POST http://localhost:3000/api/login [401 Unauthorized, 314B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  4. FR12-AI-002 (Verify) - Side-effect check: target user still exists and can login
+
+↳ FR12-AI-003 — Standard User GET /api/admin/orders
+  GET http://localhost:3000/api/admin/orders [200 OK, 582B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  5. FR12-AI-003 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+  6. FR12-AI-003 - System-wide order records not exposed
+
+↳ FR12-AI-004 — Standard User PUT /api/admin/orders/:id/status
+  PUT http://localhost:3000/api/admin/orders/101/status [200 OK, 301B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  7. FR12-AI-004 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+↳ FR12-AI-004 (Verify) — Verify Order Status Remains Unchanged
+  GET http://localhost:3000/api/orders/101 [200 OK, 401B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  8. FR12-AI-004 (Verify) - Side-effect check: order status remains pending
+
+↳ FR12-AI-005 — Standard User POST /api/admin/import-products
+  POST http://localhost:3000/api/admin/import-products [200 OK, 357B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  9. FR12-AI-005 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+↳ FR12-AI-005 (Verify) — Verify ImportProbe_23127027 Not Added
+  GET http://localhost:3000/api/products [200 OK, 2.15kB, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 10. FR12-AI-005 (Verify) - Side-effect check: ImportProbe_23127027 absent from catalog
+
+↳ FR12-AI-006 — Standard User POST /api/admin/coupons
+  POST http://localhost:3000/api/admin/coupons [200 OK, 303B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 11. FR12-AI-006 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+↳ FR12-AI-006 (Verify) — Verify Coupon HACK23127027 Not Created
+  GET http://localhost:3000/api/coupons [200 OK, 1.33kB, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 12. FR12-AI-006 (Verify) - Side-effect check: HACK23127027 absent from coupon list
+
+↳ FR12-AI-007 — Standard User DELETE /api/admin/coupons/:id
+  DELETE http://localhost:3000/api/admin/coupons/50 [200 OK, 295B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 13. FR12-AI-007 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+↳ FR12-AI-007 (Verify) — Verify Disposable Coupon 50 Remains Intact
+  GET http://localhost:3000/api/coupons [200 OK, 1.18kB, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 14. FR12-AI-007 (Verify) - Side-effect check: coupon 50 remains present in database
+
+↳ FR12-AI-008 — Standard User POST /api/products
+  POST http://localhost:3000/api/products [200 OK, 304B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 15. FR12-AI-008 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+↳ FR12-AI-008 (Verify) — Verify UnauthorizedProduct_23127027 Absent
+  GET http://localhost:3000/api/products [200 OK, 2.26kB, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 16. FR12-AI-008 (Verify) - Side-effect check: UnauthorizedProduct_23127027 absent from catalog
+
+↳ FR12-AI-009 — Standard User PUT /api/products/:id
+  PUT http://localhost:3000/api/products/50 [200 OK, 296B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 17. FR12-AI-009 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+↳ FR12-AI-009 (Verify) — Verify Product 50 Price Unchanged
+  GET http://localhost:3000/api/products/50 [200 OK, 374B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 18. FR12-AI-009 (Verify) - Side-effect check: product 50 price unchanged (remains 100000)
+
+↳ FR12-AI-010 — Standard User DELETE /api/products/:id
+  DELETE http://localhost:3000/api/products/51 [200 OK, 296B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 19. FR12-AI-010 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+↳ FR12-AI-010 (Verify) — Verify Product 51 Still Exists
+  GET http://localhost:3000/api/products/51 [200 OK, 267B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 20. FR12-AI-010 (Verify) - Side-effect check: product 51 still exists in database
+
+↳ FR12-AI-011 — Standard User POST /api/categories
+  POST http://localhost:3000/api/categories [200 OK, 305B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 21. FR12-AI-011 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+↳ FR12-AI-011 (Verify) — Verify UserCategory_23127027 Absent
+  GET http://localhost:3000/api/categories [200 OK, 545B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 22. FR12-AI-011 (Verify) - Side-effect check: UserCategory_23127027 absent from categories
+
+↳ FR12-AI-012 — Standard User PUT /api/categories/:id
+  PUT http://localhost:3000/api/categories/50 [200 OK, 297B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 23. FR12-AI-012 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+↳ FR12-AI-012 (Verify) — Verify Category 50 Name Unchanged
+  GET http://localhost:3000/api/categories [200 OK, 549B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 24. FR12-AI-012 (Verify) - Side-effect check: category 50 name unchanged
+
+↳ FR12-AI-013 — Standard User DELETE /api/categories/:id
+  DELETE http://localhost:3000/api/categories/51 [200 OK, 297B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 25. FR12-AI-013 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+↳ FR12-AI-013 (Verify) — Verify Category 51 Still Exists
+  GET http://localhost:3000/api/categories [200 OK, 512B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 26. FR12-AI-013 (Verify) - Side-effect check: category 51 still exists
+
+↳ FR12-AI-014 — Standard User GET /api/coupons
+  GET http://localhost:3000/api/coupons [200 OK, 1.18kB, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 27. FR12-AI-014 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+ 28. FR12-AI-014 - Administrative coupon listing not disclosed to standard user
+
+❏ Folder 2 — Valid Administrator Access Clearance (FR-12)
+↳ FR12-AI-015 — Admin GET /api/admin/users
+  GET http://localhost:3000/api/admin/users [200 OK, 825B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-015 - Admin clearance permitted (Status 200 OK)
+  ✓  FR12-AI-015 - Response contains user records array
+
+↳ FR12-AI-016 — Admin DELETE /api/admin/users/:id
+  DELETE http://localhost:3000/api/admin/users/51 [200 OK, 293B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-016 - Admin clearance permitted (Status 200 OK)
+
+↳ FR12-AI-016 (Verify) — Verify Deleted User Cannot Authenticate
+  POST http://localhost:3000/api/login [401 Unauthorized, 314B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-016 (Verify) - Side-effect check: deleted user can no longer authenticate
+
+↳ FR12-AI-017 — Admin GET /api/admin/orders
+  GET http://localhost:3000/api/admin/orders [200 OK, 584B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-017 - Admin clearance permitted (Status 200 OK)
+  ✓  FR12-AI-017 - Response contains system order records array
+
+↳ FR12-AI-018 — Admin PUT /api/admin/orders/:id/status
+  PUT http://localhost:3000/api/admin/orders/102/status [200 OK, 301B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-018 - Admin clearance permitted (Status 200 OK)
+
+↳ FR12-AI-019 — Admin POST /api/admin/import-products
+  POST http://localhost:3000/api/admin/import-products [200 OK, 357B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-019 - Admin clearance permitted (Status 200 OK)
+
+↳ FR12-AI-020 — Admin POST /api/admin/coupons
+  POST http://localhost:3000/api/admin/coupons [200 OK, 303B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-020 - Admin clearance permitted (Status 200 OK)
+
+↳ FR12-AI-021 — Admin DELETE /api/admin/coupons/:id
+  DELETE http://localhost:3000/api/admin/coupons/51 [200 OK, 295B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-021 - Admin clearance permitted (Status 200 OK)
+
+↳ FR12-AI-022 — Admin POST /api/products
+  POST http://localhost:3000/api/products [200 OK, 304B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-022 - Admin clearance permitted (Status 200 OK)
+
+↳ FR12-AI-023 — Admin PUT /api/products/:id
+  PUT http://localhost:3000/api/products/52 [200 OK, 296B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-023 - Admin clearance permitted (Status 200 OK)
+
+↳ FR12-AI-024 — Admin DELETE /api/products/:id
+  DELETE http://localhost:3000/api/products/53 [200 OK, 296B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-024 - Admin clearance permitted (Status 200 OK)
+
+↳ FR12-AI-025 — Admin POST /api/categories
+  POST http://localhost:3000/api/categories [200 OK, 305B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-025 - Admin clearance permitted (Status 200 OK)
+
+↳ FR12-AI-026 — Admin PUT /api/categories/:id
+  PUT http://localhost:3000/api/categories/52 [200 OK, 297B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-026 - Admin clearance permitted (Status 200 OK)
+
+↳ FR12-AI-027 — Admin DELETE /api/categories/:id
+  DELETE http://localhost:3000/api/categories/53 [200 OK, 297B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-027 - Admin clearance permitted (Status 200 OK)
+
+↳ FR12-AI-028 — Admin GET /api/coupons
+  GET http://localhost:3000/api/coupons [200 OK, 1.17kB, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-028 - Admin clearance permitted (Status 200 OK)
+  ✓  FR12-AI-028 - Master coupons array returned
+
+❏ Folder 3 — Anonymous / Missing JWT Denial (SEC-02)
+↳ FR12-AI-029 — Anonymous POST /api/products
+  POST http://localhost:3000/api/products [200 OK, 304B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 29. FR12-AI-029 - Semantic Access Denied (SEC-02 / 401 Unauthorized)
+
+↳ FR12-AI-029 (Verify) — Verify AnonProduct_23127027 Absent
+  GET http://localhost:3000/api/products [200 OK, 2.25kB, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 30. FR12-AI-029 (Verify) - Side-effect check: AnonProduct_23127027 absent from catalog
+
+↳ FR12-AI-030 — Anonymous PUT /api/products/:id
+  PUT http://localhost:3000/api/products/54 [200 OK, 296B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 31. FR12-AI-030 - Semantic Access Denied (SEC-02 / 401 Unauthorized)
+
+↳ FR12-AI-031 — Anonymous DELETE /api/products/:id
+  DELETE http://localhost:3000/api/products/55 [200 OK, 296B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 32. FR12-AI-031 - Semantic Access Denied (SEC-02 / 401 Unauthorized)
+
+↳ FR12-AI-032 — Anonymous GET /api/admin/users
+  GET http://localhost:3000/api/admin/users [401 Unauthorized, 301B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-032 - Semantic Access Denied (SEC-02 / 401 Unauthorized)
+  ✓  FR12-AI-032 - User records not exposed to unauthenticated caller
+
+↳ FR12-AI-033 — Anonymous POST /api/categories
+  POST http://localhost:3000/api/categories [401 Unauthorized, 301B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-033 - Semantic Access Denied (SEC-02 / 401 Unauthorized)
+
+↳ FR12-AI-033 (Verify) — Verify AnonCategory_23127027 Absent
+  GET http://localhost:3000/api/categories [200 OK, 522B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-033 (Verify) - Side-effect check: AnonCategory_23127027 absent from categories
+
+↳ FR12-AI-034 — Anonymous GET /api/coupons
+  GET http://localhost:3000/api/coupons [401 Unauthorized, 301B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-034 - Semantic Access Denied (SEC-02 / 401 Unauthorized)
+  ✓  FR12-AI-034 - Coupon records not exposed to unauthenticated caller
+
+❏ Folder 4 — Token Boundary & Role Inspection
+↳ FR12-AI-035 — Expired Token GET /api/admin/users
+  GET http://localhost:3000/api/admin/users [403 Forbidden, 295B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-035 - Semantic Access Denied (SEC-02 / 403 Forbidden)
+  ✓  FR12-AI-035 - Expired token rejected by JWT verification
+
+↳ FR12-AI-036 — Forged Signature GET /api/admin/orders
+  GET http://localhost:3000/api/admin/orders [403 Forbidden, 295B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-AI-036 - Semantic Access Denied (SEC-02 / 403 Forbidden)
+  ✓  FR12-AI-036 - Invalid HMAC signature rejected
+
+↳ FR12-AI-037 — Missing Role Claim POST /api/admin/coupons
+  POST http://localhost:3000/api/admin/coupons [200 OK, 303B, 4ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 33. FR12-AI-037 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+↳ FR12-AI-038 — Uppercase Role 'ADMIN' DELETE /api/admin/users/:id
+  DELETE http://localhost:3000/api/admin/users/52 [200 OK, 293B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 34. FR12-AI-038 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+❏ Folder 5 — Student Extension Security Probes
+↳ FR12-STU-001 — Unsigned JWT alg=none GET /api/admin/users
+  GET http://localhost:3000/api/admin/users [403 Forbidden, 295B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-STU-001 - Semantic Access Denied (SEC-02 / 401 or 403)
+
+↳ FR12-STU-002 — Future nbf Claim GET /api/admin/orders
+  GET http://localhost:3000/api/admin/orders [403 Forbidden, 295B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR12-STU-002 - Semantic Access Denied (SEC-02 / 401 or 403)
+
+↳ FR12-STU-003 — Whitespace Role ' admin ' POST /api/admin/coupons
+  POST http://localhost:3000/api/admin/coupons [200 OK, 303B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 35. FR12-STU-003 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+↳ FR12-STU-003 (Verify) — Verify WSROLE_23127027 Absent
+  GET http://localhost:3000/api/coupons [200 OK, 1.47kB, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 36. FR12-STU-003 (Verify) - Side-effect check: WSROLE_23127027 not in coupon list
+
+↳ FR12-STU-004 — Array Role ['admin'] GET /api/admin/users
+  GET http://localhost:3000/api/admin/users [200 OK, 533B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 37. FR12-STU-004 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+↳ FR12-STU-005 — Body Role Override POST /api/admin/coupons
+  POST http://localhost:3000/api/admin/coupons [200 OK, 303B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 38. FR12-STU-005 - Semantic Access Denied (SEC-03 / 403 Forbidden)
+
+↳ FR12-STU-005 (Verify) — Verify BODYOVERRIDE_23127027 Absent
+  GET http://localhost:3000/api/coupons [200 OK, 1.62kB, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 39. FR12-STU-005 (Verify) - Side-effect check: BODYOVERRIDE_23127027 not in coupon list
+
+┌─────────────────────────┬─────────────────┬────────────────┐
+│                         │        executed │         failed │
+├─────────────────────────┼─────────────────┼────────────────┤
+│              iterations │               1 │              0 │
+├─────────────────────────┼─────────────────┼────────────────┤
+│                requests │              59 │              0 │
+├─────────────────────────┼─────────────────┼────────────────┤
+│            test-scripts │             118 │              0 │
+├─────────────────────────┼─────────────────┼────────────────┤
+│      prerequest-scripts │              59 │              0 │
+├─────────────────────────┼─────────────────┼────────────────┤
+│              assertions │             187 │             39 │
+├─────────────────────────┴─────────────────┴────────────────┤
+│ total run duration: 708ms                                  │
+├────────────────────────────────────────────────────────────┤
+│ total data received: 16.89kB (approx)                      │
+├────────────────────────────────────────────────────────────┤
+│ average response time: 1ms [min: 1ms, max: 8ms, s.d.: 1ms] │
+└────────────────────────────────────────────────────────────┘
+
+   #  failure         detail                                                                                                                     
+                                                                                                                                                 
+ 01.  AssertionError  FR12-AI-001 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-001 — Standard User GET /api/admin/users"                  
+                                                                                                                                                 
+ 02.  AssertionError  FR12-AI-001 - User management records not exposed                                                                          
+                      expected 200 to be one of [ 401, 403 ]                                                                                     
+                      at assertion:1 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-001 — Standard User GET /api/admin/users"                  
+                                                                                                                                                 
+ 03.  AssertionError  FR12-AI-002 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-002 — Standard User DELETE /api/admin/users/:id"           
+                                                                                                                                                 
+ 04.  AssertionError  FR12-AI-002 (Verify) - Side-effect check: target user still exists and can login                                           
+                      expected response to have status code 200 but got 401                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-002 (Verify) — Verify Target User Persists & Can Login"    
+                                                                                                                                                 
+ 05.  AssertionError  FR12-AI-003 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-003 — Standard User GET /api/admin/orders"                 
+                                                                                                                                                 
+ 06.  AssertionError  FR12-AI-003 - System-wide order records not exposed                                                                        
+                      expected 200 to be one of [ 401, 403 ]                                                                                     
+                      at assertion:1 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-003 — Standard User GET /api/admin/orders"                 
+                                                                                                                                                 
+ 07.  AssertionError  FR12-AI-004 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-004 — Standard User PUT /api/admin/orders/:id/status"      
+                                                                                                                                                 
+ 08.  AssertionError  FR12-AI-004 (Verify) - Side-effect check: order status remains pending                                                     
+                      expected 'confirmed' to deeply equal 'pending'                                                                             
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-004 (Verify) — Verify Order Status Remains Unchanged"      
+                                                                                                                                                 
+ 09.  AssertionError  FR12-AI-005 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-005 — Standard User POST /api/admin/import-products"       
+                                                                                                                                                 
+ 10.  AssertionError  FR12-AI-005 (Verify) - Side-effect check: ImportProbe_23127027 absent from catalog                                         
+                      expected true to be false                                                                                                  
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-005 (Verify) — Verify ImportProbe_23127027 Not Added"      
+                                                                                                                                                 
+ 11.  AssertionError  FR12-AI-006 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-006 — Standard User POST /api/admin/coupons"               
+                                                                                                                                                 
+ 12.  AssertionError  FR12-AI-006 (Verify) - Side-effect check: HACK23127027 absent from coupon list                                             
+                      expected true to be false                                                                                                  
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-006 (Verify) — Verify Coupon HACK23127027 Not Created"     
+                                                                                                                                                 
+ 13.  AssertionError  FR12-AI-007 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-007 — Standard User DELETE /api/admin/coupons/:id"         
+                                                                                                                                                 
+ 14.  AssertionError  FR12-AI-007 (Verify) - Side-effect check: coupon 50 remains present in database                                            
+                      expected false to be true                                                                                                  
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-007 (Verify) — Verify Disposable Coupon 50 Remains Intact" 
+                                                                                                                                                 
+ 15.  AssertionError  FR12-AI-008 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-008 — Standard User POST /api/products"                    
+                                                                                                                                                 
+ 16.  AssertionError  FR12-AI-008 (Verify) - Side-effect check: UnauthorizedProduct_23127027 absent from catalog                                 
+                      expected true to be false                                                                                                  
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-008 (Verify) — Verify UnauthorizedProduct_23127027 Absent" 
+                                                                                                                                                 
+ 17.  AssertionError  FR12-AI-009 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-009 — Standard User PUT /api/products/:id"                 
+                                                                                                                                                 
+ 18.  AssertionError  FR12-AI-009 (Verify) - Side-effect check: product 50 price unchanged (remains 100000)                                      
+                      expected 999999 to deeply equal 100000                                                                                     
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-009 (Verify) — Verify Product 50 Price Unchanged"          
+                                                                                                                                                 
+ 19.  AssertionError  FR12-AI-010 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-010 — Standard User DELETE /api/products/:id"              
+                                                                                                                                                 
+ 20.  AssertionError  FR12-AI-010 (Verify) - Side-effect check: product 51 still exists in database                                              
+                      expected undefined to deeply equal 51                                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-010 (Verify) — Verify Product 51 Still Exists"             
+                                                                                                                                                 
+ 21.  AssertionError  FR12-AI-011 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-011 — Standard User POST /api/categories"                  
+                                                                                                                                                 
+ 22.  AssertionError  FR12-AI-011 (Verify) - Side-effect check: UserCategory_23127027 absent from categories                                     
+                      expected true to be false                                                                                                  
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-011 (Verify) — Verify UserCategory_23127027 Absent"        
+                                                                                                                                                 
+ 23.  AssertionError  FR12-AI-012 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-012 — Standard User PUT /api/categories/:id"               
+                                                                                                                                                 
+ 24.  AssertionError  FR12-AI-012 (Verify) - Side-effect check: category 50 name unchanged                                                       
+                      expected 'DispCategory_012_MOD' to deeply equal 'DispCategory_012'                                                         
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-012 (Verify) — Verify Category 50 Name Unchanged"          
+                                                                                                                                                 
+ 25.  AssertionError  FR12-AI-013 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-013 — Standard User DELETE /api/categories/:id"            
+                                                                                                                                                 
+ 26.  AssertionError  FR12-AI-013 (Verify) - Side-effect check: category 51 still exists                                                         
+                      expected false to be true                                                                                                  
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-013 (Verify) — Verify Category 51 Still Exists"            
+                                                                                                                                                 
+ 27.  AssertionError  FR12-AI-014 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-014 — Standard User GET /api/coupons"                      
+                                                                                                                                                 
+ 28.  AssertionError  FR12-AI-014 - Administrative coupon listing not disclosed to standard user                                                 
+                      expected 200 to be one of [ 401, 403 ]                                                                                     
+                      at assertion:1 in test-script                                                                                              
+                      inside "Folder 1 — Standard-User Role Denial (SEC-03) / FR12-AI-014 — Standard User GET /api/coupons"                      
+                                                                                                                                                 
+ 29.  AssertionError  FR12-AI-029 - Semantic Access Denied (SEC-02 / 401 Unauthorized)                                                           
+                      expected response to have status code 401 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 3 — Anonymous / Missing JWT Denial (SEC-02) / FR12-AI-029 — Anonymous POST /api/products"                   
+                                                                                                                                                 
+ 30.  AssertionError  FR12-AI-029 (Verify) - Side-effect check: AnonProduct_23127027 absent from catalog                                         
+                      expected true to be false                                                                                                  
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 3 — Anonymous / Missing JWT Denial (SEC-02) / FR12-AI-029 (Verify) — Verify AnonProduct_23127027 Absent"    
+                                                                                                                                                 
+ 31.  AssertionError  FR12-AI-030 - Semantic Access Denied (SEC-02 / 401 Unauthorized)                                                           
+                      expected response to have status code 401 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 3 — Anonymous / Missing JWT Denial (SEC-02) / FR12-AI-030 — Anonymous PUT /api/products/:id"                
+                                                                                                                                                 
+ 32.  AssertionError  FR12-AI-031 - Semantic Access Denied (SEC-02 / 401 Unauthorized)                                                           
+                      expected response to have status code 401 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 3 — Anonymous / Missing JWT Denial (SEC-02) / FR12-AI-031 — Anonymous DELETE /api/products/:id"             
+                                                                                                                                                 
+ 33.  AssertionError  FR12-AI-037 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 4 — Token Boundary & Role Inspection / FR12-AI-037 — Missing Role Claim POST /api/admin/coupons"            
+                                                                                                                                                 
+ 34.  AssertionError  FR12-AI-038 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                              
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 4 — Token Boundary & Role Inspection / FR12-AI-038 — Uppercase Role 'ADMIN' DELETE /api/admin/users/:id"    
+                                                                                                                                                 
+ 35.  AssertionError  FR12-STU-003 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                             
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 5 — Student Extension Security Probes / FR12-STU-003 — Whitespace Role ' admin ' POST /api/admin/coupons"   
+                                                                                                                                                 
+ 36.  AssertionError  FR12-STU-003 (Verify) - Side-effect check: WSROLE_23127027 not in coupon list                                              
+                      expected true to be false                                                                                                  
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 5 — Student Extension Security Probes / FR12-STU-003 (Verify) — Verify WSROLE_23127027 Absent"              
+                                                                                                                                                 
+ 37.  AssertionError  FR12-STU-004 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                             
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 5 — Student Extension Security Probes / FR12-STU-004 — Array Role ['admin'] GET /api/admin/users"           
+                                                                                                                                                 
+ 38.  AssertionError  FR12-STU-005 - Semantic Access Denied (SEC-03 / 403 Forbidden)                                                             
+                      expected response to have status code 403 but got 200                                                                      
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 5 — Student Extension Security Probes / FR12-STU-005 — Body Role Override POST /api/admin/coupons"          
+                                                                                                                                                 
+ 39.  AssertionError  FR12-STU-005 (Verify) - Side-effect check: BODYOVERRIDE_23127027 not in coupon list                                        
+                      expected true to be false                                                                                                  
+                      at assertion:0 in test-script                                                                                              
+                      inside "Folder 5 — Student Extension Security Probes / FR12-STU-005 (Verify) — Verify BODYOVERRIDE_23127027 Absent"        
