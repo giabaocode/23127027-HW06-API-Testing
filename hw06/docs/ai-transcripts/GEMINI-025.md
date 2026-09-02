@@ -562,4 +562,122 @@ Do NOT:
 
 ## 2. Verbatim Conversational AI Response
 
-[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]
+=== FR-07 AI GENERATION SUMMARY ===
+
+- **Total Generated Cases:** **`38`**
+- **GET-related Cases:** **`13`** (Direct retrieval, unauthenticated, invalid JWT, state verification following mutations)
+- **POST-related Cases:** **`34`** (Item additions, quantity boundaries, type probes, duplicate accumulations, security mutations)
+- **Multi-step / State-dependent Tests:** **`9`** (`FR07-AI-002`, `003`, `009`, `010`, `011`, `029`, `034`, `035`, `036`)
+
+---
+
+=== COVERAGE ALLOCATION ===
+
+| Coverage ID | Endpoint(s) | Description | Target Tests | Count |
+| :--- | :--- | :--- | :--- | :---: |
+| **`COV-FR07-01`** | `GET /api/cart` | Retrieve empty cart baseline | `FR07-AI-001` | 1 |
+| **`COV-FR07-02`** | `GET /api/cart` | Retrieve populated cart (single & multi-item) | `FR07-AI-002`, `FR07-AI-003` | 2 |
+| **`COV-FR07-03`** | `GET /api/cart` | Unauthenticated GET retrieval (missing token) | `FR07-AI-004` | 1 |
+| **`COV-FR07-04`** | `GET /api/cart` | Invalid JWT / Malformed scheme on GET | `FR07-AI-005`, `FR07-AI-006` | 2 |
+| **`COV-FR07-05`** | `POST /api/cart` | Standard valid item additions (single & sequential) | `FR07-AI-007`, `FR07-AI-008` | 2 |
+| **`COV-FR07-06`** | `POST, GET` | Duplicate product quantity accumulation ($q_1+q_2$) | `FR07-AI-009`, `FR07-AI-010`, `FR07-AI-011` | 3 |
+| **`COV-FR07-07`** | `POST /api/cart` | Exact minimum quantity boundary ($q=1$) | `FR07-AI-012` | 1 |
+| **`COV-FR07-08`** | `POST /api/cart` | Quantity min + 1 boundary ($q=2$) | `FR07-AI-013` | 1 |
+| **`COV-FR07-09`** | `POST /api/cart` | Zero quantity min - 1 boundary violation ($q=0$) | `FR07-AI-014` | 1 |
+| **`COV-FR07-10`** | `POST /api/cart` | Negative quantity boundaries ($q=-1, -100$) | `FR07-AI-015`, `FR07-AI-016` | 2 |
+| **`COV-FR07-11`** | `POST /api/cart` | Fractional / Decimal quantities ($q=1.5, 0.5$) | `FR07-AI-017`, `FR07-AI-018` | 2 |
+| **`COV-FR07-12`** | `POST /api/cart` | String-encoded numeric integer ($q="2"$) | `FR07-AI-019` | 1 |
+| **`COV-FR07-13`** | `POST /api/cart` | Non-numeric string quantities ($q="abc", "@#$"$) | `FR07-AI-020`, `FR07-AI-021` | 2 |
+| **`COV-FR07-14`** | `POST /api/cart` | Large integer quantity ($q=10^9$) | `FR07-AI-022` | 1 |
+| **`COV-FR07-15`** | `POST /api/cart` | Omitted / Null quantity property | `FR07-AI-023`, `FR07-AI-024` | 2 |
+| **`COV-FR07-16`** | `POST /api/cart` | Non-existent catalog product ID ($id=999999$) | `FR07-AI-025` | 1 |
+| **`COV-FR07-17`** | `POST /api/cart` | Negative product identifier ($id=-1$) | `FR07-AI-026` | 1 |
+| **`COV-FR07-18`** | `POST /api/cart` | Omitted / String product identifier | `FR07-AI-027`, `FR07-AI-028` | 2 |
+| **`COV-FR07-19`** | `POST, GET` | Client-side price tampering probe ($price=1$) | `FR07-AI-029` | 1 |
+| **`COV-FR07-20`** | `POST /api/cart` | Negative price robustness probe ($price=-50000$) | `FR07-AI-030` | 1 |
+| **`COV-FR07-21`** | `POST /api/cart` | Unauthenticated POST mutation (missing token) | `FR07-AI-031` | 1 |
+| **`COV-FR07-22`** | `POST /api/cart` | Invalid JWT / Non-Bearer scheme on POST | `FR07-AI-032`, `FR07-AI-033` | 2 |
+| **`COV-FR07-23`** | `POST, GET` | Multi-tenant user cart isolation & non-interference | `FR07-AI-034`, `FR07-AI-035`, `FR07-AI-036` | 3 |
+| **`COV-FR07-24`** | `POST /api/cart` | Empty body `{}` and extra unexpected properties | `FR07-AI-037`, `FR07-AI-038` | 2 |
+| **TOTAL** | — | — | **All 24 Coverage IDs Covered** | **38** |
+
+- **Programmatic Confirmation:** $\sum (\text{planned cases per Coverage ID}) = \mathbf{38}$.
+
+---
+
+=== GENERATED IDS ===
+
+`FR07-AI-001` through `FR07-AI-038` (Continuous sequence, zero missing IDs, zero duplicates).
+
+---
+
+=== AUTH ORACLE CHECK ===
+
+- Confirmed: Authorization barrier requirement is classified as **`SPECIFIED`** through `SEC-02`.
+- Confirmed: Exact HTTP error status codes (`401` vs `403`) are explicitly classified as **`INFERRED FROM MIDDLEWARE / IMPLEMENTATION-OBSERVED`** (official specification status is `UNKNOWN`). They were **NOT** silently promoted to `SPECIFIED`.
+
+---
+
+=== SECURITY MAPPING CHECK ===
+
+- Confirmed: **`SEC-02`** is the only directly applicable security requirement for shopping cart JWT authentication and session isolation.
+- Confirmed: **Zero fake security tests generated** — no SQL injection tests claiming `SEC-05` on in-memory routes, no XSS escaping tests claiming `SEC-04` at API layer, and zero references to `SEC-07` for cart access.
+
+---
+
+=== HUMAN AUDIT WORKSHEET ===
+
+- **File Created:** [`hw06/testcases/fr07/human-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/human-audit.md)
+  - Exactly 38 rows.
+  - Columns: `Test ID | Coverage ID | Short Test Objective | Student Verdict | Student Reasoning | Student Correction | Student Reviewed At`
+  - **Academic Integrity Confirmation:** Every student-owned column is **100% EMPTY**. Zero pre-filled verdicts, hints, or recommendations.
+- **Compact Tracking Sheet Created:** [`hw06/testcases/fr07/human-review-compact.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/human-review-compact.md)
+  - Exactly 38 rows with condition and expected semantic behavior. Student fields are 100% blank.
+
+---
+
+=== ORIGINAL AI SET STATUS ===
+
+- File [`hw06/testcases/fr07/generated-ai-original.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/generated-ai-original.md) has been created as the **immutable original AI test set**.
+- All 38 tests contain complete metadata: Identity, Traceability, Test Design, HTTP Requests, Expected Result, and Lifecycle.
+- Specifications used as expected oracle; no SUT implementation defects (e.g. duplicate push) biased expected state assertions.
+
+---
+
+=== AI AUDIT STATUS ===
+
+- Updated [`hw06/docs/ai-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-audit.md) index table and recorded detailed logs.
+- Finalized transcript [`hw06/docs/ai-transcripts/GEMINI-024.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-024.md).
+- Initialized retrospective transcript [`hw06/docs/ai-transcripts/GEMINI-025.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-025.md).
+- Preserved historical record of earlier AI errors and their source-grounded corrections.
+
+---
+
+=== GENERATION COMMIT ===
+
+- **Commit Hash:** `ea6f96834b66bef3c1515649d3ae60e0e7b93d46` (`ea6f968`)
+- **Commit Message:** `test(fr07): generate 38 AI cart test cases`
+- **Committed Files:**
+  - `hw06/testcases/fr07/generated-ai-original.md`
+  - `hw06/testcases/fr07/human-audit.md`
+  - `hw06/testcases/fr07/human-review-compact.md`
+  - `hw06/testcases/fr07/generate_fr07_tests.py`
+  - `hw06/testcases/fr07/validate_fr07_suite.py`
+  - `hw06/docs/ai-audit.md`
+  - `hw06/docs/ai-transcripts/GEMINI-024.md`
+  - `hw06/docs/ai-transcripts/GEMINI-025.md`
+- **Git Working Tree Status:** Clean, ahead of `origin/main` by 15 commits, **0 pushes performed**.
+
+---
+
+=== CHECKPOINT 2 — FR-07 HUMAN AUDIT REQUIRED ===
+
+Phase 2 AI test case generation is complete and committed locally.
+
+Per strict course rules:
+- **No test cases have been audited yet.**
+- **No student extensions have been created.**
+- **No Postman automation or Newman runs have been started.**
+- **No code has been pushed to GitHub.**
+
+The 38 test cases in [`hw06/testcases/fr07/generated-ai-original.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/generated-ai-original.md) and blank audit worksheet in [`hw06/testcases/fr07/human-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/human-audit.md) are now ready for your independent student human review!
