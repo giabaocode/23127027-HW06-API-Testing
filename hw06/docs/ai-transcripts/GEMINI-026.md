@@ -225,4 +225,77 @@ Then STOP at:
 
 ## 2. Verbatim Conversational AI Response
 
-[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]
+=== FR-07 EXTERNAL AI REVIEW RECORDED ===
+
+- **Source:** ChatGPT (OpenAI) supplied by the student as **external secondary AI reference material**.
+- **Traceability Artifacts Created:**
+  - Full verbatim prompt & response transcript: [`hw06/docs/external-ai-transcripts/CHATGPT-003.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/external-ai-transcripts/CHATGPT-003.md)
+  - Dedicated reference audit report: [`hw06/testcases/fr07/ai-reference-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/ai-reference-audit.md)
+- **Academic Integrity Safeguard:** Prominently labeled with a warning that this document serves as reference material only and does NOT alter the original Gemini generation or represent student-authored audit decisions.
+
+---
+
+=== REFERENCE DISTRIBUTION ===
+
+```text
+VALID:       23   (60.5%)
+INCOMPLETE:  15   (39.5%)
+INVALID:      0   ( 0.0%)
+-------------------------
+TOTAL:       38   (100.0%)
+```
+
+- **Programmatic Confirmation:** Verified via script that $23 + 15 + 0 = \mathbf{38}$ exactly.
+
+---
+
+=== SYSTEMATIC HTTP ORACLE ISSUE RECORDED ===
+
+- **Defect Identifier:** `AI-ERR-FR07-STATUS-ORACLE`
+- **Description:** Several FR-07 generated test cases correctly recognized in text that exact failure HTTP status codes are undocumented by official specifications (`UNKNOWN by specification`), but subsequently wrote hard-coded expectations such as:
+  ```text
+  "Rejection status != 200"
+  "400 Bad Request expected"
+  ```
+- **Impacted Test Cases (10 cases):** `FR07-AI-014`, `FR07-AI-015`, `FR07-AI-016`, `FR07-AI-017`, `FR07-AI-018`, `FR07-AI-020`, `FR07-AI-021`, `FR07-AI-023`, `FR07-AI-024`, `FR07-AI-037`.
+- **Engineering Principle & Correction:** Separate semantic rejection/state assertion (authoritative: item must not be added to cart) from exact HTTP status code (`UNKNOWN`).
+
+---
+
+=== EXACT ERROR ENVELOPE ISSUE RECORDED ===
+
+- **Defect Identifier:** `AI-ERR-FR07-ERROR-ENVELOPE`
+- **Description:** `FR07-AI-005` and `FR07-AI-032` hard-coded an exact response body `{ error: 'Forbidden' }` as a strict contract assertion, even though the official API contract text does not specify error envelope structures.
+- **Engineering Principle & Correction:** Treat error payload envelopes as `UNKNOWN / IMPLEMENTATION-OBSERVED` rather than formal contract guarantees.
+
+---
+
+=== ORIGINAL AI SET INTEGRITY ===
+
+- Verified: [`hw06/testcases/fr07/generated-ai-original.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/generated-ai-original.md) remains **100% byte-for-byte unchanged** and committed in `ea6f968`.
+- Zero post-generation edits applied.
+
+---
+
+=== HUMAN AUDIT STATUS ===
+
+- Verified: Both [`hw06/testcases/fr07/human-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/human-audit.md) and [`hw06/testcases/fr07/human-review-compact.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/human-review-compact.md) remain completely separate from this external AI reference review.
+- All student-owned fields (`Student Verdict`, `Student Reasoning`, `Student Correction`, `Student Reviewed At`) remain **100% EMPTY** awaiting student human review and adoption.
+
+---
+
+=== LOCAL COMMIT ===
+
+- **Commit Hash:** `087373604a2a28356d05c69c63f49586ed01b805` (`0873736`)
+- **Commit Message:** `docs(fr07): record external AI reference review`
+- **Committed Files:**
+  - `hw06/testcases/fr07/ai-reference-audit.md`
+  - `hw06/docs/external-ai-transcripts/CHATGPT-003.md`
+  - `hw06/docs/ai-transcripts/GEMINI-025.md` (finalized)
+  - `hw06/docs/ai-transcripts/GEMINI-026.md` (created with retrospective placeholder)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Git Status:** Working tree clean on tracked files; ahead of `origin/main` by 16 commits; **0 pushes performed**.
+
+---
+
+=== CHECKPOINT 2A — FR-07 FINAL REVIEW / AUDIT DECISION ===
