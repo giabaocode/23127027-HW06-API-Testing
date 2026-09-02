@@ -833,4 +833,139 @@ Do NOT:
 
 ## 2. Verbatim Conversational AI Response
 
-[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]
+=== FR-12 AI GENERATION SUMMARY ===
+
+- **Total Test Cases Generated:** **Exactly 38 Test Cases** (`FR12-AI-001` through `FR12-AI-038`)
+- **Origin:** **AI** (Gemini 3.7 Flash via Antigravity IDE)
+- **Feature Pool:** **Pool C — FR-12: Access Control (Kiểm soát truy cập)**
+- **Allocation Breakdown:**
+  - **A. Standard-User Role Denial (`role = 'user'`):** **14 tests** (`FR12-AI-001` .. `FR12-AI-014`)
+  - **B. Valid Admin Authorization (`role = 'admin'`):** **14 tests** (`FR12-AI-015` .. `FR12-AI-028`)
+  - **C. Anonymous / Missing JWT:** **6 tests** (`FR12-AI-029` .. `FR12-AI-034`)
+  - **D. Token Cryptographic & Boundary Robustness:** **4 tests** (`FR12-AI-035` .. `FR12-AI-038`)
+  - **Total:** $14 + 14 + 6 + 4 =$ **38** (Programmatically verified by [`hw06/testcases/fr12/validate_fr12_suite.py`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/validate_fr12_suite.py))
+
+---
+
+=== OPERATION COVERAGE ===
+
+All **14 real exposed operations** are thoroughly covered across standard user denial, admin authorization, and representative anonymous/boundary probes:
+
+| # | Operation | Group | Standard-User Denial (`role: 'user'`) | Admin Authorization (`role: 'admin'`) | Anonymous / Robustness Probes |
+| :-: | :--- | :---: | :---: | :---: | :---: |
+| 1 | `GET /api/admin/users` | Group A | `FR12-AI-001` | `FR12-AI-015` | `FR12-AI-032` (Anon), `FR12-AI-035` (Expired) |
+| 2 | `DELETE /api/admin/users/:id` | Group A | `FR12-AI-002` | `FR12-AI-016` | `FR12-AI-038` (Uppercase Role) |
+| 3 | `GET /api/admin/orders` | Group A | `FR12-AI-003` | `FR12-AI-017` | `FR12-AI-036` (Forged Signature) |
+| 4 | `PUT /api/admin/orders/:id/status` | Group A | `FR12-AI-004` | `FR12-AI-018` | — |
+| 5 | `POST /api/admin/import-products` | Group A | `FR12-AI-005` | `FR12-AI-019` | — |
+| 6 | `POST /api/admin/coupons` | Group A | `FR12-AI-006` | `FR12-AI-020` | `FR12-AI-037` (Missing Role Claim) |
+| 7 | `DELETE /api/admin/coupons/:id` | Group A | `FR12-AI-007` | `FR12-AI-021` | — |
+| 8 | `POST /api/products` | Group B | `FR12-AI-008` | `FR12-AI-022` | `FR12-AI-029` (Anonymous) |
+| 9 | `PUT /api/products/:id` | Group B | `FR12-AI-009` | `FR12-AI-023` | `FR12-AI-030` (Anonymous) |
+| 10 | `DELETE /api/products/:id` | Group B | `FR12-AI-010` | `FR12-AI-024` | `FR12-AI-031` (Anonymous) |
+| 11 | `POST /api/categories` | Group B | `FR12-AI-011` | `FR12-AI-025` | `FR12-AI-033` (Anonymous) |
+| 12 | `PUT /api/categories/:id` | Group B | `FR12-AI-012` | `FR12-AI-026` | — |
+| 13 | `DELETE /api/categories/:id` | Group B | `FR12-AI-013` | `FR12-AI-027` | — |
+| 14 | `GET /api/coupons` | Group C | `FR12-AI-014` | `FR12-AI-028` | `FR12-AI-034` (Anonymous) |
+
+*Zero tests target non-exposed shorthand routes (`POST/PUT/DELETE /api/coupons`) or customer checkout routes (`/api/apply-coupon`, `/api/coupon-usage`).*
+
+---
+
+=== SEC-02 / SEC-03 COVERAGE ===
+
+- **`SEC-02` (Authentication Required):** 10 Test Cases (`FR12-AI-029` .. `FR12-AI-036`)
+  - Evaluates missing tokens on catalog mutation, admin read, category creation, coupon list, plus expired token and forged cryptographic signature.
+- **`SEC-03` (Admin Role `'admin'` Enforced):** 16 Test Cases (`FR12-AI-001` .. `FR12-AI-014`, `FR12-AI-037`, `FR12-AI-038`)
+  - Evaluates standard users (`role = 'user'`) across all 14 endpoints, missing role claim, and uppercase/spoofed role.
+- **`FR-12` (Admin Subsystem Authorization Clearance):** 14 Test Cases (`FR12-AI-015` .. `FR12-AI-028`)
+  - Evaluates that valid administrators are permitted through access control without denial.
+- **`SEC-06`:** Strictly excluded from test count (0 tests mapped).
+
+---
+
+=== MUTATION SIDE-EFFECT ASSERTIONS ===
+
+All data-mutating negative test cases enforce a **dual-assertion policy**:
+1. **HTTP Response Denial:** Rejection response received (semantic denial via `SEC-02`/`SEC-03`).
+2. **State Invariance Verification (`GET` follow-up):**
+   - `FR12-AI-002`, `FR12-AI-038` (DELETE user) $\implies$ login probe verifies user was NOT deleted.
+   - `FR12-AI-004` (PUT order status) $\implies$ order query verifies status remains `pending`.
+   - `FR12-AI-005` (POST import) $\implies$ search query verifies imported product was NOT inserted.
+   - `FR12-AI-006`, `FR12-AI-037` (POST coupon) $\implies$ coupon probe verifies coupon code was NOT stored.
+   - `FR12-AI-007` (DELETE coupon) $\implies$ coupon probe verifies disposable coupon remains intact.
+   - `FR12-AI-008`, `FR12-AI-029` (POST product) $\implies$ product search verifies product was NOT added.
+   - `FR12-AI-009`, `FR12-AI-030` (PUT product) $\implies$ product fetch verifies price/name remain unchanged.
+   - `FR12-AI-010`, `FR12-AI-031` (DELETE product) $\implies$ product fetch verifies product still exists.
+   - `FR12-AI-011`, `FR12-AI-033` (POST category) $\implies$ category listing verifies category was NOT created.
+   - `FR12-AI-012` (PUT category) $\implies$ category listing verifies category name remains unchanged.
+   - `FR12-AI-013` (DELETE category) $\implies$ category listing verifies category still exists.
+
+---
+
+=== HTTP ORACLE VALIDATION ===
+
+Programmatically verified against `validate_fr12_suite.py`:
+- **No Universal Admin 200/201 Contract:** No test case marks 200/201 as `SPECIFIED`. All admin cases define the access oracle as `AUTHORIZED (Not Blocked by SEC-02 or SEC-03)` with HTTP status classified as `200 OK (Inferred from SUT / Unspecified in spec)`.
+- **No Promotion of Inferred Denial Codes:** All 401 and 403 status assertions are classified as `Inferred from SUT middleware / UNKNOWN by spec`, while the semantic denial outcome is labeled `SPECIFIED` via `SEC-02`/`SEC-03`.
+
+---
+
+=== GENERATED IDS ===
+
+`FR12-AI-001`, `FR12-AI-002`, `FR12-AI-003`, `FR12-AI-004`, `FR12-AI-005`, `FR12-AI-006`, `FR12-AI-007`, `FR12-AI-008`, `FR12-AI-009`, `FR12-AI-010`, `FR12-AI-011`, `FR12-AI-012`, `FR12-AI-013`, `FR12-AI-014`, `FR12-AI-015`, `FR12-AI-016`, `FR12-AI-017`, `FR12-AI-018`, `FR12-AI-019`, `FR12-AI-020`, `FR12-AI-021`, `FR12-AI-022`, `FR12-AI-023`, `FR12-AI-024`, `FR12-AI-025`, `FR12-AI-026`, `FR12-AI-027`, `FR12-AI-028`, `FR12-AI-029`, `FR12-AI-030`, `FR12-AI-031`, `FR12-AI-032`, `FR12-AI-033`, `FR12-AI-034`, `FR12-AI-035`, `FR12-AI-036`, `FR12-AI-037`, `FR12-AI-038`.
+
+---
+
+=== HUMAN AUDIT WORKSHEET ===
+
+- **File Path:** [`hw06/testcases/fr12/human-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/human-audit.md)
+- **Row Count:** Exactly 38 rows.
+- **Student Ownership Verification:** All student-owned columns (`Student Verdict`, `Student Reasoning`, `Student Correction`, `Student Reviewed At`) are **100% EMPTY** and awaiting your independent human review.
+- **Compact Sheet:** [`hw06/testcases/fr12/human-review-compact.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/human-review-compact.md) created with 38 rows and blank student fields.
+
+---
+
+=== ORIGINAL AI SET STATUS ===
+
+- **File Path:** [`hw06/testcases/fr12/generated-ai-original.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr12/generated-ai-original.md)
+- **Status:** **IMMUTABLE ORIGINAL AI ARTIFACT**. Preserved strictly as generated by AI to guarantee academic audit integrity.
+
+---
+
+=== AI AUDIT STATUS ===
+
+- [`hw06/docs/ai-transcripts/GEMINI-033.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-033.md) finalized.
+- [`hw06/docs/ai-transcripts/GEMINI-034.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-034.md) created with prompt and retrospective placeholder.
+- [`hw06/docs/ai-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-audit.md) updated with index row and interaction log.
+
+---
+
+=== GENERATION COMMIT ===
+
+- **Commit Hash:** `6b50faa` (`6b50faa8d66df42cbfa6347895475306ea64e7c3`)
+- **Commit Message:** `test(fr12): generate 38 AI access control test cases`
+- **Files Committed:**
+  - `hw06/testcases/fr12/generated-ai-original.md`
+  - `hw06/testcases/fr12/human-audit.md`
+  - `hw06/testcases/fr12/human-review-compact.md`
+  - `hw06/testcases/fr12/generate_fr12_tests.py`
+  - `hw06/testcases/fr12/validate_fr12_suite.py`
+  - `hw06/docs/ai-audit.md`
+  - `hw06/docs/ai-transcripts/GEMINI-033.md`
+  - `hw06/docs/ai-transcripts/GEMINI-034.md`
+- **Git Status:** Working tree clean. Branch `main` is ahead of `origin/main` by 4 local commits. **Zero pushes executed to remote.**
+
+---
+
+=== CHECKPOINT 2 — FR-12 HUMAN AUDIT REQUIRED ===
+
+Per your strict directive:
+- **The human audit worksheet has not been filled.**
+- **No extension test cases have been created.**
+- **No Postman collections or environments have been built.**
+- **No Newman executions have been run.**
+- **No GitHub Issues have been created.**
+- **Zero commits have been pushed to GitHub.**
+
+The 38 generated test cases and blank human audit worksheets are ready for your human evaluation and audit review!

@@ -61,6 +61,7 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-032** | 2026-09-02T22:17:30+07:00 | Phase 1 (FR-12) | Specification Analysis Calibration, Role & Coupon Reconciliation | [`hw06/docs/ai-transcripts/GEMINI-032.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-032.md) |
 | **GEMINI-033** | 2026-09-02T22:22:27+07:00 | Phase 1 (FR-12) | Admin Success Status Calibration & Spec-Analysis Finalization | [`hw06/docs/ai-transcripts/GEMINI-033.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-033.md) |
 | **GEMINI-034** | 2026-09-02T22:38:41+07:00 | Phase 2 (FR-12) | AI Test Case Generation (38 Tests) & Worksheet Preparation | [`hw06/docs/ai-transcripts/GEMINI-034.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-034.md) |
+| **GEMINI-035** | 2026-09-02T22:56:23+07:00 | Phase 2 (FR-12) | Mechanical Consistency Correction & ChatGPT Review Packet Preparation | [`hw06/docs/ai-transcripts/GEMINI-035.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-035.md) |
 
 ---
 
@@ -979,7 +980,32 @@ To ensure total transparency without truncating large conversational turns, full
 *See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-034.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-034.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-034.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-034.md) via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-034.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-034.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-035
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T22:56:23+07:00
+- **Phase:** Phase 2 (FR-12) — Mechanical Consistency Correction & ChatGPT Review Packet Preparation
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-034.md` (finalized)
+  - `hw06/docs/ai-transcripts/GEMINI-035.md` (created with retrospective placeholder)
+  - `hw06/testcases/fr12/chatgpt-review-packet.md` (created 38-test external review packet for second AI)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Truthful Audit Provenance & Factual Generation Consistency Observations:**
+  - **SEC-02 Summary Count Correction:** The GEMINI-034 turn summary inadvertently stated: *"SEC-02 (Authentication Required): 10 Test Cases (FR12-AI-029 .. FR12-AI-036)"*. This was a mathematical calculation error. `FR12-AI-029` through `FR12-AI-036` inclusive contains **8 test cases**, not 10. Direct negative `SEC-02` tests are exactly 8 (6 anonymous callers + 1 expired JWT + 1 forged signature).
+  - **Token-Validity Allocation Mismatch Observation:** The initial 4-case token robustness bucket (`FR12-AI-035` .. `FR12-AI-038`) contains only two cryptographic/token-validity tests (`FR12-AI-035` expired JWT, `FR12-AI-036` forged signature). The remaining two (`FR12-AI-037` missing role claim, `FR12-AI-038` uppercase role `'ADMIN'`) possess valid cryptographic signatures and are strictly `SEC-03` role-claim authorization probes. Total `SEC-03` tests are therefore 16 ($14 \text{ standard users} + 2 \text{ role-claim probes}$).
+  - **Immutable Original Artifact Verification:** `hw06/testcases/fr12/generated-ai-original.md` was verified byte-for-byte identical to local commit `6b50faa`.
+  - **External Review Packet Prepared:** `hw06/testcases/fr12/chatgpt-review-packet.md` was generated with 38 neutral test sections containing zero pre-baked verdicts or hints to enable independent evaluation by a second AI (ChatGPT).
+- **Human Checkpoint:** Checkpoint 2A (FR-12) — External AI Review Packet Ready.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-035.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-035.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-035.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-035.md) via retrospective logging).
 
 ---
 
