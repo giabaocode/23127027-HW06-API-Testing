@@ -37,16 +37,16 @@
 | 14 | **AI Audit Report (Markdown + PDF)** | `hw06/docs/ai-audit.md`<br>`hw06/docs/ai-audit.pdf` | In Progress | Continuous maintenance with verbatim prompts |
 | 15 | **Git Commit Log (Text file)** | `hw06/docs/git-commit-log.txt` | Pending Phase 10 | Generated from real `git log` |
 | 16 | **README.md (Self-Assessment Table)** | `hw06/README.md` | Pending Phase 10 | Contains test summary and score breakdown (/100) |
-| 17 | **Console Screenshot: `X-Student-Id`** | `hw06/screenshots/fr01-x-student-id.png` | **COMPLETED (FR-01)** | Real Postman Console capture with student ID `23127027` verified and committed (`8439f1f`) |
+| 17 | **Console Screenshot: `X-Student-Id`** | `hw06/screenshots/fr01-x-student-id.png`<br>`hw06/screenshots/fr07-x-student-id.png` | **COMPLETED (FR-01 & FR-07)** | Real Postman Console captures with student ID `23127027` verified and committed |
 | 18 | *(Optional)* **OpenAPI Specification** | `hw06/api-spec/openapi.yaml` | Optional | Audited if generated |
 
 ---
 
 ## 3. Anti-AI-Cheat Quality Gates
 
-- [x] **Gate 1: True X-Student-Id Evidence (FR-01)**
+- [x] **Gate 1: True X-Student-Id Evidence (FR-01 & FR-07)**
   - Confirmed: Header `X-Student-Id: 23127027` injected and verified in real terminal/Postman logs.
-  - Authentic student screenshot provided and committed at `hw06/screenshots/fr01-x-student-id.png` (`8439f1f`).
+  - Authentic student screenshots provided and committed at `hw06/screenshots/fr01-x-student-id.png` and `hw06/screenshots/fr07-x-student-id.png`.
   - Zero synthetic screenshots used.
 - [ ] **Gate 2: Authentic Newman Run**
   - Confirmed: Hostname is `localhost` / `127.0.0.1`.

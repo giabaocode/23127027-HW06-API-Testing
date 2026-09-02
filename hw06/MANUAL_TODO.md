@@ -60,11 +60,11 @@
   - Open Postman desktop app, execute a request from the collection.
   - Capture real screenshot of Postman Console showing request sending `X-Student-Id: 23127027` header.
   - Saved image to `hw06/screenshots/fr01-x-student-id.png` (and `fr01-x-student-id.jpg`).
-- [ ] **4.2 Real Postman Console Screenshot for FR-07 (`X-Student-Id`):**
+- [x] **4.2 Real Postman Console Screenshot for FR-07 (`X-Student-Id`):**
   - Open Postman desktop app, import `hw06/postman/collections/fr07-shopping-cart.postman_collection.json` and `hw06/postman/environments/fr07-environment.json`.
   - Execute request (e.g. `FR07-AI-001 — Retrieve Empty Cart Baseline`).
   - Capture Postman Console showing `X-Student-Id: 23127027` and real 200 OK response.
-  - Save image to `hw06/screenshots/fr07-x-student-id.png`.
+  - Saved image to `hw06/screenshots/fr07-x-student-id.png` (and `fr07-x-student-id.jpg`).
 - [x] **4.2 Real Newman Execution Verification (FR-01):**
   - Verify that the automated Newman run output reflects local hostname (`localhost:3000` / `127.0.0.1`).
   - Generated genuine `hw06/newman/fr01/fr01-cli-output.txt` and `hw06/newman/fr01/fr01-report.html`.

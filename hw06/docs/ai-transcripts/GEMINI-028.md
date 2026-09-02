@@ -647,4 +647,193 @@ and give only the exact short steps.
 
 ## 2. Verbatim Conversational AI Response
 
-[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]
+=== FR-07 EXTENSIONS FORMALIZED ===
+
+- **Worksheet Updated:** [`hw06/testcases/fr07/student-extensions.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/student-extensions.md)
+- **Total Extension Test Cases Formalized:** Exactly 5 (`FR07-STU-001` through `FR07-STU-005`).
+- **All Specification Sections Populated:** Identity & Traceability, Test Design, HTTP Requests, Expected Result, Lifecycle, and Automation Status.
+- **Validation Script Executed:** [`hw06/testcases/fr07/validate_fr07_extensions.py`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/validate_fr07_extensions.py) — 100% PASS across all 4 checks.
+
+---
+
+=== DUPLICATION CHECK ===
+
+Each selected extension idea was rigorously cross-referenced against the 38 reviewed AI tests ([`hw06/testcases/fr07/reviewed-ai-final.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/reviewed-ai-final.md)):
+
+1. **`FR07-STU-001` (Malformed JSON Syntax):**
+   - *AI Suite Baseline:* `FR07-AI-037` tested valid empty JSON `{}`.
+   - *Distinction:* `FR07-STU-001` sends raw truncated JSON missing a closing brace (`{"id":1,"name":"Sản phẩm A","price":100000,"quantity":1`). Tests parser-level syntax error handling without Postman repair. **No overlap.**
+2. **`FR07-STU-002` (Wrong Content-Type: `text/plain`):**
+   - *AI Suite Baseline:* All existing tests use standard `application/json`.
+   - *Distinction:* `FR07-STU-002` transmits a JSON payload with `Content-Type: text/plain` to test body parser MIME filtering. **No overlap.**
+3. **`FR07-STU-003` (Expired JWT Token):**
+   - *AI Suite Baseline:* Auth tests cover missing tokens (`FR07-AI-004`, `031`), forged signatures (`005`, `032`), and wrong schemes (`006`, `033`).
+   - *Distinction:* `FR07-STU-003` uses a token with a valid signature from local setup whose `exp` claim is in the past. **No overlap.**
+4. **`FR07-STU-004` (Same ID with Conflicting Client Metadata):**
+   - *AI Suite Baseline:* `FR07-AI-009` .. `011` test duplicate accumulation with consistent name and price.
+   - *Distinction:* `FR07-STU-004` submits conflicting metadata (`name: "Modified Product Name"`, `price: 1`) on second addition to verify quantity accumulation and characterize metadata conflict resolution. **No overlap.**
+5. **`FR07-STU-005` (Repeated `GET /api/cart` Idempotency / Non-Mutation):**
+   - *AI Suite Baseline:* GET is invoked once to verify mutation side-effects.
+   - *Distinction:* `FR07-STU-005` executes 3 successive GET calls back-to-back against a populated cart to assert strict read idempotency. **No overlap.**
+
+---
+
+=== PROVENANCE ===
+
+- **Origin:** `Student-selected from AI brainstorming`
+- **Student Selection:** **`CONFIRMED`**
+- **Mechanical Formalization & Execution:** Handled by Gemini.
+- **Truthful Audit Log:** Documented in [`hw06/docs/ai-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-audit.md) under Interaction `GEMINI-028` and in [`hw06/testcases/fr07/student-extensions.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/student-extensions.md).
+
+---
+
+=== FIVE EXTENSION SUMMARY ===
+
+| Test ID | Category | Oracle Classification | Key Target & Verification |
+| :---: | :---: | :---: | :--- |
+| **`FR07-STU-001`** | Protocol / Parser Robustness | `PARSER ROBUSTNESS / CHARACTERIZATION` | Raw malformed JSON missing `}`; verified body-parser catches error (400 Bad Request) cleanly without process crash; zero cart mutation. |
+| **`FR07-STU-002`** | Protocol / MIME Handling | `BODY-PARSER ROBUSTNESS / CHARACTERIZATION` | Valid JSON payload with `Content-Type: text/plain`; verified server handling is deterministic without crash; cart remains consistent. |
+| **`FR07-STU-003`** | Security / Token Expiration | `SPECIFIED REJECTION (SEC-02) / UNKNOWN Status` | Legitimate expired JWT (`exp < currentTime`); access denied (403 Forbidden); verified zero cart mutation. |
+| **`FR07-STU-004`** | Business Logic / Metadata Conflict | `SPECIFIED RULE (Quantity) / CHARACTERIZATION (Metadata)` | Product 1 added with conflicting client metadata; asserted specified rule (1 row, $q=5$); characterized observed name and price. |
+| **`FR07-STU-005`** | State / Read Idempotency | `HTTP SEMANTICS / CHARACTERIZATION` | 3 successive `GET /api/cart` calls on populated cart; verified read idempotency (zero side-effects, identical item counts and properties). |
+
+---
+
+=== EXTENSION COMMIT ===
+
+- **Local Commit Hash:** `ce50600925f46dcc31cd92a437371e3e1d17f710` (`ce50600`)
+- **Message:** `test(fr07): formalize selected cart extension tests`
+- **Committed Files:**
+  - `hw06/testcases/fr07/student-extensions.md`
+  - `hw06/testcases/fr07/validate_fr07_extensions.py`
+  - `hw06/docs/ai-audit.md`
+  - `hw06/docs/ai-transcripts/GEMINI-027.md`
+  - `hw06/docs/ai-transcripts/GEMINI-028.md`
+
+---
+
+=== FR-07 POSTMAN AUTOMATION ===
+
+- **Postman Collection:** [`hw06/postman/collections/fr07-shopping-cart.postman_collection.json`](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/collections/fr07-shopping-cart.postman_collection.json)
+- **Environment File:** [`hw06/postman/environments/fr07-environment.json`](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/environments/fr07-environment.json)
+- **Setup Script:** [`hw06/postman/scripts/setup_fr07_env.js`](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/scripts/setup_fr07_env.js) (Registered 36 isolated test users via real `/api/register` and `/api/login` calls to guarantee 100% in-memory cart state isolation).
+- **Scope:** Automates all **43 test cases** across **67 HTTP requests** (single and multi-step state sequences).
+- **Central Header Injection:** `X-Student-Id: 23127027` enforced on collection level and validated via test assertion.
+- **Special Body Handling:**
+  - `FR07-STU-001`: Injected raw text body without Postman auto-repair.
+  - `FR07-STU-002`: Explicit header override `Content-Type: text/plain`.
+
+---
+
+=== REAL NEWMAN EXECUTION ===
+
+- **Tool:** Newman v6.2.2 with `newman-reporter-htmlextra`
+- **Command Executed:**
+  ```bash
+  npx newman run hw06/postman/collections/fr07-shopping-cart.postman_collection.json \
+    -e hw06/postman/environments/fr07-environment.json \
+    -r cli,htmlextra \
+    --reporter-htmlextra-export hw06/newman/fr07/fr07-report.html > hw06/newman/fr07/fr07-cli-output.txt
+  ```
+- **CLI Output Log:** [`hw06/newman/fr07/fr07-cli-output.txt`](file:///Users/phamngocgiabao/eshop-sut/hw06/newman/fr07/fr07-cli-output.txt) (35.4 KB)
+- **HTML Report Export:** [`hw06/newman/fr07/fr07-report.html`](file:///Users/phamngocgiabao/eshop-sut/hw06/newman/fr07/fr07-report.html) (1.4 MB)
+- **Detailed Execution Report:** [`hw06/docs/fr07-execution-report.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/fr07-execution-report.md)
+
+---
+
+=== REAL RESULT SUMMARY ===
+
+```text
+┌─────────────────────────┬─────────────────┬─────────────────┐
+│                         │        executed │          failed │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              iterations │               1 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│                requests │              67 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│            test-scripts │             134 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│      prerequest-scripts │              67 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              assertions │             187 │              17 │
+├─────────────────────────┴─────────────────┴─────────────────┤
+│ total run duration: 821ms                                   │
+│ total data received: 3.67kB (approx)                        │
+│ average response time: 1ms                                  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+- **Total Test Cases:** 43 (38 reviewed AI + 5 student extensions)
+- **Total HTTP Requests:** 67
+- **Passed Assertions:** 170 (90.9%)
+- **Failed Assertions:** 17 (9.1%) — all 17 failures directly correlate to 2 authentic SUT defects.
+- **Central `X-Student-Id` Header Check:** **PASSED 67 / 67 requests (100%)**.
+
+---
+
+=== FAILURE TRIAGE ===
+
+Every single failed assertion was triaged and matched directly against `backend/server.js` Lines 284–295:
+
+1. **8 Assertion Failures — Duplicate Product Accumulation (`FR07-AI-009`, `010`, `011`, `FR07-STU-004`):**
+   - **Triage:** **`RUNTIME-CONFIRMED SUT DEFECT`**
+   - **Evidence:** Adding identical product ID multiple times creates separate array elements instead of accumulating quantity. SUT source `server.js` Line 293 uses unconditional `userCarts[userId].push(req.body)`.
+2. **9 Assertion Failures — Missing Quantity Domain Validation (`FR07-AI-014`..`018`, `020`, `021`, `023`, `024`):**
+   - **Triage:** **`RUNTIME-CONFIRMED SUT DEFECT`**
+   - **Evidence:** Quantities $0, -1, -100, 1.5, 0.5, "abc", "@#$", null$, and omitted quantity were accepted with HTTP `200 OK` (`{"message":"Added to cart"}`). SUT source `server.js` Line 290 contains zero type, null, or boundary validation on `req.body.quantity`.
+3. **0 Automation Failures / 0 Environment Issues:**
+   - Server resilience held (no unhandled process crash).
+   - In-memory cart state isolation functioned with 100% independence across all 36 test accounts.
+
+---
+
+=== CONFIRMED DEFECTS ===
+
+Two formal defect reports have been created in `hw06/bugs/` and indexed in [`hw06/bugs/README.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/bugs/README.md):
+
+1. **[`DEF-FR07-01`](file:///Users/phamngocgiabao/eshop-sut/hw06/bugs/DEF-FR07-01.md) — High:** Adding Duplicate Product to Cart Appends New Row Instead of Accumulating Quantity
+   - *Requirement Trace:* `README.md` Line 96 (*"Thêm cùng một sản phẩm vào giỏ sẽ tăng số lượng, không tạo dòng mới."*)
+   - *Reproduced By:* `FR07-AI-009`, `FR07-AI-010`, `FR07-AI-011`, `FR07-STU-004`.
+2. **[`DEF-FR07-02`](file:///Users/phamngocgiabao/eshop-sut/hw06/bugs/DEF-FR07-02.md) — High:** `POST /api/cart` Accepts Invalid, Negative, Zero, and Fractional Quantities Without Validation
+   - *Requirement Trace:* `README.md` Line 86 (*"Có ô nhập Số lượng (chỉ nhận số nguyên dương, tối thiểu là 1)."*)
+   - *Reproduced By:* `FR07-AI-014`, `015`, `016`, `017`, `018`, `020`, `021`, `023`, `024`.
+
+---
+
+=== LOCAL COMMITS ===
+
+All changes have been committed cleanly across 4 logical local commits:
+
+1. `ce50600` — `test(fr07): formalize selected cart extension tests`
+2. `7d7dcd6` — `test(fr07): add Postman automation for shopping cart suite`
+3. `88c3500` — `test(fr07): record real shopping cart test execution`
+4. `25d5caf` — `test(fr07): add defect reports for runtime-confirmed cart bugs`
+
+- **Remote Status:** Ahead by 22 local commits. **ZERO pushes executed to GitHub.**
+- **FR-12 Status:** **STRICTLY NOT STARTED.**
+
+---
+
+=== HUMAN ACTION REQUIRED — REAL EVIDENCE ===
+
+The backend server is currently running live on `http://localhost:3000`. To complete the authentic Postman Console evidence loop for FR-07:
+
+1. **Open the Postman Desktop App.**
+2. **Import Collection & Environment:**
+   - Collection: [`hw06/postman/collections/fr07-shopping-cart.postman_collection.json`](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/collections/fr07-shopping-cart.postman_collection.json)
+   - Environment: [`hw06/postman/environments/fr07-environment.json`](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/environments/fr07-environment.json)
+3. **Select Environment:** Switch the active environment dropdown to **`FR-07 Cart Execution Environment`**.
+4. **Open Postman Console:** Click the **Console** icon in the bottom-left corner of Postman (or press `Cmd + Alt + C` on macOS).
+5. **Send Request:** In the collection, click **`FR07-AI-001 — Retrieve Empty Cart Baseline`** and click **Send** (or `FR07-AI-007 — Standard Valid Item Addition`).
+6. **Capture Real Screenshot:** In the Postman Console, expand the executed request to visibly show:
+   - Request URL: `GET http://localhost:3000/api/cart`
+   - Real Response: `200 OK`
+   - Request Headers containing: **`X-Student-Id: 23127027`**
+   - Active Environment: `FR-07 Cart Execution Environment`
+7. **Save Screenshot:** Save the captured PNG image to:
+   ```text
+   hw06/screenshots/fr07-x-student-id.png
+   ```
+
+*Once you have saved the screenshot into `hw06/screenshots/`, let me know and we will verify its presence and update the audit records!*
+
