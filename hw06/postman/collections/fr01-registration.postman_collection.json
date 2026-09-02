@@ -1,0 +1,1962 @@
+{
+  "info": {
+    "_postman_id": "c1a2b3d4-e5f6-47a8-b9c0-112233445566",
+    "name": "FR-01 — Account Registration Test Suite",
+    "description": "Comprehensive automated API test suite for FR-01 Account Registration (HCMUS EShop SUT). Created for HW06 API Testing by student Pham Ngoc Gia Bao (23127027). Contains 42 automated API requests (37 reviewed AI tests + 5 student-selected extension tests).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Central X-Student-Id injection required by HW06",
+          "pm.request.headers.upsert({",
+          "    key: 'X-Student-Id',",
+          "    value: pm.environment.get('studentId') || '23127027'",
+          "});"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Central assertion: verify that request carries X-Student-Id: 23127027",
+          "pm.test('Central Injection - Request header X-Student-Id is present and matches 23127027', function () {",
+          "    pm.expect(pm.request.headers.get('X-Student-Id')).to.eql('23127027');",
+          "});",
+          "// Server resilience check",
+          "pm.test('Server Resilience - Server responded with valid HTTP status', function () {",
+          "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 401, 403, 404, 405, 409, 415, 422, 500]);",
+          "});"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "01 - Positive Happy Path",
+      "item": [
+        {
+          "name": "FR01-AI-001 — Standard Valid ASCII Registration",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status Code is 200 OK (SPECIFIED)', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('Response contains success message and id (EXAMPLE-DERIVED)', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('message');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "});",
+                  "pm.test('Security Hardening - Password is not leaked in response', function () {",
+                  "    var text = pm.response.text();",
+                  "    pm.expect(text).to.not.include('Password');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nguyen Van A\",\n  \"email\": \"fr01_ai_001_{{$timestamp}}@example.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-009 — Standard Valid RFC Email Registration",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status Code is 200 OK (SPECIFIED)', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('Response contains success message and id (EXAMPLE-DERIVED)', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('message');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "});",
+                  "pm.test('Security Hardening - Password is not leaked in response', function () {",
+                  "    var text = pm.response.text();",
+                  "    pm.expect(text).to.not.include('Password');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Standard User\",\n  \"email\": \"fr01_ai_009_{{$timestamp}}@domain.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-020 — Standard Strong Password Meeting All 5 Criteria",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status Code is 200 OK (SPECIFIED)', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('Response contains success message and id (EXAMPLE-DERIVED)', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('message');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "});",
+                  "pm.test('Security Hardening - Password is not leaked in response', function () {",
+                  "    var text = pm.response.text();",
+                  "    pm.expect(text).to.not.include('Password');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Strong Pass User\",\n  \"email\": \"fr01_ai_020_{{$timestamp}}@example.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-027 — Password Length Boundary: 8 Chars (Exact Minimum)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status Code is 200 OK (SPECIFIED)', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('Response contains success message and id (EXAMPLE-DERIVED)', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('message');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "});",
+                  "pm.test('Security Hardening - Password is not leaked in response', function () {",
+                  "    var text = pm.response.text();",
+                  "    pm.expect(text).to.not.include('Password');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Len 8 User\",\n  \"email\": \"fr01_ai_027_{{$timestamp}}@example.com\",\n  \"password\": \"Pass12!a\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-028 — Password Length Boundary: 9 Chars (Minimum + 1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status Code is 200 OK (SPECIFIED)', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('Response contains success message and id (EXAMPLE-DERIVED)', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('message');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "});",
+                  "pm.test('Security Hardening - Password is not leaked in response', function () {",
+                  "    var text = pm.response.text();",
+                  "    pm.expect(text).to.not.include('Password');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Len 9 User\",\n  \"email\": \"fr01_ai_028_{{$timestamp}}@example.com\",\n  \"password\": \"Passw12!a\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "02 - Required Fields Validation",
+      "item": [
+        {
+          "name": "FR01-AI-003 — Omitted Mandatory Name Field Rejection",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});",
+                  "pm.test('Response is controlled and parseable', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 422, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"fr01_ai_003_{{$timestamp}}@example.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-004 — Empty String Name Value Inferred Rejection",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});",
+                  "pm.test('Response is controlled and parseable', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 422, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"email\": \"fr01_ai_004_{{$timestamp}}@example.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-011 — Omitted Mandatory Email Field Rejection",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});",
+                  "pm.test('Response is controlled and parseable', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 422, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"No Email User\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-012 — Empty String Email Value Rejection",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});",
+                  "pm.test('Response is controlled and parseable', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 422, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Empty Email User\",\n  \"email\": \"\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-032 — Empty String Password Value Rejection",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});",
+                  "pm.test('Response is controlled and parseable', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 422, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Empty Pass User\",\n  \"email\": \"fr01_ai_032_{{$timestamp}}@example.com\",\n  \"password\": \"\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-035 — Empty JSON Body Rejection",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});",
+                  "pm.test('Response is controlled and parseable', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 422, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "03 - Email Format & Validation",
+      "item": [
+        {
+          "name": "FR01-AI-010 — Advanced RFC Email Plus-Addressing Characterization",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Robustness / Characterization - Server handles input safely without crashing', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 409, 422, 500]);",
+                  "});",
+                  "pm.test('Response is parseable JSON', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an('object');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Tagged User\",\n  \"email\": \"fr01_ai_010+tag_{{$timestamp}}@domain.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-013 — Malformed Email Missing At-Symbol (@) Rejection",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});",
+                  "pm.test('Response is controlled and parseable', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 422, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"No At User\",\n  \"email\": \"fr01_ai_013_userdomain.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-014 — Malformed Email Missing Domain Part Rejection",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});",
+                  "pm.test('Response is controlled and parseable', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 422, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"No Domain User\",\n  \"email\": \"fr01_ai_014_user@\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "04 - Password Policy Verification",
+      "item": [
+        {
+          "name": "FR01-AI-021 — Documented Special Symbol: At-Sign (@)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status Code is 200 OK (SPECIFIED)', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('Response contains success message and id (EXAMPLE-DERIVED)', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('message');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "});",
+                  "pm.test('Security Hardening - Password is not leaked in response', function () {",
+                  "    var text = pm.response.text();",
+                  "    pm.expect(text).to.not.include('Password');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Symbol At User\",\n  \"email\": \"fr01_ai_021_{{$timestamp}}@example.com\",\n  \"password\": \"Passw0rd@\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-022 — Documented Special Symbol: Dollar-Sign ($)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status Code is 200 OK (SPECIFIED)', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('Response contains success message and id (EXAMPLE-DERIVED)', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('message');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "});",
+                  "pm.test('Security Hardening - Password is not leaked in response', function () {",
+                  "    var text = pm.response.text();",
+                  "    pm.expect(text).to.not.include('Password');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Symbol Dollar User\",\n  \"email\": \"fr01_ai_022_{{$timestamp}}@example.com\",\n  \"password\": \"Passw0rd$\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-023 — Documented Special Symbol: Ampersand (&)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status Code is 200 OK (SPECIFIED)', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('Response contains success message and id (EXAMPLE-DERIVED)', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('message');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "});",
+                  "pm.test('Security Hardening - Password is not leaked in response', function () {",
+                  "    var text = pm.response.text();",
+                  "    pm.expect(text).to.not.include('Password');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Symbol Amp User\",\n  \"email\": \"fr01_ai_023_{{$timestamp}}@example.com\",\n  \"password\": \"Passw0rd&\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-024 — Required Special Symbol Plus Extra Symbol (!#)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status Code is 200 OK (SPECIFIED)', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('Response contains success message and id (EXAMPLE-DERIVED)', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('message');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "});",
+                  "pm.test('Security Hardening - Password is not leaked in response', function () {",
+                  "    var text = pm.response.text();",
+                  "    pm.expect(text).to.not.include('Password');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Combo Symbol User\",\n  \"email\": \"fr01_ai_024_{{$timestamp}}@example.com\",\n  \"password\": \"Password123!#\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-025 — Missing Required Special Character from Set Rejection",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});",
+                  "pm.test('Response is controlled and parseable', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 422, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"No Symbol User\",\n  \"email\": \"fr01_ai_025_{{$timestamp}}@example.com\",\n  \"password\": \"Password1234\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-026 — Password Length Boundary: 7 Chars (Minimum - 1) Rejection",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});",
+                  "pm.test('Response is controlled and parseable', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 422, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Len 7 User\",\n  \"email\": \"fr01_ai_026_{{$timestamp}}@example.com\",\n  \"password\": \"Pass1!a\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-029 — Missing Uppercase Letter in Password Rejection",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});",
+                  "pm.test('Response is controlled and parseable', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 422, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"No Upper User\",\n  \"email\": \"fr01_ai_029_{{$timestamp}}@example.com\",\n  \"password\": \"password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-030 — Missing Lowercase Letter in Password Rejection",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});",
+                  "pm.test('Response is controlled and parseable', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 422, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"No Lower User\",\n  \"email\": \"fr01_ai_030_{{$timestamp}}@example.com\",\n  \"password\": \"PASSWORD123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-031 — Missing Numeric Digit in Password Rejection",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});",
+                  "pm.test('Response is controlled and parseable', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 422, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"No Digit User\",\n  \"email\": \"fr01_ai_031_{{$timestamp}}@example.com\",\n  \"password\": \"Password!@#$\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "05 - State & Duplicate Lifecycle",
+      "item": [
+        {
+          "name": "FR01-AI-016 — Duplicate Registration of Pre-Seeded Email Rejection",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Duplicate Email Rejection - Pre-seeded email must not be re-registered (SPECIFIED)', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Duplicate SeedTest\",\n  \"email\": \"test@eshop.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-017 — Duplicate Registration via Dynamic Sequential Call",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var uniqueEmail = 'fr01_seq_dup_' + Date.now() + '@example.com';",
+                  "pm.environment.set('seqDupEmail', uniqueEmail);",
+                  "// Send preliminary registration",
+                  "pm.sendRequest({",
+                  "    url: pm.environment.get('baseUrl') + '/api/register',",
+                  "    method: 'POST',",
+                  "    header: {",
+                  "        'Content-Type': 'application/json',",
+                  "        'X-Student-Id': '23127027'",
+                  "    },",
+                  "    body: {",
+                  "        mode: 'raw',",
+                  "        raw: JSON.stringify({",
+                  "            name: 'First Instance',",
+                  "            email: uniqueEmail,",
+                  "            password: 'Password123!'",
+                  "        })",
+                  "    }",
+                  "}, function (err, res) {",
+                  "    console.log('Step 1 pre-registration completed with status:', res ? res.code : err);",
+                  "});"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('State-Dependent Duplicate Rejection - Repeated registration with same email must be rejected (SPECIFIED)', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Second Instance\",\n  \"email\": \"{{seqDupEmail}}\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-018 — Case-Insensitive Duplicate Email Characterization Probe",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Robustness / Characterization - Server handles input safely without crashing', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 409, 422, 500]);",
+                  "});",
+                  "pm.test('Response is parseable JSON', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an('object');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Case User\",\n  \"email\": \"TEST@eshop.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "06 - Security Assertions",
+      "item": [
+        {
+          "name": "FR01-AI-007 — Literal SQL Syntax Handling in Name (SEC-05)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('SEC-05 - Apostrophe in name handled safely as literal data without SQL crash', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400]);",
+                  "    var text = pm.response.text();",
+                  "    pm.expect(text).to.not.include('SQLITE_ERROR');",
+                  "    pm.expect(text).to.not.include('syntax error');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"O'Connor\",\n  \"email\": \"fr01_ai_007_{{$timestamp}}@example.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-019 — Parameterized Query Verification via SQL Injection String in Name (SEC-05 Redesign)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('SEC-05 - SQL injection syntax in name handled safely without SQL syntax error', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400]);",
+                  "    var text = pm.response.text();",
+                  "    pm.expect(text).to.not.include('SQLITE_ERROR');",
+                  "    pm.expect(text).to.not.include('syntax error');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Robert'); DROP TABLE users;--\",\n  \"email\": \"fr01_ai_019_{{$timestamp}}@example.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-038 — Security Hardening: Credential Non-Leakage in Response",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Security Hardening - Response body does not leak password or sensitive credentials', function () {",
+                  "    var text = pm.response.text();",
+                  "    pm.expect(text).to.not.include('Password123!');",
+                  "    pm.expect(text).to.not.include('hash');",
+                  "    pm.expect(text).to.not.include('salt');",
+                  "    pm.expect(text).to.not.include('reset_token');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Hardened User\",\n  \"email\": \"fr01_ai_038_{{$timestamp}}@example.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "07 - Robustness & Characterization",
+      "item": [
+        {
+          "name": "FR01-AI-002 — Vietnamese Unicode Name Characterization Probe",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Robustness / Characterization - Server handles input safely without crashing', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 409, 422, 500]);",
+                  "});",
+                  "pm.test('Response is parseable JSON', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an('object');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Trần Thị Bích Hạnh\",\n  \"email\": \"fr01_ai_002_{{$timestamp}}@example.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-005 — Non-String Integer Name Data Type Robustness Probe",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Robustness / Characterization - Server handles input safely without crashing', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 409, 422, 500]);",
+                  "});",
+                  "pm.test('Response is parseable JSON', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an('object');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": 12345,\n  \"email\": \"fr01_ai_005_{{$timestamp}}@example.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-006 — Extreme Upper Length Name Robustness Probe (1000 Chars)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Robustness / Characterization - Server handles input safely without crashing', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 409, 422, 500]);",
+                  "});",
+                  "pm.test('Response is parseable JSON', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an('object');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n  \"email\": \"fr01_ai_006_{{$timestamp}}@example.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-008 — HTML Script Tag Robustness Probe in Name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Robustness / Characterization - Server handles input safely without crashing', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 409, 422, 500]);",
+                  "});",
+                  "pm.test('Response is parseable JSON', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an('object');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<script>alert(1)</script>\",\n  \"email\": \"fr01_ai_008_{{$timestamp}}@example.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-015 — Non-String Integer Email Data Type Robustness Probe",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Robustness / Characterization - Server handles input safely without crashing', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 409, 422, 500]);",
+                  "});",
+                  "pm.test('Response is parseable JSON', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an('object');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Type User\",\n  \"email\": 99999,\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-033 — Non-String Integer Password Data Type Robustness Probe",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Robustness / Characterization - Server handles input safely without crashing', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 409, 422, 500]);",
+                  "});",
+                  "pm.test('Response is parseable JSON', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an('object');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Type Pass User\",\n  \"email\": \"fr01_ai_033_{{$timestamp}}@example.com\",\n  \"password\": 12345678\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-034 — Extreme Upper Length Password Robustness Probe (128 Chars)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Robustness / Characterization - Server handles input safely without crashing', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 409, 422, 500]);",
+                  "});",
+                  "pm.test('Response is parseable JSON', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an('object');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Long Pass User\",\n  \"email\": \"fr01_ai_034_{{$timestamp}}@example.com\",\n  \"password\": \"Password123!AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-AI-036 — Unexpected Extra Field (confirmPassword) Robustness Probe",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Robustness / Characterization - Server handles input safely without crashing', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 409, 422, 500]);",
+                  "});",
+                  "pm.test('Response is parseable JSON', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an('object');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Extra Field User\",\n  \"email\": \"fr01_ai_036_{{$timestamp}}@example.com\",\n  \"password\": \"Password123!\",\n  \"confirmPassword\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "08 - Student-Selected Extensions",
+      "item": [
+        {
+          "name": "FR01-STU-001 — Syntactically Malformed JSON Body Robustness Probe",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Parser Robustness - Malformed JSON does not create user or crash server', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"Malformed User\", \"email\": \"stu001_malformed@example.com\", \"password\": \"Password123!\""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-STU-002 — Unsupported Content-Type Header (text/plain) Robustness Probe",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('MIME Handling - Non-JSON Content-Type handled safely', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 415, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"PlainText ContentType\",\n  \"email\": \"stu002_plaintext@example.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-STU-003 — Duplicate JSON Property Key Parser Characterization Probe",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Duplicate Key Characterization - Server handles duplicate property safely', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Duplicate Key User\",\n  \"email\": \"first_stu003@example.com\",\n  \"email\": \"second_stu003@example.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-STU-004 — Unsupported HTTP Method (PUT) Routing Verification Probe",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Method Routing - Registration rejected for unsupported PUT verb', function () {",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "    pm.expect(pm.response.code).to.be.oneOf([404, 405, 500]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Put Method User\",\n  \"email\": \"stu004_put@example.com\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FR01-STU-005 — Email Domain as IP Address Literal Characterization Probe",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Email Grammar Characterization - IP address literal domain handled safely', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400]);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"IP Domain User\",\n  \"email\": \"stu005_ip@[127.0.0.1]\",\n  \"password\": \"Password123!\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

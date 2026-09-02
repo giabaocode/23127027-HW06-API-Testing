@@ -42,6 +42,7 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-013** | 2026-09-02T13:50:14+07:00 | Phase 2 | Phase 2 Completion & Local Commit of Student Human Audit | [`hw06/docs/ai-transcripts/GEMINI-013.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-013.md) |
 | **GEMINI-014** | 2026-09-02T13:54:44+07:00 | Phase 3 | Phase 3A: Reviewed AI Final Set Creation & Student Extension Template Setup | [`hw06/docs/ai-transcripts/GEMINI-014.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-014.md) |
 | **GEMINI-015** | 2026-09-02T14:08:03+07:00 | Phase 3 | Phase 3B: Formalize 5 Student-Selected Registration Extension Tests | [`hw06/docs/ai-transcripts/GEMINI-015.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-015.md) |
+| **GEMINI-016** | 2026-09-02T14:11:56+07:00 | Phase 4 & 5 | FR-01 Postman Automation, Local SUT Startup & Real Newman Execution | [`hw06/docs/ai-transcripts/GEMINI-016.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-016.md) |
 
 ---
 
@@ -493,7 +494,41 @@ To ensure total transparency without truncating large conversational turns, full
 *See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-015.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-015.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-015.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-015.md) via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-015.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-015.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-016
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T14:11:56+07:00
+- **Phase:** Phase 4 & Phase 5 — FR-01 Postman Automation, Local SUT Startup & Real Newman Execution
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-015.md` (finalized with complete verbatim response)
+  - `hw06/docs/ai-transcripts/GEMINI-016.md` (created with retrospective placeholder)
+  - `hw06/postman/collections/fr01-registration.postman_collection.json` (created with 42 API requests)
+  - `hw06/postman/environments/eshop-local.postman_environment.json` (created)
+  - `hw06/postman/scripts/generate_collection.py` (created)
+  - `hw06/postman/scripts/validate_collection.py` (created)
+  - `hw06/postman/scripts/verify-sec01-plaintext.js` (created)
+  - `hw06/postman/README.md` (created)
+  - `hw06/docs/postman-features.md` (created)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Commands Executed:**
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-015.md`
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-016.md`
+  - `python3 hw06/postman/scripts/generate_collection.py`
+  - `python3 hw06/postman/scripts/validate_collection.py`
+  - `node hw06/postman/scripts/verify-sec01-plaintext.js`
+  - `npx -y -p newman -p newman-reporter-htmlextra newman run ...`
+- **Git Actions:** Executed local commits on branch `main` (`test(fr01): add Postman automation for registration suite`, followed by `test(fr01): record real registration test execution`).
+- **Human Checkpoint:** Checkpoint 5A — Human Screenshot Gate (Student must capture real Postman Console screenshot).
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-016.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-016.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-016.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-016.md) via retrospective logging).
 
 ---
 

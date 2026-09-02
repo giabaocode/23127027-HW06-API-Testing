@@ -382,4 +382,97 @@ Do not start FR-07 yet.
 
 ## 2. Verbatim Conversational AI Response
 
-[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]
+=== FR-01 EXTENSION TESTS FORMALIZED ===
+
+- **File Updated:** [hw06/testcases/fr01/student-extensions.md](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr01/student-extensions.md)
+- **Status:** **FORMALIZED, VALIDATED & COMMITTED LOCALLY**
+- **Test Count:** Exactly **5 extension tests** (`FR01-STU-001` through `FR01-STU-005`).
+
+---
+
+=== DUPLICATION CHECK ===
+
+Programmatically compared against all 38 test cases in [`reviewed-ai-final.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr01/reviewed-ai-final.md) and [`generated-ai-original.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr01/generated-ai-original.md):
+1. **`FR01-STU-001` (Malformed JSON Syntax):** In the 38 AI tests, only `FR01-AI-035` tested empty JSON `{}` (valid syntax). Zero AI tests submitted broken JSON grammar (missing closing brace). $\rightarrow$ **Distinct (No Overlap)**.
+2. **`FR01-STU-002` (Wrong `Content-Type: text/plain`):** All 38 AI tests declared standard `application/json`. Zero AI tests probed non-JSON MIME type headers. $\rightarrow$ **Distinct (No Overlap)**.
+3. **`FR01-STU-003` (Duplicate JSON Key Precedence):** All 38 AI tests submitted unique keys. Zero AI tests probed duplicate keys (`"email"` specified twice). $\rightarrow$ **Distinct (No Overlap)**.
+4. **`FR01-STU-004` (Unsupported HTTP Verb `PUT`):** All 38 AI tests called `POST /api/register`. Zero AI tests probed method routing with `PUT`. $\rightarrow$ **Distinct (No Overlap)**.
+5. **`FR01-STU-005` (Email Domain as IP Literal `user@[127.0.0.1]`):** AI tests only evaluated standard DNS hostnames, plus-addressing, missing `@`, or missing domain. None evaluated RFC 5321 IP address literal domains. $\rightarrow$ **Distinct (No Overlap)**.
+
+---
+
+=== PROVENANCE ===
+
+In accordance with course academic integrity policies:
+- **Idea Source:** Surfaced during AI brainstorming.
+- **Student Action:** Student personally selected and confirmed these 5 specific protocol and parsing dimensions.
+- **Authorship Label:** Recorded truthfully in `student-extensions.md` and `ai-audit.md` as:
+  ```text
+  Origin: Student-selected from AI brainstorming
+  Student Selection: CONFIRMED
+  ```
+- **Integrity Assertion:** These tests are **NOT** represented as student-original from scratch. Zero authorship misrepresentation.
+
+---
+
+=== FIVE TEST SUMMARY ===
+
+| Test ID | Category | Key Test Condition / Payload | Expected Semantic Behavior & Oracle |
+| :---: | :--- | :--- | :--- |
+| **`FR01-STU-001`** | Parser Robustness | Raw JSON missing closing brace: `{"name": "...", "email": "...", "password": "..."` | No account created; server catches syntax error gracefully without crashing. Status: **`UNKNOWN`** (`400` observed). |
+| **`FR01-STU-002`** | MIME Handling | Valid registration JSON sent with header `Content-Type: text/plain` | Safe protocol handling without server crash; if unparsed, zero rows inserted. Status: **`UNKNOWN`** (`400`/`415` observed). |
+| **`FR01-STU-003`** | Parser Characterization | Duplicate email key in payload: `"email": "first@...", "email": "second@..."` | Determine parser precedence; exactly ONE account created (or rejected); zero DB corruption. Status: **`INFERRED`** (200 if parsed). |
+| **`FR01-STU-004`** | Verb Routing | Unsupported HTTP method: `PUT /api/register` with valid registration body | Registration must NOT execute through unsupported HTTP verb; zero rows inserted; no crash. Status: **`UNKNOWN`** (`404`/`405` observed). |
+| **`FR01-STU-005`** | Email Grammar | Email domain specified as IP address literal: `stu005_ip@[127.0.0.1]` | Characterize RFC 5321 address-literal support vs. strict DNS hostname regex; no crash or SQL error. Status: **`UNKNOWN`** (200 if accepted, 400 if rejected). |
+
+---
+
+=== AUTOMATION READINESS ===
+
+- **Total FR-01 Executable Suite:**
+  - **Reviewed AI Executable Tests:** 37
+  - **Student-Selected Extension Tests:** 5
+  - **Total API-Executable Postman Requests:** **42 requests**
+  - **Non-API Database Probes:** 1 (`FR01-AI-037` — SEC-01 SQLite DB inspection)
+- **Special Serialization Guardrails for Postman:**
+  - `FR01-STU-001` and `FR01-STU-003` must be configured as **raw text** payloads in Postman to prevent client-side auto-formatting from repairing the missing brace or deduplicating the JSON keys prior to transmission.
+
+---
+
+=== LOCAL COMMIT RESULT ===
+
+- **Real Commit Hash:** `72bed5d97f6f70ee80f493aefddc004bc59a1bae` (short: `72bed5d`)
+- **Commit Message:**
+  ```text
+  test(fr01): formalize selected registration extension tests
+  ```
+- **Committed Files:**
+  ```text
+  hw06/docs/ai-audit.md
+  hw06/docs/ai-transcripts/GEMINI-014.md
+  hw06/docs/ai-transcripts/GEMINI-015.md
+  hw06/testcases/fr01/student-extensions.md
+  ```
+- **Current Git Status:**
+  ```text
+  On branch main
+  Your branch is ahead of 'origin/main' by 7 commits.
+    (use "git push" to publish your local commits)
+
+  Untracked files:
+    (use "git add <file>..." to include in what will be committed)
+  	2026.HW06.API Testing_En.pdf
+
+  nothing added to commit but untracked files present (use "git add" to track)
+  ```
+- **Remote Push Status:** Zero remote pushes executed. Assignment PDF remains untracked.
+
+---
+
+### Ready for Phase 4: Postman Collection & Automation Setup
+
+The FR-01 test suite is fully specified, audited, and committed:
+- **38 Reviewed AI Cases** in [`hw06/testcases/fr01/reviewed-ai-final.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr01/reviewed-ai-final.md)
+- **5 Extension Cases** in [`hw06/testcases/fr01/student-extensions.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr01/student-extensions.md)
+
+We are ready to proceed with constructing the **Postman Collection (`hw06/postman/collections/fr01-registration.postman_collection.json`)** and **Environment (`hw06/postman/environments/eshop-local.postman_environment.json`)** with central `X-Student-Id: 23127027` header injection.
