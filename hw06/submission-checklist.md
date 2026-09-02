@@ -32,21 +32,21 @@
 | 9 | **Excel Test Cases & Summary** | `hw06/testcases/testcases-master.xlsx` (or CSVs) | Pending Phase 3 | Formatted with human audit verdicts & traceability |
 | 10 | **AI Test-Generator Diagram** | `hw06/agent-skill/student-diagram.png` | Pending Phase 8 | **Must be self-drawn by student** (NO AI generation) |
 | 11 | **Agent Skill Pseudocode / Code** | `hw06/agent-skill/pseudocode.md`<br>`hw06/agent-skill/test_generator.py` | Pending Phase 8 | Code/pseudocode following student design decisions |
-| 12 | **Bug Report with GitHub Issues** | `hw06/bugs/README.md`<br>`hw06/screenshots/fr07-bug-issue-001.png` | **In Progress (FR-01 & FR-07 Done)** | Real issues #1–#7 created on GitHub; FR-07 browser screenshot captured and verified |
+| 12 | **Bug Report with GitHub Issues** | `hw06/bugs/README.md`<br>`hw06/screenshots/fr07-bug-issue-001.png` | **In Progress (FR-01, FR-07, FR-12 Done)** | Real issues #1–#11 created on GitHub; FR-07 browser screenshot verified; FR-12 issues filed |
 | 13 | **AI Critique (200–300 words)** | `hw06/docs/ai-critique.md` | Pending Phase 9 | Student reviewed and personalized |
 | 14 | **AI Audit Report (Markdown + PDF)** | `hw06/docs/ai-audit.md`<br>`hw06/docs/ai-audit.pdf` | In Progress | Continuous maintenance with verbatim prompts |
 | 15 | **Git Commit Log (Text file)** | `hw06/docs/git-commit-log.txt` | Pending Phase 10 | Generated from real `git log` |
 | 16 | **README.md (Self-Assessment Table)** | `hw06/README.md` | Pending Phase 10 | Contains test summary and score breakdown (/100) |
-| 17 | **Console Screenshot: `X-Student-Id`** | `hw06/screenshots/fr01-x-student-id.png`<br>`hw06/screenshots/fr07-x-student-id.png` | **COMPLETED (FR-01 & FR-07)** | Real Postman Console captures with student ID `23127027` verified and committed |
+| 17 | **Console Screenshot: `X-Student-Id`** | `hw06/screenshots/fr01-x-student-id.png`<br>`hw06/screenshots/fr07-x-student-id.png`<br>`hw06/screenshots/fr12-x-student-id.png` | **COMPLETED (FR-01, FR-07 & FR-12)** | Real Postman Console captures with student ID `23127027` verified and committed |
 | 18 | *(Optional)* **OpenAPI Specification** | `hw06/api-spec/openapi.yaml` | Optional | Audited if generated |
 
 ---
 
 ## 3. Anti-AI-Cheat Quality Gates
 
-- [x] **Gate 1: True X-Student-Id Evidence (FR-01 & FR-07)**
+- [x] **Gate 1: True X-Student-Id Evidence (FR-01, FR-07, FR-12)**
   - Confirmed: Header `X-Student-Id: 23127027` injected and verified in real terminal/Postman logs.
-  - Authentic student screenshots provided and committed at `hw06/screenshots/fr01-x-student-id.png` and `hw06/screenshots/fr07-x-student-id.png`.
+  - Authentic student screenshots provided and committed at `hw06/screenshots/fr01-x-student-id.png`, `hw06/screenshots/fr07-x-student-id.png`, and `hw06/screenshots/fr12-x-student-id.png`.
   - Zero synthetic screenshots used.
 - [ ] **Gate 2: Authentic Newman Run**
   - Confirmed: Hostname is `localhost` / `127.0.0.1`.

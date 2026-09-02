@@ -28,9 +28,10 @@
   - Personally review each AI-generated test case.
   - Fill fields: `Student Verdict`, `Student Reasoning`, `Student Correction`, `Student Reviewed At`.
   - *Completed and committed locally (`c98513e`).*
-- [ ] **2.3 FR-12 Audit (≥ 35 AI Test Cases):**
+- [x] **2.3 FR-12 Audit (≥ 35 AI Test Cases):**
   - Personally review each AI-generated test case.
   - Fill fields: `Student Verdict`, `Student Reasoning`, `Student Correction`, `Student Reviewed At`.
+  - *Completed and committed locally (`dea0e48`).*
 
 ---
 
@@ -46,9 +47,10 @@
   - Author $\ge 5$ original tests (e.g., malformed raw JSON, wrong Content-Type, expired JWT, conflicting metadata, read idempotency).
   - Provide explanation: Why did AI miss these test cases?
   - *Note: 5 extension tests formalized and committed (`ce50600`).*
-- [ ] **3.3 FR-12 Extensions (≥ 5 Student-Authored Tests):**
-  - Author $\ge 5$ original tests (e.g., token signature tampering, role mutation via profile update, HTTP verb tampering, admin deletion boundary).
+- [x] **3.3 FR-12 Extensions (≥ 5 Student-Authored Tests):**
+  - Author $\ge 5$ original tests (e.g., `alg=none` token, future `nbf` token, whitespace role `" admin "`, array role `["admin"]`, body `"role": "admin"` override).
   - Provide explanation: Why did AI miss these test cases?
+  - *Completed and committed locally (`fe31f17`).*
 
 ---
 
@@ -65,11 +67,16 @@
   - Execute request (e.g. `FR07-AI-001 — Retrieve Empty Cart Baseline`).
   - Capture Postman Console showing `X-Student-Id: 23127027` and real 200 OK response.
   - Saved image to `hw06/screenshots/fr07-x-student-id.png` (and `fr07-x-student-id.jpg`).
-- [x] **4.2 Real Newman Execution Verification (FR-01):**
+- [x] **4.3 Real Postman Console Screenshot for FR-12 (`X-Student-Id`):**
+  - Open Postman desktop app, import `hw06/postman/collections/fr12-access-control.postman_collection.json` and `hw06/postman/environments/fr12-environment.json`.
+  - Execute request `FR12-AI-015 — Admin GET /api/admin/users`.
+  - Capture Postman Console showing `X-Student-Id: 23127027` and real 200 OK response.
+  - Verified and saved image to `hw06/screenshots/fr12-x-student-id.png` (and `fr12-x-student-id.jpg`).
+- [x] **4.4 Real Newman Execution Verification (FR-01, FR-07, FR-12):**
   - Verify that the automated Newman run output reflects local hostname (`localhost:3000` / `127.0.0.1`).
-  - Generated genuine `hw06/newman/fr01/fr01-cli-output.txt` and `hw06/newman/fr01/fr01-report.html`.
-- [x] **4.3 Postman Advanced Feature Verification (FR-01):**
-  - Documented features in `hw06/docs/postman-features.md` and automated in collection (`16e510c`).
+  - Generated genuine `hw06/newman/fr01/`, `hw06/newman/fr07/`, and `hw06/newman/fr12/` CLI output and HTML extra reports.
+- [x] **4.5 Postman Advanced Feature Verification:**
+  - Documented features in `hw06/docs/postman-features.md` and automated in collections.
 
 ---
 
@@ -84,10 +91,17 @@
     - Issue #5: [`[DEF-FR01-05] Medium: Missing Email Syntax Validation`](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/5)
     - Issue #6: [`[FR-07] High: Adding Duplicate Product to Cart Appends New Row`](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/6)
     - Issue #7: [`[FR-07] High: Missing Quantity Domain Validation on POST /api/cart`](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/7)
+    - Issue #8: [`[FR-12] Critical: Missing Administrator Role Verification on Administrative Endpoints (/api/admin/*)`](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/8)
+    - Issue #9: [`[FR-12] Critical: Complete Absence of Authentication on Product Catalog Mutations (/api/products)`](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/9)
+    - Issue #10: [`[FR-12] High: Missing Administrator Role Check on Category Mutations (/api/categories)`](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/10)
+    - Issue #11: [`[FR-12] Medium: Missing Administrator Role Check on Master Coupon Listing (GET /api/coupons)`](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/11)
 - [x] **5.2 FR-07 GitHub Issue Browser Screenshot:**
   - Student captured authentic browser screenshot of live GitHub Issue #6.
   - Verified and committed at `hw06/screenshots/fr07-bug-issue-001.png` (and `fr07-bug-issue-001.jpg`).
-- [ ] **5.3 Link Issues in Main Report:**
+- [ ] **5.3 FR-12 GitHub Issue Browser Screenshot:**
+  - Student captures authentic browser screenshot of live GitHub Issue #8 (`[FR-12] Critical: Missing Administrator Role Verification on Administrative Endpoints (/api/admin/*)`).
+  - Target save path: `hw06/screenshots/fr12-bug-issue-001.png`.
+- [ ] **5.4 Link Issues in Main Report:**
   - Update `hw06/docs/main-report.md` bug register with Issue #, Title, Severity, and screenshot links.
 
 ---

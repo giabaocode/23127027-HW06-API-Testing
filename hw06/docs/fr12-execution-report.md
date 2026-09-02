@@ -127,3 +127,20 @@ The remaining **148 assertions passed cleanly**, validating that:
 - Expired token (`FR12-AI-035`) and forged signature token (`FR12-AI-036`) were correctly rejected by jsonwebtoken (`403 Forbidden`).
 - Unsigned `alg=none` token (`FR12-STU-001`) and future `nbf` token (`FR12-STU-002`) were correctly rejected by jsonwebtoken (`403 Forbidden`).
 - 100% of HTTP requests carried the mandatory `X-Student-Id: 23127027` header.
+
+---
+
+## 7. Authentic Human Evidence Artifacts
+
+- **Real Postman Console Screenshot:**
+  - File: [`hw06/screenshots/fr12-x-student-id.png`](file:///Users/phamngocgiabao/eshop-sut/hw06/screenshots/fr12-x-student-id.png) (and `.jpg`)
+  - Description: Physically captured from Postman Desktop app showing request `FR12-AI-015 — Admin GET /api/admin/users`, 200 OK response, and expanded request header `X-Student-Id: 23127027`.
+- **Live GitHub Issue Defect Tracking:**
+  - `DEF-FR12-01` $\rightarrow$ Issue [#8](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/8): Missing admin role enforcement on `/api/admin/*`
+  - `DEF-FR12-02` $\rightarrow$ Issue [#9](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/9): Missing authentication on product mutations
+  - `DEF-FR12-03` $\rightarrow$ Issue [#10](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/10): Missing admin role enforcement on category mutations
+  - `DEF-FR12-04` $\rightarrow$ Issue [#11](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/11): Missing admin role enforcement on GET `/api/coupons`
+- **Execution Reports & CLI Output:**
+  - CLI Output Log: [`hw06/newman/fr12/fr12-cli-output.txt`](file:///Users/phamngocgiabao/eshop-sut/hw06/newman/fr12/fr12-cli-output.txt)
+  - HTML Extra Report: [`hw06/newman/fr12/fr12-report.html`](file:///Users/phamngocgiabao/eshop-sut/hw06/newman/fr12/fr12-report.html)
+
