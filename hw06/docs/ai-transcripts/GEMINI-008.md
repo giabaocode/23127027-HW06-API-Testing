@@ -154,4 +154,87 @@ Do NOT start generating the 38 AI test cases until I explicitly instruct you.
 
 ## 2. Verbatim Conversational AI Response
 
-[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]
+=== FINAL CONSISTENCY CORRECTIONS ===
+
+1. **Type Classification Consistency:**
+   - Because `api_specification.md` Line 14–20 provides a sample JSON payload without formal type keywords, the data types of `name`, `email`, and `password` have been uniformly classified as **`INFERRED FROM EXAMPLE`** across both [spec-analysis.md](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr01/spec-analysis.md) and [coverage-matrix.md](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr01/coverage-matrix.md).
+2. **Conditional Success Status for Inferred/Robustness Inputs:**
+   - Inferred and robustness partitions (Vietnamese Unicode diacritics, plus-addressing, `Password123!#`, apostrophes in names) now clearly distinguish input acceptance from documented success status:
+     - Input Acceptance: **`INFERRED / ROBUSTNESS`** (or **`UNKNOWN`**).
+     - Conditional Status: *If accepted by backend, documented success status = 200*.
+   - Specifically, the 128-character password robustness probe has an **`UNKNOWN`** expected contract status because the specification does not declare an upper length limit.
+3. **SEC-05 vs. Name Validity Distinction:**
+   - For names containing apostrophes/SQL syntax (`"O'Connor"`):
+     - Security Expectation (**`SPECIFIED`**): Input treated as literal data, query structure unaltered, no unintended SQL executed, database integrity preserved.
+     - Name Acceptance (**`INFERRED / ROBUSTNESS`**): The specification does not explicitly guarantee that names with punctuation are valid accepted names. Literal storage is one secure outcome; rejection via an independent input-validation rule without SQL error is equally secure.
+4. **Retrospective Audit Logging:**
+   - [`hw06/docs/ai-transcripts/GEMINI-007.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-007.md) has been finalized with the **complete, untruncated verbatim conversational response** from Turn 7.
+   - [`hw06/docs/ai-transcripts/GEMINI-008.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-008.md) was created with the provisional placeholder `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]`.
+   - Section 5 of [hw06/docs/ai-audit.md](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-audit.md) preserves the Factual AI Errors register (`AI-ERR-01` through `AI-ERR-04`).
+
+---
+
+=== PLANNED TEST COUNT ===
+**38**
+
+*Programmatic Verification via Python:*
+```bash
+python3 -c "
+lines = open('hw06/testcases/fr01/coverage-matrix.md').readlines()
+total = sum(int(line.split('|')[-2].strip()) for line in lines if line.strip().startswith('| **COV-FR01-'))
+print('Total Planned Tests:', total)
+assert total == 38, f'Expected 38, got {total}'
+"
+# Output: Total Planned Tests: 38
+```
+
+---
+
+=== PHASE 1 SPEC ANALYSIS COMMIT ===
+
+- **Commit Hash:** `d467a7e2058da6cfb9c4cdfb94321f13cbff7eb4` (short: `d467a7e`)
+- **Committed Files:**
+  ```text
+  hw06/docs/ai-audit.md
+  hw06/docs/ai-transcripts/GEMINI-005.md
+  hw06/docs/ai-transcripts/GEMINI-006.md
+  hw06/docs/ai-transcripts/GEMINI-007.md
+  hw06/docs/ai-transcripts/GEMINI-008.md
+  hw06/testcases/fr01/coverage-matrix.md
+  hw06/testcases/fr01/spec-analysis.md
+  ```
+- **Commit Message:**
+  ```text
+  test(fr01): complete reviewed specification analysis and coverage plan
+  ```
+- **Git Status:**
+  ```text
+  On branch main
+  Your branch is ahead of 'origin/main' by 2 commits.
+    (use "git push" to publish your local commits)
+
+  Untracked files:
+    (use "git add <file>..." to include in what will be committed)
+  	2026.HW06.API Testing_En.pdf
+
+  nothing added to commit but untracked files present (use "git add" to track)
+  ```
+- **Remote Push Status:** Zero remote pushes executed (purely local commit).
+
+---
+
+=== AI AUDIT STATUS ===
+
+- [hw06/docs/ai-audit.md](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-audit.md) is up to date:
+  - Transcript index updated with `GEMINI-001` through `GEMINI-008`.
+  - Interaction blocks `GEMINI-001` through `GEMINI-007` contain finalized verbatim responses or references to complete transcripts.
+  - Interaction block `GEMINI-008` follows the retrospective logging protocol.
+  - Section 5 retains the Factual AI Errors register documenting `AI-ERR-01` (schema uniqueness hallucination), `AI-ERR-02` (mental recount discrepancy), `AI-ERR-03` (premature verbatim logging), and `AI-ERR-04` (rigid JSON schema inference from example).
+
+---
+
+=== PHASE 1 FR-01 SPEC ANALYSIS COMPLETE ===
+
+Phase 1 specification analysis and the planned coverage matrix for **FR-01 (Account Registration)** have been fully reviewed, calibrated, mathematically verified to 38 planned test cases, and committed locally to Git.
+
+**We are halted. We will not generate any test cases until you explicitly instruct us to proceed to Phase 2.**

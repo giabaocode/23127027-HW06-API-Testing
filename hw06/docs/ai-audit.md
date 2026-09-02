@@ -35,6 +35,7 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-006** | 2026-09-02T11:47:13+07:00 | Phase 1 | Human Review Corrections for FR-01 Spec Analysis | [`hw06/docs/ai-transcripts/GEMINI-006.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-006.md) |
 | **GEMINI-007** | 2026-09-02T11:51:45+07:00 | Phase 1 | Human Review Checkpoint 1B Finalization & Coverage Count Calibration | [`hw06/docs/ai-transcripts/GEMINI-007.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-007.md) |
 | **GEMINI-008** | 2026-09-02T11:56:35+07:00 | Phase 1 | Consistency Calibration & Local Commit of FR-01 Specification Analysis | [`hw06/docs/ai-transcripts/GEMINI-008.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-008.md) |
+| **GEMINI-009** | 2026-09-02T12:00:10+07:00 | Phase 2 | AI Test Case Generation for FR-01 (38 Test Cases) | [`hw06/docs/ai-transcripts/GEMINI-009.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-009.md) |
 
 ---
 
@@ -275,7 +276,38 @@ To ensure total transparency without truncating large conversational turns, full
 *See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-008.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-008.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-008.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-008.md) via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-008.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-008.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-009
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T12:00:10+07:00
+- **Phase:** Phase 2 — AI Test Case Generation for FR-01 (Account Registration)
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-008.md` (finalized with complete verbatim response)
+  - `hw06/docs/ai-transcripts/GEMINI-009.md` (created with retrospective placeholder)
+  - `hw06/testcases/fr01/generated-ai-original.md` (created with exactly 38 AI-generated test cases)
+  - `hw06/testcases/fr01/human-audit.md` (created with 38 rows and empty student audit fields)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Commands Executed:**
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-008.md`
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-009.md`
+  - `write_to_file hw06/testcases/fr01/generated-ai-original.md`
+  - `write_to_file hw06/testcases/fr01/human-audit.md`
+  - `python3 -c "..."` (validated 38 tests, continuous IDs, coverage mapping, empty audit fields)
+  - `git status`
+  - `git add hw06/`
+  - `git commit -m "test(fr01): generate 38 AI registration test cases"`
+- **Git Actions:** Executed local commit representing AI generation step (PDF excluded, zero remote push).
+- **Human Checkpoint:** Checkpoint 2 — Student Human Audit Required (Awaiting student independent review).
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-009.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-009.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-009.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-009.md) via retrospective logging).
 
 ---
 
