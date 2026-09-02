@@ -43,6 +43,8 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-014** | 2026-09-02T13:54:44+07:00 | Phase 3 | Phase 3A: Reviewed AI Final Set Creation & Student Extension Template Setup | [`hw06/docs/ai-transcripts/GEMINI-014.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-014.md) |
 | **GEMINI-015** | 2026-09-02T14:08:03+07:00 | Phase 3 | Phase 3B: Formalize 5 Student-Selected Registration Extension Tests | [`hw06/docs/ai-transcripts/GEMINI-015.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-015.md) |
 | **GEMINI-016** | 2026-09-02T14:11:56+07:00 | Phase 4 & 5 | FR-01 Postman Automation, Local SUT Startup & Real Newman Execution | [`hw06/docs/ai-transcripts/GEMINI-016.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-016.md) |
+| **GEMINI-017** | 2026-09-02T14:28:33+07:00 | Environment | Terminate Background SUT Process to Free Port 3000 | [`hw06/docs/ai-transcripts/GEMINI-017.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-017.md) |
+| **GEMINI-018** | 2026-09-02T15:57:48+07:00 | Phase 5 & 6 | Session Resumption: SUT Status, Screenshot Verification & Defect Reporting | [`hw06/docs/ai-transcripts/GEMINI-018.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-018.md) |
 
 ---
 
@@ -528,7 +530,52 @@ To ensure total transparency without truncating large conversational turns, full
 *See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-016.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-016.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-016.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-016.md) via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-016.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-016.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-017
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T14:28:33+07:00
+- **Phase:** Environment Support — Process Termination & Port Management
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-017.md` (created)
+- **Commands Executed:**
+  - `manage_task Action="list"`
+  - `manage_task Action="kill" TaskId="task-550"`
+  - `kill -9 52187 2>/dev/null || true; lsof -i :3000 || true`
+  - `lsof -i :3000 || true`
+- **Result:** SUT backend process terminated and port 3000 released for student's concurrent HW05 session.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-017.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-017.md)
+
+#### Verbatim AI Output
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-017.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-017.md)
+
+---
+
+### Interaction GEMINI-018
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T15:57:48+07:00
+- **Phase:** Phase 5 & 6 — Session Resumption: SUT Relaunch, Human Screenshot Guidance & GitHub Issues Defect Filing
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-016.md` (finalized with complete verbatim response)
+  - `hw06/docs/ai-transcripts/GEMINI-017.md` (created)
+  - `hw06/docs/ai-transcripts/GEMINI-018.md` (created with retrospective placeholder)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Commands Executed:**
+  - `ls -la hw06/screenshots/`
+  - `lsof -i :3000 || true`
+- **Human Checkpoint:** Checkpoint 5A — Human Screenshot Evidence (`hw06/screenshots/fr01-x-student-id.png`).
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-018.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-018.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-018.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-018.md) via retrospective logging).
 
 ---
 

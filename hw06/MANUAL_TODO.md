@@ -20,9 +20,10 @@
 
 > *Rule:* AI drafts $\ge 35$ test cases per feature leaving review fields empty. The student must personally evaluate and fill each record.
 
-- [ ] **2.1 FR-01 Audit (≥ 35 AI Test Cases):**
+- [x] **2.1 FR-01 Audit (≥ 35 AI Test Cases):**
   - Personally review each AI-generated test case.
   - Fill fields: `Student Verdict` (`VALID` / `INVALID` / `INCOMPLETE`), `Student Reasoning`, `Student Correction`, `Student Reviewed At`.
+  - *Completed and committed locally (`189814b`).*
 - [ ] **2.2 FR-07 Audit (≥ 35 AI Test Cases):**
   - Personally review each AI-generated test case.
   - Fill fields: `Student Verdict`, `Student Reasoning`, `Student Correction`, `Student Reviewed At`.
@@ -39,6 +40,7 @@
 - [ ] **3.1 FR-01 Extensions (≥ 5 Student-Authored Tests):**
   - Author $\ge 5$ original tests (e.g., duplicate registration race/lifecycle, domain boundary, DB-layer password hashing).
   - Provide explanation: Why did AI miss these test cases?
+  - *Note: 5 extension tests formalized and committed (`72bed5d`); requirement kept open until separate student-scratch items are confirmed.*
 - [ ] **3.2 FR-07 Extensions (≥ 5 Student-Authored Tests):**
   - Author $\ge 5$ original tests (e.g., cross-user cart isolation, quantity accumulation, price tampering, negative/decimal boundaries).
   - Provide explanation: Why did AI miss these test cases?
@@ -52,24 +54,15 @@
 
 > *Note on Execution:* SUT startup, Postman collection generation, and Newman CLI / HTML execution will be automated via AI tools in the workspace. The student must provide and verify attributable human evidence.
 
-- [ ] **4.1 Real Postman Console Screenshot (`X-Student-Id`):**
+- [x] **4.1 Real Postman Console Screenshot (`X-Student-Id`):**
   - Open Postman desktop app, execute a request from the collection.
   - Capture real screenshot of Postman Console showing request sending `X-Student-Id: 23127027` header.
-  - Save image to `hw06/screenshots/postman-x-student-id.png`.
-- [ ] **4.2 Real Newman Execution Verification:**
+  - Saved image to `hw06/screenshots/fr01-x-student-id.png` (and `fr01-x-student-id.jpg`).
+- [x] **4.2 Real Newman Execution Verification (FR-01):**
   - Verify that the automated Newman run output reflects local hostname (`localhost:3000` / `127.0.0.1`).
-  - Confirm `hw06/newman/newman-run.log` and `hw06/newman/newman-report.html` contain authentic execution results.
-- [ ] **4.3 Postman Advanced Feature Verification:**
-  - Exercise and document Postman features used:
-    - Collection: **use** (structured collection for HW06)
-    - Environment: **use where useful** (`baseUrl`, tokens)
-    - Collection / environment variables: **use** (dynamic token extraction, state passing)
-    - Pre-request scripts: **use** (centralized `X-Student-Id` injection)
-    - Test scripts: **use** (status, body, and schema assertions)
-    - Data-driven execution: **use where meaningful** (boundary/partition data files)
-    - Mock Server: **optional if genuinely useful**
-    - Monitor: **optional if genuinely practical**
-  - Maintain documentation in `hw06/docs/postman-features.md`.
+  - Generated genuine `hw06/newman/fr01/fr01-cli-output.txt` and `hw06/newman/fr01/fr01-report.html`.
+- [x] **4.3 Postman Advanced Feature Verification (FR-01):**
+  - Documented features in `hw06/docs/postman-features.md` and automated in collection (`16e510c`).
 
 ---
 

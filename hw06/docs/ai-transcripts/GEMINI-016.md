@@ -677,4 +677,196 @@ evidence gate.
 
 ## 2. Verbatim Conversational AI Response
 
-[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]
+=== POSTMAN COLLECTION CREATED ===
+
+- **Collection File:** [hw06/postman/collections/fr01-registration.postman_collection.json](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/collections/fr01-registration.postman_collection.json)
+- **Environment File:** [hw06/postman/environments/eshop-local.postman_environment.json](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/environments/eshop-local.postman_environment.json)
+  - `baseUrl`: `http://localhost:3000`
+  - `studentId`: `23127027`
+- **Total API Requests in Collection:** Exactly **42 requests** organized into 8 folders:
+  1. `01 - Positive Happy Path` (5 requests: `FR01-AI-001`, `009`, `020`, `027`, `028`)
+  2. `02 - Required Fields Validation` (6 requests: `FR01-AI-003`, `004`, `011`, `012`, `032`, `035`)
+  3. `03 - Email Format & Validation` (3 requests: `FR01-AI-010`, `013`, `014`)
+  4. `04 - Password Policy Verification` (9 requests: `FR01-AI-021`, `022`, `023`, `024`, `025`, `026`, `029`, `030`, `031`)
+  5. `05 - State & Duplicate Lifecycle` (3 requests: `FR01-AI-016`, `017`, `018`)
+  6. `06 - Security Assertions` (3 requests: `FR01-AI-007`, `019`, `038`)
+  7. `07 - Robustness & Characterization` (8 requests: `FR01-AI-002`, `005`, `006`, `008`, `015`, `033`, `034`, `036`)
+  8. `08 - Student-Selected Extensions` (5 requests: `FR01-STU-001` through `005`)
+
+---
+
+=== POSTMAN FEATURES USED ===
+
+Documented in [hw06/docs/postman-features.md](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/postman-features.md):
+1. **Collection & Hierarchical Folders:** Structured into 8 functional categories.
+2. **Environment & Variable Decoupling:** `baseUrl` and `studentId` stored in environment variables.
+3. **Collection-Level Pre-Request Script:** Centrally injects `X-Student-Id: 23127027` into all outbound requests.
+4. **Collection-Level Test Script:** Globally asserts presence of `X-Student-Id` and network resilience.
+5. **Request-Level Pre-Request Script (Chaining):** Dynamically generates accounts via `pm.sendRequest()` for state-dependent testing (`FR01-AI-017`).
+6. **Dynamic Variables (`{{$timestamp}}`):** Guarantees test data isolation across repeated runs.
+7. **Raw Unparsed Body Preservation:** Preserves malformed syntax (`FR01-STU-001`) and duplicate keys (`FR01-STU-003`) without serializer interference.
+8. **Request-Level Header Override:** Exercises MIME type variation (`FR01-STU-002`).
+9. **HTTP Verb Variation:** Exercises routing tampering via `PUT` (`FR01-STU-004`).
+
+---
+
+=== TRACEABILITY VALIDATION ===
+
+Programmatically verified via `python3 hw06/postman/scripts/validate_collection.py`:
+- **Collection Syntax:** 100% valid Postman Schema v2.1.0 JSON.
+- **Test ID Coverage:** Exactly **42 / 42 API requests** mapped with **0 duplicates and 0 missing**.
+- **Special Serialization Integrity:**
+  - `FR01-STU-001`: Raw string verified missing closing `}`.
+  - `FR01-STU-002`: `Content-Type: text/plain` preserved.
+  - `FR01-STU-003`: Duplicate `"email"` keys preserved in raw payload.
+  - `FR01-STU-004`: `PUT` method preserved.
+  - `FR01-AI-019`: Redesigned payload `"Robert'); DROP TABLE users;--"` verified.
+
+---
+
+=== X-STUDENT-ID IMPLEMENTATION ===
+
+- **Central Hook:** Collection Root Pre-Request Script:
+  ```javascript
+  pm.request.headers.upsert({
+      key: "X-Student-Id",
+      value: pm.environment.get("studentId") || "23127027"
+  });
+  ```
+- **Automated Verification Assertion:** Added to collection root:
+  ```javascript
+  pm.test("Central Injection - Request header X-Student-Id is present and matches 23127027", function () {
+      pm.expect(pm.request.headers.get("X-Student-Id")).to.eql("23127027");
+  });
+  ```
+- **Execution Proof:** Passed **42 / 42 requests (100%)** during runtime execution.
+
+---
+
+=== SUT STARTUP ===
+
+- **Backend Location:** `/Users/phamngocgiabao/eshop-sut/backend`
+- **Dependencies Installed:** `npm install` executed cleanly (Express 5.2.1, SQLite3 6.0.1, Body-Parser 2.2.2).
+- **Start Command:** `node server.js`
+- **Real Server Output:** `Server is running on http://localhost:3000`
+- **Smoke Check:** Verified `POST http://localhost:3000/api/register` returned `200 OK`.
+- **Database Reset:** SQLite baseline restored from `backend/database.sqlite.bak`.
+
+---
+
+=== REAL NEWMAN EXECUTION ===
+
+- **Execution Command:**
+  ```bash
+  npx -y -p newman -p newman-reporter-htmlextra newman run \
+    hw06/postman/collections/fr01-registration.postman_collection.json \
+    -e hw06/postman/environments/eshop-local.postman_environment.json \
+    --reporters cli,htmlextra \
+    --reporter-htmlextra-export hw06/newman/fr01/fr01-report.html
+  ```
+- **Report Outputs Generated (Unfabricated):**
+  - **HTML Report:** [hw06/newman/fr01/fr01-report.html](file:///Users/phamngocgiabao/eshop-sut/hw06/newman/fr01/fr01-report.html) (**968 KB**)
+  - **CLI Output Log:** [hw06/newman/fr01/fr01-cli-output.txt](file:///Users/phamngocgiabao/eshop-sut/hw06/newman/fr01/fr01-cli-output.txt) (**40 KB**)
+
+---
+
+=== FR-01 DB SECURITY VERIFICATION (NON-API SEC-01) ===
+
+- **Execution Script:** `NODE_PATH=backend/node_modules node hw06/postman/scripts/verify-sec01-plaintext.js`
+- **Submitted Plaintext Password:** `"SecretPlaintextPassword123!"`
+- **Database Query:** `SELECT id, email, password FROM users WHERE email = ?`
+- **Actual SQLite Row Found:**
+  ```text
+  User ID:         3
+  Stored Email:    fr01_sec01_1788333652931@example.com
+  Stored Password: SecretPlaintextPassword123!
+  ```
+- **Comparison:** `stored_password === submitted_plaintext: true`
+- **Verdict:** **FAILED — SEC-01 VIOLATION CONFIRMED**. Passwords are saved in raw plaintext in SQLite.
+
+---
+
+=== REAL RESULT SUMMARY ===
+
+```text
+======================================================================
+REAL NEWMAN & AUTOMATION EXECUTION METRICS
+======================================================================
+Total HTTP Requests:   43 (42 collection requests + 1 chained call)
+Total Assertions:      167
+Passed Assertions:     139 (83.2%)
+Failed Assertions:     28  (16.8%)
+Skipped Assertions:    0
+Non-API Probe Result:  SEC-01 Plaintext Storage VIOLATION CONFIRMED
+======================================================================
+```
+
+---
+
+=== FAILURE TRIAGE ===
+
+All 28 assertion failures stem from **real implementation gaps** in `backend/server.js` (Lines 20–30):
+1. **Mandatory Field Absence (12 assertion failures):**
+   `FR01-AI-003` (missing name), `004` (blank name), `011` (missing email), `012` (blank email), `032` (blank password), `035` (empty body).
+   *Reason:* SUT inserts `NULL` or empty strings without validation and returns `200 OK`.
+2. **Email Format Absence (4 assertion failures):**
+   `FR01-AI-013` (missing `@`), `014` (missing domain).
+   *Reason:* SUT lacks email regex validation and returns `200 OK`.
+3. **Password Policy Absence (10 assertion failures):**
+   `FR01-AI-025` (no symbol), `026` (len 7), `029` (no upper), `030` (no lower), `031` (no digit).
+   *Reason:* SUT performs zero password complexity or length checks and returns `200 OK`.
+4. **Duplicate Email Omission (2 assertion failures):**
+   `FR01-AI-016` (pre-seeded email duplicate), `017` (sequential duplicate call).
+   *Reason:* SQLite schema lacks `UNIQUE(email)` and `server.js` executes no lookup; duplicate records are silently inserted with `200 OK`.
+
+---
+
+=== CONFIRMED DEFECTS ===
+
+| Defect ID | Requirement | Category | Description & Runtime Evidence | Severity |
+| :---: | :---: | :---: | :--- | :---: |
+| **DEF-FR01-01** | `SEC-01` | Security | **Plaintext Password Storage:** User passwords submitted to `/api/register` are stored directly as unhashed plaintext in the SQLite database. | Critical |
+| **DEF-FR01-02** | `FR-01` | Data Integrity | **Missing Email Uniqueness Constraint:** Registering an existing email silently creates duplicate accounts with HTTP 200 instead of rejecting with an error. | High |
+| **DEF-FR01-03** | `FR-01` | Security / Business | **Missing Password Policy Enforcement:** Weak passwords lacking required length, character classes, or symbols are accepted with HTTP 200. | High |
+| **DEF-FR01-04** | `FR-01` | Input Validation | **Missing Mandatory Field Validation:** Requests completely omitting `name`, `email`, or `password` succeed with HTTP 200 and insert empty/null values. | High |
+| **DEF-FR01-05** | `FR-01` | Input Validation | **Missing Email Format Validation:** Malformed email strings missing `@` or domain names are accepted with HTTP 200. | Medium |
+
+---
+
+=== LOCAL COMMITS ===
+
+Executed two distinct local commits on branch `main`:
+1. **Commit `16e510c`:**
+   `test(fr01): add Postman automation for registration suite`
+   *(Collection, environment, validation scripts, SEC-01 verification script, README)*
+2. **Commit `96620d8`:**
+   `test(fr01): record real registration test execution`
+   *(Real Newman CLI log, HTML report, execution report)*
+
+*Zero remote pushes executed. Assignment PDF remains untracked.*
+
+---
+
+=== HUMAN ACTION REQUIRED — REAL SCREENSHOT EVIDENCE ===
+
+As mandated by course requirements, you must provide **authentic Postman Console screenshot evidence** showing the central student ID header injection.
+
+Please perform these exact minimal steps:
+
+1. Open your local **Postman desktop app**.
+2. Open the **Postman Console** (Click `Console` in the bottom-left status bar or press `Cmd + Alt + C` on macOS).
+3. Import or open collection: [fr01-registration.postman_collection.json](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/collections/fr01-registration.postman_collection.json).
+4. Select environment: [eshop-local.postman_environment.json](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/environments/eshop-local.postman_environment.json).
+5. Send request: **`FR01-AI-001 — Standard Valid ASCII Registration`**.
+6. In the Postman Console, click on the executed `POST http://localhost:3000/api/register` request and expand the **`Request Headers`** section.
+7. Confirm that the following header is visibly displayed:
+   ```text
+   X-Student-Id: 23127027
+   ```
+8. Capture a clean screenshot of the Postman Console showing that line clearly.
+9. Save the screenshot to:
+   ```text
+   hw06/screenshots/fr01-x-student-id.png
+   ```
+
+Once you have saved this screenshot (or if you would like me to proceed with documenting the bug reports on GitHub Issues), please let me know!
