@@ -1,0 +1,505 @@
+newman
+
+FR-07 — Shopping Cart Test Suite
+
+→ FR07-AI-001 — Retrieve Empty Cart Baseline
+  GET http://localhost:3000/api/cart [200 OK, 267B, 11ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-001 - Response status is 200 OK
+  ✓  FR07-AI-001 - Empty cart returns empty JSON array
+
+→ FR07-AI-002 (Step 1) — Add Single Item to Cart
+  POST http://localhost:3000/api/cart [200 OK, 294B, 5ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-002 - POST /api/cart accepts valid item addition
+
+→ FR07-AI-002 (Step 2) — Verify Populated Cart Contains Item
+  GET http://localhost:3000/api/cart [200 OK, 329B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-002 - GET /api/cart returns populated array
+
+→ FR07-AI-003 (Step 1) — Add Product 1 (q=1)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-AI-003 (Step 2) — Add Product 2 (q=3)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-AI-003 (Step 3) — Verify Multi-Item Cart Contains Both Products
+  GET http://localhost:3000/api/cart [200 OK, 391B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-003 - GET /api/cart returns 2 distinct products
+
+→ FR07-AI-004 — GET /api/cart with Missing Auth Token
+  GET http://localhost:3000/api/cart [401 Unauthorized, 301B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-004 - Unauthenticated GET rejected (401)
+
+→ FR07-AI-005 — GET /api/cart with Forged JWT Signature
+  GET http://localhost:3000/api/cart [403 Forbidden, 295B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-005 - Forged token rejected (403)
+
+→ FR07-AI-006 — GET /api/cart with Non-Bearer Authorization Scheme
+  GET http://localhost:3000/api/cart [401 Unauthorized, 301B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-006 - Malformed scheme rejected (401/403)
+
+→ FR07-AI-007 — Standard Valid Item Addition
+  POST http://localhost:3000/api/cart [200 OK, 294B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-007 - Standard addition succeeds with 200 OK
+
+→ FR07-AI-008 — Sequential Addition of Second Distinct Product
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-008 - Distinct item addition succeeds with 200 OK
+
+→ FR07-AI-009 (Step 1) — Add Product 1 (q=2)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-AI-009 (Step 2) — Add Product 1 Again (q=3)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-AI-009 (Step 3) — Verify Duplicate Accumulation (Expected: 1 row, q=5)
+  GET http://localhost:3000/api/cart [200 OK, 391B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  1. FR07-AI-009 - SPECIFIED RULE: Exactly 1 row for duplicate product
+  2. FR07-AI-009 - SPECIFIED RULE: Quantity accumulated to 5 (2 + 3)
+
+→ FR07-AI-010 (Step 1) — Add Product 1 (q=1)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-AI-010 (Step 2) — Add Product 2 (q=2)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-AI-010 (Step 3) — Add Product 1 Again (q=4)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-AI-010 (Step 4) — Verify Interleaved Accumulation (Expected: 2 rows, p1 q=5)
+  GET http://localhost:3000/api/cart [200 OK, 452B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  3. FR07-AI-010 - Cart has exactly 2 rows for 2 distinct products
+  4. FR07-AI-010 - Product 1 accumulated quantity is 5 (1 + 4)
+
+→ FR07-AI-011 (Step 1) — Add Product 1 (q=1)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-AI-011 (Step 2) — Add Product 1 Again (q=1)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-AI-011 (Step 3) — Verify Unit Increment Accumulation (Expected: 1 row, q=2)
+  GET http://localhost:3000/api/cart [200 OK, 391B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  5. FR07-AI-011 - Exactly 1 row for product 1
+  6. FR07-AI-011 - Product 1 accumulated quantity is 2 (1 + 1)
+
+→ FR07-AI-012 — Quantity Min Boundary (q=1)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-012 - Quantity min boundary (q=1) accepted (200 OK)
+
+→ FR07-AI-013 — Quantity Min+1 Boundary (q=2)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-013 - Quantity min+1 (q=2) accepted (200 OK)
+
+→ FR07-AI-014 — Zero Quantity Rejection (q=0)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  7. FR07-AI-014 - SPECIFIED RULE: Quantity 0 must be rejected
+
+→ FR07-AI-015 — Immediate Negative Quantity Rejection (q=-1)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  8. FR07-AI-015 - SPECIFIED RULE: Negative quantity (-1) must be rejected
+
+→ FR07-AI-016 — Large Negative Quantity Rejection (q=-100)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  9. FR07-AI-016 - SPECIFIED RULE: Negative quantity (-100) must be rejected
+
+→ FR07-AI-017 — Fractional Quantity Rejection (q=1.5)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 10. FR07-AI-017 - SPECIFIED RULE: Fractional quantity (1.5) must be rejected
+
+→ FR07-AI-018 — Sub-Unit Decimal Quantity Rejection (q=0.5)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 11. FR07-AI-018 - SPECIFIED RULE: Sub-unit decimal (0.5) must be rejected
+
+→ FR07-AI-019 — String Numeric Quantity Probe (q='2')
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-019 - Server handles string numeric quantity safely without crash
+
+→ FR07-AI-020 — Non-Numeric String Quantity Rejection (q='abc')
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 12. FR07-AI-020 - Non-numeric string quantity rejected
+
+→ FR07-AI-021 — Special Symbol String Quantity Rejection (q='@#$')
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 13. FR07-AI-021 - Special symbol quantity rejected
+
+→ FR07-AI-022 — Extreme Large Quantity Probe (q=10^9)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-022 - Server handles large integer without crash
+
+→ FR07-AI-023 — Omitted Mandatory Quantity Property Rejection
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 14. FR07-AI-023 - Missing quantity property rejected
+
+→ FR07-AI-024 — Explicit Null Quantity Rejection
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 15. FR07-AI-024 - Null quantity property rejected
+
+→ FR07-AI-025 — Non-Existent Catalog Product ID Probe (id=999999)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-025 - Server handles non-existent product ID with controlled response
+
+→ FR07-AI-026 — Negative Product ID Probe (id=-1)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-026 - Server handles negative ID with controlled response
+
+→ FR07-AI-027 — Omitted Product ID Property Probe
+  POST http://localhost:3000/api/cart [200 OK, 294B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-027 - Server handles omitted ID with controlled response
+
+→ FR07-AI-028 — String Product ID Probe (id='one')
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-028 - Server handles string ID with controlled response
+
+→ FR07-AI-029 (Step 1) — Add Item with Client Tampered Price (price=1)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-AI-029 (Step 2) — Inspect Stored Unit Price in Cart
+  GET http://localhost:3000/api/cart [200 OK, 324B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ┌
+  │ 'Observed stored price under price tampering:', 1
+  └
+  ✓  FR07-AI-029 - Cart returns item to characterize stored price
+
+→ FR07-AI-030 — Negative Price Robustness Probe (price=-50000)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-030 - Server handles negative price without crash
+
+→ FR07-AI-031 — Unauthenticated POST /api/cart Mutation Denial
+  POST http://localhost:3000/api/cart [401 Unauthorized, 301B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-031 - Unauthenticated POST rejected (401)
+
+→ FR07-AI-032 — POST /api/cart with Forged JWT Signature
+  POST http://localhost:3000/api/cart [403 Forbidden, 295B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-032 - Forged token on POST rejected (403)
+
+→ FR07-AI-033 — POST /api/cart with Wrong Auth Scheme (Basic)
+  POST http://localhost:3000/api/cart [403 Forbidden, 295B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-033 - Non-Bearer scheme on POST rejected (401/403)
+
+→ FR07-AI-034 (Step 1) — User A Adds Item to Cart
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-AI-034 (Step 2) — Verify User B Cart Remains Strictly Empty
+  GET http://localhost:3000/api/cart [200 OK, 267B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-034 - User B cart remains empty despite User A additions
+
+→ FR07-AI-035 (Step 1) — User B Adds Product 2 (q=1)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-AI-035 (Step 2) — User A Adds Product 1 (q=3)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-AI-035 (Step 3) — Verify User B Cart Unaffected by User A
+  GET http://localhost:3000/api/cart [200 OK, 329B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-035 - User B cart retains only Product 2
+
+→ FR07-AI-036 (Step 1) — User A Adds Product 1 (q=2)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-AI-036 (Step 2) — User B Adds Same Product 1 (q=3)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-AI-036 (Step 3) — Verify User A Product 1 Quantity Uncontaminated
+  GET http://localhost:3000/api/cart [200 OK, 452B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-036 - User A product 1 quantity is strictly isolated from User B
+
+→ FR07-AI-037 — Empty JSON Body Robustness Probe ({})
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-037 - Server safely handles empty JSON body without crash
+
+→ FR07-AI-038 — Extra Unexpected Payload Properties Probe
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-AI-038 - Server safely handles extra properties without crash
+
+→ FR07-STU-001 (Step 1) — Syntactically Malformed JSON Body Probe
+  POST http://localhost:3000/api/cart [400 Bad Request, 1.45kB, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-STU-001 - Parser catches malformed JSON syntax cleanly (400 expected)
+
+→ FR07-STU-001 (Step 2) — Verify Malformed Payload Caused Zero Cart Mutation
+  GET http://localhost:3000/api/cart [200 OK, 267B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-STU-001 - Cart remains empty following malformed request
+
+→ FR07-STU-002 (Step 1) — Wrong Content-Type Header (text/plain)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-STU-002 - Server handles text/plain safely without crashing
+
+→ FR07-STU-002 (Step 2) — Inspect Visible Cart State After text/plain Request
+  GET http://localhost:3000/api/cart [200 OK, 271B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-STU-002 - Cart state remains internally consistent
+
+→ FR07-STU-003 (Step 1) — POST /api/cart with Expired JWT Token
+  POST http://localhost:3000/api/cart [403 Forbidden, 295B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-STU-003 - SEC-02: Expired JWT token denied (401/403)
+
+→ FR07-STU-003 (Step 2) — Verify Zero Cart Mutation for Expired Token
+  GET http://localhost:3000/api/cart [200 OK, 267B, 0µs]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-STU-003 - Cart remains empty; expired token could not mutate state
+
+→ FR07-STU-004 (Step 1) — Add Product 1 (q=2, price=100000, name='Sản phẩm A')
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-STU-004 (Step 2) — Add Product 1 with Conflicting Metadata (q=3, price=1, name='Modified Product Name')
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-STU-004 (Step 3) — Verify Duplicate Accumulation & Characterize Metadata Resolution
+  GET http://localhost:3000/api/cart [200 OK, 393B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 16. FR07-STU-004 - SPECIFIED RULE: Exactly 1 row for product ID 1
+ 17. FR07-STU-004 - SPECIFIED RULE: Quantity accumulated to 5 (2 + 3)
+  ┌
+  │ 'FR07-STU-004 Observed Name:', 'Sản phẩm A', 'Price:',
+  │  100000
+  └
+
+→ FR07-STU-005 (Step 1) — Setup: Populate Cart with Product 1 (q=2)
+  POST http://localhost:3000/api/cart [200 OK, 294B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-STU-005 (Step 2) — GET /api/cart (Read 1)
+  GET http://localhost:3000/api/cart [200 OK, 329B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+
+→ FR07-STU-005 (Step 3) — GET /api/cart (Read 2)
+  GET http://localhost:3000/api/cart [200 OK, 329B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-STU-005 - Read 2 equals Read 1 (idempotent)
+
+→ FR07-STU-005 (Step 4) — GET /api/cart (Read 3)
+  GET http://localhost:3000/api/cart [200 OK, 329B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  FR07-STU-005 - Read 3 equals Read 1 (idempotency preserved across repeated reads)
+
+┌─────────────────────────┬─────────────────┬─────────────────┐
+│                         │        executed │          failed │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              iterations │               1 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│                requests │              67 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│            test-scripts │             134 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│      prerequest-scripts │              67 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              assertions │             187 │              17 │
+├─────────────────────────┴─────────────────┴─────────────────┤
+│ total run duration: 821ms                                   │
+├─────────────────────────────────────────────────────────────┤
+│ total data received: 3.67kB (approx)                        │
+├─────────────────────────────────────────────────────────────┤
+│ average response time: 1ms [min: 1ms, max: 11ms, s.d.: 1ms] │
+└─────────────────────────────────────────────────────────────┘
+
+   #  failure         detail                                                                                                         
+                                                                                                                                     
+ 01.  AssertionError  FR07-AI-009 - SPECIFIED RULE: Exactly 1 row for duplicate product                                              
+                      SUT violation: duplicate addition created duplicate rows instead of accumulating: expected 2 to deeply equal 1 
+                      at assertion:0 in test-script                                                                                  
+                      inside "FR07-AI-009 (Step 3) — Verify Duplicate Accumulation (Expected: 1 row, q=5)"                           
+                                                                                                                                     
+ 02.  AssertionError  FR07-AI-009 - SPECIFIED RULE: Quantity accumulated to 5 (2 + 3)                                                
+                      SUT violation: quantity did not accumulate to 5: expected 2 to deeply equal 5                                  
+                      at assertion:1 in test-script                                                                                  
+                      inside "FR07-AI-009 (Step 3) — Verify Duplicate Accumulation (Expected: 1 row, q=5)"                           
+                                                                                                                                     
+ 03.  AssertionError  FR07-AI-010 - Cart has exactly 2 rows for 2 distinct products                                                  
+                      Duplicate rows created for product 1: expected 3 to deeply equal 2                                             
+                      at assertion:0 in test-script                                                                                  
+                      inside "FR07-AI-010 (Step 4) — Verify Interleaved Accumulation (Expected: 2 rows, p1 q=5)"                     
+                                                                                                                                     
+ 04.  AssertionError  FR07-AI-010 - Product 1 accumulated quantity is 5 (1 + 4)                                                      
+                      expected 1 to deeply equal 5                                                                                   
+                      at assertion:1 in test-script                                                                                  
+                      inside "FR07-AI-010 (Step 4) — Verify Interleaved Accumulation (Expected: 2 rows, p1 q=5)"                     
+                                                                                                                                     
+ 05.  AssertionError  FR07-AI-011 - Exactly 1 row for product 1                                                                      
+                      expected 2 to deeply equal 1                                                                                   
+                      at assertion:0 in test-script                                                                                  
+                      inside "FR07-AI-011 (Step 3) — Verify Unit Increment Accumulation (Expected: 1 row, q=2)"                      
+                                                                                                                                     
+ 06.  AssertionError  FR07-AI-011 - Product 1 accumulated quantity is 2 (1 + 1)                                                      
+                      expected 1 to deeply equal 2                                                                                   
+                      at assertion:1 in test-script                                                                                  
+                      inside "FR07-AI-011 (Step 3) — Verify Unit Increment Accumulation (Expected: 1 row, q=2)"                      
+                                                                                                                                     
+ 07.  AssertionError  FR07-AI-014 - SPECIFIED RULE: Quantity 0 must be rejected                                                      
+                      SUT violation: accepted invalid quantity 0 with HTTP 200: expected 200 to be one of [ 400, 422 ]               
+                      at assertion:0 in test-script                                                                                  
+                      inside "FR07-AI-014 — Zero Quantity Rejection (q=0)"                                                           
+                                                                                                                                     
+ 08.  AssertionError  FR07-AI-015 - SPECIFIED RULE: Negative quantity (-1) must be rejected                                          
+                      SUT violation: accepted invalid quantity -1 with HTTP 200: expected 200 to be one of [ 400, 422 ]              
+                      at assertion:0 in test-script                                                                                  
+                      inside "FR07-AI-015 — Immediate Negative Quantity Rejection (q=-1)"                                            
+                                                                                                                                     
+ 09.  AssertionError  FR07-AI-016 - SPECIFIED RULE: Negative quantity (-100) must be rejected                                        
+                      SUT violation: accepted negative quantity -100: expected 200 to be one of [ 400, 422 ]                         
+                      at assertion:0 in test-script                                                                                  
+                      inside "FR07-AI-016 — Large Negative Quantity Rejection (q=-100)"                                              
+                                                                                                                                     
+ 10.  AssertionError  FR07-AI-017 - SPECIFIED RULE: Fractional quantity (1.5) must be rejected                                       
+                      SUT violation: accepted fractional quantity 1.5: expected 200 to be one of [ 400, 422 ]                        
+                      at assertion:0 in test-script                                                                                  
+                      inside "FR07-AI-017 — Fractional Quantity Rejection (q=1.5)"                                                   
+                                                                                                                                     
+ 11.  AssertionError  FR07-AI-018 - SPECIFIED RULE: Sub-unit decimal (0.5) must be rejected                                          
+                      SUT violation: accepted sub-unit decimal 0.5: expected 200 to be one of [ 400, 422 ]                           
+                      at assertion:0 in test-script                                                                                  
+                      inside "FR07-AI-018 — Sub-Unit Decimal Quantity Rejection (q=0.5)"                                             
+                                                                                                                                     
+ 12.  AssertionError  FR07-AI-020 - Non-numeric string quantity rejected                                                             
+                      SUT accepted non-numeric string quantity: expected 200 to be one of [ 400, 422 ]                               
+                      at assertion:0 in test-script                                                                                  
+                      inside "FR07-AI-020 — Non-Numeric String Quantity Rejection (q='abc')"                                         
+                                                                                                                                     
+ 13.  AssertionError  FR07-AI-021 - Special symbol quantity rejected                                                                 
+                      SUT accepted symbol string quantity: expected 200 to be one of [ 400, 422 ]                                    
+                      at assertion:0 in test-script                                                                                  
+                      inside "FR07-AI-021 — Special Symbol String Quantity Rejection (q='@#$')"                                      
+                                                                                                                                     
+ 14.  AssertionError  FR07-AI-023 - Missing quantity property rejected                                                               
+                      SUT accepted cart addition missing quantity: expected 200 to be one of [ 400, 422 ]                            
+                      at assertion:0 in test-script                                                                                  
+                      inside "FR07-AI-023 — Omitted Mandatory Quantity Property Rejection"                                           
+                                                                                                                                     
+ 15.  AssertionError  FR07-AI-024 - Null quantity property rejected                                                                  
+                      SUT accepted null quantity: expected 200 to be one of [ 400, 422 ]                                             
+                      at assertion:0 in test-script                                                                                  
+                      inside "FR07-AI-024 — Explicit Null Quantity Rejection"                                                        
+                                                                                                                                     
+ 16.  AssertionError  FR07-STU-004 - SPECIFIED RULE: Exactly 1 row for product ID 1                                                  
+                      Duplicate row created under conflicting metadata addition: expected 2 to deeply equal 1                        
+                      at assertion:0 in test-script                                                                                  
+                      inside "FR07-STU-004 (Step 3) — Verify Duplicate Accumulation & Characterize Metadata Resolution"              
+                                                                                                                                     
+ 17.  AssertionError  FR07-STU-004 - SPECIFIED RULE: Quantity accumulated to 5 (2 + 3)                                               
+                      expected 2 to deeply equal 5                                                                                   
+                      at assertion:1 in test-script                                                                                  
+                      inside "FR07-STU-004 (Step 3) — Verify Duplicate Accumulation & Characterize Metadata Resolution"              
