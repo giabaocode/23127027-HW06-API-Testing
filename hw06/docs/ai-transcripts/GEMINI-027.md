@@ -268,4 +268,106 @@ Do not push.
 
 ## 2. Verbatim Conversational AI Response
 
-[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]
+=== FR-07 HUMAN AUDIT COMPLETE ===
+
+- **Student Reviewer:** Phạm Ngọc Gia Bảo (`23127027`)
+- **Review Date:** 2026-09-02
+- **Audit Worksheets Updated:**
+  - Detailed audit table: [`hw06/testcases/fr07/human-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/human-audit.md)
+  - Compact review sheet: [`hw06/testcases/fr07/human-review-compact.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/human-review-compact.md)
+- **Truthful Provenance Statement:**
+  - The preliminary critique and correction wording originated from the external ChatGPT second-AI review ([`hw06/testcases/fr07/ai-reference-audit.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/ai-reference-audit.md)).
+  - The student independently reviewed, verified, and adopted the final 23 VALID / 15 INCOMPLETE / 0 INVALID decisions.
+  - Gemini mechanically populated and formatted the audit worksheets and constructed the calibrated final test suite.
+
+---
+
+=== FINAL HUMAN DISTRIBUTION ===
+
+```text
+VALID:       23   (60.5%)
+INCOMPLETE:  15   (39.5%)
+INVALID:      0   ( 0.0%)
+-------------------------
+TOTAL:       38   (100.0%)
+```
+
+- **VALID (23 Cases):** `FR07-AI-001` .. `004`, `006` .. `011`, `019`, `022`, `025` .. `031`, `033` .. `036`.
+- **INCOMPLETE (15 Cases):** `FR07-AI-005`, `012`, `013`, `014`, `015`, `016`, `017`, `018`, `020`, `021`, `023`, `024`, `032`, `037`, `038`.
+- **INVALID (0 Cases):** None.
+- **Programmatic Verification:** Verified via automated script that all 38 rows are populated with verdicts, reasoning, concrete corrections for INCOMPLETE cases, and review timestamps.
+
+---
+
+=== ORIGINAL AI SET INTEGRITY ===
+
+- **File:** [`hw06/testcases/fr07/generated-ai-original.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/generated-ai-original.md)
+- **Status:** **100% byte-for-byte unchanged** from historical generation commit `ea6f968`.
+- Verified via automated `git diff` assertion in validation script.
+
+---
+
+=== REVIEWED FINAL SET ===
+
+- **File Created:** [`hw06/testcases/fr07/reviewed-ai-final.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/reviewed-ai-final.md)
+- **Total Test Cases:** Exactly 38 (`FR07-AI-001` through `FR07-AI-038`).
+- **Traceability:** Contains full test metadata across all 6 required sections (Identity, Traceability, Test Design, HTTP Requests, Expected Result, Lifecycle) with human audit calibrations incorporated.
+
+---
+
+=== AUDIT CORRECTIONS APPLIED ===
+
+The 15 INCOMPLETE test cases were calibrated as follows:
+
+1. **Exact Error Envelope Decoupling (`FR07-AI-005`, `FR07-AI-032`):**
+   - Removed hard-coded `{ error: 'Forbidden' }` contract assertion.
+   - Calibrated expected response contract to: `JSON error payload (exact envelope UNKNOWN / IMPLEMENTATION-OBSERVED)`.
+2. **HTTP Status Promotion Decoupling on Valid Boundaries (`FR07-AI-012`, `FR07-AI-013`):**
+   - Reclassified Oracle Classification to: `SPECIFIED (Semantic Acceptance) / INFERRED (HTTP Status)`.
+   - Expected HTTP status adjusted to: `200 OK (INFERRED)`.
+3. **HTTP Status Decoupling on Invalid Inputs (`FR07-AI-014`, `015`, `016`, `017`, `018`, `020`, `021`, `023`, `024`):**
+   - Removed contradictory `"Rejection status != 200 (UNKNOWN by spec; 400 Bad Request expected)"`.
+   - Replaced with: `UNKNOWN by official specification (Controlled rejection expected)`.
+   - Authoritative primary oracle remains semantic rejection and zero cart mutation.
+4. **Empty Body Payload Robustness (`FR07-AI-037`):**
+   - Removed mandatory non-200 / 400 requirement.
+   - Oracle calibrated to safe robustness: controlled response, no server crash, and zero unsafe cart mutation.
+5. **Extra Properties Schema Robustness (`FR07-AI-038`):**
+   - Replaced vague security wording with concrete assertion: base robustness verifies no unhandled exception and clean state retention; security defect logged only if unauthorized privilege escalation or parameter tampering demonstrably occurs.
+
+---
+
+=== LOCAL COMMITS ===
+
+Two separate, clean local commits were executed:
+
+1. **Human Audit Commit:**
+   - **Hash:** `c98513e1985134811386b6318cf9cb20d9d5b4ed` (`c98513e`)
+   - **Message:** `test(fr07): complete reviewed audit of AI cart tests`
+   - **Committed Files:**
+     - `hw06/testcases/fr07/human-audit.md`
+     - `hw06/testcases/fr07/human-review-compact.md`
+     - `hw06/testcases/fr07/populate_and_correct_fr07.py`
+     - `hw06/testcases/fr07/validate_fr07_final.py`
+     - `hw06/docs/ai-audit.md`
+     - `hw06/docs/ai-transcripts/GEMINI-026.md`
+     - `hw06/docs/ai-transcripts/GEMINI-027.md`
+2. **Reviewed Final Test Suite Commit:**
+   - **Hash:** `1cb2d440daf4e00918760727d69e9d9a1e7e0f11` (`1cb2d44`)
+   - **Message:** `test(fr07): apply audit corrections to cart tests`
+   - **Committed Files:**
+     - `hw06/testcases/fr07/reviewed-ai-final.md`
+     - `hw06/testcases/fr07/student-extensions.md`
+- **Remote Push:** **ZERO** pushes performed.
+
+---
+
+=== STUDENT EXTENSION TEMPLATE ===
+
+- **File Created:** [`hw06/testcases/fr07/student-extensions.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/student-extensions.md)
+- Contains **5 blank reserved slots** (`FR07-STU-001` through `FR07-STU-005`) plus optional slots.
+- **Zero AI-generated extension ideas were suggested or pre-filled.**
+
+---
+
+=== HUMAN GATE — FR-07 EXTENSION IDEAS ===

@@ -54,6 +54,7 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-025** | 2026-09-02T20:11:40+07:00 | Phase 2 (FR-07) | AI Test Case Generation (38 Tests) & Worksheet Preparation | [`hw06/docs/ai-transcripts/GEMINI-025.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-025.md) |
 | **GEMINI-026** | 2026-09-02T20:21:28+07:00 | Phase 2 (FR-07) | External AI Reference Review (ChatGPT) & Design Flaw Documentation | [`hw06/docs/ai-transcripts/GEMINI-026.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-026.md) |
 | **GEMINI-027** | 2026-09-02T20:55:44+07:00 | Phase 3 (FR-07) | Human Audit Formalization & Reviewed Final Test Suite | [`hw06/docs/ai-transcripts/GEMINI-027.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-027.md) |
+| **GEMINI-028** | 2026-09-02T21:09:49+07:00 | Phase 3 & 4 (FR-07) | Student Extensions Formalization, Postman Automation & Newman Execution | [`hw06/docs/ai-transcripts/GEMINI-028.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-028.md) |
 
 ---
 
@@ -797,7 +798,32 @@ To ensure total transparency without truncating large conversational turns, full
 *See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-027.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-027.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-027.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-027.md) via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-027.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-027.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-028
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T21:09:49+07:00
+- **Phase:** Phase 3 & Phase 4 (FR-07) — Student Extensions Formalization, Postman Automation & Newman Execution
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-027.md` (finalized)
+  - `hw06/docs/ai-transcripts/GEMINI-028.md` (created with retrospective placeholder)
+  - `hw06/testcases/fr07/student-extensions.md` (formalized: 5 student-selected extensions)
+  - `hw06/postman/fr07/` (Postman collection & environment for FR-07)
+  - `hw06/newman/fr07/` (Newman CLI & HTML reports)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Truthful Provenance Statement:**
+  - The 5 student extension ideas (`FR07-STU-001` through `005`) were surfaced during external AI brainstorming and selected and confirmed by the student (`Student Selection: CONFIRMED`).
+  - Gemini performed mechanical specification formalization, Postman script authoring, and Newman execution orchestration.
+- **Human Checkpoint:** Postman Console Screenshot Evidence Required.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-028.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-028.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-028.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-028.md) via retrospective logging).
 
 ---
 
