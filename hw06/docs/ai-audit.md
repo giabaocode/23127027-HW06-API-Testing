@@ -41,6 +41,7 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-012** | 2026-09-02T13:46:21+07:00 | Phase 2 | Student Human Audit Execution: All 38 FR-01 Cases Reviewed & Validated | [`hw06/docs/ai-transcripts/GEMINI-012.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-012.md) |
 | **GEMINI-013** | 2026-09-02T13:50:14+07:00 | Phase 2 | Phase 2 Completion & Local Commit of Student Human Audit | [`hw06/docs/ai-transcripts/GEMINI-013.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-013.md) |
 | **GEMINI-014** | 2026-09-02T13:54:44+07:00 | Phase 3 | Phase 3A: Reviewed AI Final Set Creation & Student Extension Template Setup | [`hw06/docs/ai-transcripts/GEMINI-014.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-014.md) |
+| **GEMINI-015** | 2026-09-02T14:08:03+07:00 | Phase 3 | Phase 3B: Formalize 5 Student-Selected Registration Extension Tests | [`hw06/docs/ai-transcripts/GEMINI-015.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-015.md) |
 
 ---
 
@@ -462,7 +463,37 @@ To ensure total transparency without truncating large conversational turns, full
 *See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-014.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-014.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-014.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-014.md) via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-014.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-014.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-015
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T14:08:03+07:00
+- **Phase:** Phase 3B — Student-Selected Registration Extension Tests Formalization
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-014.md` (finalized with complete verbatim response)
+  - `hw06/docs/ai-transcripts/GEMINI-015.md` (created with retrospective placeholder)
+  - `hw06/testcases/fr01/student-extensions.md` (formalized 5 student-selected extension tests)
+  - `hw06/docs/ai-audit.md` (updated & committed)
+- **Commands Executed:**
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-014.md`
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-015.md`
+  - `write_to_file hw06/testcases/fr01/student-extensions.md`
+  - `python3 -c "..."` (validated 5 distinct tests, truthful provenance, and automation readiness)
+  - `git add hw06/`
+  - `git commit -m "test(fr01): formalize selected registration extension tests"`
+  - `git status`
+- **Git Actions:** Executed local commit on branch `main` (`test(fr01): formalize selected registration extension tests`).
+- **Truthful Authorship & Provenance Record:** The 5 test ideas formalized in this step were originally surfaced during AI brainstorming, selected and confirmed by the student, and mechanically formalized by Gemini. In strict adherence to course academic integrity requirements, they are recorded as student-selected rather than invented from scratch.
+- **Human Checkpoint:** Phase 3B Complete (Extension tests formalized and committed locally). Ready for Postman Automation.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-015.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-015.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-015.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-015.md) via retrospective logging).
 
 ---
 
