@@ -16,7 +16,7 @@
 
 ## 1. Description
 
-The product mutation endpoints (`POST /api/products`, `PUT /api/products/:id`, `DELETE /api/products/:id`) completely omit authentication middleware. Anonymous callers without any `Authorization` header and standard non-administrative customers (`role = 'user'`) can create new products, overwrite existing product prices/descriptions, and permanently delete products from the public catalog.
+The product mutation endpoints (`POST /api/products`, `PUT /api/products/:id`, `DELETE /api/products/:id`) completely omit authentication middleware. Anonymous callers without any `Authorization` header and standard non-administrative users (`role = 'user'`) can create new products, overwrite existing product prices/descriptions, and permanently delete products from the public catalog.
 
 This directly violates:
 - `README.md` Section 9, Line 275 (`SEC-02`):

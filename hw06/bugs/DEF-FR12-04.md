@@ -13,7 +13,7 @@
 
 ## 1. Description
 
-The endpoint `GET /api/coupons` provides a comprehensive listing of all active, inactive, and unreleased promotional coupons, including discount percentages, minimum order thresholds, expiry dates, and usage limits. While anonymous requests are rejected with 401, standard authenticated customers (`role = 'user'`) can call `GET /api/coupons` and receive the entire master coupon table.
+The endpoint `GET /api/coupons` provides a comprehensive listing of all active, inactive, and unreleased promotional coupons, including discount percentages, minimum order thresholds, expiry dates, and usage limits. While anonymous requests are rejected with 401, standard authenticated users (`role = 'user'`) can call `GET /api/coupons` and receive the entire master coupon table.
 
 Standard users should only be able to validate specific coupon codes at checkout (`POST /api/cart/apply-coupon`), rather than scraping all administrative coupon codes and business promotion rules.
 
@@ -41,7 +41,7 @@ The route mounts `authenticateToken` but does not enforce administrative privile
 ## 3. Steps to Reproduce
 
 1. Start backend server: `node backend/server.js` on port 3000.
-2. Authenticate as a standard customer (`customer@example.com` / `customer123`).
+2. Authenticate as a non-admin user (`role = 'user'`) using email `customer@example.com` / `customer123`.
 3. Send a GET request to `/api/coupons`:
    ```bash
    curl -i http://localhost:3000/api/coupons \

@@ -16,7 +16,7 @@
 
 ## 1. Description
 
-While category mutations (`POST /api/categories`, `PUT /api/categories/:id`, `DELETE /api/categories/:id`) require authentication (rejecting anonymous callers with 401), they do not verify that the authenticated caller holds the administrator role (`role === 'admin'`). Standard authenticated customers (`role = 'user'`) are permitted to add new categories, rename existing categories, and delete categories from the store taxonomy.
+While category mutations (`POST /api/categories`, `PUT /api/categories/:id`, `DELETE /api/categories/:id`) require authentication (rejecting anonymous callers with 401), they do not verify that the authenticated caller holds the administrator role (`role === 'admin'`). Standard authenticated users (`role = 'user'`) are permitted to add new categories, rename existing categories, and delete categories from the store taxonomy.
 
 This violates `README.md` Section 9, Line 280 (`SEC-03`):
 > *"Admin API: Token phải có role === 'admin'. User thường không được truy cập."*
@@ -49,7 +49,7 @@ The handlers mount `authenticateToken`, which validates JWT token authenticity, 
 ## 3. Steps to Reproduce
 
 1. Start backend server: `node backend/server.js` on port 3000.
-2. Authenticate as a regular customer (`customer@example.com` / `customer123`).
+2. Authenticate as a non-admin user (`role = 'user'`) using email `customer@example.com` / `customer123`.
 3. Send a category creation request:
    ```bash
    curl -i -X POST http://localhost:3000/api/categories \

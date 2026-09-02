@@ -98,9 +98,9 @@
 - [x] **5.2 FR-07 GitHub Issue Browser Screenshot:**
   - Student captured authentic browser screenshot of live GitHub Issue #6.
   - Verified and committed at `hw06/screenshots/fr07-bug-issue-001.png` (and `fr07-bug-issue-001.jpg`).
-- [ ] **5.3 FR-12 GitHub Issue Browser Screenshot:**
-  - Student captures authentic browser screenshot of live GitHub Issue #8 (`[FR-12] Critical: Missing Administrator Role Verification on Administrative Endpoints (/api/admin/*)`).
-  - Target save path: `hw06/screenshots/fr12-bug-issue-001.png`.
+- [x] **5.3 FR-12 GitHub Issue Browser Screenshot:**
+  - Student captured authentic browser screenshot of live GitHub Issue #8 (`[FR-12] Critical: Missing Administrator Role Verification on Administrative Endpoints (/api/admin/*)`).
+  - Verified and committed at `hw06/screenshots/fr12-bug-issue-001.png` (and `fr12-bug-issue-001.jpg`).
 - [ ] **5.4 Link Issues in Main Report:**
   - Update `hw06/docs/main-report.md` bug register with Issue #, Title, Severity, and screenshot links.
 

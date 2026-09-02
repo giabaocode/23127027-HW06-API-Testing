@@ -22,10 +22,10 @@
 
 All administrative endpoints prefixed with `/api/admin/*` in the SUT are accessible to standard authenticated users (`role = 'user'`), users with omitted role claims, users with whitespace-padded role claims (`role = ' admin '`), and callers providing request-body overrides (`"role": "admin"`). 
 
-The SUT returns HTTP `200 OK` and executes administrative actions, allowing standard customers to:
-1. Extract full customer user records (`GET /api/admin/users`).
+The SUT returns HTTP `200 OK` and executes administrative actions, allowing standard authenticated users (with role='user') to:
+1. Extract all registered user accounts (`GET /api/admin/users`).
 2. Permanently delete user accounts (`DELETE /api/admin/users/:id`).
-3. View all customer orders across the platform (`GET /api/admin/orders`).
+3. View all user order records across the platform (`GET /api/admin/orders`).
 4. Modify order fulfillment statuses (`PUT /api/admin/orders/:id/status`).
 5. Perform bulk product imports (`POST /api/admin/import-products`).
 6. Create system-wide promotional coupons (`POST /api/admin/coupons`).
@@ -59,7 +59,7 @@ While each administrative route mounts the `authenticateToken` middleware, `auth
 ## 3. Steps to Reproduce
 
 1. Start backend server: `node backend/server.js` on port 3000.
-2. Authenticate as a standard non-admin customer (`customer@example.com` / `customer123`).
+2. Authenticate as a standard non-admin user (`role = 'user'`) using email `customer@example.com` / `customer123`.
 3. Extract the issued JWT token (`role = 'user'`).
 4. Send an administrative query with the standard-user token:
    ```bash

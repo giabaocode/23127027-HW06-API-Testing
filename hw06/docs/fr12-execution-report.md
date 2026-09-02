@@ -135,6 +135,9 @@ The remaining **148 assertions passed cleanly**, validating that:
 - **Real Postman Console Screenshot:**
   - File: [`hw06/screenshots/fr12-x-student-id.png`](file:///Users/phamngocgiabao/eshop-sut/hw06/screenshots/fr12-x-student-id.png) (and `.jpg`)
   - Description: Physically captured from Postman Desktop app showing request `FR12-AI-015 — Admin GET /api/admin/users`, 200 OK response, and expanded request header `X-Student-Id: 23127027`.
+- **Real GitHub Issue Browser Screenshot:**
+  - File: [`hw06/screenshots/fr12-bug-issue-001.png`](file:///Users/phamngocgiabao/eshop-sut/hw06/screenshots/fr12-bug-issue-001.png) (and `.jpg`)
+  - Description: Physically captured from browser showing live GitHub Issue #8 (`[FR-12] Critical: Missing Administrator Role Verification on Administrative Endpoints (/api/admin/*)`).
 - **Live GitHub Issue Defect Tracking:**
   - `DEF-FR12-01` $\rightarrow$ Issue [#8](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/8): Missing admin role enforcement on `/api/admin/*`
   - `DEF-FR12-02` $\rightarrow$ Issue [#9](https://github.com/giabaocode/23127027-HW06-API-Testing/issues/9): Missing authentication on product mutations

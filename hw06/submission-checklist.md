@@ -32,7 +32,7 @@
 | 9 | **Excel Test Cases & Summary** | `hw06/testcases/testcases-master.xlsx` (or CSVs) | Pending Phase 3 | Formatted with human audit verdicts & traceability |
 | 10 | **AI Test-Generator Diagram** | `hw06/agent-skill/student-diagram.png` | Pending Phase 8 | **Must be self-drawn by student** (NO AI generation) |
 | 11 | **Agent Skill Pseudocode / Code** | `hw06/agent-skill/pseudocode.md`<br>`hw06/agent-skill/test_generator.py` | Pending Phase 8 | Code/pseudocode following student design decisions |
-| 12 | **Bug Report with GitHub Issues** | `hw06/bugs/README.md`<br>`hw06/screenshots/fr07-bug-issue-001.png` | **In Progress (FR-01, FR-07, FR-12 Done)** | Real issues #1–#11 created on GitHub; FR-07 browser screenshot verified; FR-12 issues filed |
+| 12 | **Bug Report with GitHub Issues** | `hw06/bugs/README.md`<br>`hw06/screenshots/fr07-bug-issue-001.png`<br>`hw06/screenshots/fr12-bug-issue-001.png` | **COMPLETED (FR-01, FR-07, FR-12)** | Real issues #1–#11 created on GitHub; FR-07 & FR-12 browser screenshots verified and committed |
 | 13 | **AI Critique (200–300 words)** | `hw06/docs/ai-critique.md` | Pending Phase 9 | Student reviewed and personalized |
 | 14 | **AI Audit Report (Markdown + PDF)** | `hw06/docs/ai-audit.md`<br>`hw06/docs/ai-audit.pdf` | In Progress | Continuous maintenance with verbatim prompts |
 | 15 | **Git Commit Log (Text file)** | `hw06/docs/git-commit-log.txt` | Pending Phase 10 | Generated from real `git log` |

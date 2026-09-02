@@ -66,6 +66,7 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-037** | 2026-09-02T23:26:42+07:00 | Phase 3 (FR-12) | Human Audit Formalization & Reviewed Final Test Suite | [`hw06/docs/ai-transcripts/GEMINI-037.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-037.md) |
 | **GEMINI-038** | 2026-09-02T23:32:36+07:00 | Phase 3 & 4 (FR-12) | Student Extensions Formalization, Postman Automation & Newman Execution | [`hw06/docs/ai-transcripts/GEMINI-038.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-038.md) |
 | **GEMINI-039** | 2026-09-03T00:07:40+07:00 | Phase 4 & 6 (FR-12) | Real Evidence Verification, Defect Reporting & GitHub Issues Creation | [`hw06/docs/ai-transcripts/GEMINI-039.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-039.md) |
+| **GEMINI-040** | 2026-09-03T00:30:17+07:00 | Phase 6 & 7 (FR-12) | GitHub Issue Screenshot Verification, Terminology Consistency & Safety Audit | [`hw06/docs/ai-transcripts/GEMINI-040.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-040.md) |
 
 ---
 
@@ -1131,7 +1132,35 @@ To ensure total transparency without truncating large conversational turns, full
 *See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-039.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-039.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-039.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-039.md) via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-039.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-039.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-040
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-03T00:30:17+07:00
+- **Phase:** Phase 6 & 7 (FR-12) — GitHub Issue Screenshot Verification, Terminology Consistency & Safety Audit
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-039.md` (finalized)
+  - `hw06/docs/ai-transcripts/GEMINI-040.md` (created with retrospective placeholder)
+  - `hw06/screenshots/fr12-bug-issue-001.png` (and `.jpg`, verified authentic browser screenshot of live GitHub Issue #8)
+  - `hw06/bugs/DEF-FR12-01.md`, `DEF-FR12-02.md`, `DEF-FR12-03.md`, `DEF-FR12-04.md` (corrected role terminology to `role = 'user'` / standard user)
+  - `hw06/docs/fr12-execution-report.md` (updated with issue screenshot)
+  - `hw06/MANUAL_TODO.md` (marked 5.3 FR-12 issue screenshot complete)
+  - `hw06/submission-checklist.md` (marked bug reporting deliverable #12 fully complete across all 3 features)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Truthful Audit Provenance:**
+  - Student captured authentic browser screenshot `hw06/screenshots/fr12-bug-issue-001.png` showing live GitHub Issue #8.
+  - SUT terminology rigorously reconciled: non-admin user role in database/tokens is strictly `role = 'user'`, never "customer".
+  - Full pre-push safety scan executed across repository to ensure zero leaked credentials, tokens, or untracked PDFs.
+- **Human Checkpoint:** FR-12 Fully Sealed; Repository Safe to Push.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-040.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-040.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-040.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-040.md) via retrospective logging).
 
 ---
 
