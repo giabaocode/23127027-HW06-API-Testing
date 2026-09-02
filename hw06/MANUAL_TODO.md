@@ -24,9 +24,10 @@
   - Personally review each AI-generated test case.
   - Fill fields: `Student Verdict` (`VALID` / `INVALID` / `INCOMPLETE`), `Student Reasoning`, `Student Correction`, `Student Reviewed At`.
   - *Completed and committed locally (`189814b`).*
-- [ ] **2.2 FR-07 Audit (≥ 35 AI Test Cases):**
+- [x] **2.2 FR-07 Audit (≥ 35 AI Test Cases):**
   - Personally review each AI-generated test case.
   - Fill fields: `Student Verdict`, `Student Reasoning`, `Student Correction`, `Student Reviewed At`.
+  - *Completed and committed locally (`c98513e`).*
 - [ ] **2.3 FR-12 Audit (≥ 35 AI Test Cases):**
   - Personally review each AI-generated test case.
   - Fill fields: `Student Verdict`, `Student Reasoning`, `Student Correction`, `Student Reviewed At`.
@@ -41,9 +42,10 @@
   - Author $\ge 5$ original tests (e.g., duplicate registration race/lifecycle, domain boundary, DB-layer password hashing).
   - Provide explanation: Why did AI miss these test cases?
   - *Note: 5 extension tests formalized and committed (`72bed5d`); requirement kept open until separate student-scratch items are confirmed.*
-- [ ] **3.2 FR-07 Extensions (≥ 5 Student-Authored Tests):**
-  - Author $\ge 5$ original tests (e.g., cross-user cart isolation, quantity accumulation, price tampering, negative/decimal boundaries).
+- [x] **3.2 FR-07 Extensions (≥ 5 Student-Authored Tests):**
+  - Author $\ge 5$ original tests (e.g., malformed raw JSON, wrong Content-Type, expired JWT, conflicting metadata, read idempotency).
   - Provide explanation: Why did AI miss these test cases?
+  - *Note: 5 extension tests formalized and committed (`ce50600`).*
 - [ ] **3.3 FR-12 Extensions (≥ 5 Student-Authored Tests):**
   - Author $\ge 5$ original tests (e.g., token signature tampering, role mutation via profile update, HTTP verb tampering, admin deletion boundary).
   - Provide explanation: Why did AI miss these test cases?
@@ -54,10 +56,15 @@
 
 > *Note on Execution:* SUT startup, Postman collection generation, and Newman CLI / HTML execution will be automated via AI tools in the workspace. The student must provide and verify attributable human evidence.
 
-- [x] **4.1 Real Postman Console Screenshot (`X-Student-Id`):**
+- [x] **4.1 Real Postman Console Screenshot for FR-01 (`X-Student-Id`):**
   - Open Postman desktop app, execute a request from the collection.
   - Capture real screenshot of Postman Console showing request sending `X-Student-Id: 23127027` header.
   - Saved image to `hw06/screenshots/fr01-x-student-id.png` (and `fr01-x-student-id.jpg`).
+- [ ] **4.2 Real Postman Console Screenshot for FR-07 (`X-Student-Id`):**
+  - Open Postman desktop app, import `hw06/postman/collections/fr07-shopping-cart.postman_collection.json` and `hw06/postman/environments/fr07-environment.json`.
+  - Execute request (e.g. `FR07-AI-001 — Retrieve Empty Cart Baseline`).
+  - Capture Postman Console showing `X-Student-Id: 23127027` and real 200 OK response.
+  - Save image to `hw06/screenshots/fr07-x-student-id.png`.
 - [x] **4.2 Real Newman Execution Verification (FR-01):**
   - Verify that the automated Newman run output reflects local hostname (`localhost:3000` / `127.0.0.1`).
   - Generated genuine `hw06/newman/fr01/fr01-cli-output.txt` and `hw06/newman/fr01/fr01-report.html`.
