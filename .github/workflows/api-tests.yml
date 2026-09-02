@@ -61,6 +61,7 @@ jobs:
       - name: Execute Newman Test Suite (Run A - Health Smoke / Run B - Failure Demo)
         id: run_newman
         run: |
+          set -o pipefail
           if [ "${{ github.event.inputs.demo_failure }}" == "true" ]; then
             echo "================================================================="
             echo "EXECUTING RUN B: INTENTIONAL CI FAILURE DEMONSTRATION"
