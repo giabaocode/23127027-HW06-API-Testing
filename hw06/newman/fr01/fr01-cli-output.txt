@@ -1,0 +1,470 @@
+newman
+
+FR-01 — Account Registration Test Suite
+
+❏ 01 - Positive Happy Path
+↳ FR01-AI-001 — Standard Valid ASCII Registration
+  POST http://localhost:3000/api/register [200 OK, 316B, 13ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Status Code is 200 OK (SPECIFIED)
+  ✓  Response contains success message and id (EXAMPLE-DERIVED)
+  ✓  Security Hardening - Password is not leaked in response
+
+↳ FR01-AI-009 — Standard Valid RFC Email Registration
+  POST http://localhost:3000/api/register [200 OK, 316B, 4ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Status Code is 200 OK (SPECIFIED)
+  ✓  Response contains success message and id (EXAMPLE-DERIVED)
+  ✓  Security Hardening - Password is not leaked in response
+
+↳ FR01-AI-020 — Standard Strong Password Meeting All 5 Criteria
+  POST http://localhost:3000/api/register [200 OK, 316B, 3ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Status Code is 200 OK (SPECIFIED)
+  ✓  Response contains success message and id (EXAMPLE-DERIVED)
+  ✓  Security Hardening - Password is not leaked in response
+
+↳ FR01-AI-027 — Password Length Boundary: 8 Chars (Exact Minimum)
+  POST http://localhost:3000/api/register [200 OK, 316B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Status Code is 200 OK (SPECIFIED)
+  ✓  Response contains success message and id (EXAMPLE-DERIVED)
+  ✓  Security Hardening - Password is not leaked in response
+
+↳ FR01-AI-028 — Password Length Boundary: 9 Chars (Minimum + 1)
+  POST http://localhost:3000/api/register [200 OK, 316B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Status Code is 200 OK (SPECIFIED)
+  ✓  Response contains success message and id (EXAMPLE-DERIVED)
+  ✓  Security Hardening - Password is not leaked in response
+
+❏ 02 - Required Fields Validation
+↳ FR01-AI-003 — Omitted Mandatory Name Field Rejection
+  POST http://localhost:3000/api/register [200 OK, 316B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  1. Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)
+  2. Response is controlled and parseable
+
+↳ FR01-AI-004 — Empty String Name Value Inferred Rejection
+  POST http://localhost:3000/api/register [200 OK, 316B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  3. Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)
+  4. Response is controlled and parseable
+
+↳ FR01-AI-011 — Omitted Mandatory Email Field Rejection
+  POST http://localhost:3000/api/register [200 OK, 317B, 3ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  5. Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)
+  6. Response is controlled and parseable
+
+↳ FR01-AI-012 — Empty String Email Value Rejection
+  POST http://localhost:3000/api/register [200 OK, 317B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  7. Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)
+  8. Response is controlled and parseable
+
+↳ FR01-AI-032 — Empty String Password Value Rejection
+  POST http://localhost:3000/api/register [200 OK, 317B, 4ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  9. Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)
+ 10. Response is controlled and parseable
+
+↳ FR01-AI-035 — Empty JSON Body Rejection
+  POST http://localhost:3000/api/register [200 OK, 317B, 3ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 11. Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)
+ 12. Response is controlled and parseable
+
+❏ 03 - Email Format & Validation
+↳ FR01-AI-010 — Advanced RFC Email Plus-Addressing Characterization
+  POST http://localhost:3000/api/register [200 OK, 317B, 4ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Robustness / Characterization - Server handles input safely without crashing
+  ✓  Response is parseable JSON
+
+↳ FR01-AI-013 — Malformed Email Missing At-Symbol (@) Rejection
+  POST http://localhost:3000/api/register [200 OK, 317B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 13. Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)
+ 14. Response is controlled and parseable
+
+↳ FR01-AI-014 — Malformed Email Missing Domain Part Rejection
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 15. Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)
+ 16. Response is controlled and parseable
+
+❏ 04 - Password Policy Verification
+↳ FR01-AI-021 — Documented Special Symbol: At-Sign (@)
+  POST http://localhost:3000/api/register [200 OK, 317B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Status Code is 200 OK (SPECIFIED)
+  ✓  Response contains success message and id (EXAMPLE-DERIVED)
+  ✓  Security Hardening - Password is not leaked in response
+
+↳ FR01-AI-022 — Documented Special Symbol: Dollar-Sign ($)
+  POST http://localhost:3000/api/register [200 OK, 317B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Status Code is 200 OK (SPECIFIED)
+  ✓  Response contains success message and id (EXAMPLE-DERIVED)
+  ✓  Security Hardening - Password is not leaked in response
+
+↳ FR01-AI-023 — Documented Special Symbol: Ampersand (&)
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Status Code is 200 OK (SPECIFIED)
+  ✓  Response contains success message and id (EXAMPLE-DERIVED)
+  ✓  Security Hardening - Password is not leaked in response
+
+↳ FR01-AI-024 — Required Special Symbol Plus Extra Symbol (!#)
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Status Code is 200 OK (SPECIFIED)
+  ✓  Response contains success message and id (EXAMPLE-DERIVED)
+  ✓  Security Hardening - Password is not leaked in response
+
+↳ FR01-AI-025 — Missing Required Special Character from Set Rejection
+  POST http://localhost:3000/api/register [200 OK, 317B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 17. Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)
+ 18. Response is controlled and parseable
+
+↳ FR01-AI-026 — Password Length Boundary: 7 Chars (Minimum - 1) Rejection
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 19. Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)
+ 20. Response is controlled and parseable
+
+↳ FR01-AI-029 — Missing Uppercase Letter in Password Rejection
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 21. Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)
+ 22. Response is controlled and parseable
+
+↳ FR01-AI-030 — Missing Lowercase Letter in Password Rejection
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 23. Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)
+ 24. Response is controlled and parseable
+
+↳ FR01-AI-031 — Missing Numeric Digit in Password Rejection
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 25. Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)
+ 26. Response is controlled and parseable
+
+❏ 05 - State & Duplicate Lifecycle
+↳ FR01-AI-016 — Duplicate Registration of Pre-Seeded Email Rejection
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 27. Duplicate Email Rejection - Pre-seeded email must not be re-registered (SPECIFIED)
+
+↳ FR01-AI-017 — Duplicate Registration via Dynamic Sequential Call
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ┌
+  │ 'Step 1 pre-registration completed with status:', 200
+  └
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+ 28. State-Dependent Duplicate Rejection - Repeated registration with same email must be rejected (SPECIFIED)
+
+↳ FR01-AI-018 — Case-Insensitive Duplicate Email Characterization Probe
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Robustness / Characterization - Server handles input safely without crashing
+  ✓  Response is parseable JSON
+
+❏ 06 - Security Assertions
+↳ FR01-AI-007 — Literal SQL Syntax Handling in Name (SEC-05)
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  SEC-05 - Apostrophe in name handled safely as literal data without SQL crash
+
+↳ FR01-AI-019 — Parameterized Query Verification via SQL Injection String in Name (SEC-05 Redesign)
+  POST http://localhost:3000/api/register [200 OK, 317B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  SEC-05 - SQL injection syntax in name handled safely without SQL syntax error
+
+↳ FR01-AI-038 — Security Hardening: Credential Non-Leakage in Response
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Security Hardening - Response body does not leak password or sensitive credentials
+
+❏ 07 - Robustness & Characterization
+↳ FR01-AI-002 — Vietnamese Unicode Name Characterization Probe
+  POST http://localhost:3000/api/register [200 OK, 317B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Robustness / Characterization - Server handles input safely without crashing
+  ✓  Response is parseable JSON
+
+↳ FR01-AI-005 — Non-String Integer Name Data Type Robustness Probe
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Robustness / Characterization - Server handles input safely without crashing
+  ✓  Response is parseable JSON
+
+↳ FR01-AI-006 — Extreme Upper Length Name Robustness Probe (1000 Chars)
+  POST http://localhost:3000/api/register [200 OK, 317B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Robustness / Characterization - Server handles input safely without crashing
+  ✓  Response is parseable JSON
+
+↳ FR01-AI-008 — HTML Script Tag Robustness Probe in Name
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Robustness / Characterization - Server handles input safely without crashing
+  ✓  Response is parseable JSON
+
+↳ FR01-AI-015 — Non-String Integer Email Data Type Robustness Probe
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Robustness / Characterization - Server handles input safely without crashing
+  ✓  Response is parseable JSON
+
+↳ FR01-AI-033 — Non-String Integer Password Data Type Robustness Probe
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Robustness / Characterization - Server handles input safely without crashing
+  ✓  Response is parseable JSON
+
+↳ FR01-AI-034 — Extreme Upper Length Password Robustness Probe (128 Chars)
+  POST http://localhost:3000/api/register [200 OK, 317B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Robustness / Characterization - Server handles input safely without crashing
+  ✓  Response is parseable JSON
+
+↳ FR01-AI-036 — Unexpected Extra Field (confirmPassword) Robustness Probe
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Robustness / Characterization - Server handles input safely without crashing
+  ✓  Response is parseable JSON
+
+❏ 08 - Student-Selected Extensions
+↳ FR01-STU-001 — Syntactically Malformed JSON Body Robustness Probe
+  POST http://localhost:3000/api/register [400 Bad Request, 1.45kB, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Parser Robustness - Malformed JSON does not create user or crash server
+
+↳ FR01-STU-002 — Unsupported Content-Type Header (text/plain) Robustness Probe
+  POST http://localhost:3000/api/register [500 Internal Server Error, 1.61kB, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  MIME Handling - Non-JSON Content-Type handled safely
+
+↳ FR01-STU-003 — Duplicate JSON Property Key Parser Characterization Probe
+  POST http://localhost:3000/api/register [200 OK, 317B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Duplicate Key Characterization - Server handles duplicate property safely
+
+↳ FR01-STU-004 — Unsupported HTTP Method (PUT) Routing Verification Probe
+  PUT http://localhost:3000/api/register [404 Not Found, 455B, 1ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Method Routing - Registration rejected for unsupported PUT verb
+
+↳ FR01-STU-005 — Email Domain as IP Address Literal Characterization Probe
+  POST http://localhost:3000/api/register [200 OK, 317B, 2ms]
+  ✓  Central Injection - Request header X-Student-Id is present and matches 23127027
+  ✓  Server Resilience - Server responded with valid HTTP status
+  ✓  Email Grammar Characterization - IP address literal domain handled safely
+
+┌─────────────────────────┬─────────────────┬─────────────────┐
+│                         │        executed │          failed │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              iterations │               1 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│                requests │              43 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│            test-scripts │              84 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│      prerequest-scripts │              43 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              assertions │             167 │              28 │
+├─────────────────────────┴─────────────────┴─────────────────┤
+│ total run duration: 596ms                                   │
+├─────────────────────────────────────────────────────────────┤
+│ total data received: 4.57kB (approx)                        │
+├─────────────────────────────────────────────────────────────┤
+│ average response time: 1ms [min: 1ms, max: 13ms, s.d.: 1ms] │
+└─────────────────────────────────────────────────────────────┘
+
+   #  failure         detail                                                                                                               
+                                                                                                                                           
+ 01.  AssertionError  Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)                                    
+                      expected 200 to not equal 200                                                                                        
+                      at assertion:0 in test-script                                                                                        
+                      inside "02 - Required Fields Validation / FR01-AI-003 — Omitted Mandatory Name Field Rejection"                      
+                                                                                                                                           
+ 02.  AssertionError  Response is controlled and parseable                                                                                 
+                      expected 200 to be one of [ 400, 422, 500 ]                                                                          
+                      at assertion:1 in test-script                                                                                        
+                      inside "02 - Required Fields Validation / FR01-AI-003 — Omitted Mandatory Name Field Rejection"                      
+                                                                                                                                           
+ 03.  AssertionError  Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)                                    
+                      expected 200 to not equal 200                                                                                        
+                      at assertion:0 in test-script                                                                                        
+                      inside "02 - Required Fields Validation / FR01-AI-004 — Empty String Name Value Inferred Rejection"                  
+                                                                                                                                           
+ 04.  AssertionError  Response is controlled and parseable                                                                                 
+                      expected 200 to be one of [ 400, 422, 500 ]                                                                          
+                      at assertion:1 in test-script                                                                                        
+                      inside "02 - Required Fields Validation / FR01-AI-004 — Empty String Name Value Inferred Rejection"                  
+                                                                                                                                           
+ 05.  AssertionError  Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)                                    
+                      expected 200 to not equal 200                                                                                        
+                      at assertion:0 in test-script                                                                                        
+                      inside "02 - Required Fields Validation / FR01-AI-011 — Omitted Mandatory Email Field Rejection"                     
+                                                                                                                                           
+ 06.  AssertionError  Response is controlled and parseable                                                                                 
+                      expected 200 to be one of [ 400, 422, 500 ]                                                                          
+                      at assertion:1 in test-script                                                                                        
+                      inside "02 - Required Fields Validation / FR01-AI-011 — Omitted Mandatory Email Field Rejection"                     
+                                                                                                                                           
+ 07.  AssertionError  Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)                                    
+                      expected 200 to not equal 200                                                                                        
+                      at assertion:0 in test-script                                                                                        
+                      inside "02 - Required Fields Validation / FR01-AI-012 — Empty String Email Value Rejection"                          
+                                                                                                                                           
+ 08.  AssertionError  Response is controlled and parseable                                                                                 
+                      expected 200 to be one of [ 400, 422, 500 ]                                                                          
+                      at assertion:1 in test-script                                                                                        
+                      inside "02 - Required Fields Validation / FR01-AI-012 — Empty String Email Value Rejection"                          
+                                                                                                                                           
+ 09.  AssertionError  Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)                                    
+                      expected 200 to not equal 200                                                                                        
+                      at assertion:0 in test-script                                                                                        
+                      inside "02 - Required Fields Validation / FR01-AI-032 — Empty String Password Value Rejection"                       
+                                                                                                                                           
+ 10.  AssertionError  Response is controlled and parseable                                                                                 
+                      expected 200 to be one of [ 400, 422, 500 ]                                                                          
+                      at assertion:1 in test-script                                                                                        
+                      inside "02 - Required Fields Validation / FR01-AI-032 — Empty String Password Value Rejection"                       
+                                                                                                                                           
+ 11.  AssertionError  Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)                                    
+                      expected 200 to not equal 200                                                                                        
+                      at assertion:0 in test-script                                                                                        
+                      inside "02 - Required Fields Validation / FR01-AI-035 — Empty JSON Body Rejection"                                   
+                                                                                                                                           
+ 12.  AssertionError  Response is controlled and parseable                                                                                 
+                      expected 200 to be one of [ 400, 422, 500 ]                                                                          
+                      at assertion:1 in test-script                                                                                        
+                      inside "02 - Required Fields Validation / FR01-AI-035 — Empty JSON Body Rejection"                                   
+                                                                                                                                           
+ 13.  AssertionError  Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)                                    
+                      expected 200 to not equal 200                                                                                        
+                      at assertion:0 in test-script                                                                                        
+                      inside "03 - Email Format & Validation / FR01-AI-013 — Malformed Email Missing At-Symbol (@) Rejection"              
+                                                                                                                                           
+ 14.  AssertionError  Response is controlled and parseable                                                                                 
+                      expected 200 to be one of [ 400, 422, 500 ]                                                                          
+                      at assertion:1 in test-script                                                                                        
+                      inside "03 - Email Format & Validation / FR01-AI-013 — Malformed Email Missing At-Symbol (@) Rejection"              
+                                                                                                                                           
+ 15.  AssertionError  Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)                                    
+                      expected 200 to not equal 200                                                                                        
+                      at assertion:0 in test-script                                                                                        
+                      inside "03 - Email Format & Validation / FR01-AI-014 — Malformed Email Missing Domain Part Rejection"                
+                                                                                                                                           
+ 16.  AssertionError  Response is controlled and parseable                                                                                 
+                      expected 200 to be one of [ 400, 422, 500 ]                                                                          
+                      at assertion:1 in test-script                                                                                        
+                      inside "03 - Email Format & Validation / FR01-AI-014 — Malformed Email Missing Domain Part Rejection"                
+                                                                                                                                           
+ 17.  AssertionError  Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)                                    
+                      expected 200 to not equal 200                                                                                        
+                      at assertion:0 in test-script                                                                                        
+                      inside "04 - Password Policy Verification / FR01-AI-025 — Missing Required Special Character from Set Rejection"     
+                                                                                                                                           
+ 18.  AssertionError  Response is controlled and parseable                                                                                 
+                      expected 200 to be one of [ 400, 422, 500 ]                                                                          
+                      at assertion:1 in test-script                                                                                        
+                      inside "04 - Password Policy Verification / FR01-AI-025 — Missing Required Special Character from Set Rejection"     
+                                                                                                                                           
+ 19.  AssertionError  Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)                                    
+                      expected 200 to not equal 200                                                                                        
+                      at assertion:0 in test-script                                                                                        
+                      inside "04 - Password Policy Verification / FR01-AI-026 — Password Length Boundary: 7 Chars (Minimum - 1) Rejection" 
+                                                                                                                                           
+ 20.  AssertionError  Response is controlled and parseable                                                                                 
+                      expected 200 to be one of [ 400, 422, 500 ]                                                                          
+                      at assertion:1 in test-script                                                                                        
+                      inside "04 - Password Policy Verification / FR01-AI-026 — Password Length Boundary: 7 Chars (Minimum - 1) Rejection" 
+                                                                                                                                           
+ 21.  AssertionError  Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)                                    
+                      expected 200 to not equal 200                                                                                        
+                      at assertion:0 in test-script                                                                                        
+                      inside "04 - Password Policy Verification / FR01-AI-029 — Missing Uppercase Letter in Password Rejection"            
+                                                                                                                                           
+ 22.  AssertionError  Response is controlled and parseable                                                                                 
+                      expected 200 to be one of [ 400, 422, 500 ]                                                                          
+                      at assertion:1 in test-script                                                                                        
+                      inside "04 - Password Policy Verification / FR01-AI-029 — Missing Uppercase Letter in Password Rejection"            
+                                                                                                                                           
+ 23.  AssertionError  Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)                                    
+                      expected 200 to not equal 200                                                                                        
+                      at assertion:0 in test-script                                                                                        
+                      inside "04 - Password Policy Verification / FR01-AI-030 — Missing Lowercase Letter in Password Rejection"            
+                                                                                                                                           
+ 24.  AssertionError  Response is controlled and parseable                                                                                 
+                      expected 200 to be one of [ 400, 422, 500 ]                                                                          
+                      at assertion:1 in test-script                                                                                        
+                      inside "04 - Password Policy Verification / FR01-AI-030 — Missing Lowercase Letter in Password Rejection"            
+                                                                                                                                           
+ 25.  AssertionError  Semantic Rejection - Invalid request must NOT return 200 OK (SPECIFIED REJECTION)                                    
+                      expected 200 to not equal 200                                                                                        
+                      at assertion:0 in test-script                                                                                        
+                      inside "04 - Password Policy Verification / FR01-AI-031 — Missing Numeric Digit in Password Rejection"               
+                                                                                                                                           
+ 26.  AssertionError  Response is controlled and parseable                                                                                 
+                      expected 200 to be one of [ 400, 422, 500 ]                                                                          
+                      at assertion:1 in test-script                                                                                        
+                      inside "04 - Password Policy Verification / FR01-AI-031 — Missing Numeric Digit in Password Rejection"               
+                                                                                                                                           
+ 27.  AssertionError  Duplicate Email Rejection - Pre-seeded email must not be re-registered (SPECIFIED)                                   
+                      expected 200 to not equal 200                                                                                        
+                      at assertion:0 in test-script                                                                                        
+                      inside "05 - State & Duplicate Lifecycle / FR01-AI-016 — Duplicate Registration of Pre-Seeded Email Rejection"       
+                                                                                                                                           
+ 28.  AssertionError  State-Dependent Duplicate Rejection - Repeated registration with same email must be rejected (SPECIFIED)             
+                      expected 200 to not equal 200                                                                                        
+                      at assertion:0 in test-script                                                                                        
+                      inside "05 - State & Duplicate Lifecycle / FR01-AI-017 — Duplicate Registration via Dynamic Sequential Call"         
