@@ -37,6 +37,9 @@ To ensure total transparency without truncating large conversational turns, full
 | **GEMINI-008** | 2026-09-02T11:56:35+07:00 | Phase 1 | Consistency Calibration & Local Commit of FR-01 Specification Analysis | [`hw06/docs/ai-transcripts/GEMINI-008.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-008.md) |
 | **GEMINI-009** | 2026-09-02T12:00:10+07:00 | Phase 2 | AI Test Case Generation for FR-01 (38 Test Cases) | [`hw06/docs/ai-transcripts/GEMINI-009.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-009.md) |
 | **GEMINI-010** | 2026-09-02T13:28:39+07:00 | Phase 2 | Human Audit Phase: Record ChatGPT Reference Review & Prepare Compact Review | [`hw06/docs/ai-transcripts/GEMINI-010.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-010.md) |
+| **GEMINI-011** | 2026-09-02T13:39:28+07:00 | Phase 2 | Human Audit: External Transcripts Setup, Compact Review Polish & Batch 1 Initiation | [`hw06/docs/ai-transcripts/GEMINI-011.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-011.md) |
+| **GEMINI-012** | 2026-09-02T13:46:21+07:00 | Phase 2 | Student Human Audit Execution: All 38 FR-01 Cases Reviewed & Validated | [`hw06/docs/ai-transcripts/GEMINI-012.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-012.md) |
+| **GEMINI-013** | 2026-09-02T13:50:14+07:00 | Phase 2 | Phase 2 Completion & Local Commit of Student Human Audit | [`hw06/docs/ai-transcripts/GEMINI-013.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-013.md) |
 
 ---
 
@@ -339,19 +342,107 @@ To ensure total transparency without truncating large conversational turns, full
 *See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-010.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-010.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-010.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-010.md) via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-010.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-010.md) (Finalized via retrospective logging).
 
 ---
 
-## 3. Previous / External AI Interactions — Student Must Add
+### Interaction GEMINI-011
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T13:39:28+07:00
+- **Phase:** Phase 2 — Human Audit Phase (External Transcripts Setup, Compact Review Polish & Batch 1 Initiation)
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-010.md` (finalized with complete verbatim response)
+  - `hw06/docs/ai-transcripts/GEMINI-011.md` (created with retrospective placeholder)
+  - `hw06/docs/external-ai-transcripts/CHATGPT-001.md` (created)
+  - `hw06/docs/external-ai-transcripts/CHATGPT-002.md` (created with verbatim external review)
+  - `hw06/testcases/fr01/human-review-compact.md` (polished without text truncation)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Commands Executed:**
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-010.md`
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-011.md`
+  - `write_to_file hw06/docs/external-ai-transcripts/CHATGPT-001.md`
+  - `write_to_file hw06/docs/external-ai-transcripts/CHATGPT-002.md`
+  - `write_to_file hw06/testcases/fr01/human-review-compact.md`
+- **Git Actions:** None (Commit deferred until all 38 human reviews are complete).
+- **Human Checkpoint:** Checkpoint 2B — Student Human Audit in Progress (Batch 1 / 8).
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-011.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-011.md)
+
+#### Verbatim AI Output
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-011.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-011.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-012
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T13:46:21+07:00
+- **Phase:** Phase 2 — Student Human Audit Execution (All 38 FR-01 Cases Reviewed)
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-011.md` (finalized with complete verbatim response)
+  - `hw06/docs/ai-transcripts/GEMINI-012.md` (created with retrospective placeholder)
+  - `hw06/testcases/fr01/human-audit.md` (populated with all 38 verified student verdicts)
+  - `hw06/testcases/fr01/human-review-compact.md` (updated with student decisions)
+  - `hw06/docs/ai-audit.md` (updated)
+- **Commands Executed:**
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-011.md`
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-012.md`
+  - `write_to_file hw06/testcases/fr01/human-audit.md`
+  - `write_to_file hw06/testcases/fr01/human-review-compact.md`
+  - `python3 -c "..."` (validated 38 rows, non-empty reasoning, corrections, review timestamps, generated-ai-original.md unchanged)
+  - `git status`
+- **Git Actions:** None (Commit deferred pending student review and confirmation).
+- **Human Checkpoint:** Checkpoint 2C — Student Human Audit Complete (38/38 Reviewed; Awaiting confirmation to commit).
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-012.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-012.md)
+
+#### Verbatim AI Output
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-012.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-012.md) (Finalized via retrospective logging).
+
+---
+
+### Interaction GEMINI-013
+
+- **AI Tool / Model:** Gemini 3.7 Flash (High) via Antigravity IDE
+- **Date & Time:** 2026-09-02T13:50:14+07:00
+- **Phase:** Phase 2 Completion & Local Commit of Student Human Audit
+- **Files Affected:**
+  - `hw06/docs/ai-transcripts/GEMINI-012.md` (finalized with complete verbatim response)
+  - `hw06/docs/ai-transcripts/GEMINI-013.md` (created with retrospective placeholder)
+  - `hw06/testcases/fr01/human-audit.md` (committed with 38 student verdicts)
+  - `hw06/testcases/fr01/human-review-compact.md` (committed with 38 student verdicts)
+  - `hw06/docs/external-ai-transcripts/CHATGPT-001.md` (committed)
+  - `hw06/docs/external-ai-transcripts/CHATGPT-002.md` (committed)
+  - `hw06/docs/ai-audit.md` (updated & committed)
+- **Commands Executed:**
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-012.md`
+  - `write_to_file hw06/docs/ai-transcripts/GEMINI-013.md`
+  - `git add hw06/`
+  - `git commit -m "test(fr01): complete student audit of AI-generated registration tests"`
+  - `git status`
+- **Git Actions:** Executed local commit on branch `main` (`test(fr01): complete student audit of AI-generated registration tests`).
+- **Human Checkpoint:** Phase 2 Complete (Student human audit committed locally). Ready for Phase 3 preparation.
+
+#### Exact Student Prompt
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-013.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-013.md)
+
+#### Verbatim AI Output
+*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-013.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-013.md) via retrospective logging).
+
+---
+
+## 3. Previous / External AI Interactions — Dedicated External Transcripts
 
 > [!IMPORTANT]
-> **Mandatory Action for Student (Pham Ngoc Gia Bao):** The prompt used to initiate this session was engineered using ChatGPT. As required by the course guidelines, please record that interaction (and any other external AI interactions) below with the exact prompt, date, tool name, and summary.
+> **Auditability Requirement for External AI Interactions:** As required by the official course guidelines, external AI prompts and outputs must be fully auditable rather than represented merely by narrative summaries. Detailed external interaction transcripts are maintained in [`hw06/docs/external-ai-transcripts/`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/external-ai-transcripts/).
 
-| # | Date & Time | AI Tool | Task / Topic | Student Prompt Summary | Summary of AI Output | How Output Was Used / Verified |
-| :-: | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | 2026-09-02 | ChatGPT (OpenAI) | Prompt Engineering / HW06 Setup | Formulated comprehensive instructions and constraints for Antigravity AI pair programming. | Generated structured master prompt template with phase gating and anti-cheat rules. | Used to guide Phase 0 session initialization and policy compliance. |
-| 2 | 2026-09-02 | ChatGPT (OpenAI) | External Reference Review of FR-01 AI Test Cases | Student provided the 38 AI-generated FR-01 test cases to obtain an independent second-AI critique. | Produced external reference review with verdicts (25 Valid, 12 Incomplete, 1 Invalid) and reasoning/corrections. | Preserved as reference material in `ai-reference-audit.md` for student cross-reference; student audit fields remain independent. |
+| # | Interaction ID | Date | AI Tool | Task / Topic | Student Prompt | AI Output Transcript | Purpose & Verification |
+| :-: | :---: | :---: | :--- | :--- | :--- | :--- | :--- |
+| 1 | **CHATGPT-001** | 2026-09-02 | ChatGPT (OpenAI) | Master Prompt Engineering & HW06 Setup | Formulated comprehensive instructions and constraints for Antigravity AI pair programming. | [`CHATGPT-001.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/external-ai-transcripts/CHATGPT-001.md)<br>*(Placeholder for exact historical text)* | Used to guide Phase 0 session initialization and policy compliance. |
+| 2 | **CHATGPT-002** | 2026-09-02 | ChatGPT (OpenAI) | External Reference Review of FR-01 AI Test Cases | Student provided 38 AI-generated FR-01 test cases for independent second-AI critique. | [`CHATGPT-002.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/external-ai-transcripts/CHATGPT-002.md)<br>*(Verbatim transcript preserved)* | Preserved as reference material in `ai-reference-audit.md` for student cross-reference; student audit fields remain independent. |
 
 ---
 
