@@ -1,0 +1,338 @@
+{
+  "info": {
+    "name": "CI Smoke Health Suite (Run A)",
+    "description": "Representative stable API smoke tests validating SUT startup, Newman execution, and X-Student-Id injection.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.request.headers.upsert({ key: 'X-Student-Id', value: '23127027' });"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.test('Central Injection - Request header X-Student-Id matches 23127027', function () {",
+          "    pm.expect(pm.request.headers.get('X-Student-Id')).to.eql('23127027');",
+          "});",
+          "pm.test('Server Resilience - Server responded with valid status', function () {",
+          "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 401, 403, 404, 500]);",
+          "});"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "01 \u2014 Public Catalog Listing (GET /api/products)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/products",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "products"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200 OK', function () { pm.response.to.have.status(200); });",
+              "pm.test('Products array returned', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 \u2014 Product Details (GET /api/products/1)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/products/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "products",
+            "1"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200 OK', function () { pm.response.to.have.status(200); });",
+              "pm.test('Product ID is 1', function () { pm.expect(pm.response.json().id).to.eql(1); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 \u2014 Public Categories (GET /api/categories)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/categories",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "categories"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200 OK', function () { pm.response.to.have.status(200); });",
+              "pm.test('Categories array returned', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 \u2014 Valid Account Registration (POST /api/register)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.environment.set('ciRegEmail', 'ci_user_' + Date.now() + '@example.com');"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200 or 201', function () { pm.expect(pm.response.code).to.be.oneOf([200, 201]); });",
+              "pm.test('User registration confirmed', function () { pm.expect(pm.response.text()).to.include('registered'); });"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"CI Test User\",\n  \"email\": \"{{ciRegEmail}}\",\n  \"password\": \"ValidPass123!\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/register",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "register"
+          ]
+        }
+      }
+    },
+    {
+      "name": "05 \u2014 User Authentication (POST /api/login)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@eshop.com\",\n  \"password\": \"Admin123!\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "login"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200 OK', function () { pm.response.to.have.status(200); });",
+              "pm.test('Token returned in response', function () { pm.expect(pm.response.json()).to.have.property('token'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 \u2014 Authenticated Cart Retrieval (GET /api/cart)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{userToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/cart",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "cart"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200 OK', function () { pm.response.to.have.status(200); });",
+              "pm.test('Cart array returned', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 \u2014 Admin Clearance Verification (GET /api/admin/users)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{adminToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/admin/users",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "admin",
+            "users"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200 OK', function () { pm.response.to.have.status(200); });",
+              "pm.test('User list returned', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "08 \u2014 Cryptographic Signature Denial (GET /api/admin/users)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{forgedToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/admin/users",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "admin",
+            "users"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 403 Forbidden (forged key rejected)', function () { pm.response.to.have.status(403); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "09 \u2014 Anonymous Protected Endpoint Denial (GET /api/coupons)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/coupons",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "coupons"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 401 Unauthorized (token required)', function () { pm.response.to.have.status(401); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

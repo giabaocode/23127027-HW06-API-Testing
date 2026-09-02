@@ -1,0 +1,79 @@
+#!/usr/bin/env python3
+import json
+
+fail_collection = {
+    "info": {
+        "name": "CI Intentional Failure Demonstration Suite (Run B)",
+        "description": "Isolated suite with an intentional assertion failure designed to demonstrate CI/CD failure detection without altering production test suites.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    "pm.request.headers.upsert({ key: 'X-Student-Id', value: '23127027' });"
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    "pm.test('Central Injection - Request header X-Student-Id matches 23127027', function () {",
+                    "    pm.expect(pm.request.headers.get('X-Student-Id')).to.eql('23127027');",
+                    "});"
+                ]
+            }
+        }
+    ],
+    "item": [
+        {
+            "name": "01 — SUT Smoke Health Baseline (GET /api/products)",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": { "raw": "{{baseUrl}}/api/products", "host": ["{{baseUrl}}"], "path": ["api", "products"] }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Baseline healthcheck passes', function () { pm.response.to.have.status(200); });"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "02 — [DEMO INTENTIONAL FAILURE] Deliberately Failing Assertion",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": { "raw": "{{baseUrl}}/api/products/1", "host": ["{{baseUrl}}"], "path": ["api", "products", "1"] }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('[DEMO INTENTIONAL FAILURE] Deliberately Asserting Non-Existent Product Name to Verify CI/CD Failure Detection', function () {",
+                            "    const res = pm.response.json();",
+                            "    pm.expect(res.name).to.eql('NON_EXISTENT_INTENTIONAL_CI_FAILURE_NAME_FOR_DEMO');",
+                            "});"
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}
+
+with open("hw06/postman/collections/ci-intentional-failure-demo.postman_collection.json", "w") as f:
+    json.dump(fail_collection, f, indent=2)
+print("ci-intentional-failure-demo.postman_collection.json created")

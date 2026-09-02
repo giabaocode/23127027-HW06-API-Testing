@@ -1,0 +1,32 @@
+{
+  "id": "ci-environment-hw06",
+  "name": "CI Environment (E-Shop Local)",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "enabled": true
+    },
+    {
+      "key": "studentId",
+      "value": "23127027",
+      "enabled": true
+    },
+    {
+      "key": "adminToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkFkbWluIFVzZXIiLCJlbWFpbCI6ImFkbWluQGVzaG9wLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc4ODM3MTgwMCwiZXhwIjoxNzg4NDU4MjAwfQ.7uWkwizWnbo_CP4n_mFQqrbB7tdH8yOWFDNyntTfZyQ",
+      "enabled": true
+    },
+    {
+      "key": "userToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IlRlc3QgVXNlciIsImVtYWlsIjoidGVzdEBlc2hvcC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTc4ODM3MTgwMCwiZXhwIjoxNzg4NDU4MjAwfQ.hAfr_PyGIiTd5Ci9L8tE-Pbr-cnDpnVqG63zL8T651g",
+      "enabled": true
+    },
+    {
+      "key": "forgedToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkF0dGFja2VyIiwiZW1haWwiOiJhdHRhY2tlckBlc2hvcC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3ODgzNzE4MDAsImV4cCI6MTc4ODQ1ODIwMH0.vCvj8FYt4532NSuFCOaDjaCHn6TfNcJ589oaV8yqsGU",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}

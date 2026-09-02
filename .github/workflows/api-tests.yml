@@ -1,0 +1,88 @@
+name: Automated API Testing & Quality Gate (HW06)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      demo_failure:
+        description: 'Run intentional failure demonstration suite (Run B)'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  api-tests:
+    name: Newman Automated Regression & Smoke
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment (v20)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: 'backend/package-lock.json'
+
+      - name: Install Backend SUT Dependencies
+        run: |
+          cd backend
+          npm ci || npm install
+
+      - name: Start SUT Backend Server
+        run: |
+          cd backend
+          node server.js > ../server.log 2>&1 &
+          echo "SUT backend server process launched in background."
+
+      - name: Wait for SUT Server Readiness
+        run: |
+          echo "Polling http://localhost:3000/api/products for readiness..."
+          for i in {1..30}; do
+            if curl -s http://localhost:3000/api/products > /dev/null; then
+              echo "✓ SUT Backend is live and accepting HTTP connections on port 3000."
+              exit 0
+            fi
+            echo "Waiting for server to listen... (attempt $i/30)"
+            sleep 1
+          done
+          echo "Backend server failed to start. Printing server log:"
+          cat server.log
+          exit 1
+
+      - name: Prepare Newman Output Directory
+        run: mkdir -p newman-results
+
+      - name: Execute Newman Test Suite (Run A - Health Smoke / Run B - Failure Demo)
+        id: run_newman
+        run: |
+          if [ "${{ github.event.inputs.demo_failure }}" == "true" ]; then
+            echo "================================================================="
+            echo "EXECUTING RUN B: INTENTIONAL CI FAILURE DEMONSTRATION"
+            echo "================================================================="
+            COLLECTION="hw06/postman/collections/ci-intentional-failure-demo.postman_collection.json"
+          else
+            echo "================================================================="
+            echo "EXECUTING RUN A: PASSING CI HEALTH & SMOKE REGRESSION"
+            echo "================================================================="
+            COLLECTION="hw06/postman/collections/ci-smoke.postman_collection.json"
+          fi
+
+          npx -y -p newman -p newman-reporter-htmlextra newman run "$COLLECTION" \
+            -e hw06/postman/environments/ci-environment.json \
+            --reporters cli,htmlextra \
+            --reporter-htmlextra-export newman-results/report.html \
+            --reporter-cli-no-banner | tee newman-results/cli-output.txt
+
+      - name: Upload Newman Test Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: newman-execution-reports
+          path: newman-results/
+          retention-days: 14

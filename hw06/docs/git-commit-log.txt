@@ -1,0 +1,39 @@
+16d5ed6 - Phạm Ngọc Gia Bảo, 2026-09-03 00:37:32 +0700 : docs(fr12): verify GitHub issue screenshot and reconcile role terminology
+d440f4a - Phạm Ngọc Gia Bảo, 2026-09-03 00:17:53 +0700 : docs(fr12): verify real Postman Console evidence and report runtime defects
+77b09bd - Phạm Ngọc Gia Bảo, 2026-09-02 23:47:11 +0700 : test(fr12): automate access control suite and execute Newman run
+fe31f17 - Phạm Ngọc Gia Bảo, 2026-09-02 23:33:58 +0700 : test(fr12): formalize 5 student extension test cases
+22f273a - Phạm Ngọc Gia Bảo, 2026-09-02 23:29:39 +0700 : test(fr12): apply audit corrections to access control tests
+dea0e48 - Phạm Ngọc Gia Bảo, 2026-09-02 23:28:35 +0700 : test(fr12): complete reviewed audit of AI access control tests
+bd7b475 - Phạm Ngọc Gia Bảo, 2026-09-02 23:16:47 +0700 : docs(fr12): record external AI reference review
+963a3e3 - Phạm Ngọc Gia Bảo, 2026-09-02 22:58:35 +0700 : docs(fr12): prepare external AI audit review packet
+6b50faa - Phạm Ngọc Gia Bảo, 2026-09-02 22:43:53 +0700 : test(fr12): generate 38 AI access control test cases
+7716eea - Phạm Ngọc Gia Bảo, 2026-09-02 22:25:34 +0700 : test(fr12): calibrate authorized admin status oracles
+3ae86e3 - Phạm Ngọc Gia Bảo, 2026-09-02 22:20:13 +0700 : test(fr12): correct access control specification analysis
+fdb9e6d - Phạm Ngọc Gia Bảo, 2026-09-02 22:05:26 +0700 : test(fr12): add access control specification analysis and coverage matrix
+c906a3e - Phạm Ngọc Gia Bảo, 2026-09-02 22:03:25 +0700 : docs(fr07): add authentic GitHub issue screenshot and calibrate oracle
+b256b7b - Phạm Ngọc Gia Bảo, 2026-09-02 21:56:44 +0700 : docs(fr07): record runtime-confirmed cart defects
+85cbf8c - Phạm Ngọc Gia Bảo, 2026-09-02 21:48:41 +0700 : test(fr07): add authentic Postman Console screenshot evidence
+25d5caf - Phạm Ngọc Gia Bảo, 2026-09-02 21:28:50 +0700 : test(fr07): add defect reports for runtime-confirmed cart bugs
+88c3500 - Phạm Ngọc Gia Bảo, 2026-09-02 21:20:54 +0700 : test(fr07): record real shopping cart test execution
+7d7dcd6 - Phạm Ngọc Gia Bảo, 2026-09-02 21:20:17 +0700 : test(fr07): add Postman automation for shopping cart suite
+ce50600 - Phạm Ngọc Gia Bảo, 2026-09-02 21:11:52 +0700 : test(fr07): formalize selected cart extension tests
+1cb2d44 - Phạm Ngọc Gia Bảo, 2026-09-02 21:02:15 +0700 : test(fr07): apply audit corrections to cart tests
+c98513e - Phạm Ngọc Gia Bảo, 2026-09-02 21:02:10 +0700 : test(fr07): complete reviewed audit of AI cart tests
+0873736 - Phạm Ngọc Gia Bảo, 2026-09-02 20:23:53 +0700 : docs(fr07): record external AI reference review
+ea6f968 - Phạm Ngọc Gia Bảo, 2026-09-02 20:14:39 +0700 : test(fr07): generate 38 AI cart test cases
+d454e9e - Phạm Ngọc Gia Bảo, 2026-09-02 17:03:53 +0700 : test(fr07): correct reviewed cart specification analysis
+40e37d4 - Phạm Ngọc Gia Bảo, 2026-09-02 16:50:10 +0700 : test(fr07): add shopping cart specification analysis and coverage matrix
+9f8c6cf - Phạm Ngọc Gia Bảo, 2026-09-02 16:46:08 +0700 : docs(bugs): link live GitHub issues #1 to #5 in defect register
+7f7c771 - Phạm Ngọc Gia Bảo, 2026-09-02 16:42:42 +0700 : test(fr01): add defect reports for runtime-confirmed registration bugs
+8439f1f - Phạm Ngọc Gia Bảo, 2026-09-02 16:37:33 +0700 : test(fr01): add authentic Postman Console screenshot evidence
+96620d8 - Phạm Ngọc Gia Bảo, 2026-09-02 14:25:37 +0700 : test(fr01): record real registration test execution
+16e510c - Phạm Ngọc Gia Bảo, 2026-09-02 14:18:21 +0700 : test(fr01): add Postman automation for registration suite
+72bed5d - Phạm Ngọc Gia Bảo, 2026-09-02 14:09:59 +0700 : test(fr01): formalize selected registration extension tests
+61008cd - Phạm Ngọc Gia Bảo, 2026-09-02 13:59:35 +0700 : test(fr01): apply human audit corrections to registration tests
+189814b - Phạm Ngọc Gia Bảo, 2026-09-02 13:53:30 +0700 : test(fr01): complete student audit of AI-generated registration tests
+2faabd9 - Phạm Ngọc Gia Bảo, 2026-09-02 13:34:17 +0700 : docs(fr01): record external AI reference review
+d961f6f - Phạm Ngọc Gia Bảo, 2026-09-02 12:02:23 +0700 : test(fr01): generate 38 AI registration test cases
+d467a7e - Phạm Ngọc Gia Bảo, 2026-09-02 11:58:10 +0700 : test(fr01): complete reviewed specification analysis and coverage plan
+19b5cfc - Phạm Ngọc Gia Bảo, 2026-09-02 11:38:40 +0700 : feat(hw06): initialize Phase 0 setup, feature selection, and audit registers
+85af3ba - ttbhanh-hcmus, 2026-05-15 08:30:35 +0700 : first upload
+2f9bf2b - Hanh Tran, 2026-05-15 08:27:44 +0700 : Initial commit
