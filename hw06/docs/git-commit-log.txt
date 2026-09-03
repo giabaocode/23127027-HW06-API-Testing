@@ -1,3 +1,5 @@
+8c9ad11 - Phạm Ngọc Gia Bảo, 2026-09-03 11:10:54 +0700 : docs(hw06): add final submission manifest and packager script
+be06e31 - Phạm Ngọc Gia Bảo, 2026-09-03 10:59:57 +0700 : docs(hw06): update git commit log with final package hash
 9aac734 - Phạm Ngọc Gia Bảo, 2026-09-03 10:58:02 +0700 : docs(hw06): finalize submission package and required evidence
 372c545 - Phạm Ngọc Gia Bảo, 2026-09-03 01:22:53 +0700 : docs: reclassify oral defense notes as optional study aid per PDF Section 14
 bf5dece - Phạm Ngọc Gia Bảo, 2026-09-03 01:13:34 +0700 : test: add automated submission validation script
