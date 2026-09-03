@@ -1,3 +1,5 @@
+0055722 - Phạm Ngọc Gia Bảo, 2026-09-03 19:15:03 +0700 : docs(hw06): complete student extension root-cause analysis and finalize submission artifacts
+a0ff9dd - Phạm Ngọc Gia Bảo, 2026-09-03 11:10:54 +0700 : docs(hw06): finalize git commit log with manifest commit
 8c9ad11 - Phạm Ngọc Gia Bảo, 2026-09-03 11:10:54 +0700 : docs(hw06): add final submission manifest and packager script
 be06e31 - Phạm Ngọc Gia Bảo, 2026-09-03 10:59:57 +0700 : docs(hw06): update git commit log with final package hash
 9aac734 - Phạm Ngọc Gia Bảo, 2026-09-03 10:58:02 +0700 : docs(hw06): finalize submission package and required evidence
