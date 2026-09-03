@@ -70,13 +70,17 @@ The continuous integration pipeline is hosted on **GitHub Actions** (`ubuntu-lat
 
 ---
 
-## 4. Authentic Evidence & Screenshots (Human Gate)
+## 4. Authentic Evidence & Screenshots
 
-In accordance with course anti-cheat guidelines, real screenshots from the live GitHub Actions web interface must be captured directly by the student:
+In accordance with course anti-cheat guidelines, real screenshots from the live GitHub Actions web interface were captured directly from the browser:
 
 1. **Successful CI Run Screenshot (Run A):**
-   - Save path: `hw06/screenshots/cicd-run-01-success.png`
-   - Must visibly show: GitHub Actions Run A page with green checkmark, commit hash, workflow name, and test step output.
+   - **File Path:** [`hw06/screenshots/cicd-run-01-success.png`](file:///Users/phamngocgiabao/eshop-sut/hw06/screenshots/cicd-run-01-success.png)
+   - **Verification:** Visibly renders GitHub Actions Run A (`33665114685`) on commit `229cbe1` with green checkmark, duration 27s, and step `Newman Automated Regression & Smoke` succeeded.
+   - ![Run A Success](../screenshots/cicd-run-01-success.png)
+
 2. **Intentional Failed CI Run Screenshot (Run B):**
-   - Save path: `hw06/screenshots/cicd-run-02-failure.png`
-   - Must visibly show: GitHub Actions Run B page with red cross, step failure on deliberate assertion, and execution summary.
+   - **File Path:** [`hw06/screenshots/cicd-run-02-failure.png`](file:///Users/phamngocgiabao/eshop-sut/hw06/screenshots/cicd-run-02-failure.png)
+   - **Verification:** Visibly renders GitHub Actions Run B (`33665296154`) with red cross, step `Execute Newman Test Suite` failed with exit code 1, and intentional assertion error detail logged.
+   - ![Run B Failure](../screenshots/cicd-run-02-failure.png)
+

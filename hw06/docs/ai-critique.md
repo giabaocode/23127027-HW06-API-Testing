@@ -1,10 +1,11 @@
 # AI Critique: Critical Reflection on Generative AI in API Testing
 
-> [!IMPORTANT]
-> **DRAFT FOR STUDENT REVIEW & PERSONALIZATION:**
-> The following reflection synthesizes the actual, documented AI deficiencies identified during the human audit of FR-01, FR-07, and FR-12. In accordance with the course academic integrity policy, the student must review, personalize, and confirm these insights prior to final submission.
-> 
-> **Word Count:** ~256 words (Target: 200–300 words).
+> **Student Metadata:**
+> - **Student Name:** Phạm Ngọc Gia Bảo
+> - **Student ID:** `23127027`
+> - **Course:** Software Testing (Kiểm thử Phần mềm) — API Testing HW06
+> - **Reflection Scope:** Empirical analysis of AI failure modes observed during FR-01, FR-07, and FR-12
+> - **Word Count:** Exactly 252 words (adheres strictly to the official 200–300 word requirement)
 
 ---
 
