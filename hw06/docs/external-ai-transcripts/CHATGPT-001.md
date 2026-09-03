@@ -8,16 +8,18 @@
 
 ---
 
-## 1. Verbatim Student Prompt
+## 1. Student Prompt — Audit Gap Declaration
 
 ```text
-[STUDENT MUST INSERT EXACT ORIGINAL CHATGPT PROMPT]
+The exact historical prompt was not retained in the workspace.
+It must not be reconstructed or fabricated.
 ```
 
 ---
 
-## 2. Verbatim Conversational AI Response
+## 2. Conversational AI Response — Audit Gap Declaration
 
 ```text
-[STUDENT MUST INSERT EXACT ORIGINAL CHATGPT OUTPUT]
+The exact historical response was not retained in the workspace.
+It must not be reconstructed or fabricated.
 ```

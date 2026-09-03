@@ -7,7 +7,7 @@
 
 ---
 
-## 1. Verbatim Student Prompt
+## 1. Student Prompt (Partial Historical Record)
 
 ```text
 FINAL SUBMISSION AUTHORIZATION — HW06 API TESTING
@@ -37,11 +37,11 @@ IMPORTANT:
   otherwise.
 
 Proceed automatically through every step below.
-[... Complete verbatim prompt preserved in project records ...]
+[The remainder of this historical prompt was not retained verbatim. It is intentionally not reconstructed.]
 ```
 
 ---
 
-## 2. Verbatim Conversational AI Response
+## 2. Conversational AI Response — Audit Gap Declaration
 
-[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]
+The exact conversational response for this historical interaction was not retained before the session ended. It cannot be recovered from the present workspace and has not been reconstructed or fabricated. The repository changes attributed to the interaction remain inspectable through Git history, but they are not a substitute for the mandatory verbatim output field.

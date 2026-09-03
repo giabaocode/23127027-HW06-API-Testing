@@ -1,0 +1,12 @@
+.DS_Store
+**/.DS_Store
+**/__pycache__/
+*.py[cod]
+
+# Local dependencies and mutable test data
+backend/node_modules/
+backend/database.sqlite.bak
+
+# Course prompt and generated Moodle submission archive stay local
+2026.HW06.API Testing_En.pdf
+*_HW06_AI_API_*.zip

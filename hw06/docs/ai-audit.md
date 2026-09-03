@@ -23,53 +23,56 @@ As required by the Course Policy on AI Usage (Open Policy with Mandatory Audit R
 
 ### Index of Verbatim Interaction Transcripts
 
-To ensure total transparency without truncating large conversational turns, full verbatim records (both Student Prompt and Conversational AI Output) are preserved in individual transcript documents under [`hw06/docs/ai-transcripts/`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/):
+Individual interaction records are stored under [`hw06/docs/ai-transcripts/`](./ai-transcripts/). Most preserve the student prompt and conversational output verbatim. `GEMINI-043` is explicitly marked as a partial historical record because its full prompt/output was not retained; no missing text has been reconstructed or fabricated.
 
 | Interaction ID | Timestamp (ISO/Local) | Phase | Focus / Topic | Full Transcript File |
 | :---: | :---: | :---: | :--- | :--- |
-| **GEMINI-001** | 2026-09-02T10:47:40+07:00 | Phase 0 | Initial Setup, Reconnaissance & API Pool Comparison | [`hw06/docs/ai-transcripts/GEMINI-001.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-001.md) |
-| **GEMINI-002** | 2026-09-02T10:57:18+07:00 | Phase 0 | Feature Selection Lock-in (FR-01, FR-07, FR-12) & Scope Setup | [`hw06/docs/ai-transcripts/GEMINI-002.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-002.md) |
-| **GEMINI-003** | 2026-09-02T11:06:25+07:00 | Phase 0 | Compliance Corrections, Security Matrix & Classification Cleanup | [`hw06/docs/ai-transcripts/GEMINI-003.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-003.md) |
-| **GEMINI-004** | 2026-09-02T11:35:35+07:00 | Phase 0 | Final Phase 0 Hardening, Defect Candidates & Commit Execution | [`hw06/docs/ai-transcripts/GEMINI-004.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-004.md) |
-| **GEMINI-005** | 2026-09-02T11:40:33+07:00 | Phase 1 | FR-01 Specification Analysis & Planned Coverage Matrix | [`hw06/docs/ai-transcripts/GEMINI-005.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-005.md) |
-| **GEMINI-006** | 2026-09-02T11:47:13+07:00 | Phase 1 | Human Review Corrections for FR-01 Spec Analysis | [`hw06/docs/ai-transcripts/GEMINI-006.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-006.md) |
-| **GEMINI-007** | 2026-09-02T11:51:45+07:00 | Phase 1 | Human Review Checkpoint 1B Finalization & Coverage Count Calibration | [`hw06/docs/ai-transcripts/GEMINI-007.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-007.md) |
-| **GEMINI-008** | 2026-09-02T11:56:35+07:00 | Phase 1 | Consistency Calibration & Local Commit of FR-01 Specification Analysis | [`hw06/docs/ai-transcripts/GEMINI-008.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-008.md) |
-| **GEMINI-009** | 2026-09-02T12:00:10+07:00 | Phase 2 | AI Test Case Generation for FR-01 (38 Test Cases) | [`hw06/docs/ai-transcripts/GEMINI-009.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-009.md) |
-| **GEMINI-010** | 2026-09-02T13:28:39+07:00 | Phase 2 | Human Audit Phase: Record ChatGPT Reference Review & Prepare Compact Review | [`hw06/docs/ai-transcripts/GEMINI-010.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-010.md) |
-| **GEMINI-011** | 2026-09-02T13:39:28+07:00 | Phase 2 | Human Audit: External Transcripts Setup, Compact Review Polish & Batch 1 Initiation | [`hw06/docs/ai-transcripts/GEMINI-011.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-011.md) |
-| **GEMINI-012** | 2026-09-02T13:46:21+07:00 | Phase 2 | Student Human Audit Execution: All 38 FR-01 Cases Reviewed & Validated | [`hw06/docs/ai-transcripts/GEMINI-012.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-012.md) |
-| **GEMINI-013** | 2026-09-02T13:50:14+07:00 | Phase 2 | Phase 2 Completion & Local Commit of Student Human Audit | [`hw06/docs/ai-transcripts/GEMINI-013.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-013.md) |
-| **GEMINI-014** | 2026-09-02T13:54:44+07:00 | Phase 3 | Phase 3A: Reviewed AI Final Set Creation & Student Extension Template Setup | [`hw06/docs/ai-transcripts/GEMINI-014.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-014.md) |
-| **GEMINI-015** | 2026-09-02T14:08:03+07:00 | Phase 3 | Phase 3B: Formalize 5 Student-Selected Registration Extension Tests | [`hw06/docs/ai-transcripts/GEMINI-015.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-015.md) |
-| **GEMINI-016** | 2026-09-02T14:11:56+07:00 | Phase 4 & 5 | FR-01 Postman Automation, Local SUT Startup & Real Newman Execution | [`hw06/docs/ai-transcripts/GEMINI-016.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-016.md) |
-| **GEMINI-017** | 2026-09-02T14:28:33+07:00 | Environment | Terminate Background SUT Process to Free Port 3000 | [`hw06/docs/ai-transcripts/GEMINI-017.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-017.md) |
-| **GEMINI-018** | 2026-09-02T15:57:48+07:00 | Phase 5 & 6 | Session Resumption: SUT Status, Screenshot Verification & Defect Reporting | [`hw06/docs/ai-transcripts/GEMINI-018.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-018.md) |
-| **GEMINI-019** | 2026-09-02T16:00:33+07:00 | Phase 5 | SUT Server Relaunch & Postman Console Screenshot Guidance | [`hw06/docs/ai-transcripts/GEMINI-019.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-019.md) |
-| **GEMINI-020** | 2026-09-02T16:33:27+07:00 | Phase 5 & 6 | Screenshot Verification, Defect Documentation & GitHub Issues #1..#5 Created | [`hw06/docs/ai-transcripts/GEMINI-020.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-020.md) |
-| **GEMINI-021** | 2026-09-02T16:47:27+07:00 | Phase 1 (FR-07) | FR-07 Shopping Cart Specification Analysis & Equivalence Partitioning | [`hw06/docs/ai-transcripts/GEMINI-021.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-021.md) |
-| **GEMINI-022** | 2026-09-02T16:54:22+07:00 | Phase 6 | GitHub Issues Clarification & Student Workflow Verification | [`hw06/docs/ai-transcripts/GEMINI-022.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-022.md) |
-| **GEMINI-023** | 2026-09-02T16:55:50+07:00 | Phase 1 (FR-07) | Human-Review Correction Pass of Shopping Cart Specification Analysis | [`hw06/docs/ai-transcripts/GEMINI-023.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-023.md) |
-| **GEMINI-024** | 2026-09-02T17:01:20+07:00 | Phase 1 (FR-07) | SEC Definitions Alignment, Contradiction Resolution & Grounded Calibration | [`hw06/docs/ai-transcripts/GEMINI-024.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-024.md) |
-| **GEMINI-025** | 2026-09-02T20:11:40+07:00 | Phase 2 (FR-07) | AI Test Case Generation (38 Tests) & Worksheet Preparation | [`hw06/docs/ai-transcripts/GEMINI-025.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-025.md) |
-| **GEMINI-026** | 2026-09-02T20:21:28+07:00 | Phase 2 (FR-07) | External AI Reference Review (ChatGPT) & Design Flaw Documentation | [`hw06/docs/ai-transcripts/GEMINI-026.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-026.md) |
-| **GEMINI-027** | 2026-09-02T20:55:44+07:00 | Phase 3 (FR-07) | Human Audit Formalization & Reviewed Final Test Suite | [`hw06/docs/ai-transcripts/GEMINI-027.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-027.md) |
-| **GEMINI-028** | 2026-09-02T21:09:49+07:00 | Phase 3 & 4 (FR-07) | Student Extensions Formalization, Postman Automation & Newman Execution | [`hw06/docs/ai-transcripts/GEMINI-028.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-028.md) |
-| **GEMINI-029** | 2026-09-02T21:45:06+07:00 | Phase 4 (FR-07) | Human Evidence Verification & FR-07 Evidence Closure | [`hw06/docs/ai-transcripts/GEMINI-029.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-029.md) |
-| **GEMINI-030** | 2026-09-02T21:51:52+07:00 | Phase 6 (FR-07) | Defect Closure, Push Readiness, GitHub Issues & Final FR-07 Sign-off | [`hw06/docs/ai-transcripts/GEMINI-030.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-030.md) |
-| **GEMINI-031** | 2026-09-02T22:01:02+07:00 | Phase 6 (FR-07) / Phase 1 (FR-12) | FR-07 Evidence Complete & FR-12 Access Control Specification Analysis | [`hw06/docs/ai-transcripts/GEMINI-031.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-031.md) |
-| **GEMINI-032** | 2026-09-02T22:17:30+07:00 | Phase 1 (FR-12) | Specification Analysis Calibration, Role & Coupon Reconciliation | [`hw06/docs/ai-transcripts/GEMINI-032.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-032.md) |
-| **GEMINI-033** | 2026-09-02T22:22:27+07:00 | Phase 1 (FR-12) | Admin Success Status Calibration & Spec-Analysis Finalization | [`hw06/docs/ai-transcripts/GEMINI-033.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-033.md) |
-| **GEMINI-034** | 2026-09-02T22:38:41+07:00 | Phase 2 (FR-12) | AI Test Case Generation (38 Tests) & Worksheet Preparation | [`hw06/docs/ai-transcripts/GEMINI-034.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-034.md) |
-| **GEMINI-035** | 2026-09-02T22:56:23+07:00 | Phase 2 (FR-12) | Mechanical Consistency Correction & ChatGPT Review Packet Preparation | [`hw06/docs/ai-transcripts/GEMINI-035.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-035.md) |
-| **GEMINI-036** | 2026-09-02T23:10:44+07:00 | Phase 2 (FR-12) | External AI Reference Review (ChatGPT) & Reference Audit Documentation | [`hw06/docs/ai-transcripts/GEMINI-036.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-036.md) |
-| **GEMINI-037** | 2026-09-02T23:26:42+07:00 | Phase 3 (FR-12) | Human Audit Formalization & Reviewed Final Test Suite | [`hw06/docs/ai-transcripts/GEMINI-037.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-037.md) |
-| **GEMINI-038** | 2026-09-02T23:32:36+07:00 | Phase 3 & 4 (FR-12) | Student Extensions Formalization, Postman Automation & Newman Execution | [`hw06/docs/ai-transcripts/GEMINI-038.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-038.md) |
-| **GEMINI-039** | 2026-09-03T00:07:40+07:00 | Phase 4 & 6 (FR-12) | Real Evidence Verification, Defect Reporting & GitHub Issues Creation | [`hw06/docs/ai-transcripts/GEMINI-039.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-039.md) |
-| **GEMINI-040** | 2026-09-03T00:30:17+07:00 | Phase 6 & 7 (FR-12) | GitHub Issue Screenshot Verification, Terminology Consistency & Safety Audit | [`hw06/docs/ai-transcripts/GEMINI-040.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-040.md) |
-| **GEMINI-041** | 2026-09-03T01:03:00+07:00 | Phase 7 & Master | Master Excel, Master Postman, CI/CD Runs A & B, Agent Skill, and Submission Packaging | [`hw06/docs/ai-transcripts/GEMINI-041.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-041.md) |
-| **GEMINI-042** | 2026-09-03T01:20:00+07:00 | Submission Packaging | Reclassification of Oral Defense Notes as Optional Study Aid per PDF Section 14 | [`hw06/docs/ai-transcripts/GEMINI-042.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-042.md) |
-| **GEMINI-043** | 2026-09-03T10:32:00+07:00 | Final Submission | Final Verification of Manual Artifacts, PDFs Generation, Self-Assessment & Packaging | [`hw06/docs/ai-transcripts/GEMINI-043.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-043.md) |
+| **GEMINI-001** | 2026-09-02T10:47:40+07:00 | Phase 0 | Initial Setup, Reconnaissance & API Pool Comparison | [`hw06/docs/ai-transcripts/GEMINI-001.md`](./ai-transcripts/GEMINI-001.md) |
+| **GEMINI-002** | 2026-09-02T10:57:18+07:00 | Phase 0 | Feature Selection Lock-in (FR-01, FR-07, FR-12) & Scope Setup | [`hw06/docs/ai-transcripts/GEMINI-002.md`](./ai-transcripts/GEMINI-002.md) |
+| **GEMINI-003** | 2026-09-02T11:06:25+07:00 | Phase 0 | Compliance Corrections, Security Matrix & Classification Cleanup | [`hw06/docs/ai-transcripts/GEMINI-003.md`](./ai-transcripts/GEMINI-003.md) |
+| **GEMINI-004** | 2026-09-02T11:35:35+07:00 | Phase 0 | Final Phase 0 Hardening, Defect Candidates & Commit Execution | [`hw06/docs/ai-transcripts/GEMINI-004.md`](./ai-transcripts/GEMINI-004.md) |
+| **GEMINI-005** | 2026-09-02T11:40:33+07:00 | Phase 1 | FR-01 Specification Analysis & Planned Coverage Matrix | [`hw06/docs/ai-transcripts/GEMINI-005.md`](./ai-transcripts/GEMINI-005.md) |
+| **GEMINI-006** | 2026-09-02T11:47:13+07:00 | Phase 1 | Human Review Corrections for FR-01 Spec Analysis | [`hw06/docs/ai-transcripts/GEMINI-006.md`](./ai-transcripts/GEMINI-006.md) |
+| **GEMINI-007** | 2026-09-02T11:51:45+07:00 | Phase 1 | Human Review Checkpoint 1B Finalization & Coverage Count Calibration | [`hw06/docs/ai-transcripts/GEMINI-007.md`](./ai-transcripts/GEMINI-007.md) |
+| **GEMINI-008** | 2026-09-02T11:56:35+07:00 | Phase 1 | Consistency Calibration & Local Commit of FR-01 Specification Analysis | [`hw06/docs/ai-transcripts/GEMINI-008.md`](./ai-transcripts/GEMINI-008.md) |
+| **GEMINI-009** | 2026-09-02T12:00:10+07:00 | Phase 2 | AI Test Case Generation for FR-01 (38 Test Cases) | [`hw06/docs/ai-transcripts/GEMINI-009.md`](./ai-transcripts/GEMINI-009.md) |
+| **GEMINI-010** | 2026-09-02T13:28:39+07:00 | Phase 2 | Human Audit Phase: Record ChatGPT Reference Review & Prepare Compact Review | [`hw06/docs/ai-transcripts/GEMINI-010.md`](./ai-transcripts/GEMINI-010.md) |
+| **GEMINI-011** | 2026-09-02T13:39:28+07:00 | Phase 2 | Human Audit: External Transcripts Setup, Compact Review Polish & Batch 1 Initiation | [`hw06/docs/ai-transcripts/GEMINI-011.md`](./ai-transcripts/GEMINI-011.md) |
+| **GEMINI-012** | 2026-09-02T13:46:21+07:00 | Phase 2 | Student Human Audit Execution: All 38 FR-01 Cases Reviewed & Validated | [`hw06/docs/ai-transcripts/GEMINI-012.md`](./ai-transcripts/GEMINI-012.md) |
+| **GEMINI-013** | 2026-09-02T13:50:14+07:00 | Phase 2 | Phase 2 Completion & Local Commit of Student Human Audit | [`hw06/docs/ai-transcripts/GEMINI-013.md`](./ai-transcripts/GEMINI-013.md) |
+| **GEMINI-014** | 2026-09-02T13:54:44+07:00 | Phase 3 | Phase 3A: Reviewed AI Final Set Creation & Student Extension Template Setup | [`hw06/docs/ai-transcripts/GEMINI-014.md`](./ai-transcripts/GEMINI-014.md) |
+| **GEMINI-015** | 2026-09-02T14:08:03+07:00 | Phase 3 | Phase 3B: Formalize 5 Student-Selected Registration Extension Tests | [`hw06/docs/ai-transcripts/GEMINI-015.md`](./ai-transcripts/GEMINI-015.md) |
+| **GEMINI-016** | 2026-09-02T14:11:56+07:00 | Phase 4 & 5 | FR-01 Postman Automation, Local SUT Startup & Real Newman Execution | [`hw06/docs/ai-transcripts/GEMINI-016.md`](./ai-transcripts/GEMINI-016.md) |
+| **GEMINI-017** | 2026-09-02T14:28:33+07:00 | Environment | Terminate Background SUT Process to Free Port 3000 | [`hw06/docs/ai-transcripts/GEMINI-017.md`](./ai-transcripts/GEMINI-017.md) |
+| **GEMINI-018** | 2026-09-02T15:57:48+07:00 | Phase 5 & 6 | Session Resumption: SUT Status, Screenshot Verification & Defect Reporting | [`hw06/docs/ai-transcripts/GEMINI-018.md`](./ai-transcripts/GEMINI-018.md) |
+| **GEMINI-019** | 2026-09-02T16:00:33+07:00 | Phase 5 | SUT Server Relaunch & Postman Console Screenshot Guidance | [`hw06/docs/ai-transcripts/GEMINI-019.md`](./ai-transcripts/GEMINI-019.md) |
+| **GEMINI-020** | 2026-09-02T16:33:27+07:00 | Phase 5 & 6 | Screenshot Verification, Defect Documentation & GitHub Issues #1..#5 Created | [`hw06/docs/ai-transcripts/GEMINI-020.md`](./ai-transcripts/GEMINI-020.md) |
+| **GEMINI-021** | 2026-09-02T16:47:27+07:00 | Phase 1 (FR-07) | FR-07 Shopping Cart Specification Analysis & Equivalence Partitioning | [`hw06/docs/ai-transcripts/GEMINI-021.md`](./ai-transcripts/GEMINI-021.md) |
+| **GEMINI-022** | 2026-09-02T16:54:22+07:00 | Phase 6 | GitHub Issues Clarification & Student Workflow Verification | [`hw06/docs/ai-transcripts/GEMINI-022.md`](./ai-transcripts/GEMINI-022.md) |
+| **GEMINI-023** | 2026-09-02T16:55:50+07:00 | Phase 1 (FR-07) | Human-Review Correction Pass of Shopping Cart Specification Analysis | [`hw06/docs/ai-transcripts/GEMINI-023.md`](./ai-transcripts/GEMINI-023.md) |
+| **GEMINI-024** | 2026-09-02T17:01:20+07:00 | Phase 1 (FR-07) | SEC Definitions Alignment, Contradiction Resolution & Grounded Calibration | [`hw06/docs/ai-transcripts/GEMINI-024.md`](./ai-transcripts/GEMINI-024.md) |
+| **GEMINI-025** | 2026-09-02T20:11:40+07:00 | Phase 2 (FR-07) | AI Test Case Generation (38 Tests) & Worksheet Preparation | [`hw06/docs/ai-transcripts/GEMINI-025.md`](./ai-transcripts/GEMINI-025.md) |
+| **GEMINI-026** | 2026-09-02T20:21:28+07:00 | Phase 2 (FR-07) | External AI Reference Review (ChatGPT) & Design Flaw Documentation | [`hw06/docs/ai-transcripts/GEMINI-026.md`](./ai-transcripts/GEMINI-026.md) |
+| **GEMINI-027** | 2026-09-02T20:55:44+07:00 | Phase 3 (FR-07) | Human Audit Formalization & Reviewed Final Test Suite | [`hw06/docs/ai-transcripts/GEMINI-027.md`](./ai-transcripts/GEMINI-027.md) |
+| **GEMINI-028** | 2026-09-02T21:09:49+07:00 | Phase 3 & 4 (FR-07) | Student Extensions Formalization, Postman Automation & Newman Execution | [`hw06/docs/ai-transcripts/GEMINI-028.md`](./ai-transcripts/GEMINI-028.md) |
+| **GEMINI-029** | 2026-09-02T21:45:06+07:00 | Phase 4 (FR-07) | Human Evidence Verification & FR-07 Evidence Closure | [`hw06/docs/ai-transcripts/GEMINI-029.md`](./ai-transcripts/GEMINI-029.md) |
+| **GEMINI-030** | 2026-09-02T21:51:52+07:00 | Phase 6 (FR-07) | Defect Closure, Push Readiness, GitHub Issues & Final FR-07 Sign-off | [`hw06/docs/ai-transcripts/GEMINI-030.md`](./ai-transcripts/GEMINI-030.md) |
+| **GEMINI-031** | 2026-09-02T22:01:02+07:00 | Phase 6 (FR-07) / Phase 1 (FR-12) | FR-07 Evidence Complete & FR-12 Access Control Specification Analysis | [`hw06/docs/ai-transcripts/GEMINI-031.md`](./ai-transcripts/GEMINI-031.md) |
+| **GEMINI-032** | 2026-09-02T22:17:30+07:00 | Phase 1 (FR-12) | Specification Analysis Calibration, Role & Coupon Reconciliation | [`hw06/docs/ai-transcripts/GEMINI-032.md`](./ai-transcripts/GEMINI-032.md) |
+| **GEMINI-033** | 2026-09-02T22:22:27+07:00 | Phase 1 (FR-12) | Admin Success Status Calibration & Spec-Analysis Finalization | [`hw06/docs/ai-transcripts/GEMINI-033.md`](./ai-transcripts/GEMINI-033.md) |
+| **GEMINI-034** | 2026-09-02T22:38:41+07:00 | Phase 2 (FR-12) | AI Test Case Generation (38 Tests) & Worksheet Preparation | [`hw06/docs/ai-transcripts/GEMINI-034.md`](./ai-transcripts/GEMINI-034.md) |
+| **GEMINI-035** | 2026-09-02T22:56:23+07:00 | Phase 2 (FR-12) | Mechanical Consistency Correction & ChatGPT Review Packet Preparation | [`hw06/docs/ai-transcripts/GEMINI-035.md`](./ai-transcripts/GEMINI-035.md) |
+| **GEMINI-036** | 2026-09-02T23:10:44+07:00 | Phase 2 (FR-12) | External AI Reference Review (ChatGPT) & Reference Audit Documentation | [`hw06/docs/ai-transcripts/GEMINI-036.md`](./ai-transcripts/GEMINI-036.md) |
+| **GEMINI-037** | 2026-09-02T23:26:42+07:00 | Phase 3 (FR-12) | Human Audit Formalization & Reviewed Final Test Suite | [`hw06/docs/ai-transcripts/GEMINI-037.md`](./ai-transcripts/GEMINI-037.md) |
+| **GEMINI-038** | 2026-09-02T23:32:36+07:00 | Phase 3 & 4 (FR-12) | Student Extensions Formalization, Postman Automation & Newman Execution | [`hw06/docs/ai-transcripts/GEMINI-038.md`](./ai-transcripts/GEMINI-038.md) |
+| **GEMINI-039** | 2026-09-03T00:07:40+07:00 | Phase 4 & 6 (FR-12) | Real Evidence Verification, Defect Reporting & GitHub Issues Creation | [`hw06/docs/ai-transcripts/GEMINI-039.md`](./ai-transcripts/GEMINI-039.md) |
+| **GEMINI-040** | 2026-09-03T00:30:17+07:00 | Phase 6 & 7 (FR-12) | GitHub Issue Screenshot Verification, Terminology Consistency & Safety Audit | [`hw06/docs/ai-transcripts/GEMINI-040.md`](./ai-transcripts/GEMINI-040.md) |
+| **GEMINI-041** | 2026-09-03T01:03:00+07:00 | Phase 7 & Master | Master Excel, Master Postman, CI/CD Runs A & B, Agent Skill, and Submission Packaging | [`hw06/docs/ai-transcripts/GEMINI-041.md`](./ai-transcripts/GEMINI-041.md) |
+| **GEMINI-042** | 2026-09-03T01:20:00+07:00 | Submission Packaging | Reclassification of Oral Defense Notes as Optional Study Aid per PDF Section 14 | [`hw06/docs/ai-transcripts/GEMINI-042.md`](./ai-transcripts/GEMINI-042.md) |
+| **GEMINI-043** | 2026-09-03T10:32:00+07:00 | Final Submission | Final Verification of Manual Artifacts, PDFs Generation, Self-Assessment & Packaging | [`hw06/docs/ai-transcripts/GEMINI-043.md`](./ai-transcripts/GEMINI-043.md) |
+| **CODEX-001** | 2026-09-03T11:46:29+07:00 | Independent Final Audit | PDF requirement review, repository-wide verification, corrections, AI-audit update, and packaging | [`hw06/docs/ai-transcripts/CODEX-001.md`](./ai-transcripts/CODEX-001.md) |
+| **CODEX-002** | 2026-09-03T18:19:28+07:00 | Evidence Completion | Student captured and uploaded genuine bug evidence; all 11 issue image attachments verified and deliverables repackaged | [`hw06/docs/ai-transcripts/CODEX-002.md`](./ai-transcripts/CODEX-002.md) |
+| **CODEX-003** | 2026-09-03T18:33:32+07:00 | Final Deliverable Re-audit | Required-artifact verification, original-extension provenance finding, and conservative 93/100 self-assessment | [`hw06/docs/ai-transcripts/CODEX-003.md`](./ai-transcripts/CODEX-003.md) |
 
 ---
 
@@ -100,10 +103,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 0 — Initial reconnaissance and candidate selection comparison table presented for student review.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-001.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-001.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-001.md`](./ai-transcripts/GEMINI-001.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-001.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-001.md)
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-001.md`](./ai-transcripts/GEMINI-001.md)
 - Presented complete current state, files created, learning points from the assignment PDF (Section 1–17) and API specification (`api_specification.md`), Git remote status (`origin` pointing to `giabaocode/23127027-HW06-API-Testing.git`), Pool A/B/C candidate comparison matrix, and proposed next steps.
 
 ---
@@ -130,10 +133,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 0 — Confirmed feature selection (FR-01, FR-07, FR-12) recorded; stopped before Phase 1.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-002.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-002.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-002.md`](./ai-transcripts/GEMINI-002.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-002.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-002.md)
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-002.md`](./ai-transcripts/GEMINI-002.md)
 - Output structured sections: `=== CURRENT STATE ===`, `=== OFFICIAL PDF REQUIREMENTS UNDERSTOOD ===`, `=== SELECTED FEATURES ===`, `=== EXACT ENDPOINTS FOUND ===`, `=== SEC MAPPING ===`, `=== SPECIFIED / INFERRED / UNKNOWN ITEMS ===`, `=== GIT STATUS ===`, `=== FILES CREATED / CHANGED ===`, `=== PROPOSED GIT COMMIT ===`, and `=== NEXT STEP ===`.
 
 ---
@@ -158,10 +161,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 0 — Compliance adjustments submitted; awaiting approval to commit Phase 0 and start Phase 1.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-003.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-003.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-003.md`](./ai-transcripts/GEMINI-003.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-003.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-003.md)
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-003.md`](./ai-transcripts/GEMINI-003.md)
 - Reported: `=== AI AUDIT FORMAT FIXED ===`, `=== SECURITY APPLICABILITY MATRIX ===`, `=== SPEC/INFERENCE CORRECTIONS ===`, `=== FR-12 SCOPE ===`, `=== MANUAL_TODO CHANGES ===`, `=== CORRECTED PHASE 0 COMMIT ===`, `=== GIT STATUS ===`, and `=== READY FOR HUMAN REVIEW ===`.
 
 ---
@@ -190,10 +193,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 0 — Phase 0 successfully committed locally. Awaiting explicit student approval before starting Phase 1.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-004.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-004.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-004.md`](./ai-transcripts/GEMINI-004.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-004.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-004.md)
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-004.md`](./ai-transcripts/GEMINI-004.md)
 
 ---
 
@@ -219,10 +222,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 1 — Student Review of FR-01 Specification Analysis & Planned Coverage Matrix.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-005.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-005.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-005.md`](./ai-transcripts/GEMINI-005.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-005.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-005.md)
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-005.md`](./ai-transcripts/GEMINI-005.md)
 
 ---
 
@@ -247,10 +250,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 1B — Student Second Review of FR-01 Specification Analysis.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-006.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-006.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-006.md`](./ai-transcripts/GEMINI-006.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-006.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-006.md)
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-006.md`](./ai-transcripts/GEMINI-006.md)
 
 ---
 
@@ -276,10 +279,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 1C — Final Student Review of FR-01 Specification Analysis.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-007.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-007.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-007.md`](./ai-transcripts/GEMINI-007.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-007.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-007.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-007.md`](./ai-transcripts/GEMINI-007.md) (Finalized via retrospective logging).
 
 ---
 
@@ -307,10 +310,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 1C approved; Phase 1 FR-01 Specification Analysis committed locally. Stopping before Phase 2 test generation.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-008.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-008.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-008.md`](./ai-transcripts/GEMINI-008.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-008.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-008.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-008.md`](./ai-transcripts/GEMINI-008.md) (Finalized via retrospective logging).
 
 ---
 
@@ -338,10 +341,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 2 — Student Human Audit Required (Awaiting student independent review).
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-009.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-009.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-009.md`](./ai-transcripts/GEMINI-009.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-009.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-009.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-009.md`](./ai-transcripts/GEMINI-009.md) (Finalized via retrospective logging).
 
 ---
 
@@ -369,10 +372,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 2A — Student Final Human Judgment Required (Student review in progress).
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-010.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-010.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-010.md`](./ai-transcripts/GEMINI-010.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-010.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-010.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-010.md`](./ai-transcripts/GEMINI-010.md) (Finalized via retrospective logging).
 
 ---
 
@@ -398,10 +401,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 2B — Student Human Audit in Progress (Batch 1 / 8).
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-011.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-011.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-011.md`](./ai-transcripts/GEMINI-011.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-011.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-011.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-011.md`](./ai-transcripts/GEMINI-011.md) (Finalized via retrospective logging).
 
 ---
 
@@ -427,10 +430,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 2C — Student Human Audit Complete (38/38 Reviewed; Awaiting confirmation to commit).
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-012.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-012.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-012.md`](./ai-transcripts/GEMINI-012.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-012.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-012.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-012.md`](./ai-transcripts/GEMINI-012.md) (Finalized via retrospective logging).
 
 ---
 
@@ -457,10 +460,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Phase 2 Complete (Student human audit committed locally). Ready for Phase 3 preparation.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-013.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-013.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-013.md`](./ai-transcripts/GEMINI-013.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-013.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-013.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-013.md`](./ai-transcripts/GEMINI-013.md) (Finalized via retrospective logging).
 
 ---
 
@@ -488,10 +491,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 3A — Human Gate: Student Must Provide 5 Original Test Ideas.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-014.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-014.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-014.md`](./ai-transcripts/GEMINI-014.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-014.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-014.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-014.md`](./ai-transcripts/GEMINI-014.md) (Finalized via retrospective logging).
 
 ---
 
@@ -518,10 +521,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Phase 3B Complete (Extension tests formalized and committed locally). Ready for Postman Automation.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-015.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-015.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-015.md`](./ai-transcripts/GEMINI-015.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-015.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-015.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-015.md`](./ai-transcripts/GEMINI-015.md) (Finalized via retrospective logging).
 
 ---
 
@@ -552,10 +555,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 5A — Human Screenshot Gate (Student must capture real Postman Console screenshot).
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-016.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-016.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-016.md`](./ai-transcripts/GEMINI-016.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-016.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-016.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-016.md`](./ai-transcripts/GEMINI-016.md) (Finalized via retrospective logging).
 
 ---
 
@@ -574,10 +577,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Result:** SUT backend process terminated and port 3000 released for student's concurrent HW05 session.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-017.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-017.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-017.md`](./ai-transcripts/GEMINI-017.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-017.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-017.md)
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-017.md`](./ai-transcripts/GEMINI-017.md)
 
 ---
 
@@ -597,10 +600,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 5A — Human Screenshot Evidence (`hw06/screenshots/fr01-x-student-id.png`).
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-018.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-018.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-018.md`](./ai-transcripts/GEMINI-018.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-018.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-018.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-018.md`](./ai-transcripts/GEMINI-018.md) (Finalized via retrospective logging).
 
 ---
 
@@ -618,10 +621,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Result:** SUT server verified live on port 3000; detailed instructions provided for Postman Console header capture.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-019.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-019.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-019.md`](./ai-transcripts/GEMINI-019.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-019.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-019.md)
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-019.md`](./ai-transcripts/GEMINI-019.md)
 
 ---
 
@@ -641,10 +644,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Git Actions:** Executed commits `8439f1f`, `7f7c771`, and `9f8c6cf`.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-020.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-020.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-020.md`](./ai-transcripts/GEMINI-020.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-020.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-020.md)
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-020.md`](./ai-transcripts/GEMINI-020.md)
 
 ---
 
@@ -661,10 +664,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 1 (FR-07) — Student Human Review of Shopping Cart Specification Analysis.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-021.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-021.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-021.md`](./ai-transcripts/GEMINI-021.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-021.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-021.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-021.md`](./ai-transcripts/GEMINI-021.md) (Finalized via retrospective logging).
 
 ---
 
@@ -678,10 +681,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Result:** Clarified that Issues #1 through #5 were automatically filed on `giabaocode/23127027-HW06-API-Testing` via GitHub CLI; student only needs to capture optional browser screenshots for `hw06/bugs/evidence/`.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-022.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-022.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-022.md`](./ai-transcripts/GEMINI-022.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-022.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-022.md)
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-022.md`](./ai-transcripts/GEMINI-022.md)
 
 ---
 
@@ -705,10 +708,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 1B (FR-07) — Student Human Review of Corrected Shopping Cart Specification Analysis.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-023.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-023.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-023.md`](./ai-transcripts/GEMINI-023.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-023.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-023.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-023.md`](./ai-transcripts/GEMINI-023.md) (Finalized via retrospective logging).
 
 ---
 
@@ -731,10 +734,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 1B (FR-07) — Final Grounded Verification & Execution of Local Correction Commit.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-024.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-024.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-024.md`](./ai-transcripts/GEMINI-024.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-024.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-024.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-024.md`](./ai-transcripts/GEMINI-024.md) (Finalized via retrospective logging).
 
 ---
 
@@ -754,10 +757,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 2 (FR-07) — Student Human Audit Required.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-025.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-025.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-025.md`](./ai-transcripts/GEMINI-025.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-025.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-025.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-025.md`](./ai-transcripts/GEMINI-025.md) (Finalized via retrospective logging).
 
 ---
 
@@ -782,10 +785,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 2A (FR-07) — Student Final Review & Audit Decision.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-026.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-026.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-026.md`](./ai-transcripts/GEMINI-026.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-026.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-026.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-026.md`](./ai-transcripts/GEMINI-026.md) (Finalized via retrospective logging).
 
 ---
 
@@ -810,10 +813,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Human Gate — FR-07 Student Extension Ideas.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-027.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-027.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-027.md`](./ai-transcripts/GEMINI-027.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-027.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-027.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-027.md`](./ai-transcripts/GEMINI-027.md) (Finalized via retrospective logging).
 
 ---
 
@@ -835,10 +838,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Postman Console Screenshot Evidence Required.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-028.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-028.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-028.md`](./ai-transcripts/GEMINI-028.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-028.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-028.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-028.md`](./ai-transcripts/GEMINI-028.md) (Finalized via retrospective logging).
 
 ---
 
@@ -860,10 +863,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 4 (FR-07) — COMPLETED.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-029.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-029.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-029.md`](./ai-transcripts/GEMINI-029.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-029.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-029.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-029.md`](./ai-transcripts/GEMINI-029.md) (Finalized via retrospective logging).
 
 ---
 
@@ -884,10 +887,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Human Gate — GitHub Issue Screenshot.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-030.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-030.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-030.md`](./ai-transcripts/GEMINI-030.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-030.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-030.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-030.md`](./ai-transcripts/GEMINI-030.md) (Finalized via retrospective logging).
 
 ---
 
@@ -913,10 +916,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 1 (FR-12) — Specification Analysis Review.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-031.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-031.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-031.md`](./ai-transcripts/GEMINI-031.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-031.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-031.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-031.md`](./ai-transcripts/GEMINI-031.md) (Finalized via retrospective logging).
 
 ---
 
@@ -937,10 +940,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 1 (FR-12) — Specification Analysis Review (Correction Pass).
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-032.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-032.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-032.md`](./ai-transcripts/GEMINI-032.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-032.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-032.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-032.md`](./ai-transcripts/GEMINI-032.md) (Finalized via retrospective logging).
 
 ---
 
@@ -960,10 +963,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 1 (FR-12) — Specification Analysis Final Calibration.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-033.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-033.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-033.md`](./ai-transcripts/GEMINI-033.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-033.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-033.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-033.md`](./ai-transcripts/GEMINI-033.md) (Finalized via retrospective logging).
 
 ---
 
@@ -985,10 +988,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 2 (FR-12) — Human Audit Required.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-034.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-034.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-034.md`](./ai-transcripts/GEMINI-034.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-034.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-034.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-034.md`](./ai-transcripts/GEMINI-034.md) (Finalized via retrospective logging).
 
 ---
 
@@ -1010,10 +1013,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 2A (FR-12) — External AI Review Packet Ready.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-035.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-035.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-035.md`](./ai-transcripts/GEMINI-035.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-035.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-035.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-035.md`](./ai-transcripts/GEMINI-035.md) (Finalized via retrospective logging).
 
 ---
 
@@ -1037,10 +1040,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Checkpoint 2B (FR-12) — Final Human Audit Decision Pending.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-036.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-036.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-036.md`](./ai-transcripts/GEMINI-036.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-036.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-036.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-036.md`](./ai-transcripts/GEMINI-036.md) (Finalized via retrospective logging).
 
 ---
 
@@ -1065,10 +1068,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Human Gate — FR-12 Extension Ideas (Student to select 5 extension ideas).
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-037.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-037.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-037.md`](./ai-transcripts/GEMINI-037.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-037.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-037.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-037.md`](./ai-transcripts/GEMINI-037.md) (Finalized via retrospective logging).
 
 ---
 
@@ -1099,10 +1102,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Phase 4 Real Execution Complete; Human action required for manual Postman Console evidence.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-038.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-038.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-038.md`](./ai-transcripts/GEMINI-038.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-038.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-038.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-038.md`](./ai-transcripts/GEMINI-038.md) (Finalized via retrospective logging).
 
 ---
 
@@ -1132,10 +1135,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Human Gate — FR-12 GitHub Issue Browser Screenshot (Student to capture browser screenshot of Issue #8 at `hw06/screenshots/fr12-bug-issue-001.png`).
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-039.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-039.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-039.md`](./ai-transcripts/GEMINI-039.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-039.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-039.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-039.md`](./ai-transcripts/GEMINI-039.md) (Finalized via retrospective logging).
 
 ---
 
@@ -1160,10 +1163,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** FR-12 Fully Sealed; Repository Safe to Push.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-040.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-040.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-040.md`](./ai-transcripts/GEMINI-040.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-040.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-040.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-040.md`](./ai-transcripts/GEMINI-040.md) (Finalized via retrospective logging).
 
 ---
 
@@ -1192,10 +1195,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** CI/CD Execution Verified; Human Action Required for physical screenshots and hand-drawn diagram.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-041.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-041.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-041.md`](./ai-transcripts/GEMINI-041.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-041.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-041.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-041.md`](./ai-transcripts/GEMINI-041.md) (Finalized via retrospective logging).
 
 ---
 
@@ -1217,10 +1220,10 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Verification Complete; Submission Gates Calibrated.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-042.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-042.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-042.md`](./ai-transcripts/GEMINI-042.md)
 
 #### Verbatim AI Output
-*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-042.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-042.md) (Finalized via retrospective logging).
+*Full conversational response preserved in:* [`hw06/docs/ai-transcripts/GEMINI-042.md`](./ai-transcripts/GEMINI-042.md) (Finalized via retrospective logging).
 
 ---
 
@@ -1240,7 +1243,7 @@ To ensure total transparency without truncating large conversational turns, full
   - `hw06/validate_submission.py` (updated and verified with 0 errors)
   - `hw06/docs/ai-audit.md` (updated)
   - `hw06/docs/ai-transcripts/GEMINI-042.md` (finalized)
-  - `hw06/docs/ai-transcripts/GEMINI-043.md` (created with retrospective placeholder)
+  - `hw06/docs/ai-transcripts/GEMINI-043.md` (created, but the exact response was not finalized before the historical session ended)
 - **Truthful Audit Provenance:**
   - Authenticity of student diagram (`Phạm Ngọc Gia Bảo - 23127027`) and CI/CD screenshots verified without AI fabrication.
   - Zero specification assertions weakened. Self-assessment scored strictly on empirical repository evidence (100/100).
@@ -1248,28 +1251,91 @@ To ensure total transparency without truncating large conversational turns, full
 - **Human Checkpoint:** Verification 100% Complete; Programmatic Validator Passed with 0 Errors.
 
 #### Exact Student Prompt
-*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-043.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-043.md)
+*See verbatim text preserved in:* [`hw06/docs/ai-transcripts/GEMINI-043.md`](./ai-transcripts/GEMINI-043.md)
 
 #### Verbatim AI Output
-*Conversational response status:* `[VERBATIM AI RESPONSE TO BE FINALIZED AT NEXT INTERACTION]` (Preserved in [`GEMINI-043.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/ai-transcripts/GEMINI-043.md) via retrospective logging).
+*Conversational response status:* **Historical audit gap declared.** The exact response was not retained and has not been reconstructed or fabricated. See [`GEMINI-043.md`](./ai-transcripts/GEMINI-043.md).
 
 ---
 
-## 3. Previous / External AI Interactions — Dedicated External Transcripts
+### Interaction CODEX-001
+
+- **AI Tool:** OpenAI Codex
+- **Date & Time:** 2026-09-03T11:46:29+07:00
+- **Phase:** Independent Final Audit, Correction, and Packaging
+- **Scope:** Read the official PDF; inspect the whole repository; reconcile audit and Newman counts; verify GitHub Issues and CI runs; repair documentation and validators; preserve human-only gates; rebuild deliverables.
+- **Key Corrections:**
+  - Reconciled runtime totals to 169 requests, 541 assertions, 457 passed, and 84 failed from the authentic Newman CLI reports.
+  - Reconciled FR-01 audit to 25 VALID / 12 INCOMPLETE / 1 INVALID and FR-07 to 23 / 15 / 0.
+  - Verified all 11 GitHub Issues exist, but no issue body or comment currently embeds an image; recorded this as an open mandatory gate.
+  - Replaced misleading historical placeholders in `CHATGPT-001` and `GEMINI-043` with explicit audit-gap declarations rather than invented text.
+
+#### Exact Student Prompt
+
+```text
+bạn hãy đọc file pdf về yêu cầu homework 6 sau đó rà soát toàn bộ thuư mục hiện tại xem thử còn cânf làm những gì để hoàn thành homework , phânf nào bạn có thêr chỉnh sửa thì bạn chỉnh sửa giúp mình để hoàn thiện bài làm luôn nhé. Nêus được bạn hãy giúp mình lưu prompt này vào AI-audit luôn để giữ đúng rule của đề bài
+```
+
+#### Final AI Output
+
+The complete final user-facing output, together with an action and verification summary, is preserved verbatim in [`hw06/docs/ai-transcripts/CODEX-001.md`](./ai-transcripts/CODEX-001.md). The result reports the corrected runtime totals, the successful local validation, and the four remaining human/external gates without claiming that those gates were completed by AI.
+
+---
+
+### Interaction CODEX-002
+
+- **AI Tool:** OpenAI Codex
+- **Date & Time:** 2026-09-03T18:19:28+07:00
+- **Phase:** GitHub Bug-Evidence Completion and Final Repackaging
+- **Student Actions:** Opened the three authentic Newman HTML reports, captured relevant failure evidence, and uploaded the images directly to the matching GitHub Issues.
+- **AI Actions:** Provided the test-ID mapping, checked the issue bodies and comments through the GitHub API, confirmed image markers for all Issues #1–#11, updated the completion records, and rebuilt the deliverables.
+- **Integrity Note:** The AI did not create, edit, or fabricate any bug-evidence screenshot.
+
+#### Exact Student Prompts
+
+```text
+Giờ sao có dudọcw ảnh lỗi để dans vào github issue
+
+mình vừa mở ra các report của 3 fr và chụp các ảnh tuongư ứng cho bug issue rồi
+
+mình đăng lên github issue luôn rồi á
+```
+
+#### Final AI Output
+
+The complete guidance and final output are preserved in [`hw06/docs/ai-transcripts/CODEX-002.md`](./ai-transcripts/CODEX-002.md). The final result confirms that all 11/11 GitHub Issues have genuine evidence images, that documentation/PDF/ZIP artifacts were updated, and that three student/external completion gates remain.
+
+---
+
+### Interaction CODEX-003
+
+- **AI Tool:** OpenAI Codex
+- **Date & Time:** 2026-09-03T18:33:32+07:00
+- **Phase:** Final Deliverable Re-audit and Conservative Self-Assessment
+- **Key Finding:** All required artifact types are present, but the current extension worksheets disclose AI-brainstormed origins and therefore do not satisfy the strict PDF requirement for five test cases “of your own” per API.
+- **Integrity Action:** The AI did not invent the missing student-original work. Misleading authorship labels were corrected, the human gate was reopened for all three APIs, and the self-assessment was reduced to 93/100.
+
+#### Exact Student Prompts and AI Output
+
+The complete prompts, audit actions, findings, and output are preserved in [`hw06/docs/ai-transcripts/CODEX-003.md`](./ai-transcripts/CODEX-003.md).
+
+---
+
+## 4. Previous / External AI Interactions — Dedicated External Transcripts
 
 > [!IMPORTANT]
-> **Auditability Requirement for External AI Interactions:** As required by the official course guidelines, external AI prompts and outputs must be fully auditable rather than represented merely by narrative summaries. Detailed external interaction transcripts are maintained in [`hw06/docs/external-ai-transcripts/`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/external-ai-transcripts/).
+> **Auditability Requirement for External AI Interactions:** External AI prompts and outputs should be fully auditable rather than represented merely by narrative summaries. Detailed records are maintained in [`hw06/docs/external-ai-transcripts/`](./external-ai-transcripts/); `CHATGPT-001` is an explicitly declared exception because its exact historical prompt/output was not retained.
 
 | # | Interaction ID | Date | AI Tool | Task / Topic | Student Prompt | AI Output Transcript | Purpose & Verification |
 | :-: | :---: | :---: | :--- | :--- | :--- | :--- | :--- |
-| 1 | **CHATGPT-001** | 2026-09-02 | ChatGPT (OpenAI) | Master Prompt Engineering & HW06 Setup | Formulated comprehensive instructions and constraints for Antigravity AI pair programming. | [`CHATGPT-001.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/external-ai-transcripts/CHATGPT-001.md)<br>*(Placeholder for exact historical text)* | Used to guide Phase 0 session initialization and policy compliance. |
-| 2 | **CHATGPT-002** | 2026-09-02 | ChatGPT (OpenAI) | External Reference Review of FR-01 AI Test Cases | Student provided 38 AI-generated FR-01 test cases for independent second-AI critique. | [`CHATGPT-002.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/external-ai-transcripts/CHATGPT-002.md)<br>*(Verbatim transcript preserved)* | Preserved as reference material in `ai-reference-audit.md` for student cross-reference; student audit fields remain independent. |
-| 3 | **CHATGPT-003** | 2026-09-02 | ChatGPT (OpenAI) | External Reference Review of FR-07 AI Test Cases | Student provided 38 AI-generated FR-07 test cases for independent second-AI critique. | [`CHATGPT-003.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/external-ai-transcripts/CHATGPT-003.md)<br>*(Verbatim transcript preserved)* | Preserved as reference material in `hw06/testcases/fr07/ai-reference-audit.md` for student cross-reference; student audit fields remain independent. |
-| 4 | **CHATGPT-004** | 2026-09-02 | ChatGPT (OpenAI) | External Reference Review of FR-12 AI Test Cases | Student provided 38 AI-generated FR-12 test cases for independent second-AI critique. | [`CHATGPT-004.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/docs/external-ai-transcripts/CHATGPT-004.md)<br>*(Verbatim transcript preserved)* | Preserved as reference material in `hw06/testcases/fr12/ai-reference-audit.md` for student cross-reference; student audit fields remain independent. |
+| 1 | **CHATGPT-001** | 2026-09-02 | ChatGPT (OpenAI) | Master Prompt Engineering & HW06 Setup | Exact historical prompt was not retained; the gap is declared in the transcript and no text was reconstructed. | [`CHATGPT-001.md`](./external-ai-transcripts/CHATGPT-001.md)<br>*(Historical output unavailable; explicitly declared)* | Used to guide Phase 0 session initialization; this interaction remains an acknowledged audit gap. |
+| 2 | **CHATGPT-002** | 2026-09-02 | ChatGPT (OpenAI) | External Reference Review of FR-01 AI Test Cases | Student provided 38 AI-generated FR-01 test cases for independent second-AI critique. | [`CHATGPT-002.md`](./external-ai-transcripts/CHATGPT-002.md)<br>*(Verbatim transcript preserved)* | Preserved as reference material in `ai-reference-audit.md` for student cross-reference; student audit fields remain independent. |
+| 3 | **CHATGPT-003** | 2026-09-02 | ChatGPT (OpenAI) | External Reference Review of FR-07 AI Test Cases | Student provided 38 AI-generated FR-07 test cases for independent second-AI critique. | [`CHATGPT-003.md`](./external-ai-transcripts/CHATGPT-003.md)<br>*(Verbatim transcript preserved)* | Preserved as reference material in `hw06/testcases/fr07/ai-reference-audit.md` for student cross-reference; student audit fields remain independent. |
+| 4 | **CHATGPT-004** | 2026-09-02 | ChatGPT (OpenAI) | External Reference Review of FR-12 AI Test Cases | Student provided 38 AI-generated FR-12 test cases for independent second-AI critique. | [`CHATGPT-004.md`](./external-ai-transcripts/CHATGPT-004.md)<br>*(Verbatim transcript preserved)* | Preserved as reference material in `hw06/testcases/fr12/ai-reference-audit.md` for student cross-reference; student audit fields remain independent. |
 
 ---
 
-## 4. Summary of AI-Assisted vs. Human-Only Tasks
+## 5. Summary of AI-Assisted vs. Human-Only Tasks
 
 | Category | AI Responsibility (Automatable via Tools) | Student Responsibility (Strict Human Gate) |
 | :--- | :--- | :--- |
@@ -1284,7 +1350,7 @@ To ensure total transparency without truncating large conversational turns, full
 
 ---
 
-## 5. Factual AI Mistakes & Critique Candidates (Recorded for Phase 9)
+## 6. Factual AI Mistakes & Critique Candidates (Recorded for Phase 9)
 
 As required by the assignment guidelines, all observable AI reasoning errors, hallucinated assumptions, and calculation discrepancies are documented truthfully here rather than silently erased. These provide authentic evidence for the student's **AI Critique (Phase 9)**:
 
@@ -1295,4 +1361,3 @@ As required by the assignment guidelines, all observable AI reasoning errors, ha
 | **AI-ERR-03** | Phase 1 (Turn 6) | Premature Verbatim Claim | AI Audit logged that Turn 6 transcript contained full verbatim AI response before the turn was delivered, leaving a placeholder inside `GEMINI-006.md`. | **Fact:** A response cannot be logged before it is generated. Corrected by establishing a strict retrospective logging protocol (finalizing previous turn response at the start of next turn). |
 | **AI-ERR-04** | Phase 1 (Turn 5) | Over-Constraint Inference | AI converted a single example response in `api_specification.md` into a rigid JSON Schema asserting `additionalProperties: false` and `id >= 1` as `SPECIFIED` contract rules. | **Fact:** The specification provided only an example JSON object. Corrected by classifying example attributes as `EXAMPLE-DERIVED` and `INFERRED FROM EXAMPLE`, keeping schema constraints as `UNKNOWN / NOT SPECIFIED`. |
 | **AI-ERR-05** | Phase 2 (Turn 9) / `FR01-AI-019` | Test Design Flaw / False Security Probe | In `FR01-AI-019`, AI designed a test for SEC-05 (parameterized query) using email `' OR '1'='1'@domain.com`, which is syntactically malformed under email format rules. | **Fact:** An API validation layer may reject malformed emails before database interaction occurs, meaning the test cannot reliably prove whether parameterized queries protect the database. To test SEC-05 effectively, the payload must reach the SQL execution layer (e.g. via `name`). |
-

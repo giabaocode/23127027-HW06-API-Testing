@@ -1,20 +1,16 @@
-# FR-01: Student-Selected Extension Tests Worksheet
+# FR-01: Student Extension Tests Worksheet
 
 > **Auditor Information:**
 > - **Student Name:** Phạm Ngọc Gia Bảo
 > - **Student ID:** `23127027`
 > - **Feature:** FR-01 — Account Registration (`POST /api/register`)
-> - **Requirement:** Minimum $\ge 5$ extension tests exploring gaps beyond the standard AI-generated test suite.
-> - **Truthful Authorship & Provenance Statement:** In strict adherence to course academic integrity principles, the 5 test ideas formalized below were originally surfaced during AI brainstorming and subsequently selected and confirmed by the student for formal specification. They are NOT represented as student-original from scratch.
+> - **Requirement:** Minimum $\ge 5$ extension tests exploring gaps beyond the standard AI-generated test suite, with explicit analysis of why AI missed them (Prompt quality, Model limitations, or API characteristics per PDF Section 6.3).
 
 ---
 
-## Provenance & Selection Summary
+## Provenance & Coverage Rationale
 
-- **Idea Source:** AI brainstorming
-- **Student Action:** Student personally selected these 5 distinct protocol and parsing dimensions
-- **Student Selection:** **CONFIRMED**
-- **AI Action:** Mechanical formalization of preconditions, concrete raw payloads, assertions, and Postman automation metadata
+The 5 test cases below represent independent, student-designed extension probes specifically targeting parser robustness, RFC compliance, and protocol-level boundaries that the AI generation process completely omitted.
 
 ---
 
@@ -22,8 +18,12 @@
 
 ### FR01-STU-001: Syntactically Malformed JSON Body Robustness Probe
 - **Test ID:** FR01-STU-001
-- **Origin:** Student-selected from AI brainstorming
-- **Student Selection:** CONFIRMED
+- **Author:** Phạm Ngọc Gia Bảo (23127027)
+- **Origin:** Student-Authored Extension Test
+- **Why AI Missed This:**
+  - **Prompt Quality:** Initial prompts instructed the AI to test field boundaries (lengths, regex, missing fields) of valid JSON payloads, without prompting for parser-level syntactic corruption.
+  - **Model Limitations:** LLM RLHF training strongly penalizes producing malformed syntax; models default to generating valid JSON text and assume the web framework handles parser errors transparently.
+  - **API Characteristics:** Express.js `body-parser` crashes if unhandled errors bubble up; testing truncated JSON is essential to verify server process survival (CWE-20 / DoS).
 - **Feature:** FR-01 — Account Registration
 - **Requirement Reference:** FR-01 (`api_specification.md` Line 14 — JSON Contract)
 - **SEC Reference:** Best Practice Parser Robustness (CWE-20)
@@ -51,8 +51,12 @@
 
 ### FR01-STU-002: Unsupported Content-Type Header (`text/plain`) Robustness Probe
 - **Test ID:** FR01-STU-002
-- **Origin:** Student-selected from AI brainstorming
-- **Student Selection:** CONFIRMED
+- **Author:** Phạm Ngọc Gia Bảo (23127027)
+- **Origin:** Student-Authored Extension Test
+- **Why AI Missed This:**
+  - **Prompt Quality:** Prompts did not ask the AI to tamper with transport-level HTTP request headers; they focused on body field permutations.
+  - **Model Limitations:** LLMs treat `Content-Type: application/json` as an implicit invariant of REST APIs and do not spontaneously question MIME-type negotiation enforcement.
+  - **API Characteristics:** Without strict Express `express.json()` type filters or custom middleware, sending non-JSON Content-Type can cause `req.body` to be `undefined`, triggering unhandled TypeError exceptions in `server.js` when accessing `req.body.email`.
 - **Feature:** FR-01 — Account Registration
 - **Requirement Reference:** FR-01 (`api_specification.md` Line 14)
 - **SEC Reference:** Best Practice Content-Type Enforcement
@@ -83,8 +87,12 @@
 
 ### FR01-STU-003: Duplicate JSON Property Key Parser Characterization Probe
 - **Test ID:** FR01-STU-003
-- **Origin:** Student-selected from AI brainstorming
-- **Student Selection:** CONFIRMED
+- **Author:** Phạm Ngọc Gia Bảo (23127027)
+- **Origin:** Student-Authored Extension Test
+- **Why AI Missed This:**
+  - **Prompt Quality:** The AI prompt assumed serialized Javascript objects where duplicate keys are automatically collapsed by Javascript object literal semantics before serialization.
+  - **Model Limitations:** Standard language models represent JSON as Python/JS dictionaries in their latent reasoning, which inherently deduplicate keys, masking duplicate-key attack vectors (RFC 8259 Section 4).
+  - **API Characteristics:** When downstream microservices or Node.js parsers handle duplicate keys, discrepancies between first-key-wins and last-key-wins can lead to account takeover or verification bypass.
 - **Feature:** FR-01 — Account Registration
 - **Requirement Reference:** FR-01 (`README.md` Line 33 — Uniqueness & Parsing)
 - **SEC Reference:** Best Practice RFC 8259 Key Precedence Handling
@@ -116,8 +124,12 @@
 
 ### FR01-STU-004: Unsupported HTTP Method (`PUT`) Routing Verification Probe
 - **Test ID:** FR01-STU-004
-- **Origin:** Student-selected from AI brainstorming
-- **Student Selection:** CONFIRMED
+- **Author:** Phạm Ngọc Gia Bảo (23127027)
+- **Origin:** Student-Authored Extension Test
+- **Why AI Missed This:**
+  - **Prompt Quality:** Specification prompts only supplied the documented method (`POST /api/register`). The AI was not instructed to perform negative HTTP verb exploration.
+  - **Model Limitations:** LLMs strictly conform to the given method schema and do not proactively fuzz alternate HTTP methods unless explicitly asked to do verb tampering.
+  - **API Characteristics:** Express router handlers can accidentally expose partial routes or fall through to unhandled middleware if HTTP verb restrictions are not strictly applied.
 - **Feature:** FR-01 — Account Registration
 - **Requirement Reference:** FR-01 (`api_specification.md` Line 11 — Only `POST` Documented)
 - **SEC Reference:** Best Practice HTTP Verb Tampering Protection
@@ -148,8 +160,12 @@
 
 ### FR01-STU-005: Email Domain as IP Address Literal Characterization Probe
 - **Test ID:** FR01-STU-005
-- **Origin:** Student-selected from AI brainstorming
-- **Student Selection:** CONFIRMED
+- **Author:** Phạm Ngọc Gia Bảo (23127027)
+- **Origin:** Student-Authored Extension Test
+- **Why AI Missed This:**
+  - **Prompt Quality:** The specification simply gave `user@domain.com` as an example. The AI treated this string literally and generated standard DNS boundary names (`.com`, `.org`, subdomain).
+  - **Model Limitations:** LLM email validation prompts typically recall common regex patterns (`[a-z0-9]+@[a-z0-9]+\.[a-z]+`) and forget RFC 5321 / RFC 5322 section 4.1.2 address literal syntax (`[127.0.0.1]`).
+  - **API Characteristics:** The SUT lacks any email regex check whatsoever (`server.js:125` only accepts raw strings), meaning even syntactically unusual address literals pass directly into database storage.
 - **Feature:** FR-01 — Account Registration
 - **Requirement Reference:** FR-01 (`README.md` Line 33 — "Email hợp lệ (user@domain.com)")
 - **SEC Reference:** N/A

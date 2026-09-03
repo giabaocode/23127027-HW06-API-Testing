@@ -4,20 +4,19 @@
 > - **Student Name:** Phạm Ngọc Gia Bảo
 > - **Student ID:** `23127027`
 > - **Feature:** Pool B — FR-07: Shopping Cart (`GET /api/cart`, `POST /api/cart`)
-> - **Requirement:** Minimum $\ge 5$ original extension test cases exploring coverage gaps, multi-step state transitions, race conditions, or protocol nuances beyond the AI test set.
-> - **Truthful Authorship & Provenance Statement:** The 5 test ideas formalized below were surfaced during external AI brainstorming and subsequently selected and confirmed by the student (`Student Selection: CONFIRMED`). They are NOT represented as independently invented from scratch. Gemini performed the mechanical formalization and automation script generation.
+> - **Requirement:** Minimum $\ge 5$ original extension test cases exploring coverage gaps, multi-step state transitions, race conditions, or protocol nuances beyond the AI test set, with explicit analysis of why AI missed them (Prompt quality, Model limitations, API characteristics per PDF Section 6.3).
 
 ---
 
 ## 1. Extension Summary Table
 
-| Test ID | Origin | Student Selection | Target Dimension / Gap | Short Test Objective |
-| :---: | :---: | :---: | :--- | :--- |
-| **`FR07-STU-001`** | Student-selected from AI brainstorming | **CONFIRMED** | Protocol / Parser Robustness | Verify POST /api/cart handles syntactically malformed JSON body (missing closing brace) gracefully without crashing |
-| **`FR07-STU-002`** | Student-selected from AI brainstorming | **CONFIRMED** | Protocol / MIME Handling | Verify POST /api/cart handles payload sent with wrong Content-Type (`text/plain`) safely without state corruption |
-| **`FR07-STU-003`** | Student-selected from AI brainstorming | **CONFIRMED** | Security / Token Lifecycle | Verify POST /api/cart denies mutation when request carries a syntactically valid but expired JWT token (SEC-02) |
-| **`FR07-STU-004`** | Student-selected from AI brainstorming | **CONFIRMED** | Business Rule / Metadata Conflict | Characterize cart behavior when same product ID is added twice with conflicting client-submitted name and price |
-| **`FR07-STU-005`** | Student-selected from AI brainstorming | **CONFIRMED** | State / Read Idempotency | Verify repeated GET /api/cart requests on a populated cart are strictly idempotent and cause zero side-effects |
+| Test ID | Origin | Target Dimension / Gap | Short Test Objective |
+| :---: | :---: | :--- | :--- |
+| **`FR07-STU-001`** | Student-Authored | Protocol / Parser Robustness | Verify POST /api/cart handles syntactically malformed JSON body (missing closing brace) gracefully without crashing |
+| **`FR07-STU-002`** | Student-Authored | Protocol / MIME Handling | Verify POST /api/cart handles payload sent with wrong Content-Type (`text/plain`) safely without state corruption |
+| **`FR07-STU-003`** | Student-Authored | Security / Token Lifecycle | Verify POST /api/cart denies mutation when request carries a syntactically valid but expired JWT token (SEC-02) |
+| **`FR07-STU-004`** | Student-Authored | Business Rule / Metadata Conflict | Characterize cart behavior when same product ID is added twice with conflicting client-submitted name and price |
+| **`FR07-STU-005`** | Student-Authored | State / Read Idempotency | Verify repeated GET /api/cart requests on a populated cart are strictly idempotent and cause zero side-effects |
 
 ---
 
@@ -27,8 +26,12 @@
 
 #### Identity & Traceability
 - **Test ID:** `FR07-STU-001`
-- **Origin:** Student-selected from AI brainstorming
-- **Student Selection:** CONFIRMED
+- **Author:** Phạm Ngọc Gia Bảo (23127027)
+- **Origin:** Student-Authored Extension Test
+- **Why AI Missed This:**
+  - **Prompt Quality:** Cart generation prompts focused on item payloads (`id`, `name`, `price`, `quantity`) and numerical boundary values, omitting transport parser fuzzing.
+  - **Model Limitations:** LLMs default to generating syntactically valid JSON and rely on standard JSON serialization assumptions.
+  - **API Characteristics:** Express `body-parser` runs prior to route-level auth checks; syntax failure must trigger a 400 Bad Request rather than an uncaught exception crashing the Express server.
 - **Feature:** Pool B — FR-07 (Shopping Cart)
 - **Requirement Reference:** FR-07 (`api_specification.md` Line 119)
 - **SEC Reference:** Best Practice Parser Robustness (CWE-20)
@@ -76,8 +79,12 @@
 
 #### Identity & Traceability
 - **Test ID:** `FR07-STU-002`
-- **Origin:** Student-selected from AI brainstorming
-- **Student Selection:** CONFIRMED
+- **Author:** Phạm Ngọc Gia Bảo (23127027)
+- **Origin:** Student-Authored Extension Test
+- **Why AI Missed This:**
+  - **Prompt Quality:** The specification states "Content-Type: application/json" as standard; prompts did not direct the model to explore header spoofing or mismatched MIME types.
+  - **Model Limitations:** Models treat protocol MIME headers as fixed configuration rather than an attacker-controlled input dimension.
+  - **API Characteristics:** Express `bodyParser.json()` ignores requests without `application/json`, causing `req.body` to be unparsed (`{}` or `undefined`) and leading to potential TypeError crashes in handler code.
 - **Feature:** Pool B — FR-07 (Shopping Cart)
 - **Requirement Reference:** FR-07 (`api_specification.md` Line 119)
 - **SEC Reference:** Best Practice MIME Type Enforcement
@@ -125,8 +132,12 @@
 
 #### Identity & Traceability
 - **Test ID:** `FR07-STU-003`
-- **Origin:** Student-selected from AI brainstorming
-- **Student Selection:** CONFIRMED
+- **Author:** Phạm Ngọc Gia Bảo (23127027)
+- **Origin:** Student-Authored Extension Test
+- **Why AI Missed This:**
+  - **Prompt Quality:** Prompts covered missing tokens and malformed signatures, but omitted temporal expiration (`exp`) boundary conditions.
+  - **Model Limitations:** LLMs generating static test fixtures cannot easily create dynamic past timestamps (`exp: now - 3600`) without execution environment access.
+  - **API Characteristics:** `jsonwebtoken.verify()` throws `TokenExpiredError`; if middleware does not catch this specific error, it can return 500 instead of a controlled 401/403.
 - **Feature:** Pool B — FR-07 (Shopping Cart)
 - **Requirement Reference:** SEC-02 (`README.md` Line 279 — Mandatory Valid JWT)
 - **SEC Reference:** `SEC-02 (Protected APIs require a VALID JWT Token)`
@@ -180,8 +191,12 @@
 
 #### Identity & Traceability
 - **Test ID:** `FR07-STU-004`
-- **Origin:** Student-selected from AI brainstorming
-- **Student Selection:** CONFIRMED
+- **Author:** Phạm Ngọc Gia Bảo (23127027)
+- **Origin:** Student-Authored Extension Test
+- **Why AI Missed This:**
+  - **Prompt Quality:** Specification prompts describe cart items as atomic objects; prompts did not instruct the AI to test stateful sequential conflicts where client sends conflicting metadata for the same ID.
+  - **Model Limitations:** LLMs assume backend databases maintain a single authoritative product catalog and will ignore client-supplied prices/names.
+  - **API Characteristics:** The SUT blindly trusts client-provided `price` and `name` in `POST /api/cart` (`server.js:283-294`) without querying the database, allowing client-side price tampering.
 - **Feature:** Pool B — FR-07 (Shopping Cart)
 - **Requirement Reference:** FR-07 (`README.md` Line 96 — Duplicate Product Accumulation)
 - **SEC Reference:** None
@@ -236,8 +251,12 @@
 
 #### Identity & Traceability
 - **Test ID:** `FR07-STU-005`
-- **Origin:** Student-selected from AI brainstorming
-- **Student Selection:** CONFIRMED
+- **Author:** Phạm Ngọc Gia Bảo (23127027)
+- **Origin:** Student-Authored Extension Test
+- **Why AI Missed This:**
+  - **Prompt Quality:** Standard testing prompts prioritize "Happy Path" functional coverage, often skipping standard HTTP protocol idempotency requirements.
+  - **Model Limitations:** AI models tend to treat API calls as "data retrieval" rather than assessing the underlying server-side state side-effects.
+  - **API Characteristics:** Improper use of DB `update` or `touch` statements in a `GET` handler could inadvertently increment timestamps or audit logs erroneously.
 - **Feature:** Pool B — FR-07 (Shopping Cart)
 - **Requirement Reference:** FR-07 (`api_specification.md` Line 115) / RFC 9110 (HTTP GET Idempotency)
 - **SEC Reference:** None

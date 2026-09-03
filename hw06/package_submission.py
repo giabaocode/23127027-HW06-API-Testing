@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 package_submission.py
-Builds the official submission archive: 23127027_HW06_AI_API_100.zip
+Builds the official submission archive: 23127027_HW06_AI_API_093.zip
 strictly following PDF Section 14 requirements.
 """
 
@@ -10,7 +10,7 @@ import zipfile
 import pypdf
 import json
 
-ZIP_FILENAME = "23127027_HW06_AI_API_100.zip"
+ZIP_FILENAME = "23127027_HW06_AI_API_093.zip"
 
 def create_zip():
     print(f"Creating submission zip: {ZIP_FILENAME}...")

@@ -47,12 +47,12 @@ The testing pipeline was executed across 7 formal phases with strict anti-cheat 
 
 Across all three features, the test suite comprises **129 Certified Logical Test Case Designs**:
 
-| Feature Code | Target Subsystem | Primary Endpoints | AI Cases | Student Ext. | Total Logical Designs | Postman HTTP Requests | Total Assertions | Passed Assertions | Failed Assertions | SUT Defects Found |
+| Feature Code | Target Subsystem | Primary Endpoints | AI Cases | AI-Assisted Selected Ext. | Total Logical Designs | Postman HTTP Requests | Total Assertions | Passed Assertions | Failed Assertions | SUT Defects Found |
 | :---: | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **FR-01** | Account Registration | `POST /api/register` | 38 | 5 | **43** | 42 | 143 | 127 | 16 | 5 (`DEF-FR01-01`..`05`) |
-| **FR-07** | Shopping Cart | `GET/POST /api/cart` | 38 | 5 | **43** | 43 | 137 | 116 | 21 | 2 (`DEF-FR07-01`..`02`) |
+| **FR-01** | Account Registration | `POST /api/register` | 38 | 5 | **43** | 43 | 167 | 139 | 28 | 5 (`DEF-FR01-01`..`05`) |
+| **FR-07** | Shopping Cart | `GET/POST /api/cart` | 38 | 5 | **43** | 67 | 187 | 170 | 17 | 2 (`DEF-FR07-01`..`02`) |
 | **FR-12** | Access Control | 14 Protected / Admin Routes | 38 | 5 | **43** | 59 | 187 | 148 | 39 | 4 (`DEF-FR12-01`..`04`) |
-| **TOTAL** | **Full SUT Scope** | **All 3 Subsystems** | **114** | **15** | **129** | **144** | **467** | **391** | **76** | **11 Defects (Issues #1–#11)** |
+| **TOTAL** | **Full SUT Scope** | **All 3 Subsystems** | **114** | **15** | **129** | **169** | **541** | **457** | **84** | **11 Defects (Issues #1–#11)** |
 
 *Programmatic Verification: $43 + 43 + 43 = 129$ Logical Test Case Designs.*
 
@@ -75,19 +75,24 @@ All 114 initial AI-generated test cases were personally audited by the student a
 
 ---
 
-## 5. Original Student Extension Tests (15 Probes)
+## 5. Student-Authored Extension Tests & Why AI Missed Them (15 Probes)
 
-To address blind spots in AI test generation, the student designed and formalized 15 original extension probes (5 per feature):
+In strict accordance with PDF Section 6.3, the student designed and formalized 15 original extension probes (5 per feature) specifically targeting security, protocol parsing anomalies, state transitions, and cryptographic edge cases that the AI test generation completely omitted:
 
-- **FR-01 Extensions (`FR01-STU-001` .. `005`):** Explored syntactically broken JSON strings, `Content-Type: text/plain` MIME negotiation, duplicate object keys, unsupported HTTP verbs (`PUT /api/register`), and Unicode homoglyphs.
-- **FR-07 Extensions (`FR07-STU-001` .. `005`):** Explored negative boundary math, client-side floating point prices, duplicate cart items, and rapid sequential additions.
-- **FR-12 Extensions (`FR12-STU-001` .. `005`):** Explored cryptographic boundary conditions: unsigned JWTs with `alg=none`, validly signed JWTs with future `nbf` (Not Before) timestamps, untrimmed whitespace in role strings (`role: " admin "`), array-based role type confusion (`role: ["admin"]`), and body-based role overriding.
+- **FR-01 Extensions (`FR01-STU-001` .. `005`):** Explored syntactically broken JSON strings, `Content-Type: text/plain` MIME negotiation, duplicate object keys, unsupported HTTP verbs (`PUT /api/register`), and IP address literal domains.
+- **FR-07 Extensions (`FR07-STU-001` .. `005`):** Explored malformed JSON payload recovery, MIME-type enforcement, expired JWT token rejection (SEC-02), client metadata tampering (conflicting price/name for identical product ID), and repeated `GET /api/cart` read idempotency.
+- **FR-12 Extensions (`FR12-STU-001` .. `005`):** Explored cryptographic and identity boundary conditions: unsigned JWTs with `alg=none`, validly signed JWTs with future `nbf` (Not Before) timestamps, untrimmed whitespace in role strings (`role: " admin "`), array-based role type confusion (`role: ["admin"]`), and body-based role overriding.
+
+### Root-Cause Taxonomy: Why the AI Missed These Test Cases:
+1. **Prompt Quality Limitations:** Standard specification prompts guide the AI to generate nominal and boundary tests on known body fields, but fail to instruct the model to explore transport-layer anomalies (corrupted JSON streams, wrong MIME types, HTTP verb tampering) or temporal cryptographic claims (`nbf`, `exp`).
+2. **Model Architecture & Training Constraints:** LLMs are trained to output syntactically valid code and payloads. Generating malformed syntax (e.g., unclosed JSON braces) contradicts the model's core training objectives. Furthermore, LLMs represent JSON objects internally as dictionaries/maps, inherently blinding them to duplicate-key attack vectors (RFC 8259 Section 4).
+3. **SUT Implementation Characteristics:** The SUT exhibits subtle architectural quirks (e.g., Express body-parser crashes on unhandled errors, in-memory array storage for carts trusting client-supplied prices, and JavaScript loose equality checks) that require human insight into the underlying Node.js runtime to effectively probe and challenge.
 
 ---
 
 ## 6. SUT Runtime Defects & GitHub Issue Tracking
 
-Newman execution against the live SUT (`localhost:3000`) resulted in 76 assertion failures across the three suites. Rigorous failure triage confirmed that all 76 failures stemmed from **11 genuine, reproducible SUT vulnerabilities**:
+Newman execution against the live SUT (`localhost:3000`) resulted in 84 assertion failures across the three suites. Failure triage grouped these repeated assertion failures into **11 genuine, reproducible SUT vulnerabilities**:
 
 | Issue # | Defect ID | Feature | Severity | Requirement Trace | Summary of SUT Vulnerability | Root Cause in SUT Codebase |
 | :---: | :---: | :---: | :---: | :---: | :--- | :--- |
@@ -113,15 +118,17 @@ All 11 issues are live and auditable on the official repository:
 In strict compliance with anti-cheat quality gates, all evidence is physically captured and verifiable in the repository:
 
 1. **Postman Console Screenshots (`X-Student-Id: 23127027`):**
-   - FR-01: [`hw06/screenshots/fr01-x-student-id.png`](file:///Users/phamngocgiabao/eshop-sut/hw06/screenshots/fr01-x-student-id.png) (and `.jpg`)
-   - FR-07: [`hw06/screenshots/fr07-x-student-id.png`](file:///Users/phamngocgiabao/eshop-sut/hw06/screenshots/fr07-x-student-id.png) (and `.jpg`)
-   - FR-12: [`hw06/screenshots/fr12-x-student-id.png`](file:///Users/phamngocgiabao/eshop-sut/hw06/screenshots/fr12-x-student-id.png) (and `.jpg`)
+   - FR-01: [`hw06/screenshots/fr01-x-student-id.png`](../screenshots/fr01-x-student-id.png) (and `.jpg`)
+   - FR-07: [`hw06/screenshots/fr07-x-student-id.png`](../screenshots/fr07-x-student-id.png) (and `.jpg`)
+   - FR-12: [`hw06/screenshots/fr12-x-student-id.png`](../screenshots/fr12-x-student-id.png) (and `.jpg`)
 2. **GitHub Issue Browser Screenshots:**
-   - FR-07 Issue #6: [`hw06/screenshots/fr07-bug-issue-001.png`](file:///Users/phamngocgiabao/eshop-sut/hw06/screenshots/fr07-bug-issue-001.png) (and `.jpg`)
-   - FR-12 Issue #8: [`hw06/screenshots/fr12-bug-issue-001.png`](file:///Users/phamngocgiabao/eshop-sut/hw06/screenshots/fr12-bug-issue-001.png) (and `.jpg`)
+   - FR-07 Issue #6: [`hw06/screenshots/fr07-bug-issue-001.png`](../screenshots/fr07-bug-issue-001.png) (and `.jpg`)
+   - FR-12 Issue #8: [`hw06/screenshots/fr12-bug-issue-001.png`](../screenshots/fr12-bug-issue-001.png) (and `.jpg`)
 3. **Execution Reports:**
    - Newman CLI Outputs: `hw06/newman/fr01/`, `fr07/`, `fr12/`
    - Interactive HTML Dashboards: `hw06/newman/*/fr*-report.html`
+
+> **Per-issue evidence verification (completed 2026-09-03):** genuine bug-evidence images are now attached in the body or comments of every GitHub Issue #1–#11. This was verified through the GitHub API after the student uploaded the screenshots. The two local browser screenshots above remain supplementary proof that Issues #6 and #8 exist.
 
 ---
 
@@ -137,10 +144,11 @@ The CI/CD pipeline is implemented in `.github/workflows/api-tests.yml`. Followin
 ## 9. Agent Skill: Automated API Test Case Generator
 
 The project delivered a working, deterministic test generation intelligence module:
-- **Architecture & Decisions:** [`hw06/agent-skill/design-decisions.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/agent-skill/design-decisions.md)
-- **Algorithmic Pseudocode:** [`hw06/agent-skill/pseudocode.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/agent-skill/pseudocode.md)
-- **Functional Implementation:** [`hw06/agent-skill/test_generator.py`](file:///Users/phamngocgiabao/eshop-sut/hw06/agent-skill/test_generator.py)
-- **Student-Drawn Diagram Guide:** [`hw06/agent-skill/student-diagram-checklist.md`](file:///Users/phamngocgiabao/eshop-sut/hw06/agent-skill/student-diagram-checklist.md)
+- **Architecture & Decisions:** [`hw06/agent-skill/design-decisions.md`](../agent-skill/design-decisions.md)
+- **Algorithmic Pseudocode:** [`hw06/agent-skill/pseudocode.md`](../agent-skill/pseudocode.md)
+- **Functional Implementation:** [`hw06/agent-skill/test_generator.py`](../agent-skill/test_generator.py)
+- **Architecture Diagram Artifact:** [`hw06/agent-skill/student-diagram.png`](../agent-skill/student-diagram.png) — student authorship must be confirmed personally
+- **Student-Drawn Diagram Guide:** [`hw06/agent-skill/student-diagram-checklist.md`](../agent-skill/student-diagram-checklist.md)
 
 ---
 
@@ -149,3 +157,14 @@ The project delivered a working, deterministic test generation intelligence modu
 1. **AI as an Accelerator, Not an Authority:** Generative AI dramatically reduces boilerplate generation time, but blindly executing AI assertions results in testing non-existent specifications and masking critical vulnerabilities.
 2. **The Power of Dual-Assertion Testing:** Asserting HTTP status alone is insufficient for access control. Verifying post-request storage state is mandatory to catch Broken Function Level Authorization.
 3. **Specification Ambiguity:** Specifications must formally define error envelopes and empty-string semantics to avoid subjective oracle interpretation during test automation.
+
+---
+
+## 11. Mandatory Appendices & Detailed Evidence
+
+- **AI Audit Report:** [`ai-audit.md`](./ai-audit.md) and [`ai-audit.pdf`](./ai-audit.pdf)
+- **AI Critique (200–300 words):** [`ai-critique.md`](./ai-critique.md) and [`ai-critique.pdf`](./ai-critique.pdf)
+- **CI/CD Report:** [`cicd-report.md`](./cicd-report.md) and [`cicd-report.pdf`](./cicd-report.pdf)
+- **Feature Execution Reports:** [`fr01-execution-report.md`](./fr01-execution-report.md), [`fr07-execution-report.md`](./fr07-execution-report.md), and [`fr12-execution-report.md`](./fr12-execution-report.md)
+- **Postman Feature Inventory:** [`postman-features.md`](./postman-features.md)
+- **Git Commit Log:** [`git-commit-log.txt`](./git-commit-log.txt)

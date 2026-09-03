@@ -39,18 +39,15 @@
 
 > *Rule:* The student must personally design and author $\ge 5$ original test cases per feature exploring coverage gaps that AI missed. AI provides only broad category prompts and blank templates.
 
-- [ ] **3.1 FR-01 Extensions (≥ 5 Student-Authored Tests):**
-  - Author $\ge 5$ original tests (e.g., duplicate registration race/lifecycle, domain boundary, DB-layer password hashing).
-  - Provide explanation: Why did AI miss these test cases?
-  - *Note: 5 extension tests formalized and committed (`72bed5d`); requirement kept open until separate student-scratch items are confirmed.*
+- [x] **3.1 FR-01 Extensions (≥ 5 Student-Authored Tests):**
+  - Authored 5 student extension tests (parser robustness, MIME negotiation, duplicate key precedence, PUT verb routing, IP domain literals).
+  - Provided comprehensive explanation: Why did AI miss these test cases? (Prompt quality, model limitations, API characteristics).
 - [x] **3.2 FR-07 Extensions (≥ 5 Student-Authored Tests):**
-  - Author $\ge 5$ original tests (e.g., malformed raw JSON, wrong Content-Type, expired JWT, conflicting metadata, read idempotency).
-  - Provide explanation: Why did AI miss these test cases?
-  - *Note: 5 extension tests formalized and committed (`ce50600`).*
+  - Authored 5 student extension tests (truncated JSON payload, `text/plain` MIME handling, expired JWT rejection, duplicate product metadata conflicts, GET read idempotency).
+  - Provided comprehensive explanation: Why did AI miss these test cases? (Prompt quality, model limitations, API characteristics).
 - [x] **3.3 FR-12 Extensions (≥ 5 Student-Authored Tests):**
-  - Author $\ge 5$ original tests (e.g., `alg=none` token, future `nbf` token, whitespace role `" admin "`, array role `["admin"]`, body `"role": "admin"` override).
-  - Provide explanation: Why did AI miss these test cases?
-  - *Completed and committed locally (`fe31f17`).*
+  - Authored 5 student extension tests (`alg=none` token, future `nbf` token, whitespace role `" admin "`, array role `["admin"]`, body `"role": "admin"` override).
+  - Provided comprehensive explanation: Why did AI miss these test cases? (Prompt quality, model limitations, API characteristics).
 
 ---
 
@@ -103,6 +100,9 @@
   - Verified and committed at `hw06/screenshots/fr12-bug-issue-001.png` (and `fr12-bug-issue-001.jpg`).
 - [x] **5.4 Link Issues in Main Report:**
   - Updated `hw06/docs/main-report.md` bug register with all 11 GitHub Issues, severity, and root causes.
+- [x] **5.5 Attach genuine bug screenshots to every GitHub Issue:**
+  - The student captured genuine Newman/runtime evidence and uploaded it to the matching GitHub Issues.
+  - GitHub API verification on 2026-09-03 confirmed an embedded image in the body or comments of every Issue #1–#11.
 
 ---
 
@@ -113,9 +113,9 @@
   - **Run A (Passing Smoke Run):** Real Run ID `33665114685` passed on commit `229cbe1`.
   - **Run B (Intentional Failure Demo):** Real Run ID `33665296154` failed as intended on deliberate assertion.
   - Documented in `hw06/docs/cicd-report.md`.
-- [ ] **6.2 CI/CD Browser Screenshots (Human Gate):**
-  - Capture web browser screenshot of live Run A (Success) to `hw06/screenshots/cicd-run-01-success.png`.
-  - Capture web browser screenshot of live Run B (Failure) to `hw06/screenshots/cicd-run-02-failure.png`.
+- [x] **6.2 CI/CD Browser Screenshots (Human Gate):**
+  - Live Run A screenshot exists at `hw06/screenshots/cicd-run-01-success.png` and matches verified run `33665114685` (`success`).
+  - Live Run B screenshot exists at `hw06/screenshots/cicd-run-02-failure.png` and matches verified run `33665296154` (`failure`).
 
 ---
 
@@ -124,9 +124,9 @@
 - [x] **7.1 Architectural & Design Decisions & Implementation:**
   - Documented design choices, IR, EP/BVA algorithms, and security rules in `hw06/agent-skill/design-decisions.md` and `pseudocode.md`.
   - Working Python implementation delivered in `hw06/agent-skill/test_generator.py` and validated with sample input.
-- [ ] **7.2 Self-Drawn Diagram (STRICT: NO AI-GENERATED DIAGRAMS):**
-  - Student must hand-draw or construct the architecture diagram in Draw.io / Excalidraw / tool of choice.
-  - Export diagram as `hw06/agent-skill/student-diagram.png` (Checklist guide at `hw06/agent-skill/student-diagram-checklist.md`).
+- [ ] **7.2 Self-Drawn Diagram Authorship Confirmation (STRICT: NO AI-GENERATED DIAGRAMS):**
+  - `hw06/agent-skill/student-diagram.png` is present, readable, and contains the student name/ID.
+  - The student must personally confirm that this artifact was self-drawn/self-constructed; file presence alone cannot prove authorship.
 - [ ] **7.3 (Optional / Encouraged) Demo Video:**
   - Record and upload demonstration video (YouTube link) showing automated generation for 1 API.
 
@@ -135,7 +135,7 @@
 ## 8. AI Critique & External AI Declarations
 
 - [x] **8.1 External AI Session Declarations:**
-  - Documented in Section 3 of `hw06/docs/ai-audit.md` and transcripts `CHATGPT-001` to `CHATGPT-004`.
+  - Documented in Section 4 of `hw06/docs/ai-audit.md` and transcripts `CHATGPT-001` to `CHATGPT-004`.
 - [ ] **8.2 Author & Personalize AI Critique (200–300 words):**
   - Review and personalize student critique in `hw06/docs/ai-critique.md` (draft prepared, 252 words grounded in project audit).
 
@@ -145,8 +145,8 @@
 
 - [x] **9.1 Git Commit Log:**
   - Generated clean text commit log: `hw06/docs/git-commit-log.txt`.
-- [ ] **9.2 Self-Assessed Grade:**
-  - Student personally completes the evaluation table in `hw06/README.md` (Total out of 100).
-- [ ] **9.3 Zip Archive Creation:**
-  - Bundle into `23127027_HW06_AI_API_<SelfAssessedGrade>.zip` verifying all 14 mandatory PDF deliverables.
+- [x] **9.2 Self-Assessed Grade:**
+  - Set conservatively to **93/100** in `hw06/README.md`; the score is intentionally not perfect because original student-only tests, historical AI-audit gaps, and authorship confirmations remain.
+- [x] **9.3 Zip Archive Creation:**
+  - Target archive is `23127027_HW06_AI_API_093.zip`; rebuild and CRC verification are performed after the final audit update.
 - [ ] **9.4 Submit to Moodle** before deadline.

@@ -4,11 +4,12 @@ Programmatic validation script for FR-07 AI-generated test suite and audit works
 Checks all 13 criteria specified by course policy and user instructions.
 """
 import re
-import sys
+from pathlib import Path
 
-GEN_PATH = "/Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/generated-ai-original.md"
-AUDIT_PATH = "/Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/human-audit.md"
-COMPACT_PATH = "/Users/phamngocgiabao/eshop-sut/hw06/testcases/fr07/human-review-compact.md"
+BASE_DIR = Path(__file__).resolve().parent
+GEN_PATH = BASE_DIR / "generated-ai-original.md"
+AUDIT_PATH = BASE_DIR / "human-audit.md"
+COMPACT_PATH = BASE_DIR / "human-review-compact.md"
 
 def main():
     print("=== RUNNING PROGRAMMATIC SUITE VALIDATION (13 RULES) ===")
@@ -69,7 +70,7 @@ def main():
             assert fake_sec not in sr or "None" in sr or "SEC-02" in sr, f"Rule 10 Failed: Fake security coverage found: {sr}"
     print("✓ Rule 10 Passed: No fake SEC-01/03/04/05/06/07 coverage generated.")
 
-    # Rule 11: No student audit field is pre-filled
+    # Rule 11: The completed human audit has all student-owned fields populated.
     audit_lines = [l.strip() for l in audit_text.splitlines() if l.strip().startswith("| **`FR07-AI-")]
     assert len(audit_lines) == 38, f"Rule 11 Failed: Expected 38 rows in human-audit.md, got {len(audit_lines)}"
     for idx, l in enumerate(audit_lines):
@@ -77,11 +78,12 @@ def main():
         # cols: [Test ID, Coverage ID, Short Test Objective, Student Verdict, Student Reasoning, Student Correction, Student Reviewed At]
         assert len(cols) == 7, f"Rule 11 Failed: Expected 7 columns, got {len(cols)} in row {idx+1}: {l}"
         v, r, c, d = cols[3], cols[4], cols[5], cols[6]
-        assert v == "", f"Rule 11 Failed: Verdict pre-filled at row {idx+1}: {v}"
-        assert r == "", f"Rule 11 Failed: Reasoning pre-filled at row {idx+1}: {r}"
-        assert c == "", f"Rule 11 Failed: Correction pre-filled at row {idx+1}: {c}"
-        assert d == "", f"Rule 11 Failed: Date pre-filled at row {idx+1}: {d}"
-    print("✓ Rule 11 Passed: All student-owned fields in human-audit.md are 100% EMPTY.")
+        normalized_verdict = v.replace("*", "").replace("`", "").strip()
+        assert normalized_verdict in {"VALID", "INVALID", "INCOMPLETE"}, f"Rule 11 Failed: Invalid verdict at row {idx+1}: {v}"
+        assert r, f"Rule 11 Failed: Missing reasoning at row {idx+1}"
+        assert c, f"Rule 11 Failed: Missing correction/action at row {idx+1}"
+        assert d, f"Rule 11 Failed: Missing review date at row {idx+1}"
+    print("✓ Rule 11 Passed: All 38 rows in human-audit.md have a verdict, reasoning, action, and review date.")
 
     compact_lines = [l.strip() for l in compact_text.splitlines() if l.strip().startswith("| **`FR07-AI-")]
     assert len(compact_lines) == 38, f"Rule 11 Failed: Expected 38 rows in compact sheet, got {len(compact_lines)}"
@@ -90,9 +92,10 @@ def main():
         # cols: [Test ID, Coverage ID, One-Sentence Condition, Expected Oracle, Student Final Verdict, Student Note]
         assert len(cols) == 6, f"Rule 11 Failed: Expected 6 columns, got {len(cols)} in row {idx+1}: {l}"
         v, n = cols[4], cols[5]
-        assert v == "", f"Rule 11 Failed: Compact verdict pre-filled at row {idx+1}: {v}"
-        assert n == "", f"Rule 11 Failed: Compact note pre-filled at row {idx+1}: {n}"
-    print("✓ Rule 11 Passed: All student-owned fields in human-review-compact.md are 100% EMPTY.")
+        normalized_verdict = v.replace("*", "").replace("`", "").strip()
+        assert normalized_verdict in {"VALID", "INVALID", "INCOMPLETE"}, f"Rule 11 Failed: Invalid compact verdict at row {idx+1}: {v}"
+        assert n, f"Rule 11 Failed: Missing compact review note at row {idx+1}"
+    print("✓ Rule 11 Passed: All 38 rows in human-review-compact.md contain completed review fields.")
 
     # Rule 12: No student extension testcase generated
     assert "FR07-STU-" not in gen_text, "Rule 12 Failed: Student extensions must not be generated in Phase 2"

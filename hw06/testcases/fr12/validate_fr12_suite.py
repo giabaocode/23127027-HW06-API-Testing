@@ -129,7 +129,7 @@ def validate():
         else:
             print("[Check 9] SEC-06 correctly excluded from test mapping.")
 
-    # Check human-audit.md
+    # Check the completed human-audit.md
     audit_path = "hw06/testcases/fr12/human-audit.md"
     with open(audit_path, "r", encoding="utf-8") as f:
         audit_lines = [l for l in f.readlines() if l.strip().startswith("| `FR12-AI-")]
@@ -137,14 +137,14 @@ def validate():
     if len(audit_lines) != 38:
         errors.append(f"human-audit.md row count mismatch: {len(audit_lines)}")
     for l in audit_lines:
-        # Format: | `FR12-AI-XXX` | `COV-FR12-YY` | Obj | | | | |
+        # Format: | ID | Coverage | Objective | Verdict | Reasoning | Correction | Date |
         parts = [p.strip() for p in l.split("|")[1:-1]]
-        # Student fields: indices 3, 4, 5, 6
-        if any(parts[3:]):
-            errors.append(f"human-audit.md row has non-empty student fields: {l}")
+        verdict = parts[3].replace("*", "").replace("`", "").strip()
+        if verdict not in {"VALID", "INVALID", "INCOMPLETE"} or not all(parts[4:]):
+            errors.append(f"human-audit.md row has incomplete/invalid student fields: {l}")
             break
     else:
-        print("[Check 11] human-audit.md student columns are 100% BLANK.")
+        print("[Check 11] human-audit.md has complete verdict, reasoning, correction, and date fields.")
 
     # Check human-review-compact.md
     compact_path = "hw06/testcases/fr12/human-review-compact.md"
@@ -155,12 +155,13 @@ def validate():
         errors.append(f"human-review-compact.md row count mismatch: {len(compact_lines)}")
     for l in compact_lines:
         parts = [p.strip() for p in l.split("|")[1:-1]]
-        # Student fields: indices 5, 6
-        if any(parts[5:]):
-            errors.append(f"human-review-compact.md row has non-empty student fields: {l}")
+        # Student fields: verdict and note are the last two columns.
+        verdict = parts[-2].replace("*", "").replace("`", "").strip()
+        if verdict not in {"VALID", "INVALID", "INCOMPLETE"} or not parts[-1]:
+            errors.append(f"human-review-compact.md row has incomplete/invalid student fields: {l}")
             break
     else:
-        print("[Check 13] human-review-compact.md student columns are 100% BLANK.")
+        print("[Check 13] human-review-compact.md has complete verdict and review-note fields.")
 
     if errors:
         print("\n=== VALIDATION FAILED ===")

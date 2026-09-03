@@ -4,7 +4,7 @@
 > - **Student Name:** Phạm Ngọc Gia Bảo
 > - **Student ID:** `23127027`
 > - **Scope:** Master Test Suite — FR-01 (Account Registration), FR-07 (Shopping Cart), FR-12 (Access Control)
-> - **Unified Collection:** [`hw06/postman/eshop-hw06-collection.json`](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/eshop-hw06-collection.json)
+> - **Unified Collection:** [`hw06/postman/eshop-hw06-collection.json`](../postman/eshop-hw06-collection.json)
 
 ---
 

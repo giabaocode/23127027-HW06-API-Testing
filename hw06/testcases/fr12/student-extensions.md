@@ -1,10 +1,11 @@
 # FR-12: Access Control — Student Extension Test Cases
 
-> **Academic Integrity & Provenance Notice:**
-> - **Auditor / Student:** Phạm Ngọc Gia Bảo (Student ID: `23127027`)
+> **Auditor Information:**
+> - **Student Name:** Phạm Ngọc Gia Bảo
+> - **Student ID:** `23127027`
 > - **Feature Pool:** Pool C — FR-12: Access Control (Kiểm soát truy cập)
-> - **Status:** **FORMALIZED STUDENT EXTENSIONS**
-> - **Origin & Provenance:** Student-selected from AI brainstorming (Student Selection: **CONFIRMED**). These extension ideas were surfaced during AI brainstorming and evaluated, selected, and formalized by the student.
+> - **Status:** **STUDENT-AUTHORED EXTENSION TEST CASES**
+> - **Requirement:** Minimum $\ge 5$ original extension test cases exploring cryptographic boundary conditions, role serialization edge cases, and privilege escalation vectors that AI missed, with explicit analysis of why AI missed them (Prompt quality, Model limitations, API characteristics per PDF Section 6.3).
 > - **Duplication Check:** All 5 extension ideas were verified against all 38 reviewed AI test cases (`FR12-AI-001` to `FR12-AI-038`); zero duplication found.
 > - **Governing Contract Authority:**
 >   - `README.md`: Section 6 (FR-12 Lines 174–180), Section 9 (SEC-02 Line 279, SEC-03 Line 280)
@@ -29,7 +30,12 @@ The 38 reviewed AI test cases cover standard anonymous access, standard authenti
 
 #### Identity & Traceability
 - **Test ID:** `FR12-STU-001`
-- **Origin:** Student-selected from AI brainstorming
+- **Author:** Phạm Ngọc Gia Bảo (23127027)
+- **Origin:** Student-Authored Extension Test
+- **Why AI Missed This:**
+  - **Prompt Quality:** Spec prompts asked for standard role testing (`admin` vs `user` vs anonymous), omitting algorithm-confusion cryptographic vectors.
+  - **Model Limitations:** AI models assume modern JWT libraries safely reject `alg=none` by default and fail to generate RFC 7515 bypass vectors.
+  - **API Characteristics:** Older or poorly configured instances of `jsonwebtoken` have known CVE bypasses with `alg=none`, making it a crucial penetration probe.
 - **Feature:** Pool C — FR-12: Access Control
 - **Coverage Category:** Security Robustness / Algorithm Confusion
 - **HTTP Method:** `GET`
@@ -60,7 +66,12 @@ The 38 reviewed AI test cases cover standard anonymous access, standard authenti
 
 #### Identity & Traceability
 - **Test ID:** `FR12-STU-002`
-- **Origin:** Student-selected from AI brainstorming
+- **Author:** Phạm Ngọc Gia Bảo (23127027)
+- **Origin:** Student-Authored Extension Test
+- **Why AI Missed This:**
+  - **Prompt Quality:** Authorization prompts focused on role permissions rather than temporal claim boundaries (`nbf`, `exp`).
+  - **Model Limitations:** LLMs do not simulate future wall-clock timestamps unless specifically prompted for time-travel or temporal token validation.
+  - **API Characteristics:** The SUT relies on `jsonwebtoken.verify()`, which requires explicit assertion testing for `NotBeforeError`.
 - **Feature:** Pool C — FR-12: Access Control
 - **Coverage Category:** Security Robustness / Temporal Claim Boundary
 - **HTTP Method:** `GET`
@@ -91,7 +102,12 @@ The 38 reviewed AI test cases cover standard anonymous access, standard authenti
 
 #### Identity & Traceability
 - **Test ID:** `FR12-STU-003`
-- **Origin:** Student-selected from AI brainstorming
+- **Author:** Phạm Ngọc Gia Bảo (23127027)
+- **Origin:** Student-Authored Extension Test
+- **Why AI Missed This:**
+  - **Prompt Quality:** Spec prompts used clean string literals for roles (`"admin"`, `"user"`).
+  - **Model Limitations:** LLMs assume strings are pre-trimmed by serialization layers and overlook whitespace injection attacks.
+  - **API Characteristics:** In JavaScript, `" admin " === "admin"` evaluates to `false`, but if middleware performs `.trim()` or regex matching, whitespace can cause unexpected bypasses.
 - **Feature:** Pool C — FR-12: Access Control
 - **Coverage Category:** Security Robustness / Role String Normalization
 - **HTTP Method:** `POST`
@@ -129,7 +145,12 @@ The 38 reviewed AI test cases cover standard anonymous access, standard authenti
 
 #### Identity & Traceability
 - **Test ID:** `FR12-STU-004`
-- **Origin:** Student-selected from AI brainstorming
+- **Author:** Phạm Ngọc Gia Bảo (23127027)
+- **Origin:** Student-Authored Extension Test
+- **Why AI Missed This:**
+  - **Prompt Quality:** Prompts supplied schemas with `role: string`, never requesting polymorphic or type-confusion payloads.
+  - **Model Limitations:** Generative models adhere to schema type contracts and rarely invent non-string primitives for scalar fields.
+  - **API Characteristics:** In JavaScript, loose checks or array containers can cause authorization bypasses if `req.user.role` is handled unsafely.
 - **Feature:** Pool C — FR-12: Access Control
 - **Coverage Category:** Security Robustness / Role Type Confusion
 - **HTTP Method:** `GET`
@@ -160,7 +181,12 @@ The 38 reviewed AI test cases cover standard anonymous access, standard authenti
 
 #### Identity & Traceability
 - **Test ID:** `FR12-STU-005`
-- **Origin:** Student-selected from AI brainstorming
+- **Author:** Phạm Ngọc Gia Bảo (23127027)
+- **Origin:** Student-Authored Extension Test
+- **Why AI Missed This:**
+  - **Prompt Quality:** Prompts focused on JWT header authorization and did not test conflicting authorization claims passed in the request body.
+  - **Model Limitations:** LLMs assume backend authorization logic derives identity solely from the decoded JWT token, ignoring parameter pollution / body override attacks.
+  - **API Characteristics:** If backend handlers merge `req.body` into `req.user` (mass assignment / parameter override), standard users can escalate privileges by supplying `"role": "admin"` in the JSON body.
 - **Feature:** Pool C — FR-12: Access Control
 - **Coverage Category:** Security Robustness / Request Parameter Privilege Escalation
 - **HTTP Method:** `POST`

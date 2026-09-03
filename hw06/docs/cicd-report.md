@@ -4,7 +4,7 @@
 > - **Student Name:** Phạm Ngọc Gia Bảo
 > - **Student ID:** `23127027`
 > - **Repository:** [`https://github.com/giabaocode/23127027-HW06-API-Testing`](https://github.com/giabaocode/23127027-HW06-API-Testing)
-> - **Workflow Configuration:** [`.github/workflows/api-tests.yml`](file:///Users/phamngocgiabao/eshop-sut/.github/workflows/api-tests.yml)
+> - **Workflow Configuration:** [`.github/workflows/api-tests.yml`](../../.github/workflows/api-tests.yml)
 
 ---
 
@@ -38,7 +38,7 @@ The continuous integration pipeline is hosted on **GitHub Actions** (`ubuntu-lat
 - **Run Type:** PASSING CI HEALTH & SMOKE REGRESSION (Run A)
 - **Target Branch:** `main`
 - **Trigger Event:** `push` / `workflow_dispatch`
-- **Target Suite:** [`hw06/postman/collections/ci-smoke.postman_collection.json`](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/collections/ci-smoke.postman_collection.json)
+- **Target Suite:** [`hw06/postman/collections/ci-smoke.postman_collection.json`](../postman/collections/ci-smoke.postman_collection.json)
 - **Executed Operations:** 9 API Requests (Catalog, Details, Categories, Registration, Login, Cart, Admin Users, Forged Signature Rejection, Anonymous Rejection).
 - **Total Assertions:** 34 / 34 Passed (100% Pass Rate).
 - **Run ID:** `33665114685`
@@ -54,7 +54,7 @@ The continuous integration pipeline is hosted on **GitHub Actions** (`ubuntu-lat
 - **Run Type:** INTENTIONAL CI FAILURE DEMONSTRATION (Run B)
 - **Target Branch:** `main`
 - **Trigger Event:** `workflow_dispatch` (with input `demo_failure=true`)
-- **Target Suite:** [`hw06/postman/collections/ci-intentional-failure-demo.postman_collection.json`](file:///Users/phamngocgiabao/eshop-sut/hw06/postman/collections/ci-intentional-failure-demo.postman_collection.json)
+- **Target Suite:** [`hw06/postman/collections/ci-intentional-failure-demo.postman_collection.json`](../postman/collections/ci-intentional-failure-demo.postman_collection.json)
 - **Deliberate Failure Assertion:**
   ```javascript
   pm.test("[DEMO INTENTIONAL FAILURE] Deliberately Asserting Non-Existent Product Name to Verify CI/CD Failure Detection", function () {
@@ -75,12 +75,12 @@ The continuous integration pipeline is hosted on **GitHub Actions** (`ubuntu-lat
 In accordance with course anti-cheat guidelines, real screenshots from the live GitHub Actions web interface were captured directly from the browser:
 
 1. **Successful CI Run Screenshot (Run A):**
-   - **File Path:** [`hw06/screenshots/cicd-run-01-success.png`](file:///Users/phamngocgiabao/eshop-sut/hw06/screenshots/cicd-run-01-success.png)
+   - **File Path:** [`hw06/screenshots/cicd-run-01-success.png`](../screenshots/cicd-run-01-success.png)
    - **Verification:** Visibly renders GitHub Actions Run A (`33665114685`) on commit `229cbe1` with green checkmark, duration 27s, and step `Newman Automated Regression & Smoke` succeeded.
    - ![Run A Success](../screenshots/cicd-run-01-success.png)
 
 2. **Intentional Failed CI Run Screenshot (Run B):**
-   - **File Path:** [`hw06/screenshots/cicd-run-02-failure.png`](file:///Users/phamngocgiabao/eshop-sut/hw06/screenshots/cicd-run-02-failure.png)
+   - **File Path:** [`hw06/screenshots/cicd-run-02-failure.png`](../screenshots/cicd-run-02-failure.png)
    - **Verification:** Visibly renders GitHub Actions Run B (`33665296154`) with red cross, step `Execute Newman Test Suite` failed with exit code 1, and intentional assertion error detail logged.
    - ![Run B Failure](../screenshots/cicd-run-02-failure.png)
 

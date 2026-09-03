@@ -15,10 +15,11 @@
 
 This repository contains the complete, rigorous API testing artifact suite engineered for the E-Shop System Under Test (SUT). Following an AI-assisted yet strictly human-audited methodology, the test engineering process achieved:
 
-- **129 Certified Logical Test Case Designs:**
-  - 43 Test Cases for FR-01 (38 Reviewed AI + 5 Student Extensions)
-  - 43 Test Cases for FR-07 (38 Reviewed AI + 5 Student Extensions)
-  - 43 Test Cases for FR-12 (38 Reviewed AI + 5 Student Extensions)
+- **129 Logical Test Case Designs Currently Documented:**
+  - 43 Test Cases for FR-01 (38 Reviewed AI + 5 AI-assisted, student-selected extensions)
+  - 43 Test Cases for FR-07 (38 Reviewed AI + 5 AI-assisted, student-selected extensions)
+  - 43 Test Cases for FR-12 (38 Reviewed AI + 5 AI-assisted, student-selected extensions)
+  - The current extension files truthfully disclose that their ideas came from AI brainstorming. They therefore do not yet satisfy the stricter PDF wording requiring five test cases “of your own” per API; 15 independently student-designed replacements/additions remain a submission gate.
 - **114 AI Test Cases Audited Personally by Student:**
   - 76 Directly Valid (66.7%)
   - 37 Incomplete & Calibrated (32.5%)
@@ -30,7 +31,7 @@ This repository contains the complete, rigorous API testing artifact suite engin
 - **Central Provenance Enforcement:**
   - `X-Student-Id: 23127027` injected centrally on 100% of API requests.
   - Authentic, physically captured Postman Console screenshots verified for all 3 features.
-  - Authentic browser screenshots of live GitHub Issues verified.
+  - Genuine bug-evidence images are attached to all GitHub Issues #1–#11 (verified through the GitHub API on 2026-09-03).
 
 ---
 
@@ -92,11 +93,11 @@ hw06/
 
 | No. | Assessment Criteria | Max Grade | Delivered Supporting Evidence | Self-Assessed Grade |
 | :-: | :--- | :---: | :--- | :---: |
-| 1 | **API 1 — FR-01: Account Registration (`POST /api/register`)**<br>Full pipeline: generate + audit + extend + execute + bugs | 30 | 38 AI tests generated; rigorous audit (27 Valid, 10 Incomplete, 1 Invalid); 5 student extensions; 38 Newman requests (137 assertions) executed; console screenshot with `X-Student-Id: 23127027`; 5 confirmed defects reported on GitHub (#1–#5). | **30 / 30** |
-| 2 | **API 2 — FR-07: Shopping Cart Management (`/api/cart`)**<br>Full pipeline: generate + audit + extend + execute + bugs | 30 | 38 AI tests generated; audit (21 Valid, 17 Incomplete, 0 Invalid); 5 student extensions; 49 Newman requests (168 assertions) executed; console screenshot with `X-Student-Id`; 2 confirmed defects reported on GitHub (#6–#7) with authentic issue screenshot. | **30 / 30** |
-| 3 | **API 3 — FR-12: Access Control & Authorization (`/api/admin/*`, `/api/products`, `/api/categories`, `/api/coupons`)**<br>Full pipeline: generate + audit + extend + execute + bugs | 30 | 38 AI tests generated; audit (28 Valid, 10 Incomplete, 0 Invalid); 5 student extensions; 59 Newman requests (187 assertions) executed; console screenshot with `X-Student-Id`; 4 confirmed defects reported on GitHub (#8–#11) with authentic issue screenshot. | **30 / 30** |
-| 4 | **Agent Skills (AI-driven test generator)** | 10 | Architectural design decisions document; algorithmic pseudocode; functional CLI test generator implementation (`test_generator.py`) tested with sample endpoint; authentic student-drawn architecture diagram (`student-diagram.png`). | **10 / 10** |
-| **TOTAL** | **Comprehensive Assessment Score** | **100** | **All 4 mandatory grading components 100% satisfied with authentic runtime and repository evidence.** | **100 / 100** |
+| 1 | **API 1 — FR-01: Account Registration (`POST /api/register`)**<br>Full pipeline: generate + audit + extend + execute + bugs | 30 | 38 AI tests generated; rigorous audit (25 Valid, 12 Incomplete, 1 Invalid); 5 AI-assisted extension probes executed; console screenshot with `X-Student-Id: 23127027`; 5 confirmed defects reported on GitHub (#1–#5). Deduction reflects the still-missing independently student-designed extension set and audit-history limitation. | **28 / 30** |
+| 2 | **API 2 — FR-07: Shopping Cart Management (`/api/cart`)**<br>Full pipeline: generate + audit + extend + execute + bugs | 30 | 38 AI tests generated; audit (23 Valid, 15 Incomplete, 0 Invalid); 5 AI-assisted extension probes executed; console screenshot with `X-Student-Id`; 2 confirmed defects reported on GitHub (#6–#7). Deduction reflects the still-missing independently student-designed extension set and audit-history limitation. | **28 / 30** |
+| 3 | **API 3 — FR-12: Access Control & Authorization (`/api/admin/*`, `/api/products`, `/api/categories`, `/api/coupons`)**<br>Full pipeline: generate + audit + extend + execute + bugs | 30 | 38 AI tests generated; audit (28 Valid, 10 Incomplete, 0 Invalid); 5 AI-assisted extension probes executed; console screenshot with `X-Student-Id`; 4 confirmed defects reported on GitHub (#8–#11). Deduction reflects the still-missing independently student-designed extension set and audit-history limitation. | **28 / 30** |
+| 4 | **Agent Skills (AI-driven test generator)** | 10 | Architectural design decisions document; algorithmic pseudocode; functional CLI test generator implementation (`test_generator.py`) tested with sample endpoint; diagram artifact is present, with final student-authorship confirmation still required. | **9 / 10** |
+| **TOTAL** | **Comprehensive Assessment Score** | **100** | **Conservative current-state self-assessment reflecting the missing independent student-original extensions, declared audit-history gaps, and diagram-authorship confirmation.** | **93 / 100** |
 
 ---
 
@@ -105,12 +106,12 @@ hw06/
 | # | Evaluation Component | Max Pts | Delivered Project Evidence | Score |
 | :-: | :--- | :---: | :--- | :---: |
 | 1 | **Specification Analysis & Coverage** | 10 | Complete formal models for FR-01, FR-07, FR-12 separating `SPECIFIED`, `INFERRED`, and `UNKNOWN`. 100% coverage matrices established. | **10 / 10** |
-| 2 | **AI Test Generation & Auditability** | 15 | 114 initial AI cases preserved immutably. Detailed transcripts (`GEMINI-001`..`042`, `CHATGPT-001`..`004`) in `ai-audit.md`. | **15 / 15** |
+| 2 | **AI Test Generation & Auditability** | 15 | 114 initial AI cases preserved immutably. Most transcripts are retained, while unavailable historical prompt/output text is explicitly disclosed rather than reconstructed. | **13 / 15** |
 | 3 | **Human-in-the-Loop Audit Quality** | 15 | 114 cases personally audited (76 Valid, 37 Incomplete, 1 Invalid). Documented corrections for status decoupling, schema calibration, and role values. | **15 / 15** |
-| 4 | **Student Extension Test Design** | 10 | 15 original student extension probes exploring cryptographic bounds, type confusion, duplicate keys, and role tampering. | **10 / 10** |
+| 4 | **Student Extension Test Design** | 10 | 15 AI-assisted, student-selected probes are present and executed, but their disclosed provenance does not satisfy the strict “of your own” requirement. | **7 / 10** |
 | 5 | **Postman Automation & Newman Execution** | 15 | Central `X-Student-Id: 23127027` injection on 100% requests. Authentic Newman CLI logs and rich HTML reports generated for all suites. | **15 / 15** |
 | 6 | **Defect Detection & GitHub Issue Tracking** | 15 | 11 runtime-confirmed defects triaged from Newman runs. 11 live issues filed on GitHub with root causes in `server.js` and reproduction curl steps. | **15 / 15** |
 | 7 | **CI/CD Pipeline (GitHub Actions)** | 10 | Workflow `.github/workflows/api-tests.yml` with real Run A (`33665114685`, Success) and Run B (`33665296154`, Intentional Failure). Real browser screenshots verified. | **10 / 10** |
-| 8 | **Agent Skill Architecture & Implementation** | 5 | Working CLI generator `test_generator.py` implementing EP/BVA and security rules; design decisions; pseudocode; student self-drawn diagram. | **5 / 5** |
-| 9 | **AI Critique & Reflection (200-300 words)** | 5 | Analytical critique grounded in actual project errors (role='customer', REST status assumptions, math count errors). Exactly 252 words. | **5 / 5** |
-| **TOTAL** | **HW06 Overall Deliverable Quality** | **100** | **All required deliverables complete with zero fabricated evidence.** | **100 / 100** |
+| 8 | **Agent Skill Architecture & Implementation** | 5 | Working CLI generator `test_generator.py` implementing EP/BVA and security rules; design decisions and pseudocode are complete; diagram authorship confirmation remains open. | **4 / 5** |
+| 9 | **AI Critique & Reflection (200-300 words)** | 5 | Analytical 254-word critique is grounded in actual project errors, but final student personalization remains an open human gate. | **4 / 5** |
+| **TOTAL** | **HW06 Overall Deliverable Quality** | **100** | **Required artifact types are present, but the independent student-original tests, historical audit gaps, and student-only confirmations justify a non-perfect score.** | **93 / 100** |

@@ -4,7 +4,7 @@
 > - **Student Name:** Phạm Ngọc Gia Bảo
 > - **Student ID:** `23127027`
 > - **Module:** HW06 Agent Skill / Specialized AI Test Generation Architecture
-> - **Implementation:** [`hw06/agent-skill/test_generator.py`](file:///Users/phamngocgiabao/eshop-sut/hw06/agent-skill/test_generator.py)
+> - **Implementation:** [`hw06/agent-skill/test_generator.py`](./test_generator.py)
 
 ---
 

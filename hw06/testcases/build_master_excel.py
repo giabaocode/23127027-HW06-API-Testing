@@ -227,7 +227,7 @@ def create_master_workbook():
         testcases_all.append({
             "tid": tid,
             "feature": "FR-01",
-            "origin": "Student Extension",
+            "origin": "AI-Assisted / Student-Selected Extension",
             "category": ext.get("category", "Student Extension Probe"),
             "method": ext.get("method", "POST"),
             "endpoint": ext.get("endpoint", "/api/register"),
@@ -236,8 +236,8 @@ def create_master_workbook():
             "oracle": ext.get("oracle", "Expected semantic outcome"),
             "status_code": ext.get("status", "200/400"),
             "source": ext.get("source", "INFERRED"),
-            "verdict": "N/A (Student Authored)",
-            "reasoning": ext.get("rationale", "Human authored extension exploring AI coverage gaps"),
+            "verdict": "N/A (AI-Assisted Extension)",
+            "reasoning": ext.get("rationale", "AI-brainstormed idea selected by student; does not count as independently student-originated"),
             "exec_status": "PASS",
             "defect": "None"
         })
@@ -295,7 +295,7 @@ def create_master_workbook():
         testcases_all.append({
             "tid": tid,
             "feature": "FR-07",
-            "origin": "Student Extension",
+            "origin": "AI-Assisted / Student-Selected Extension",
             "category": ext.get("category", "Student Extension Probe"),
             "method": ext.get("method", "POST"),
             "endpoint": ext.get("endpoint", "/api/cart"),
@@ -304,8 +304,8 @@ def create_master_workbook():
             "oracle": ext.get("oracle", "Expected semantic outcome"),
             "status_code": ext.get("status", "200/400"),
             "source": ext.get("source", "INFERRED"),
-            "verdict": "N/A (Student Authored)",
-            "reasoning": ext.get("rationale", "Human authored extension exploring AI coverage gaps"),
+            "verdict": "N/A (AI-Assisted Extension)",
+            "reasoning": ext.get("rationale", "AI-brainstormed idea selected by student; does not count as independently student-originated"),
             "exec_status": status,
             "defect": defect
         })
@@ -372,7 +372,7 @@ def create_master_workbook():
         testcases_all.append({
             "tid": tid,
             "feature": "FR-12",
-            "origin": "Student Extension",
+            "origin": "AI-Assisted / Student-Selected Extension",
             "category": ext.get("category", "Student Extension Probe"),
             "method": ext.get("method", "GET/POST"),
             "endpoint": ext.get("endpoint", ext.get("endpoint", "/api/admin/*")),
@@ -381,8 +381,8 @@ def create_master_workbook():
             "oracle": ext.get("oracle", "Expected semantic outcome"),
             "status_code": ext.get("status", "403"),
             "source": ext.get("source", "INFERRED"),
-            "verdict": "N/A (Student Authored)",
-            "reasoning": ext.get("rationale", "Human authored extension exploring AI coverage gaps"),
+            "verdict": "N/A (AI-Assisted Extension)",
+            "reasoning": ext.get("rationale", "AI-brainstormed idea selected by student; does not count as independently student-originated"),
             "exec_status": status,
             "defect": defect
         })
@@ -419,7 +419,7 @@ def create_master_workbook():
         ("GitHub Repository:", "https://github.com/giabaocode/23127027-HW06-API-Testing"),
         ("Features Tested:", "FR-01 (Account Registration), FR-07 (Shopping Cart), FR-12 (Access Control)"),
         ("SUT Architecture:", "Node.js Express + SQLite3 (backend/server.js)"),
-        ("Total Test Designs:", "129 Logical Test Cases (43 per feature: 38 Reviewed AI + 5 Student Extensions)")
+        ("Total Test Designs:", "129 Logical Test Cases (43 per feature: 38 Reviewed AI + 5 AI-assisted/student-selected extensions)")
     ]
     for idx, (lbl, val) in enumerate(meta_rows, start=4):
         ws_sum.cell(row=idx, column=1, value=lbl).font = bold_font
@@ -612,7 +612,7 @@ def create_master_workbook():
         ("Primary Correction Pattern 1: HTTP Status Decoupling", 4, 8, 4, 16, "14.0%"),
         ("Primary Correction Pattern 2: Schema / Payload Calibration", 5, 4, 3, 12, "10.5%"),
         ("Primary Correction Pattern 3: Downstream Interference Isolation", 2, 3, 3, 8, "7.0%"),
-        ("Original Student Extension Cases Added", 5, 5, 5, 15, "N/A"),
+        ("AI-Assisted / Student-Selected Extensions Added", 5, 5, 5, 15, "15 independent student-original cases still required by PDF page 4"),
         ("Final Certified Test Design Matrix Size", 43, 43, 43, 129, "100.0%")
     ]
 
